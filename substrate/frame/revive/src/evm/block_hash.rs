@@ -145,7 +145,7 @@ impl EthBlockBuilder {
 			state_root: transactions_root.0.into(),
 			transactions_root: transactions_root.0.into(),
 			receipts_root: receipts_root.0.into(),
-
+			hash: block_hash,
 			parent_hash: self.parent_hash.into(),
 			miner: self.block_author.into(),
 			logs_bloom: self.logs_bloom,
