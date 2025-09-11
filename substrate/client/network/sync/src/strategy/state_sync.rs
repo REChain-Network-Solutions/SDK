@@ -180,10 +180,12 @@ struct Level<B: BlockT> {
 	state: LevelState<B>,
 	stack: Vec<LevelNode<B>>,
 	prefix: NibbleVec,
+	db_prefix_len: usize,
 }
 impl<B: BlockT> Level<B> {
 	fn new(allow_child: bool, prefix: NibbleVec, root: B::Hash) -> Self {
-		Self { allow_child, state: LevelState::Root(root), stack: vec![], prefix }
+		let db_prefix_len = prefix.inner().len();
+		Self { allow_child, state: LevelState::Root(root), stack: vec![], prefix, db_prefix_len }
 	}
 	// ChildHash | ValueHash | Value | Branch | Pop -> Branch | End
 	fn next_branch(&mut self) {
@@ -419,7 +421,7 @@ where
 					LevelState::ChildHash(prefix, hash) => {
 						if !is_known(&self.client, &self.null_hash, prefix, hash) {
 							let child_level = Level::new(false, std::mem::take(prefix), *hash);
-							level.next_branch();
+							level.state = LevelState::Value;
 							self.levels.push(child_level);
 						} else {
 							level.next_branch();
@@ -510,8 +512,11 @@ where
 			}
 			self.metadata.imported_bytes += proof_size;
 			let complete = self.on_proof_response(&proof_db);
-			self.metadata.last_key =
-				self.levels.iter().map(|level| level.prefix.inner().to_vec()).collect();
+			self.metadata.last_key = self
+				.levels
+				.iter()
+				.map(|level| level.prefix.inner()[level.db_prefix_len..].to_vec())
+				.collect();
 			complete
 		} else {
 			self.process_state_unverified(response)
