@@ -36,15 +36,18 @@ use codec::Codec;
 use futures::prelude::*;
 
 use sc_client_api::{backend::AuxStore, BlockOf};
-use sc_consensus::{BlockImport, BlockImportParams, ForkChoiceStrategy, StateAction};
+use sc_consensus::{
+	BlockCheckParams, BlockImport, BlockImportParams, ForkChoiceStrategy, ImportResult, StateAction,
+};
 use sc_consensus_slots::{
 	BackoffAuthoringBlocksStrategy, InherentDataProviderExt, SimpleSlotWorkerToSlotWorker,
 	SlotInfo, StorageChanges,
 };
 use sc_telemetry::TelemetryHandle;
+use slot_duration_tracker::SlotDurationTracker;
 use sp_api::{Core, ProvideRuntimeApi};
 use sp_application_crypto::AppPublic;
-use sp_blockchain::HeaderBackend;
+use sp_blockchain::{HeaderBackend, HeaderMetadata};
 use sp_consensus::{BlockOrigin, Environment, Error as ConsensusError, Proposer, SelectChain};
 use sp_consensus_slots::Slot;
 use sp_core::crypto::Pair;
@@ -54,6 +57,7 @@ use sp_runtime::traits::{Block as BlockT, Header, Member, NumberFor};
 
 mod authorities_tracker;
 mod import_queue;
+mod slot_duration_tracker;
 pub mod standalone;
 
 pub use crate::standalone::{find_pre_digest, slot_duration};
@@ -541,6 +545,61 @@ where
 		.authorities(parent_hash)
 		.ok()
 		.ok_or(ConsensusError::InvalidAuthoritiesSet)
+}
+
+/// A block import that tracks the slot duration of imported blocks.
+pub struct AuraSlotDurationBlockImport<Block: BlockT, Client, I, P> {
+	inner: I,
+	slot_durations: Arc<SlotDurationTracker<P, Block, Client>>,
+	_phantom: PhantomData<(Block, P)>,
+}
+
+impl<Block: BlockT, Client, I, P> AuraSlotDurationBlockImport<Block, Client, I, P> {
+	/// Create a new `AuraSlotDurationBlockImport`.
+	pub fn new(inner: I, slot_durations: Arc<SlotDurationTracker<P, Block, Client>>) -> Self {
+		Self { inner, slot_durations, _phantom: PhantomData }
+	}
+}
+
+#[async_trait::async_trait]
+impl<Block, Client, I, P> BlockImport<Block> for AuraSlotDurationBlockImport<Block, Client, I, P>
+where
+	Block: BlockT,
+	P: Pair + Send + Sync,
+	Client: HeaderBackend<Block>
+		+ HeaderMetadata<Block, Error = sp_blockchain::Error>
+		+ ProvideRuntimeApi<Block>,
+	P::Public: Codec + Debug,
+	Client::Api: AuraApi<Block, AuthorityId<P>>,
+	I: BlockImport<Block> + Send + Sync,
+{
+	type Error = I::Error;
+
+	async fn check_block(
+		&self,
+		block: BlockCheckParams<Block>,
+	) -> Result<ImportResult, Self::Error> {
+		self.inner.check_block(block).await
+	}
+
+	async fn import_block(
+		&self,
+		block: BlockImportParams<Block>,
+	) -> Result<ImportResult, Self::Error> {
+		let header = block.header.clone();
+		let result = self.inner.import_block(block).await?;
+		if matches!(result, ImportResult::Imported(_)) {
+			if let Err(e) = self.slot_durations.import(&header) {
+				log::error!(
+					target: LOG_TARGET,
+					"Error importing slot duration for block {}: {}",
+					header.hash(),
+					e,
+				);
+			}
+		}
+		Ok(result)
+	}
 }
 
 #[cfg(test)]
