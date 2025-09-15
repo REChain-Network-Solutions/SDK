@@ -17,7 +17,7 @@
 
 use crate::{
 	exec::ExecError,
-	gas, vec,
+	gas, tracing, vec,
 	vm::{BytecodeType, ExecResult, Ext},
 	AccountIdOf, Code, CodeInfo, Config, ContractBlob, DispatchError, Error, ExecReturnValue,
 	RuntimeCosts, H256, LOG_TARGET, U256,
@@ -33,7 +33,7 @@ use revm::{
 		host::DummyHost,
 		interpreter::{ExtBytecode, ReturnDataImpl, RuntimeFlags},
 		interpreter_action::InterpreterAction,
-		interpreter_types::{InputsTr, MemoryTr, ReturnData},
+		interpreter_types::{InputsTr, Jumps, LoopControl, MemoryTr, ReturnData},
 		CallInput, CallInputs, CallScheme, CreateInputs, FrameInput, Gas, InstructionResult,
 		Interpreter, InterpreterResult, InterpreterTypes, SharedMemory, Stack,
 	},
@@ -155,8 +155,17 @@ fn run<'a, E: Ext>(
 	table: &revm::interpreter::InstructionTable<EVMInterpreter<'a, E>, DummyHost>,
 ) -> InterpreterResult {
 	let host = &mut DummyHost {};
+
 	loop {
-		let action = interpreter.run_plain(table, host);
+		let use_opcode_tracing = tracing::if_tracing(|tracer| tracer.is_opcode_tracing_enabled())
+			.unwrap_or(false);
+
+		let action = if use_opcode_tracing {
+			run_with_opcode_tracing(interpreter, table, host)
+		} else {
+			interpreter.run_plain(table, host)
+		};
+
 		match action {
 			InterpreterAction::Return(result) => {
 				log::trace!(target: LOG_TARGET, "Evm return {:?}", result);
@@ -174,6 +183,45 @@ fn run<'a, E: Ext>(
 			},
 		}
 	}
+}
+
+/// Runs the EVM interpreter with opcode tracing enabled.
+/// This implementation traces each instruction execution step-by-step.
+fn run_with_opcode_tracing<'a, E: Ext>(
+	interpreter: &mut Interpreter<EVMInterpreter<'a, E>>,
+	table: &revm::interpreter::InstructionTable<EVMInterpreter<'a, E>, DummyHost>,
+	host: &mut DummyHost,
+) -> InterpreterAction {
+	use revm::interpreter::InstructionContext;
+
+	while interpreter.bytecode.is_not_end() {
+		let opcode = interpreter.bytecode.opcode();
+		let pc = interpreter.bytecode.pc();
+		let gas_before = interpreter.extend.gas_meter().gas_left();
+
+		tracing::if_tracing(|tracer| {
+			tracer.enter_opcode(
+				pc as u64,
+				opcode,
+				gas_before,
+				&interpreter.stack,
+				&interpreter.memory,
+				interpreter.extend.last_frame_output(),
+			);
+		});
+
+		interpreter.bytecode.relative_jump(1);
+		let context = InstructionContext { interpreter, host };
+		table[opcode as usize](context);
+		let gas_left = interpreter.extend.gas_meter().gas_left();
+		
+		tracing::if_tracing(|tracer| {
+			tracer.exit_opcode(gas_left);
+		});
+	}
+	interpreter.bytecode.revert_to_previous_pointer();
+
+	interpreter.take_next_action()
 }
 
 fn run_call<'a, E: Ext>(

@@ -167,3 +167,116 @@ fn basic_evm_flow_tracing_works() {
 		);
 	});
 }
+
+#[test]
+fn opcode_tracing_works() {
+	use crate::{
+		evm::{OpcodeTrace, OpcodeTracer, OpcodeTracerConfig},
+		tracing::trace,
+	};
+	use revm::bytecode::opcode::*;
+	let (code, _) = compile_module_with_type("Fibonacci", FixtureType::Solc).unwrap();
+	ExtBuilder::default().existential_deposit(200).build().execute_with(|| {
+		let _ = <Test as Config>::Currency::set_balance(&ALICE, 100_000_000);
+		let Contract { addr, .. } =
+			builder::bare_instantiate(Code::Upload(code)).build_and_unwrap_contract();
+
+		// Test with a specific configuration and verify exact structure
+		let config = OpcodeTracerConfig {
+			enable_memory: false,
+			disable_stack: false,
+			disable_storage: true,
+			enable_return_data: true,
+			limit: 5,
+			memory_word_limit: 16,
+		};
+
+		let mut tracer = OpcodeTracer::new(config, |_| sp_core::U256::from(0u64));
+		let _result = trace(&mut tracer, || {
+			builder::bare_call(addr)
+				.data(
+					Fibonacci::FibonacciCalls::fib(Fibonacci::fibCall { n: U256::from(3u64) })
+						.abi_encode(),
+				)
+				.build_and_unwrap_result()
+		});
+
+		let actual_trace = tracer.collect_trace();
+
+		// Create expected trace structure that matches the exact execution
+		use crate::evm::OpcodeStep;
+		let expected_trace = OpcodeTrace {
+			gas: actual_trace.gas, // Use actual gas since it varies
+			failed: false,
+			return_value: crate::evm::Bytes(U256::from(2).to_be_bytes_vec()), // fib(3) = 2
+			struct_logs: vec![
+				OpcodeStep {
+					pc: 0,
+					op: PUSH1,
+					gas: sp_core::U256::from(0u64),
+					gas_cost: sp_core::U256::from(0u64),
+					depth: 1,
+					stack: vec![],
+					memory: vec![],
+					storage: None,
+					return_data: crate::evm::Bytes::default(),
+					error: None,
+				},
+				OpcodeStep {
+					pc: 2,
+					op: PUSH1,
+					gas: sp_core::U256::from(0u64),
+					gas_cost: sp_core::U256::from(0u64),
+					depth: 1,
+					stack: vec![crate::evm::Bytes(U256::from(0x80).to_be_bytes_vec())],
+					memory: vec![],
+					storage: None,
+					return_data: crate::evm::Bytes::default(),
+					error: None,
+				},
+				OpcodeStep {
+					pc: 4,
+					op: MSTORE,
+					gas: sp_core::U256::from(0u64),
+					gas_cost: sp_core::U256::from(0u64),
+					depth: 1,
+					stack: vec![
+						crate::evm::Bytes(U256::from(0x80).to_be_bytes_vec()),
+						crate::evm::Bytes(U256::from(0x40).to_be_bytes_vec()),
+					],
+					memory: vec![],
+					storage: None,
+					return_data: crate::evm::Bytes::default(),
+					error: None,
+				},
+				OpcodeStep {
+					pc: 5,
+					op: CALLVALUE,
+					gas: sp_core::U256::from(0u64),
+					gas_cost: sp_core::U256::from(0u64),
+					depth: 1,
+					stack: vec![],
+					memory: vec![],
+					storage: None,
+					return_data: crate::evm::Bytes::default(),
+					error: None,
+				},
+				OpcodeStep {
+					pc: 6,
+					op: DUP1,
+					gas: sp_core::U256::from(0u64),
+					gas_cost: sp_core::U256::from(0u64),
+					depth: 1,
+					stack: vec![crate::evm::Bytes(U256::from(0).to_be_bytes_vec())],
+					memory: vec![],
+					storage: None,
+					return_data: crate::evm::Bytes::default(),
+					error: None,
+				},
+			],
+		};
+
+		// Single assertion that verifies the complete trace structure matches exactly
+		assert_eq!(actual_trace, expected_trace);
+	});
+}
