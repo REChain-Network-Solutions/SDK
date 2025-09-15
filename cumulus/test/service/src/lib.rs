@@ -36,6 +36,7 @@ use cumulus_client_consensus_aura::{
 };
 use prometheus::Registry;
 use runtime::AccountId;
+use sc_consensus_aura::{AuraSlotDurationBlockImport, SlotDurationTracker};
 use sc_executor::{HeapAllocStrategy, WasmExecutor, DEFAULT_HEAP_ALLOC_STRATEGY};
 use sp_consensus_aura::sr25519::AuthorityPair;
 use std::{
@@ -111,8 +112,16 @@ pub type Client = TFullClient<runtime::NodeBlock, runtime::RuntimeApi, WasmExecu
 pub type Backend = TFullBackend<Block>;
 
 /// The block-import type being used by the test service.
-pub type ParachainBlockImport =
-	TParachainBlockImport<Block, SlotBasedBlockImport<Block, Arc<Client>, Client>, Backend>;
+pub type ParachainBlockImport = TParachainBlockImport<
+	Block,
+	AuraSlotDurationBlockImport<
+		Block,
+		Client,
+		SlotBasedBlockImport<Block, Arc<Client>, Client>,
+		AuthorityPair,
+	>,
+	Backend,
+>;
 
 /// Transaction pool type used by the test service
 pub type TransactionPool = Arc<sc_transaction_pool::TransactionPoolHandle<Block, Client>>;
@@ -200,6 +209,8 @@ pub fn new_partial(
 
 	let (block_import, slot_based_handle) =
 		SlotBasedBlockImport::new(client.clone(), client.clone());
+	let slot_durations = Arc::new(SlotDurationTracker::new(client.clone())?);
+	let block_import = AuraSlotDurationBlockImport::new(block_import, slot_durations.clone());
 	let block_import = ParachainBlockImport::new(block_import, backend.clone());
 
 	let transaction_pool = Arc::from(
@@ -213,21 +224,36 @@ pub fn new_partial(
 		.build(),
 	);
 
-	let slot_duration = sc_consensus_aura::slot_duration(&*client)?;
+	let cidp_client = client.clone();
 	let import_queue = cumulus_client_consensus_aura::import_queue::<AuthorityPair, _, _, _, _, _>(
 		ImportQueueParams {
 			block_import: block_import.clone(),
 			client: client.clone(),
-			create_inherent_data_providers: move |_, ()| async move {
-				let timestamp = sp_timestamp::InherentDataProvider::from_system_time();
+			create_inherent_data_providers: move |parent_hash, ()| {
+				let slot_durations = slot_durations.clone();
+				let client = cidp_client.clone();
+				async move {
+					let header = client
+						.header(parent_hash)
+						.map_err(|e| Box::new(e) as Box<dyn std::error::Error + Send + Sync>)?
+						.ok_or_else(|| {
+							Box::new(sc_service::Error::Other(format!(
+								"Header not found for {parent_hash:?}"
+							))) as Box<dyn std::error::Error + Send + Sync>
+						})?;
+					let slot_duration = slot_durations.fetch(&header).map_err(|e| {
+						Box::new(sc_service::Error::Other(e))
+							as Box<dyn std::error::Error + Send + Sync>
+					})?;
+					let timestamp = sp_timestamp::InherentDataProvider::from_system_time();
 
-				let slot =
-					sp_consensus_aura::inherents::InherentDataProvider::from_timestamp_and_slot_duration(
+					let slot = sp_consensus_aura::inherents::InherentDataProvider::from_timestamp_and_slot_duration(
 						*timestamp,
 						slot_duration,
 					);
 
-				Ok((slot, timestamp))
+					Ok((slot, timestamp))
+				}
 			},
 			spawner: &task_manager.spawn_essential_handle(),
 			registry: None,

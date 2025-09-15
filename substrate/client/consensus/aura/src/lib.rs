@@ -44,7 +44,6 @@ use sc_consensus_slots::{
 	SlotInfo, StorageChanges,
 };
 use sc_telemetry::TelemetryHandle;
-use slot_duration_tracker::SlotDurationTracker;
 use sp_api::{Core, ProvideRuntimeApi};
 use sp_application_crypto::AppPublic;
 use sp_blockchain::{HeaderBackend, HeaderMetadata};
@@ -67,6 +66,7 @@ pub use import_queue::{
 	ImportQueueParams,
 };
 pub use sc_consensus_slots::SlotProportion;
+pub use slot_duration_tracker::SlotDurationTracker;
 pub use sp_consensus::SyncOracle;
 pub use sp_consensus_aura::{
 	digests::CompatibleDigestItem,
@@ -552,6 +552,18 @@ pub struct AuraSlotDurationBlockImport<Block: BlockT, Client, I, P> {
 	inner: I,
 	slot_durations: Arc<SlotDurationTracker<P, Block, Client>>,
 	_phantom: PhantomData<(Block, P)>,
+}
+
+impl<Block: BlockT, Client, I: Clone, P> Clone
+	for AuraSlotDurationBlockImport<Block, Client, I, P>
+{
+	fn clone(&self) -> Self {
+		Self {
+			inner: self.inner.clone(),
+			slot_durations: self.slot_durations.clone(),
+			_phantom: PhantomData,
+		}
+	}
 }
 
 impl<Block: BlockT, Client, I, P> AuraSlotDurationBlockImport<Block, Client, I, P> {

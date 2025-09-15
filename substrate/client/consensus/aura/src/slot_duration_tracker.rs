@@ -31,8 +31,7 @@ use sp_runtime::traits::{Block, Header, NumberFor};
 
 use crate::AuthorityId;
 
-/// AURA authorities tracker. Updates authorities based on the AURA authorities change
-/// digest in the block header.
+/// AURA slot duration tracker. Updates authorities based on information from the runtime.
 pub struct SlotDurationTracker<P, B: Block, C> {
 	slot_durations: RwLock<ForkTree<B::Hash, NumberFor<B>, SlotDuration>>,
 	client: Arc<C>,
