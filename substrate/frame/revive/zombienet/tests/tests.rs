@@ -5,7 +5,6 @@ use pallet_revive::evm::{Account, BlockNumberOrTag, BlockTag};
 use pallet_revive_eth_rpc::{example::TransactionBuilder, EthRpcClient};
 use pallet_revive_zombienet::{utils::*, TestEnvironment, BEST_BLOCK_METRIC};
 use sp_core::U256;
-use subxt::{self, dynamic::Value};
 use subxt_signer::sr25519::dev;
 
 const COLLATOR_RPC_PORT: u16 = 9944;
@@ -31,7 +30,7 @@ async fn test_dont_spawn_zombienet() {
 	test_single_transfer(&test_env).await;
 	test_deployment(&test_env).await;
 	test_parallel_transfers(&test_env, 5).await;
-	test_mixed_evm_substrate_transactions(&test_env, 3, 2).await;
+	test_mixed_evm_substrate_transactions(&test_env, 10, 10).await;
 }
 
 // This tests makes sure that RPC collator is able to build blocks
@@ -84,19 +83,28 @@ async fn test_single_transfer(test_env: &TestEnvironment) {
 
 	println!("\n\n=== Transferring  ===\n\n");
 
-	let tx = TransactionBuilder::new(&eth_rpc_client)
-		.signer(alith.clone())
-		.value(amount)
-		.to(ethan.address())
-		.send()
-		.await
-		.unwrap_or_else(|err| panic!("Failed to send transaction: {err:?}"));
-	println!("Tx hash: {:?}", tx.hash());
+	let transactions = prepare_evm_transfer_transactions(
+		eth_rpc_client,
+		alith.clone(),
+		&ethan.address(),
+		amount,
+		1,
+	)
+	.await
+	.unwrap_or_else(|err| panic!("Failed to prepare EVM transactions: {err:?}"));
 
-	let receipt = tx
-		.wait_for_receipt()
+	// Submit all transactions
+	let submitted_txs = eth_rpc_submit_transactions(transactions)
 		.await
-		.unwrap_or_else(|err| panic!("Failed while waiting for receipt: {err:?}"));
+		.unwrap_or_else(|err| panic!("Failed to submit transactions: {err:?}"));
+
+	// Wait for all receipts
+	let (tx_hash, generic_tx, receipt) = eth_rpc_wait_for_receipts(submitted_txs)
+		.await
+		.unwrap_or_else(|err| panic!("Failed to wait for parallel transactions: {err:?}"))
+		.pop()
+		.expect("Expected vector of lenght 1");
+
 	print_receipt_info(&receipt);
 
 	let alith_balance_after = eth_rpc_client
@@ -126,8 +134,7 @@ async fn test_single_transfer(test_env: &TestEnvironment) {
 	// );
 	assert_eq!(ethan_balance_after, ethan_balance_before.saturating_add(amount));
 	assert_block(test_env, BlockNumberOrTag::U256(receipt.block_number), false).await;
-	assert_transactions(test_env, alith, vec![(tx.hash(), tx.generic_transaction(), receipt)])
-		.await;
+	assert_transactions(test_env, alith, vec![(tx_hash, generic_tx, receipt)]).await;
 }
 
 async fn test_deployment(test_env: &TestEnvironment) {
@@ -208,48 +215,25 @@ async fn test_parallel_transfers(test_env: &TestEnvironment, num_transactions: u
 	let ethan = Account::from(subxt_signer::eth::dev::ethan());
 	let amount = U256::from(1_000_000_000_000_000_000u128);
 
-	println!("Creating {} parallel transfer transactions", num_transactions);
-	let mut nonce = eth_rpc_client
-		.get_transaction_count(alith.address(), BlockTag::Latest.into())
-		.await
-		.unwrap_or_else(|err| panic!("Failed to fetch account nonce: {err:?}"));
+	let transactions = prepare_evm_transfer_transactions(
+		eth_rpc_client,
+		alith.clone(),
+		&ethan.address(),
+		amount,
+		num_transactions,
+	)
+	.await
+	.unwrap_or_else(|err| panic!("Failed to prepare EVM transactions: {err:?}"));
 
-	let mut transactions = Vec::new();
-	for i in 0..num_transactions {
-		let tx_builder = TransactionBuilder::new(eth_rpc_client)
-			.signer(alith.clone())
-			.nonce(nonce)
-			.value(amount)
-			.to(ethan.address());
-
-		transactions.push(tx_builder);
-		println!("Prepared transaction {}/{num_transactions} with nonce: {nonce:?}", i + 1);
-		nonce = nonce.saturating_add(U256::one());
-	}
-
-	println!(
-		"Submitting {} transactions synchronously, then waiting in parallel",
-		num_transactions
-	);
-	let start_time = std::time::Instant::now();
-
-	// Submit all transactions synchronously first
+	// Submit all transactions
 	let submitted_txs = eth_rpc_submit_transactions(transactions)
 		.await
 		.unwrap_or_else(|err| panic!("Failed to submit transactions: {err:?}"));
 
-	// Wait for all receipts in parallel
+	// Wait for all receipts
 	let results = eth_rpc_wait_for_receipts(submitted_txs)
 		.await
 		.unwrap_or_else(|err| panic!("Failed to wait for parallel transactions: {err:?}"));
-
-	let duration = start_time.elapsed();
-	println!(
-		"Completed {} transactions in {:?} ({:.2} tx/sec)",
-		results.len(),
-		duration,
-		results.len() as f64 / duration.as_secs_f64()
-	);
 
 	println!("Successfully completed {} parallel transactions", results.len());
 
@@ -291,60 +275,33 @@ async fn test_mixed_evm_substrate_transactions(
 	let amount = U256::from(500_000_000_000_000_000u128);
 
 	// Prepare EVM transactions
-	println!("Creating {} EVM transfer transactions", num_evm_txs);
-	let mut nonce = eth_rpc_client
-		.get_transaction_count(alith.address(), BlockTag::Latest.into())
-		.await
-		.unwrap_or_else(|err| panic!("Failed to fetch account nonce: {err:?}"));
-
-	let mut evm_transactions = Vec::new();
-	for i in 0..num_evm_txs {
-		let tx_builder = TransactionBuilder::new(eth_rpc_client)
-			.signer(alith.clone())
-			.nonce(nonce)
-			.value(amount)
-			.to(ethan.address());
-
-		evm_transactions.push(tx_builder);
-		println!("Prepared EVM transaction {}/{num_evm_txs} with nonce: {nonce:?}", i + 1);
-		nonce = nonce.saturating_add(U256::one());
-	}
+	let evm_transactions = prepare_evm_transfer_transactions(
+		eth_rpc_client,
+		alith.clone(),
+		&ethan.address(),
+		amount,
+		num_evm_txs,
+	)
+	.await
+	.unwrap_or_else(|err| panic!("Failed to prepare EVM transactions: {err:?}"));
 
 	// Prepare substrate transactions (simple remarks)
-	println!("Creating {} substrate remark transactions", num_substrate_txs);
 	let alice_signer = dev::alice();
-
-	let mut substrate_calls = Vec::new();
-	for i in 0..num_substrate_txs {
-		let call = subxt::dynamic::tx("System", "remark", vec![Value::from_bytes("Hello there")]);
-		substrate_calls.push(call);
-		println!("Prepared substrate transaction {}/{num_substrate_txs}", i + 1);
-	}
-
-	let substrate_nonce = collator_client
-		.tx()
-		.account_nonce(&alice_signer.public_key().into())
-		.await
-		.unwrap_or_else(|err| panic!("Failed to fetch account nonce: {err:?}"));
+	let substrate_calls = prepare_substrate_remark_transactions(num_substrate_txs, None);
 
 	println!(
 		"Submitting {} EVM and {} substrate transactions synchronously, then waiting in parallel",
 		num_evm_txs, num_substrate_txs
 	);
-	let start_time = std::time::Instant::now();
 
 	// Submit transactions
 	let evm_submitted = eth_rpc_submit_transactions(evm_transactions)
 		.await
 		.unwrap_or_else(|err| panic!("Failed to submit EVM transactions: {err:?}"));
-	let substrate_submitted = substrate_submit_extrinsics(
-		collator_client,
-		substrate_calls,
-		&alice_signer,
-		substrate_nonce,
-	)
-	.await
-	.unwrap_or_else(|err| panic!("Failed to submit substrate transactions: {err:?}"));
+	let substrate_submitted =
+		substrate_submit_extrinsics(collator_client, substrate_calls, &alice_signer)
+			.await
+			.unwrap_or_else(|err| panic!("Failed to submit substrate transactions: {err:?}"));
 
 	// Wait for all transactions in parallel
 	let (evm_results, substrate_results) = tokio::join!(
@@ -352,23 +309,18 @@ async fn test_mixed_evm_substrate_transactions(
 		substrate_wait_for_finalization(substrate_submitted)
 	);
 
-	let duration = start_time.elapsed();
-
 	// Handle results
 	let evm_results = evm_results
 		.unwrap_or_else(|err| panic!("Failed to submit or wait for EVM transactions: {err:?}"));
 
 	let substrate_success_count = substrate_results.iter().filter(|result| result.is_ok()).count();
-
 	let substrate_failed_count = substrate_results.len() - substrate_success_count;
 
 	println!(
-		"Completed {} EVM and {} substrate transactions ({} substrate failed) in {:?} ({:.2} total tx/sec)",
+		"Completed {} EVM and {} substrate transactions ({} substrate failed))",
 		evm_results.len(),
 		substrate_success_count,
 		substrate_failed_count,
-		duration,
-		(evm_results.len() + substrate_success_count) as f64 / duration.as_secs_f64()
 	);
 
 	// Report any substrate transaction failures

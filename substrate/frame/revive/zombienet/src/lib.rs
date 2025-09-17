@@ -253,13 +253,9 @@ impl TestEnvironment {
 		let eth_rpc = EthRpcServer::launch(collator.ws_uri(), base_dir)
 			.map_err(|err| anyhow!("Failed to spawn ETH-RPC server: {err:?}"))?;
 
-		// TODO: use below approach once subxt versions used here and in zombienet-sdk match
-		// let collator_rpc_client = collator.rpc().await.unwrap_or_else(|err| {
-		//     panic!("Failed to get the RPC client for the collator {collator_name}: {err:?}")
-		// });
-		let collator_rpc_client = RpcClient::from_insecure_url(collator.ws_uri())
-			.await
-			.map_err(|err| anyhow!("Failed to create RPC client: {err:?}"))?;
+		let collator_rpc_client = collator.rpc().await.map_err(|err| {
+			anyhow!("Failed to get the RPC client for the collator {collator_name}: {err:?}")
+		})?;
 
 		let collator_client = OnlineClient::from_rpc_client(collator_rpc_client.clone())
 			.await

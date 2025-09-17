@@ -6,6 +6,7 @@
 //! This crate contains integration tests that use Zombienet to test
 //! pallet-revive functionality in a realistic multi-node environment.
 use crate::TestEnvironment;
+use anyhow::anyhow;
 use pallet_revive::evm::{
 	Account, Block as EvmBlock, BlockNumberOrTag, GenericTransaction, ReceiptInfo, TransactionInfo,
 };
@@ -14,14 +15,16 @@ use pallet_revive_eth_rpc::{
 	subxt_client::{self},
 	EthRpcClient,
 };
-use sp_core::H256;
+use sp_core::{H256, U256};
 use subxt::{
 	self,
 	config::polkadot::PolkadotExtrinsicParamsBuilder,
+	dynamic::Value,
 	ext::subxt_rpcs::rpc_params,
-	tx::{DynamicPayload, Signer, TxProgress, TxStatus},
+	tx::{DynamicPayload, TxProgress, TxStatus},
 	OnlineClient, PolkadotConfig,
 };
+use subxt_signer::sr25519::Keypair;
 
 const ROOT_FROM_NO_DATA: &str = "56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421";
 
@@ -147,33 +150,21 @@ pub async fn assert_transactions(
 	}
 }
 
-pub async fn eth_rpc_submit_and_wait_for_transaction<Client: EthRpcClient + Sync + Send>(
-	tx_builder: TransactionBuilder<Client>,
-) -> Result<(H256, GenericTransaction, ReceiptInfo), anyhow::Error> {
-	let tx = tx_builder.send().await?;
-	let hash = tx.hash();
-	let generic_tx = tx.generic_transaction();
-
-	println!("Submitted tx: {:?}", hash);
-
-	let receipt = tx.wait_for_receipt().await?;
-	println!("Received receipt for tx: {:?} block: {:?} ", hash, receipt.block_number);
-	Ok((hash, generic_tx, receipt))
-}
-
 pub async fn eth_rpc_submit_transactions<Client: EthRpcClient + Sync + Send>(
 	transactions: Vec<TransactionBuilder<Client>>,
 ) -> Result<
 	Vec<(H256, GenericTransaction, pallet_revive_eth_rpc::example::SubmittedTransaction<Client>)>,
 	anyhow::Error,
 > {
+	println!("Submitting {} EVM transactions", transactions.len());
+
 	let mut submitted_txs = Vec::new();
 
 	for tx_builder in transactions {
 		let tx = tx_builder.send().await?;
 		let hash = tx.hash();
 		let generic_tx = tx.generic_transaction();
-		println!("Submitted tx: {:?}", hash);
+		println!("Submitted EVM tx: {:?}", hash);
 		submitted_txs.push((hash, generic_tx, tx));
 	}
 
@@ -203,21 +194,18 @@ pub async fn eth_rpc_wait_for_receipts<Client: EthRpcClient + Sync + Send>(
 	results
 }
 
-pub async fn eth_rpc_submit_and_wait_for_transactions_parallel<
-	Client: EthRpcClient + Sync + Send,
->(
-	transactions: Vec<TransactionBuilder<Client>>,
-) -> Result<Vec<(H256, GenericTransaction, ReceiptInfo)>, anyhow::Error> {
-	let submitted_txs = eth_rpc_submit_transactions(transactions).await?;
-	eth_rpc_wait_for_receipts(submitted_txs).await
-}
-
-pub async fn substrate_submit_extrinsics<S: Signer<PolkadotConfig>>(
+pub async fn substrate_submit_extrinsics(
 	client: &OnlineClient<PolkadotConfig>,
 	calls: Vec<DynamicPayload>,
-	signer: &S,
-	mut nonce: u64,
+	signer: &Keypair,
 ) -> Result<Vec<TxProgress<PolkadotConfig, OnlineClient<PolkadotConfig>>>, anyhow::Error> {
+	println!("Submitting {} substrate extrinsics", calls.len());
+	let mut nonce = client
+		.tx()
+		.account_nonce(&signer.public_key().into())
+		.await
+		.map_err(|err| anyhow!("Failed to fetch account nonce: {err:?}"))?;
+
 	let mut submitted_txs = Vec::new();
 
 	for call in calls {
@@ -276,4 +264,52 @@ pub async fn substrate_wait_for_finalization(
 		.collect();
 
 	futures::future::join_all(wait_futures).await
+}
+
+/// Prepares a vector of EVM transaction builders for parallel execution.
+/// Each transaction will have a sequential nonce starting from the provided base nonce.
+pub async fn prepare_evm_transfer_transactions<Client: EthRpcClient + Sync + Send>(
+	eth_rpc_client: &std::sync::Arc<Client>,
+	signer: Account,
+	recipient: &pallet_revive::evm::Address,
+	amount: U256,
+	num_transactions: usize,
+) -> Result<Vec<TransactionBuilder<Client>>, anyhow::Error> {
+	println!("Creating {} parallel transfer transactions", num_transactions);
+	let mut nonce = eth_rpc_client
+		.get_transaction_count(signer.address(), pallet_revive::evm::BlockTag::Latest.into())
+		.await?;
+
+	let mut transactions = Vec::new();
+	for i in 0..num_transactions {
+		let tx_builder = TransactionBuilder::new(eth_rpc_client)
+			.signer(signer.clone())
+			.nonce(nonce)
+			.value(amount)
+			.to(*recipient);
+
+		transactions.push(tx_builder);
+		println!("Prepared EVM transaction {}/{num_transactions} with nonce: {nonce:?}", i + 1);
+		nonce = nonce.saturating_add(U256::one());
+	}
+
+	Ok(transactions)
+}
+
+/// Prepares a vector of substrate remark transactions for parallel execution.
+pub fn prepare_substrate_remark_transactions(
+	num_transactions: usize,
+	remark_message: Option<&str>,
+) -> Vec<DynamicPayload> {
+	println!("Creating {} substrate remark transactions", num_transactions);
+	let message = remark_message.unwrap_or("Hello there");
+	let mut substrate_calls = Vec::new();
+
+	for i in 0..num_transactions {
+		let call = subxt::dynamic::tx("System", "remark", vec![Value::from_bytes(message)]);
+		substrate_calls.push(call);
+		println!("Prepared substrate transaction {}/{num_transactions}", i + 1);
+	}
+
+	substrate_calls
 }
