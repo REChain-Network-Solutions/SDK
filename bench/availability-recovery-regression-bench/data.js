@@ -1,52 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758625658442,
+  "lastUpdate": 1758628986447,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "availability-recovery-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "egor@parity.io",
-            "name": "Egor_P",
-            "username": "EgorPopelyaev"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": false,
-          "id": "628bdd90012bdd58b894b4d0f811c7bd899c3cae",
-          "message": "[CI/CD] Refactor backports flow so that it can determine automatically where to do a backport based on labels (#7976)\n\nThis PR changes the command-backport.yml flow so that the branch names\nare not hardcoded in the pipeline file but will be parsed from the\nlabels.\nThe idea is that there are going to be a label representing each stable\nbranch:\n- A4-backport-stable2407 \n- A4-backport-stable2409 \n- A4-backport-stable2412 \n- A4-backport-stable2503\n\nIf the backport is needed to any of those branches or to all of them,\nthe corresponding label can be set on the PR and the branch name will be\nparsed from it.\nThe labels need to be created in the repo and adjusted as soon as there\nis a new release appears or an old one disappears.",
-          "timestamp": "2025-03-20T11:50:34Z",
-          "tree_id": "02f9d3601bbd2afec811696b389b8c51e4b16977",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/628bdd90012bdd58b894b4d0f811c7bd899c3cae"
-        },
-        "date": 1742475000904,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Sent to peers",
-            "value": 1.6666666666666665,
-            "unit": "KiB"
-          },
-          {
-            "name": "Received from peers",
-            "value": 307203,
-            "unit": "KiB"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.2006205805,
-            "unit": "seconds"
-          },
-          {
-            "name": "availability-recovery",
-            "value": 11.209704717033336,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -21999,6 +21955,50 @@ window.BENCHMARK_DATA = {
           {
             "name": "test-environment",
             "value": 0.2002835364666667,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "48632512+s0me0ne-unkn0wn@users.noreply.github.com",
+            "name": "s0me0ne-unkn0wn",
+            "username": "s0me0ne-unkn0wn"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "143eb77346d6102a80931f600fc9dce1ee1f9e54",
+          "message": "Add collator selection to YAP (#9663)\n\nThis PR adds the collator selection pallet as well as other pallets\nneeded for its functionality to the Yet Another Parachain runtime.\n\nAlong with that, the YAP runtime is a little bit refactored to adopt the\nlatest FRAMEwork changes.\n\n---------\n\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+          "timestamp": "2025-09-23T10:34:08Z",
+          "tree_id": "33a4a479609a736a1e1ffc35116059a8e5c4e26f",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/143eb77346d6102a80931f600fc9dce1ee1f9e54"
+        },
+        "date": 1758628968246,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Sent to peers",
+            "value": 1.6666666666666665,
+            "unit": "KiB"
+          },
+          {
+            "name": "Received from peers",
+            "value": 307203,
+            "unit": "KiB"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.20251302936666665,
+            "unit": "seconds"
+          },
+          {
+            "name": "availability-recovery",
+            "value": 11.292918101166666,
             "unit": "seconds"
           }
         ]
