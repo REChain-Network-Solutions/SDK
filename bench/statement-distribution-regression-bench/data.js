@@ -1,52 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758623084252,
+  "lastUpdate": 1758625739673,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "statement-distribution-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "49699333+dependabot[bot]@users.noreply.github.com",
-            "name": "dependabot[bot]",
-            "username": "dependabot[bot]"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "d1dcd161faec28002762b7dc06fdb7689c200f3b",
-          "message": "Bump openssl from 0.10.64 to 0.10.70 (#7442)\n\nBumps [openssl](https://github.com/sfackler/rust-openssl) from 0.10.64\nto 0.10.70.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a\nhref=\"https://github.com/sfackler/rust-openssl/releases\">openssl's\nreleases</a>.</em></p>\n<blockquote>\n<h2>openssl v0.10.70</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Attempt to fix CI by pinning to the Ubuntu 22.04 image by <a\nhref=\"https://github.com/alex\"><code>@​alex</code></a> in <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2357\">sfackler/rust-openssl#2357</a></li>\n<li>Remove EC_METHOD and EC_GROUP_new for LibreSSL 4.1 by <a\nhref=\"https://github.com/botovq\"><code>@​botovq</code></a> in <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2356\">sfackler/rust-openssl#2356</a></li>\n<li>Test against 3.4.0 final release by <a\nhref=\"https://github.com/alex\"><code>@​alex</code></a> in <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2359\">sfackler/rust-openssl#2359</a></li>\n<li>Expose <code>SslMethod::{dtls_client,dtls_server}</code> by <a\nhref=\"https://github.com/alex\"><code>@​alex</code></a> in <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2358\">sfackler/rust-openssl#2358</a></li>\n<li>Fix lifetimes in ssl::select_next_proto by <a\nhref=\"https://github.com/sfackler\"><code>@​sfackler</code></a> in <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2360\">sfackler/rust-openssl#2360</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a\nhref=\"https://github.com/sfackler/rust-openssl/compare/openssl-v0.10.69...openssl-v0.10.70\">https://github.com/sfackler/rust-openssl/compare/openssl-v0.10.69...openssl-v0.10.70</a></p>\n<h2>openssl v0.10.69</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>build(deps): Update <code>openssl-macro</code> to version\n<code>0.1.1</code> by <a\nhref=\"https://github.com/caspermeijn\"><code>@​caspermeijn</code></a> in\n<a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2324\">sfackler/rust-openssl#2324</a></li>\n<li>Enable set_alpn_select_callback for BoringSSL by <a\nhref=\"https://github.com/ViktoriiaKovalova\"><code>@​ViktoriiaKovalova</code></a>\nin <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2327\">sfackler/rust-openssl#2327</a></li>\n<li>Switch the test to use prime256v1 based key by <a\nhref=\"https://github.com/dcermak\"><code>@​dcermak</code></a> in <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2330\">sfackler/rust-openssl#2330</a></li>\n<li>Expose EVP_DigestSqueeze from Hasher by <a\nhref=\"https://github.com/initsecret\"><code>@​initsecret</code></a> in <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2275\">sfackler/rust-openssl#2275</a></li>\n<li>Expose SSL_CTX_load_verify_locations by <a\nhref=\"https://github.com/sfackler\"><code>@​sfackler</code></a> in <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2353\">sfackler/rust-openssl#2353</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a\nhref=\"https://github.com/caspermeijn\"><code>@​caspermeijn</code></a>\nmade their first contribution in <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2324\">sfackler/rust-openssl#2324</a></li>\n<li><a\nhref=\"https://github.com/ViktoriiaKovalova\"><code>@​ViktoriiaKovalova</code></a>\nmade their first contribution in <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2327\">sfackler/rust-openssl#2327</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a\nhref=\"https://github.com/sfackler/rust-openssl/compare/openssl-v0.10.68...openssl-v0.10.69\">https://github.com/sfackler/rust-openssl/compare/openssl-v0.10.68...openssl-v0.10.69</a></p>\n<h2>openssl-v0.10.68</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>fixes <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/issues/2317\">#2317</a>\n-- restore compatibility with our MSRV and release openssl 0.9.68 by <a\nhref=\"https://github.com/alex\"><code>@​alex</code></a> in <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2318\">sfackler/rust-openssl#2318</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a\nhref=\"https://github.com/sfackler/rust-openssl/compare/openssl-v0.10.67...openssl-v0.10.68\">https://github.com/sfackler/rust-openssl/compare/openssl-v0.10.67...openssl-v0.10.68</a></p>\n<h2>openssl-v0.10.67</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Added a utility function to ensure we never have an issue with\n0-length slices from pointers again by <a\nhref=\"https://github.com/alex\"><code>@​alex</code></a> in <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2268\">sfackler/rust-openssl#2268</a></li>\n<li>Fix CI for the latest rustc by <a\nhref=\"https://github.com/alex\"><code>@​alex</code></a> in <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2271\">sfackler/rust-openssl#2271</a></li>\n<li>Add binding for EVP_DigestSqueeze by <a\nhref=\"https://github.com/initsecret\"><code>@​initsecret</code></a> in <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2270\">sfackler/rust-openssl#2270</a></li>\n<li>libressl 4.0: const correctness for X509_LOOKUP_METHOD by <a\nhref=\"https://github.com/botovq\"><code>@​botovq</code></a> in <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2276\">sfackler/rust-openssl#2276</a></li>\n<li>Bump hex dev-dependency version by <a\nhref=\"https://github.com/alex\"><code>@​alex</code></a> in <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2277\">sfackler/rust-openssl#2277</a></li>\n<li>Raise bindgen version by <a\nhref=\"https://github.com/alex\"><code>@​alex</code></a> in <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2278\">sfackler/rust-openssl#2278</a></li>\n<li>Ensure Rsa::check_key doesn't leave errors on the stack by <a\nhref=\"https://github.com/alex\"><code>@​alex</code></a> in <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2279\">sfackler/rust-openssl#2279</a></li>\n<li>Update some docs to use the corresponds macro by <a\nhref=\"https://github.com/rushilmehra\"><code>@​rushilmehra</code></a> in\n<a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2282\">sfackler/rust-openssl#2282</a></li>\n<li>Don't leave errors on the stack in\n<code>MdCtxRef::digest_verify_final</code> by <a\nhref=\"https://github.com/alex\"><code>@​alex</code></a> in <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2283\">sfackler/rust-openssl#2283</a></li>\n<li>Adjustments for LibreSSL 4 by <a\nhref=\"https://github.com/botovq\"><code>@​botovq</code></a> in <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2287\">sfackler/rust-openssl#2287</a></li>\n<li>Explicit rustfmt config by <a\nhref=\"https://github.com/kornelski\"><code>@​kornelski</code></a> in <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2285\">sfackler/rust-openssl#2285</a></li>\n<li>add basic EVP_KDF bindings by <a\nhref=\"https://github.com/reaperhulk\"><code>@​reaperhulk</code></a> in <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2289\">sfackler/rust-openssl#2289</a></li>\n<li>add ossl3 thread pool bindings by <a\nhref=\"https://github.com/reaperhulk\"><code>@​reaperhulk</code></a> in <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2293\">sfackler/rust-openssl#2293</a></li>\n<li>add argon2id support for ossl 3.2+ by <a\nhref=\"https://github.com/reaperhulk\"><code>@​reaperhulk</code></a> in <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2290\">sfackler/rust-openssl#2290</a></li>\n<li>fix 3.2.0 thread support and simplify by <a\nhref=\"https://github.com/reaperhulk\"><code>@​reaperhulk</code></a> in <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2294\">sfackler/rust-openssl#2294</a></li>\n<li>add libctx arg to argon2id by <a\nhref=\"https://github.com/reaperhulk\"><code>@​reaperhulk</code></a> in <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/pull/2295\">sfackler/rust-openssl#2295</a></li>\n</ul>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a\nhref=\"https://github.com/sfackler/rust-openssl/commit/a4d399b0f1a3694cb2d1728edf74d318a3cac890\"><code>a4d399b</code></a>\nRelease openssl v0.10.70</li>\n<li><a\nhref=\"https://github.com/sfackler/rust-openssl/commit/c9a33e286023f92b869c5f157b349be15985a799\"><code>c9a33e2</code></a>\nRelease openssl-sys v0.9.105</li>\n<li><a\nhref=\"https://github.com/sfackler/rust-openssl/commit/f014afb230de4d77bc79dea60e7e58c2f47b60f2\"><code>f014afb</code></a>\nMerge pull request <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/issues/2360\">#2360</a>\nfrom sfackler/fix-alpn-lifetimes</li>\n<li><a\nhref=\"https://github.com/sfackler/rust-openssl/commit/8e6e30bbf7e7627845b801f83a3810d6ffc1f157\"><code>8e6e30b</code></a>\nFix lifetimes in ssl::select_next_proto</li>\n<li><a\nhref=\"https://github.com/sfackler/rust-openssl/commit/1aff2801ca1dd756a0566a4d4fa9a00967280114\"><code>1aff280</code></a>\nMerge pull request <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/issues/2358\">#2358</a>\nfrom alex/expose-dlts</li>\n<li><a\nhref=\"https://github.com/sfackler/rust-openssl/commit/16ca5b278b99bb667321b4d88da230ee8f820e08\"><code>16ca5b2</code></a>\nMerge pull request <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/issues/2359\">#2359</a>\nfrom sfackler/alex-patch-1</li>\n<li><a\nhref=\"https://github.com/sfackler/rust-openssl/commit/4c9fbb0c18e8a3ac1de9671d7828862b49c1cb87\"><code>4c9fbb0</code></a>\nTest against 3.4.0 final release</li>\n<li><a\nhref=\"https://github.com/sfackler/rust-openssl/commit/5ecb31d3fd252c54dbae5e0b5b7ad495b26ac339\"><code>5ecb31d</code></a>\nUpdate openssl/src/ssl/mod.rs</li>\n<li><a\nhref=\"https://github.com/sfackler/rust-openssl/commit/4830f5bb93dafeeeddf32bf41dda83e2560f3d49\"><code>4830f5b</code></a>\nExpose <code>SslMethod::{dtls_client,dtls_server}</code></li>\n<li><a\nhref=\"https://github.com/sfackler/rust-openssl/commit/bab03c4093ef626c9564354ae7c2484f4f9ad6a9\"><code>bab03c4</code></a>\nMerge pull request <a\nhref=\"https://redirect.github.com/sfackler/rust-openssl/issues/2356\">#2356</a>\nfrom botovq/rm-ec-method</li>\n<li>Additional commits viewable in <a\nhref=\"https://github.com/sfackler/rust-openssl/compare/openssl-v0.10.64...openssl-v0.10.70\">compare\nview</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility\nscore](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=openssl&package-manager=cargo&previous-version=0.10.64&new-version=0.10.70)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nYou can trigger a rebase of this PR by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits\nthat have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after\nyour CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge\nand block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating\nit. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all\nof the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop\nDependabot creating any more for this major version (unless you reopen\nthe PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop\nDependabot creating any more for this minor version (unless you reopen\nthe PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop\nDependabot creating any more for this dependency (unless you reopen the\nPR or upgrade to it yourself)\nYou can disable automated security fix PRs for this repo from the\n[Security Alerts\npage](https://github.com/paritytech/polkadot-sdk/network/alerts).\n\n</details>\n\n> **Note**\n> Automatic rebases have been disabled on this pull request as it has\nbeen open for over 30 days.\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>\nCo-authored-by: Bastian Köcher <git@kchr.de>",
-          "timestamp": "2025-03-19T08:06:52Z",
-          "tree_id": "8909d85e0b4f4afab0945b532c5d46a53211cbe4",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/d1dcd161faec28002762b7dc06fdb7689c200f3b"
-        },
-        "date": 1742375229293,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Received from peers",
-            "value": 106.39999999999996,
-            "unit": "KiB"
-          },
-          {
-            "name": "Sent to peers",
-            "value": 127.95999999999997,
-            "unit": "KiB"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.045154571213999954,
-            "unit": "seconds"
-          },
-          {
-            "name": "statement-distribution",
-            "value": 0.035391922740000005,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -21999,6 +21955,50 @@ window.BENCHMARK_DATA = {
           {
             "name": "statement-distribution",
             "value": 0.034289331348,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "54316454+sandreim@users.noreply.github.com",
+            "name": "Andrei Sandu",
+            "username": "sandreim"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": false,
+          "id": "82b8a501c87460fb384851e9424d60a68566c7de",
+          "message": "Measure backed in block count vs backable  (#9417)\n\nCloses https://github.com/paritytech/polkadot-sdk/issues/9341\n\n---------\n\nSigned-off-by: Andrei Sandu <andrei-mihail@parity.io>\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>\nCo-authored-by: Javier Viola <javier@parity.io>",
+          "timestamp": "2025-09-23T09:59:54Z",
+          "tree_id": "2100ed3a655566c495348fbe9ff49f17bec4b4a6",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/82b8a501c87460fb384851e9424d60a68566c7de"
+        },
+        "date": 1758625721402,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Received from peers",
+            "value": 106.39999999999996,
+            "unit": "KiB"
+          },
+          {
+            "name": "Sent to peers",
+            "value": 127.95199999999998,
+            "unit": "KiB"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.04427477124399992,
+            "unit": "seconds"
+          },
+          {
+            "name": "statement-distribution",
+            "value": 0.03444090760599999,
             "unit": "seconds"
           }
         ]
