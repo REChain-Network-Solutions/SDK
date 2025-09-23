@@ -1,62 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758623029947,
+  "lastUpdate": 1758625685528,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "availability-distribution-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "jm.sobrepere@gmail.com",
-            "name": "Josep M Sobrepere",
-            "username": "josepot"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": false,
-          "id": "dbebf539e6ae2c796fb1026be0740fdeec247f85",
-          "message": "Treasury: update expire date on payout (#7958) (#7959)\n\nCloses #7958 \n\nResets the `payout.expire_at` field with the `PayoutPeriod` every time\nthat there is a valid Payout attempt.\n\n---------\n\nCo-authored-by: Victor Oliva <olivarra1@gmail.com>",
-          "timestamp": "2025-03-20T11:05:52Z",
-          "tree_id": "cc0a41c27628f9f9a1e478920b85499993d12c66",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/dbebf539e6ae2c796fb1026be0740fdeec247f85"
-        },
-        "date": 1742472515184,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Received from peers",
-            "value": 433.3333333333332,
-            "unit": "KiB"
-          },
-          {
-            "name": "Sent to peers",
-            "value": 18481.666666666653,
-            "unit": "KiB"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.008759070313333424,
-            "unit": "seconds"
-          },
-          {
-            "name": "availability-distribution",
-            "value": 0.01270981972,
-            "unit": "seconds"
-          },
-          {
-            "name": "bitfield-distribution",
-            "value": 0.025923107126666668,
-            "unit": "seconds"
-          },
-          {
-            "name": "availability-store",
-            "value": 0.15611818406000003,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -26999,6 +26945,60 @@ window.BENCHMARK_DATA = {
           {
             "name": "availability-distribution",
             "value": 0.01311669504,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "54316454+sandreim@users.noreply.github.com",
+            "name": "Andrei Sandu",
+            "username": "sandreim"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": false,
+          "id": "82b8a501c87460fb384851e9424d60a68566c7de",
+          "message": "Measure backed in block count vs backable  (#9417)\n\nCloses https://github.com/paritytech/polkadot-sdk/issues/9341\n\n---------\n\nSigned-off-by: Andrei Sandu <andrei-mihail@parity.io>\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>\nCo-authored-by: Javier Viola <javier@parity.io>",
+          "timestamp": "2025-09-23T09:59:54Z",
+          "tree_id": "2100ed3a655566c495348fbe9ff49f17bec4b4a6",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/82b8a501c87460fb384851e9424d60a68566c7de"
+        },
+        "date": 1758625667299,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Received from peers",
+            "value": 433.3333333333332,
+            "unit": "KiB"
+          },
+          {
+            "name": "Sent to peers",
+            "value": 18481.666666666653,
+            "unit": "KiB"
+          },
+          {
+            "name": "availability-store",
+            "value": 0.1570152269,
+            "unit": "seconds"
+          },
+          {
+            "name": "availability-distribution",
+            "value": 0.01298367928,
+            "unit": "seconds"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.0074380628799999935,
+            "unit": "seconds"
+          },
+          {
+            "name": "bitfield-distribution",
+            "value": 0.022415742940000007,
             "unit": "seconds"
           }
         ]
