@@ -1,52 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758637828776,
+  "lastUpdate": 1758652564381,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "availability-recovery-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "54316454+sandreim@users.noreply.github.com",
-            "name": "Andrei Sandu",
-            "username": "sandreim"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "ad4396ffa363d3bd93bfa90567da6b54d7302dc2",
-          "message": "Bump parachains runtime api to 13 (#7981)\n\nWe need to bump 2 runtime APIs to 13, because we are\n[backporting](https://github.com/paritytech/polkadot-sdk/pull/7824)\nvalidation code bomb API to 2412-4 patch which is supposed to be\nincluded in next fellowship release.\n\nDetails here:\nhttps://github.com/paritytech/polkadot-sdk/pull/7824#discussion_r2004824416\n\nShould only be merged if\nhttps://github.com/paritytech/polkadot-sdk/pull/7824 is merged in 2412-4\npatch.\n\nImportant note: on Westend, runtime needs to be upgraded first, then\nvalidators.\n\n---------\n\nSigned-off-by: Andrei Sandu <andrei-mihail@parity.io>\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
-          "timestamp": "2025-03-21T04:24:25Z",
-          "tree_id": "3169d9186508871f815f11dc5f3ed583f5977116",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/ad4396ffa363d3bd93bfa90567da6b54d7302dc2"
-        },
-        "date": 1742534671172,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Received from peers",
-            "value": 307203,
-            "unit": "KiB"
-          },
-          {
-            "name": "Sent to peers",
-            "value": 1.6666666666666665,
-            "unit": "KiB"
-          },
-          {
-            "name": "availability-recovery",
-            "value": 11.254308318533335,
-            "unit": "seconds"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.19380799016666667,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -21999,6 +21955,50 @@ window.BENCHMARK_DATA = {
           {
             "name": "test-environment",
             "value": 0.19733900276666663,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "git@kchr.de",
+            "name": "Bastian Köcher",
+            "username": "bkchr"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "19320f104fc4b5cb6663cffc41f340b6b5239be8",
+          "message": "FRAME: Register `on_initialize` after each pallet (#9756)\n\nBefore this pull request, FRAME was executing all pallets\n`on_initialize` and then register the weight, including the weight of\n`on_runtime_upgrade`. Thus, other pallets were not aware on how much\nweight was already used when they were executing their `on_initialize`\ncode. As some pallets are doing some work in `on_initialize`, they need\nto be aware of how much weight is still left.\nTo register the weight after each `on_initialize` call, a new trait is\nadded. This new trait is implemented for tuples of types that implement\n`OnInitialize` and then it registers the weight after each call to\n`on_initialize`.\n\n`pallet-scheduler` is changed to take the remaining weight into account\nand to not just assume that its configured weight is always available.\n\n---------\n\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+          "timestamp": "2025-09-23T17:26:05Z",
+          "tree_id": "329e7d671c7b6beb98933de95fc234552598c017",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/19320f104fc4b5cb6663cffc41f340b6b5239be8"
+        },
+        "date": 1758652547120,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Received from peers",
+            "value": 307203,
+            "unit": "KiB"
+          },
+          {
+            "name": "Sent to peers",
+            "value": 1.6666666666666665,
+            "unit": "KiB"
+          },
+          {
+            "name": "availability-recovery",
+            "value": 11.246143838033333,
+            "unit": "seconds"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.19581324520000004,
             "unit": "seconds"
           }
         ]
