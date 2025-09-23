@@ -1,52 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758628986447,
+  "lastUpdate": 1758637828776,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "availability-recovery-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "gui.thiolliere@gmail.com",
-            "name": "Guillaume Thiolliere",
-            "username": "gui1117"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "123d31f0ebef1dd7940acd332ff5cabc4ccc6d89",
-          "message": "`bp-runtime`: make macro expansion not rely on `sp-std` in scope. (#7978)\n\nmake macro in bp-runtime no longer require `sp-std` in scope.\n\n---------\n\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
-          "timestamp": "2025-03-20T12:33:25Z",
-          "tree_id": "f7969b742cd088c7bf91cf7bdb9dafc2e93f41ed",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/123d31f0ebef1dd7940acd332ff5cabc4ccc6d89"
-        },
-        "date": 1742477569733,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Received from peers",
-            "value": 307203,
-            "unit": "KiB"
-          },
-          {
-            "name": "Sent to peers",
-            "value": 1.6666666666666665,
-            "unit": "KiB"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.2012162464666667,
-            "unit": "seconds"
-          },
-          {
-            "name": "availability-recovery",
-            "value": 11.320375105100004,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -21999,6 +21955,50 @@ window.BENCHMARK_DATA = {
           {
             "name": "availability-recovery",
             "value": 11.292918101166666,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "claravanstaden64@gmail.com",
+            "name": "Clara van Staden",
+            "username": "claravanstaden"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "6875cc0cccbc418f229927baa1490110430f6275",
+          "message": "Snowbridge Inbound Queue V2 relayer tip payout fix (#9746)\n\n# Description\n\nFixes a bug where Snowbridge Inbound V2 tips were not paid out to the\nrelayer.\n\n## Review Notes\n\nAny tips added to a message in the Inbound Queue v2 (Ethereum to\nPolkadot direction), were burned and added to storage, but never paid\nout to the relayer. This PR fixes this bug by adding the tip to the\nrelayer fee.\n\n---------\n\nCo-authored-by: Branislav Kontur <bkontur@gmail.com>",
+          "timestamp": "2025-09-23T13:20:12Z",
+          "tree_id": "ab6a21866ce69b2f099f3ee8b986dc90460d6644",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/6875cc0cccbc418f229927baa1490110430f6275"
+        },
+        "date": 1758637810503,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Received from peers",
+            "value": 307203,
+            "unit": "KiB"
+          },
+          {
+            "name": "Sent to peers",
+            "value": 1.6666666666666665,
+            "unit": "KiB"
+          },
+          {
+            "name": "availability-recovery",
+            "value": 11.268205524933332,
+            "unit": "seconds"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.19733900276666663,
             "unit": "seconds"
           }
         ]
