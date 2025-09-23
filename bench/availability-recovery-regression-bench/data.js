@@ -1,52 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758623003546,
+  "lastUpdate": 1758625658442,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "availability-recovery-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "jm.sobrepere@gmail.com",
-            "name": "Josep M Sobrepere",
-            "username": "josepot"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": false,
-          "id": "dbebf539e6ae2c796fb1026be0740fdeec247f85",
-          "message": "Treasury: update expire date on payout (#7958) (#7959)\n\nCloses #7958 \n\nResets the `payout.expire_at` field with the `PayoutPeriod` every time\nthat there is a valid Payout attempt.\n\n---------\n\nCo-authored-by: Victor Oliva <olivarra1@gmail.com>",
-          "timestamp": "2025-03-20T11:05:52Z",
-          "tree_id": "cc0a41c27628f9f9a1e478920b85499993d12c66",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/dbebf539e6ae2c796fb1026be0740fdeec247f85"
-        },
-        "date": 1742472487339,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Sent to peers",
-            "value": 1.6666666666666665,
-            "unit": "KiB"
-          },
-          {
-            "name": "Received from peers",
-            "value": 307203,
-            "unit": "KiB"
-          },
-          {
-            "name": "availability-recovery",
-            "value": 11.223203132233328,
-            "unit": "seconds"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.19751801503333333,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -21999,6 +21955,50 @@ window.BENCHMARK_DATA = {
           {
             "name": "test-environment",
             "value": 0.19724397109999997,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "54316454+sandreim@users.noreply.github.com",
+            "name": "Andrei Sandu",
+            "username": "sandreim"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": false,
+          "id": "82b8a501c87460fb384851e9424d60a68566c7de",
+          "message": "Measure backed in block count vs backable  (#9417)\n\nCloses https://github.com/paritytech/polkadot-sdk/issues/9341\n\n---------\n\nSigned-off-by: Andrei Sandu <andrei-mihail@parity.io>\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>\nCo-authored-by: Javier Viola <javier@parity.io>",
+          "timestamp": "2025-09-23T09:59:54Z",
+          "tree_id": "2100ed3a655566c495348fbe9ff49f17bec4b4a6",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/82b8a501c87460fb384851e9424d60a68566c7de"
+        },
+        "date": 1758625639930,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Received from peers",
+            "value": 307203,
+            "unit": "KiB"
+          },
+          {
+            "name": "Sent to peers",
+            "value": 1.6666666666666665,
+            "unit": "KiB"
+          },
+          {
+            "name": "availability-recovery",
+            "value": 11.379608462766669,
+            "unit": "seconds"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.2002835364666667,
             "unit": "seconds"
           }
         ]
