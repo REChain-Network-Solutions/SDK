@@ -1,62 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758625685528,
+  "lastUpdate": 1758629013625,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "availability-distribution-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "egor@parity.io",
-            "name": "Egor_P",
-            "username": "EgorPopelyaev"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": false,
-          "id": "628bdd90012bdd58b894b4d0f811c7bd899c3cae",
-          "message": "[CI/CD] Refactor backports flow so that it can determine automatically where to do a backport based on labels (#7976)\n\nThis PR changes the command-backport.yml flow so that the branch names\nare not hardcoded in the pipeline file but will be parsed from the\nlabels.\nThe idea is that there are going to be a label representing each stable\nbranch:\n- A4-backport-stable2407 \n- A4-backport-stable2409 \n- A4-backport-stable2412 \n- A4-backport-stable2503\n\nIf the backport is needed to any of those branches or to all of them,\nthe corresponding label can be set on the PR and the branch name will be\nparsed from it.\nThe labels need to be created in the repo and adjusted as soon as there\nis a new release appears or an old one disappears.",
-          "timestamp": "2025-03-20T11:50:34Z",
-          "tree_id": "02f9d3601bbd2afec811696b389b8c51e4b16977",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/628bdd90012bdd58b894b4d0f811c7bd899c3cae"
-        },
-        "date": 1742475025364,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Received from peers",
-            "value": 433.3333333333332,
-            "unit": "KiB"
-          },
-          {
-            "name": "Sent to peers",
-            "value": 18481.666666666653,
-            "unit": "KiB"
-          },
-          {
-            "name": "availability-distribution",
-            "value": 0.013046715993333333,
-            "unit": "seconds"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.00863196869333341,
-            "unit": "seconds"
-          },
-          {
-            "name": "bitfield-distribution",
-            "value": 0.025750128086666654,
-            "unit": "seconds"
-          },
-          {
-            "name": "availability-store",
-            "value": 0.15600325603999998,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -26999,6 +26945,60 @@ window.BENCHMARK_DATA = {
           {
             "name": "bitfield-distribution",
             "value": 0.022415742940000007,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "48632512+s0me0ne-unkn0wn@users.noreply.github.com",
+            "name": "s0me0ne-unkn0wn",
+            "username": "s0me0ne-unkn0wn"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "143eb77346d6102a80931f600fc9dce1ee1f9e54",
+          "message": "Add collator selection to YAP (#9663)\n\nThis PR adds the collator selection pallet as well as other pallets\nneeded for its functionality to the Yet Another Parachain runtime.\n\nAlong with that, the YAP runtime is a little bit refactored to adopt the\nlatest FRAMEwork changes.\n\n---------\n\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+          "timestamp": "2025-09-23T10:34:08Z",
+          "tree_id": "33a4a479609a736a1e1ffc35116059a8e5c4e26f",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/143eb77346d6102a80931f600fc9dce1ee1f9e54"
+        },
+        "date": 1758628995641,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Received from peers",
+            "value": 433.3333333333332,
+            "unit": "KiB"
+          },
+          {
+            "name": "Sent to peers",
+            "value": 18481.666666666653,
+            "unit": "KiB"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.0074364257666666815,
+            "unit": "seconds"
+          },
+          {
+            "name": "availability-distribution",
+            "value": 0.013118023866666663,
+            "unit": "seconds"
+          },
+          {
+            "name": "availability-store",
+            "value": 0.15715161632000002,
+            "unit": "seconds"
+          },
+          {
+            "name": "bitfield-distribution",
+            "value": 0.02260561598666667,
             "unit": "seconds"
           }
         ]
