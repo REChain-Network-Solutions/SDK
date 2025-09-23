@@ -1,52 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758625739673,
+  "lastUpdate": 1758629068083,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "statement-distribution-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "178801527+raymondkfcheung@users.noreply.github.com",
-            "name": "Raymond Cheung",
-            "username": "raymondkfcheung"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": false,
-          "id": "21927dd4a5384c7cbb09c8ad0ceac483be787dd1",
-          "message": "Fix XCM Barrier Rejection Handling to Return Incomplete with Weight (#7843)\n\nThis PR addresses an issue with the handling of message execution when\nblocked by the barrier. Instead of returning an `Outcome::Error`, we\nmodify the behaviour to return `Outcome::Incomplete`, which includes the\nweight consumed up to the point of rejection and the error that caused\nthe blockage.\n\nThis change ensures more accurate weight tracking during message\nexecution, even when interrupted. It improves resource management and\naligns the XCM executor’s behaviour with better error handling\npractices.\n\n---------\n\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
-          "timestamp": "2025-03-19T10:46:06Z",
-          "tree_id": "83fc00cea410080b3682e2c50c7153c75dcb6094",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/21927dd4a5384c7cbb09c8ad0ceac483be787dd1"
-        },
-        "date": 1742384828901,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Received from peers",
-            "value": 106.39999999999996,
-            "unit": "KiB"
-          },
-          {
-            "name": "Sent to peers",
-            "value": 127.95399999999994,
-            "unit": "KiB"
-          },
-          {
-            "name": "statement-distribution",
-            "value": 0.035053778148,
-            "unit": "seconds"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.04485338286799997,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -21999,6 +21955,50 @@ window.BENCHMARK_DATA = {
           {
             "name": "statement-distribution",
             "value": 0.03444090760599999,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "48632512+s0me0ne-unkn0wn@users.noreply.github.com",
+            "name": "s0me0ne-unkn0wn",
+            "username": "s0me0ne-unkn0wn"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "143eb77346d6102a80931f600fc9dce1ee1f9e54",
+          "message": "Add collator selection to YAP (#9663)\n\nThis PR adds the collator selection pallet as well as other pallets\nneeded for its functionality to the Yet Another Parachain runtime.\n\nAlong with that, the YAP runtime is a little bit refactored to adopt the\nlatest FRAMEwork changes.\n\n---------\n\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+          "timestamp": "2025-09-23T10:34:08Z",
+          "tree_id": "33a4a479609a736a1e1ffc35116059a8e5c4e26f",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/143eb77346d6102a80931f600fc9dce1ee1f9e54"
+        },
+        "date": 1758629049673,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Received from peers",
+            "value": 106.39999999999996,
+            "unit": "KiB"
+          },
+          {
+            "name": "Sent to peers",
+            "value": 127.94999999999996,
+            "unit": "KiB"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.044352082063999945,
+            "unit": "seconds"
+          },
+          {
+            "name": "statement-distribution",
+            "value": 0.034373964757999996,
             "unit": "seconds"
           }
         ]
