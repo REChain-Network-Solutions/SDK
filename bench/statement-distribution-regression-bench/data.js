@@ -1,52 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758652644968,
+  "lastUpdate": 1758707882858,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "statement-distribution-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "egor@parity.io",
-            "name": "Egor_P",
-            "username": "EgorPopelyaev"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": false,
-          "id": "628bdd90012bdd58b894b4d0f811c7bd899c3cae",
-          "message": "[CI/CD] Refactor backports flow so that it can determine automatically where to do a backport based on labels (#7976)\n\nThis PR changes the command-backport.yml flow so that the branch names\nare not hardcoded in the pipeline file but will be parsed from the\nlabels.\nThe idea is that there are going to be a label representing each stable\nbranch:\n- A4-backport-stable2407 \n- A4-backport-stable2409 \n- A4-backport-stable2412 \n- A4-backport-stable2503\n\nIf the backport is needed to any of those branches or to all of them,\nthe corresponding label can be set on the PR and the branch name will be\nparsed from it.\nThe labels need to be created in the repo and adjusted as soon as there\nis a new release appears or an old one disappears.",
-          "timestamp": "2025-03-20T11:50:34Z",
-          "tree_id": "02f9d3601bbd2afec811696b389b8c51e4b16977",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/628bdd90012bdd58b894b4d0f811c7bd899c3cae"
-        },
-        "date": 1742475073889,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Received from peers",
-            "value": 106.39999999999996,
-            "unit": "KiB"
-          },
-          {
-            "name": "Sent to peers",
-            "value": 127.95199999999997,
-            "unit": "KiB"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.045753445111999955,
-            "unit": "seconds"
-          },
-          {
-            "name": "statement-distribution",
-            "value": 0.035692439854,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -21999,6 +21955,50 @@ window.BENCHMARK_DATA = {
           {
             "name": "statement-distribution",
             "value": 0.03422679452999999,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "60601340+lexnv@users.noreply.github.com",
+            "name": "Alexandru Vasile",
+            "username": "lexnv"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7dc67319065b18d4c02b4275e6b071ee59d40635",
+          "message": "network/tests: Increase test timeout to fix flaky CI (#9810)\n\nThis PR bumps the `libp2p_disconnects_litep2p_substream` test timeout\nfrom 5 seconds to 1 minute.\n\nUnder load, the test may not have sufficient time to establish\nconnectivity and complete the test within the allotted time.\n\ncc @paritytech/networking\n\nSigned-off-by: Alexandru Vasile <alexandru.vasile@parity.io>",
+          "timestamp": "2025-09-24T08:25:10Z",
+          "tree_id": "29118a00bcb8d88cbb396a592265e3ebc32d5246",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/7dc67319065b18d4c02b4275e6b071ee59d40635"
+        },
+        "date": 1758707864790,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Sent to peers",
+            "value": 127.94199999999995,
+            "unit": "KiB"
+          },
+          {
+            "name": "Received from peers",
+            "value": 106.39999999999996,
+            "unit": "KiB"
+          },
+          {
+            "name": "statement-distribution",
+            "value": 0.03393072878400001,
+            "unit": "seconds"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.04399939745199995,
             "unit": "seconds"
           }
         ]
