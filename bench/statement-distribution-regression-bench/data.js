@@ -1,52 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758707882858,
+  "lastUpdate": 1758714199437,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "statement-distribution-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "gui.thiolliere@gmail.com",
-            "name": "Guillaume Thiolliere",
-            "username": "gui1117"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "123d31f0ebef1dd7940acd332ff5cabc4ccc6d89",
-          "message": "`bp-runtime`: make macro expansion not rely on `sp-std` in scope. (#7978)\n\nmake macro in bp-runtime no longer require `sp-std` in scope.\n\n---------\n\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
-          "timestamp": "2025-03-20T12:33:25Z",
-          "tree_id": "f7969b742cd088c7bf91cf7bdb9dafc2e93f41ed",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/123d31f0ebef1dd7940acd332ff5cabc4ccc6d89"
-        },
-        "date": 1742477643932,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Sent to peers",
-            "value": 127.95999999999997,
-            "unit": "KiB"
-          },
-          {
-            "name": "Received from peers",
-            "value": 106.39999999999996,
-            "unit": "KiB"
-          },
-          {
-            "name": "statement-distribution",
-            "value": 0.035099496050000005,
-            "unit": "seconds"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.044886705503999966,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -21999,6 +21955,50 @@ window.BENCHMARK_DATA = {
           {
             "name": "test-environment",
             "value": 0.04399939745199995,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49718502+alexggh@users.noreply.github.com",
+            "name": "Alexandru Gheorghe",
+            "username": "alexggh"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": false,
+          "id": "e8f1aff5a174f420cdd77f5d5c854dd6dc8a3273",
+          "message": "[pallet-revive] Add set_storage/set_storage_var_key methods (#9759)\n\n... to be used in polkadot foundry to make sure EVM state is in sync\nwith pallet-revive state.\n\nFixes: https://github.com/paritytech/foundry-polkadot/issues/275\n\n---------\n\nSigned-off-by: Alexandru Gheorghe <alexandru.gheorghe@parity.io>\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>\nCo-authored-by: Alexander Theißen <alex.theissen@me.com>",
+          "timestamp": "2025-09-24T10:33:54Z",
+          "tree_id": "2e58ffa530937bbb0842bb596295fd616ef55271",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/e8f1aff5a174f420cdd77f5d5c854dd6dc8a3273"
+        },
+        "date": 1758714181394,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Received from peers",
+            "value": 106.39999999999996,
+            "unit": "KiB"
+          },
+          {
+            "name": "Sent to peers",
+            "value": 127.95199999999998,
+            "unit": "KiB"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.04522843182799997,
+            "unit": "seconds"
+          },
+          {
+            "name": "statement-distribution",
+            "value": 0.034712069011999996,
             "unit": "seconds"
           }
         ]
