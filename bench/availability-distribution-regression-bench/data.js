@@ -1,62 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758714145297,
+  "lastUpdate": 1758730143382,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "availability-distribution-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "gorka.irazoki@gmail.com",
-            "name": "girazoki",
-            "username": "girazoki"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "1a514f6d3753189c21a6b68d38cc6289999de047",
-          "message": "Add digest processor xcm emulator (#7915)\n\nCurrently parachains are injecting through the xcm-emulator the default\ndigests in each block, something that can prevent testing certain\nconsensus aspects.\n\nWe propose to add the type `DigestProvider`, which needs to implement\nthe trait `Convert<blockNumber, Digest>`. The idea is that we can call\nthe implementation of this trait before initializing every block, and\nthus, allowing us to inject custom digests provided by this trait.\n\nObviously the default behavior persists if you set this type to `().`\n\nThe utilization of the `Convert` trait was arbitrary, as it was the\neasiest to accomplish the solution. I am not against using a custom\ntrait defined for this purpose if that is preferred.\n\n---------\n\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
-          "timestamp": "2025-03-21T12:38:10Z",
-          "tree_id": "78e2ca8681b711c0fc851bde1f674792eb9527c6",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/1a514f6d3753189c21a6b68d38cc6289999de047"
-        },
-        "date": 1742564396992,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Received from peers",
-            "value": 433.3333333333332,
-            "unit": "KiB"
-          },
-          {
-            "name": "Sent to peers",
-            "value": 18481.666666666653,
-            "unit": "KiB"
-          },
-          {
-            "name": "availability-distribution",
-            "value": 0.012804324333333329,
-            "unit": "seconds"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.0086646284400001,
-            "unit": "seconds"
-          },
-          {
-            "name": "bitfield-distribution",
-            "value": 0.025710222306666673,
-            "unit": "seconds"
-          },
-          {
-            "name": "availability-store",
-            "value": 0.15595481213333334,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -26999,6 +26945,60 @@ window.BENCHMARK_DATA = {
           {
             "name": "availability-store",
             "value": 0.15704122044666666,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "60601340+lexnv@users.noreply.github.com",
+            "name": "Alexandru Vasile",
+            "username": "lexnv"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "80ee9c8f4cd6e2ea49cb8eceadde5b42f7e87a86",
+          "message": "ci: Use `--locked` for cargo doc steps (#9828)\n\nThis PR adds the `--locked` option to the cargo doc tests.\n\nDetected by running the CI on PR:\nhttps://github.com/paritytech/polkadot-sdk/actions/runs/17972092266/job/51117118432\n\n```rust\nerror[E0277]: the trait bound `BoundedVec<u8, v3::MaxPalletNameLen>: JsonSchema` is not satisfied\n   --> polkadot/xcm/src/v3/mod.rs:228:12\n    |\n228 |     pub name: BoundedVec<u8, MaxPalletNameLen>,\n    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `JsonSchema` is not implemented for `BoundedVec<u8, v3::MaxPalletNameLen>`\n    |\nnote: there are multiple different versions of crate `schemars` in the dependency graph\n   --> /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/schemars-0.8.22/src/lib.rs:133:1\n    |\n133 | pub trait JsonSchema {\n    | ^^^^^^^^^^^^^^^^^^^^ this is the required trait\n    |\n   ::: polkadot/xcm/src/v3/junction.rs:49:44\n    |\n49  | #[cfg_attr(feature = \"json-schema\", derive(schemars::JsonSchema))]\n    |                                            -------- one version of crate `schemars` used here, as a direct dependency of the current crate\n    |\n   ::: polkadot/xcm/src/lib.rs:31:5\n```\n\nThanks @bkchr for the suggestion here 🙏 \n\nThis has been detected while working on:\n- https://github.com/paritytech/polkadot-sdk/pull/9418\n\nSigned-off-by: Alexandru Vasile <alexandru.vasile@parity.io>",
+          "timestamp": "2025-09-24T14:58:33Z",
+          "tree_id": "884a671f0bbf4fe179c1013dce196003dfc20cc9",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/80ee9c8f4cd6e2ea49cb8eceadde5b42f7e87a86"
+        },
+        "date": 1758730125123,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Received from peers",
+            "value": 433.3333333333332,
+            "unit": "KiB"
+          },
+          {
+            "name": "Sent to peers",
+            "value": 18481.666666666653,
+            "unit": "KiB"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.0075817356266666466,
+            "unit": "seconds"
+          },
+          {
+            "name": "availability-distribution",
+            "value": 0.013047384833333328,
+            "unit": "seconds"
+          },
+          {
+            "name": "availability-store",
+            "value": 0.15735657306666676,
+            "unit": "seconds"
+          },
+          {
+            "name": "bitfield-distribution",
+            "value": 0.02247764796666667,
             "unit": "seconds"
           }
         ]
