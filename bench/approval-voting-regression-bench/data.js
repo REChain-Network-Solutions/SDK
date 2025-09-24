@@ -1,107 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758714172787,
+  "lastUpdate": 1758730170607,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "approval-voting-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "60601340+lexnv@users.noreply.github.com",
-            "name": "Alexandru Vasile",
-            "username": "lexnv"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "e1a1e4d88d80cd3883de008378ba5a6d043be362",
-          "message": "rpc-v2/archive: Rename archive call method result to value (#7885)\n\nThis PR modifies the archive_call method result to align with the rpc-v2\nspec:\n-\nhttps://github.com/paritytech/json-rpc-interface-spec/blob/main/src/api/archive_unstable_call.md\n\nPreviously, the method result was encoded to a json containing a\n\"result\" field, however the spec specifies a \"value\" field. This aims to\nrectify that.\n\ncc @paritytech/subxt-team\n\n---------\n\nSigned-off-by: Alexandru Vasile <alexandru.vasile@parity.io>\nCo-authored-by: Niklas Adolfsson <niklasadolfsson1@gmail.com>",
-          "timestamp": "2025-03-21T08:50:54Z",
-          "tree_id": "815497e59867997c739f8dff40d41a5c9c770821",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/e1a1e4d88d80cd3883de008378ba5a6d043be362"
-        },
-        "date": 1742550968928,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Received from peers",
-            "value": 52938.90000000001,
-            "unit": "KiB"
-          },
-          {
-            "name": "Sent to peers",
-            "value": 63624.53999999999,
-            "unit": "KiB"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-parallel-db",
-            "value": 1.8675840592699935,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-gather-signatures",
-            "value": 0.005712144390000003,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel",
-            "value": 11.757201037299993,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-parallel-2",
-            "value": 2.3863440941899987,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-distribution/test-environment",
-            "value": 0.000019153069999999996,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting",
-            "value": 0.00001840688,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-parallel-subsystem",
-            "value": 0.4834355776500006,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-parallel-0",
-            "value": 2.34259620901,
-            "unit": "seconds"
-          },
-          {
-            "name": "test-environment",
-            "value": 3.3084858343023256,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting/test-environment",
-            "value": 0.00001840688,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-distribution",
-            "value": 0.000019153069999999996,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-parallel-1",
-            "value": 2.336646044300001,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-parallel-3",
-            "value": 2.334882908489999,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -49499,6 +49400,105 @@ window.BENCHMARK_DATA = {
           {
             "name": "approval-voting/test-environment",
             "value": 0.000019968390000000003,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "60601340+lexnv@users.noreply.github.com",
+            "name": "Alexandru Vasile",
+            "username": "lexnv"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "80ee9c8f4cd6e2ea49cb8eceadde5b42f7e87a86",
+          "message": "ci: Use `--locked` for cargo doc steps (#9828)\n\nThis PR adds the `--locked` option to the cargo doc tests.\n\nDetected by running the CI on PR:\nhttps://github.com/paritytech/polkadot-sdk/actions/runs/17972092266/job/51117118432\n\n```rust\nerror[E0277]: the trait bound `BoundedVec<u8, v3::MaxPalletNameLen>: JsonSchema` is not satisfied\n   --> polkadot/xcm/src/v3/mod.rs:228:12\n    |\n228 |     pub name: BoundedVec<u8, MaxPalletNameLen>,\n    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `JsonSchema` is not implemented for `BoundedVec<u8, v3::MaxPalletNameLen>`\n    |\nnote: there are multiple different versions of crate `schemars` in the dependency graph\n   --> /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/schemars-0.8.22/src/lib.rs:133:1\n    |\n133 | pub trait JsonSchema {\n    | ^^^^^^^^^^^^^^^^^^^^ this is the required trait\n    |\n   ::: polkadot/xcm/src/v3/junction.rs:49:44\n    |\n49  | #[cfg_attr(feature = \"json-schema\", derive(schemars::JsonSchema))]\n    |                                            -------- one version of crate `schemars` used here, as a direct dependency of the current crate\n    |\n   ::: polkadot/xcm/src/lib.rs:31:5\n```\n\nThanks @bkchr for the suggestion here 🙏 \n\nThis has been detected while working on:\n- https://github.com/paritytech/polkadot-sdk/pull/9418\n\nSigned-off-by: Alexandru Vasile <alexandru.vasile@parity.io>",
+          "timestamp": "2025-09-24T14:58:33Z",
+          "tree_id": "884a671f0bbf4fe179c1013dce196003dfc20cc9",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/80ee9c8f4cd6e2ea49cb8eceadde5b42f7e87a86"
+        },
+        "date": 1758730152570,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Received from peers",
+            "value": 52937.3,
+            "unit": "KiB"
+          },
+          {
+            "name": "Sent to peers",
+            "value": 63639.130000000005,
+            "unit": "KiB"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-parallel-2",
+            "value": 2.4747056408600003,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-parallel-db",
+            "value": 1.9471926776299917,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-gather-signatures",
+            "value": 0.005793852920000006,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting/test-environment",
+            "value": 0.000019730110000000003,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel",
+            "value": 12.168649893519987,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-parallel-1",
+            "value": 2.4349137931799993,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-parallel-subsystem",
+            "value": 0.4257099114399967,
+            "unit": "seconds"
+          },
+          {
+            "name": "test-environment",
+            "value": 2.658068469310775,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-distribution",
+            "value": 0.00002250275,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting",
+            "value": 0.000019730110000000003,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-parallel-0",
+            "value": 2.440862140979999,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-parallel-3",
+            "value": 2.4394718765099994,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-distribution/test-environment",
+            "value": 0.00002250275,
             "unit": "seconds"
           }
         ]
