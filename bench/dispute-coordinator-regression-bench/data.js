@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758652671660,
+  "lastUpdate": 1758707910169,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "dispute-coordinator-regression-bench": [
@@ -9554,6 +9554,55 @@ window.BENCHMARK_DATA = {
           {
             "name": "dispute-distribution",
             "value": 0.008568878589999997,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "60601340+lexnv@users.noreply.github.com",
+            "name": "Alexandru Vasile",
+            "username": "lexnv"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7dc67319065b18d4c02b4275e6b071ee59d40635",
+          "message": "network/tests: Increase test timeout to fix flaky CI (#9810)\n\nThis PR bumps the `libp2p_disconnects_litep2p_substream` test timeout\nfrom 5 seconds to 1 minute.\n\nUnder load, the test may not have sufficient time to establish\nconnectivity and complete the test within the allotted time.\n\ncc @paritytech/networking\n\nSigned-off-by: Alexandru Vasile <alexandru.vasile@parity.io>",
+          "timestamp": "2025-09-24T08:25:10Z",
+          "tree_id": "29118a00bcb8d88cbb396a592265e3ebc32d5246",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/7dc67319065b18d4c02b4275e6b071ee59d40635"
+        },
+        "date": 1758707892455,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Sent to peers",
+            "value": 227.09999999999997,
+            "unit": "KiB"
+          },
+          {
+            "name": "Received from peers",
+            "value": 23.800000000000004,
+            "unit": "KiB"
+          },
+          {
+            "name": "dispute-distribution",
+            "value": 0.008873682349999986,
+            "unit": "seconds"
+          },
+          {
+            "name": "dispute-coordinator",
+            "value": 0.00267559399,
+            "unit": "seconds"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.005337881149999995,
             "unit": "seconds"
           }
         ]
