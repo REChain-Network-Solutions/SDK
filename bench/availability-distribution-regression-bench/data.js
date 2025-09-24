@@ -1,62 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758652591105,
+  "lastUpdate": 1758707828860,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "availability-distribution-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "60601340+lexnv@users.noreply.github.com",
-            "name": "Alexandru Vasile",
-            "username": "lexnv"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "e1a1e4d88d80cd3883de008378ba5a6d043be362",
-          "message": "rpc-v2/archive: Rename archive call method result to value (#7885)\n\nThis PR modifies the archive_call method result to align with the rpc-v2\nspec:\n-\nhttps://github.com/paritytech/json-rpc-interface-spec/blob/main/src/api/archive_unstable_call.md\n\nPreviously, the method result was encoded to a json containing a\n\"result\" field, however the spec specifies a \"value\" field. This aims to\nrectify that.\n\ncc @paritytech/subxt-team\n\n---------\n\nSigned-off-by: Alexandru Vasile <alexandru.vasile@parity.io>\nCo-authored-by: Niklas Adolfsson <niklasadolfsson1@gmail.com>",
-          "timestamp": "2025-03-21T08:50:54Z",
-          "tree_id": "815497e59867997c739f8dff40d41a5c9c770821",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/e1a1e4d88d80cd3883de008378ba5a6d043be362"
-        },
-        "date": 1742550943901,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Received from peers",
-            "value": 433.3333333333332,
-            "unit": "KiB"
-          },
-          {
-            "name": "Sent to peers",
-            "value": 18481.666666666653,
-            "unit": "KiB"
-          },
-          {
-            "name": "bitfield-distribution",
-            "value": 0.025793571359999993,
-            "unit": "seconds"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.008580528573333433,
-            "unit": "seconds"
-          },
-          {
-            "name": "availability-store",
-            "value": 0.15520601614,
-            "unit": "seconds"
-          },
-          {
-            "name": "availability-distribution",
-            "value": 0.01271847758,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -26999,6 +26945,60 @@ window.BENCHMARK_DATA = {
           {
             "name": "bitfield-distribution",
             "value": 0.02258196866,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "60601340+lexnv@users.noreply.github.com",
+            "name": "Alexandru Vasile",
+            "username": "lexnv"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7dc67319065b18d4c02b4275e6b071ee59d40635",
+          "message": "network/tests: Increase test timeout to fix flaky CI (#9810)\n\nThis PR bumps the `libp2p_disconnects_litep2p_substream` test timeout\nfrom 5 seconds to 1 minute.\n\nUnder load, the test may not have sufficient time to establish\nconnectivity and complete the test within the allotted time.\n\ncc @paritytech/networking\n\nSigned-off-by: Alexandru Vasile <alexandru.vasile@parity.io>",
+          "timestamp": "2025-09-24T08:25:10Z",
+          "tree_id": "29118a00bcb8d88cbb396a592265e3ebc32d5246",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/7dc67319065b18d4c02b4275e6b071ee59d40635"
+        },
+        "date": 1758707810744,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Received from peers",
+            "value": 433.3333333333332,
+            "unit": "KiB"
+          },
+          {
+            "name": "Sent to peers",
+            "value": 18481.666666666653,
+            "unit": "KiB"
+          },
+          {
+            "name": "bitfield-distribution",
+            "value": 0.022574012519999992,
+            "unit": "seconds"
+          },
+          {
+            "name": "availability-distribution",
+            "value": 0.013087498313333334,
+            "unit": "seconds"
+          },
+          {
+            "name": "availability-store",
+            "value": 0.15689729044666664,
+            "unit": "seconds"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.007642606133333318,
             "unit": "seconds"
           }
         ]
