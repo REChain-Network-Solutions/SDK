@@ -1,62 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758730143382,
+  "lastUpdate": 1758790992725,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "availability-distribution-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "56828990+muraca@users.noreply.github.com",
-            "name": "Matteo Muraca",
-            "username": "muraca"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "fd8b1d782cd082a8bf7af98875d33899760d8fb6",
-          "message": "Removed `pallet:getter` from XCM pallets (#7916)\n\n# Description\n\nPart of #3326 \n\nAs per title, the `pallet:getter` usage has been removed from:\n- `pallet-xcm`\n- `xcm-simulator-fuzzer`\n\nGetters have been implemented manually for all storage items where an\nauto-generated one has been removed.\n\npolkadot address: 12poSUQPtcF1HUPQGY3zZu2P8emuW9YnsPduA4XG3oCEfJVp\n\n---------\n\nCo-authored-by: Branislav Kontur <bkontur@gmail.com>",
-          "timestamp": "2025-03-23T21:27:22Z",
-          "tree_id": "1681cf4a8035ffd405d2df6104e82fa0e771220c",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/fd8b1d782cd082a8bf7af98875d33899760d8fb6"
-        },
-        "date": 1742768920765,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Received from peers",
-            "value": 433.3333333333332,
-            "unit": "KiB"
-          },
-          {
-            "name": "Sent to peers",
-            "value": 18481.666666666653,
-            "unit": "KiB"
-          },
-          {
-            "name": "bitfield-distribution",
-            "value": 0.026088582886666666,
-            "unit": "seconds"
-          },
-          {
-            "name": "availability-store",
-            "value": 0.15566215743333336,
-            "unit": "seconds"
-          },
-          {
-            "name": "availability-distribution",
-            "value": 0.012709292973333336,
-            "unit": "seconds"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.008831501613333407,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -26999,6 +26945,60 @@ window.BENCHMARK_DATA = {
           {
             "name": "bitfield-distribution",
             "value": 0.02247764796666667,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "54316454+sandreim@users.noreply.github.com",
+            "name": "Andrei Sandu",
+            "username": "sandreim"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "58a6df32ec9a145615061cd203875c55db5e6fa1",
+          "message": "Elastic scaling runtime upgrade test (#9811)\n\nCloses https://github.com/paritytech/polkadot-sdk/issues/7259.\n\nTODO\n- [x] prdoc\n- [x] upgrade from sync backing\n\n---------\n\nSigned-off-by: Andrei Sandu <andrei-mihail@parity.io>\nCo-authored-by: Javier Viola <javier@parity.io>\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>\nCo-authored-by: Javier Viola <363911+pepoviola@users.noreply.github.com>",
+          "timestamp": "2025-09-25T07:55:03Z",
+          "tree_id": "3f4658109c44db355c366d8a854cb1975abcfa86",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/58a6df32ec9a145615061cd203875c55db5e6fa1"
+        },
+        "date": 1758790975280,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Sent to peers",
+            "value": 18481.666666666653,
+            "unit": "KiB"
+          },
+          {
+            "name": "Received from peers",
+            "value": 433.3333333333332,
+            "unit": "KiB"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.007860419459999985,
+            "unit": "seconds"
+          },
+          {
+            "name": "bitfield-distribution",
+            "value": 0.022525738979999998,
+            "unit": "seconds"
+          },
+          {
+            "name": "availability-store",
+            "value": 0.1571803572000001,
+            "unit": "seconds"
+          },
+          {
+            "name": "availability-distribution",
+            "value": 0.013091340420000003,
             "unit": "seconds"
           }
         ]
