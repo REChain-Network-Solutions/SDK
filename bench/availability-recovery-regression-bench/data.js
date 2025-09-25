@@ -1,52 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758730115853,
+  "lastUpdate": 1758790965940,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "availability-recovery-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "56828990+muraca@users.noreply.github.com",
-            "name": "Matteo Muraca",
-            "username": "muraca"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "fd8b1d782cd082a8bf7af98875d33899760d8fb6",
-          "message": "Removed `pallet:getter` from XCM pallets (#7916)\n\n# Description\n\nPart of #3326 \n\nAs per title, the `pallet:getter` usage has been removed from:\n- `pallet-xcm`\n- `xcm-simulator-fuzzer`\n\nGetters have been implemented manually for all storage items where an\nauto-generated one has been removed.\n\npolkadot address: 12poSUQPtcF1HUPQGY3zZu2P8emuW9YnsPduA4XG3oCEfJVp\n\n---------\n\nCo-authored-by: Branislav Kontur <bkontur@gmail.com>",
-          "timestamp": "2025-03-23T21:27:22Z",
-          "tree_id": "1681cf4a8035ffd405d2df6104e82fa0e771220c",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/fd8b1d782cd082a8bf7af98875d33899760d8fb6"
-        },
-        "date": 1742768897026,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Received from peers",
-            "value": 307203,
-            "unit": "KiB"
-          },
-          {
-            "name": "Sent to peers",
-            "value": 1.6666666666666665,
-            "unit": "KiB"
-          },
-          {
-            "name": "availability-recovery",
-            "value": 11.252652774333331,
-            "unit": "seconds"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.1957552157666667,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -21999,6 +21955,50 @@ window.BENCHMARK_DATA = {
           {
             "name": "availability-recovery",
             "value": 11.375692941933329,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "54316454+sandreim@users.noreply.github.com",
+            "name": "Andrei Sandu",
+            "username": "sandreim"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "58a6df32ec9a145615061cd203875c55db5e6fa1",
+          "message": "Elastic scaling runtime upgrade test (#9811)\n\nCloses https://github.com/paritytech/polkadot-sdk/issues/7259.\n\nTODO\n- [x] prdoc\n- [x] upgrade from sync backing\n\n---------\n\nSigned-off-by: Andrei Sandu <andrei-mihail@parity.io>\nCo-authored-by: Javier Viola <javier@parity.io>\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>\nCo-authored-by: Javier Viola <363911+pepoviola@users.noreply.github.com>",
+          "timestamp": "2025-09-25T07:55:03Z",
+          "tree_id": "3f4658109c44db355c366d8a854cb1975abcfa86",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/58a6df32ec9a145615061cd203875c55db5e6fa1"
+        },
+        "date": 1758790947929,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Sent to peers",
+            "value": 1.6666666666666665,
+            "unit": "KiB"
+          },
+          {
+            "name": "Received from peers",
+            "value": 307203,
+            "unit": "KiB"
+          },
+          {
+            "name": "availability-recovery",
+            "value": 11.203784407666669,
+            "unit": "seconds"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.19662304526666666,
             "unit": "seconds"
           }
         ]
