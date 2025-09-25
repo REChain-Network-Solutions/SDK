@@ -1,107 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758797813319,
+  "lastUpdate": 1758800866403,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "approval-voting-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "jasl9187@hotmail.com",
-            "name": "Jun Jiang",
-            "username": "jasl"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": false,
-          "id": "ec32daa772b3ce106b1e1b5e451304d6ca23e7cd",
-          "message": "Upgrade deps to eliminate ancient dependencies (#7999)\n\nUpgrading these crates would help to remove tons of outdated (and\nobsoleted) dependencies.\n\nIn addition, a small group of crates do not use workspace deps, I\ncorrect these.\n\n---------\n\nCo-authored-by: Branislav Kontur <bkontur@gmail.com>",
-          "timestamp": "2025-03-24T10:14:19Z",
-          "tree_id": "aaa473325d18937d4554433f517d16d5cb8c10f1",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/ec32daa772b3ce106b1e1b5e451304d6ca23e7cd"
-        },
-        "date": 1742816605090,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Sent to peers",
-            "value": 63635.759999999995,
-            "unit": "KiB"
-          },
-          {
-            "name": "Received from peers",
-            "value": 52939.59999999999,
-            "unit": "KiB"
-          },
-          {
-            "name": "approval-voting-parallel",
-            "value": 11.850268862789992,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-parallel-db",
-            "value": 1.8764433279000083,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-parallel-3",
-            "value": 2.3739298523100016,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-parallel-subsystem",
-            "value": 0.4834876755499818,
-            "unit": "seconds"
-          },
-          {
-            "name": "test-environment",
-            "value": 3.4345443755521368,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-distribution/test-environment",
-            "value": 0.00002135513,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting",
-            "value": 0.000019060779999999997,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting/test-environment",
-            "value": 0.000019060779999999997,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-parallel-0",
-            "value": 2.3685513619700003,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-gather-signatures",
-            "value": 0.005593444710000001,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-parallel-2",
-            "value": 2.39642257691,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-parallel-1",
-            "value": 2.3458406234400004,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-distribution",
-            "value": 0.00002135513,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -49499,6 +49400,105 @@ window.BENCHMARK_DATA = {
           {
             "name": "approval-voting/test-environment",
             "value": 0.000022539240000000002,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "1728078+michalkucharczyk@users.noreply.github.com",
+            "name": "Michal Kucharczyk",
+            "username": "michalkucharczyk"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8978c005de6631dce20e204380bb43149127cdce",
+          "message": "wasmtime: support for perfmap added (#9821)\n\nThis PR add  support for `perfmap` in wasmtime executor.\n\nFor more technical details refer to this\n[doc](https://docs.wasmtime.dev/examples-profiling-perf.html#profiling-with-perfmap).\n\nInstruction on how to configure profiling on substrate nodes (tested\nwith cumulus benchmarks) is\n[here](https://hackmd.io/o_Ghc86OT4KzCE4x04MeOg?view#Getting-the-right-flamegraph).\n\nThe following environment variable needs to be set when executing the\nnode binary:\n```\nexport WASMTIME_PROFILING_STRATEGY=perfmap\n```\n\n---------\n\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+          "timestamp": "2025-09-25T10:38:47Z",
+          "tree_id": "5014ce67276b6f7ddaf68d6ea916b50e1937a11d",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/8978c005de6631dce20e204380bb43149127cdce"
+        },
+        "date": 1758800848754,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Received from peers",
+            "value": 52946.2,
+            "unit": "KiB"
+          },
+          {
+            "name": "Sent to peers",
+            "value": 63637.08,
+            "unit": "KiB"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-parallel-2",
+            "value": 2.540873595279998,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting/test-environment",
+            "value": 0.000024562980000000004,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-parallel-3",
+            "value": 2.5095534270399993,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting",
+            "value": 0.000024562980000000004,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel",
+            "value": 12.442113546049995,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-parallel-db",
+            "value": 1.9555142599899988,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-distribution/test-environment",
+            "value": 0.00002450981,
+            "unit": "seconds"
+          },
+          {
+            "name": "test-environment",
+            "value": 2.7598876946410633,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-parallel-1",
+            "value": 2.4868943901699985,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-parallel-0",
+            "value": 2.5132715266299996,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-parallel-subsystem",
+            "value": 0.4297366077899998,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-gather-signatures",
+            "value": 0.00626973915,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-distribution",
+            "value": 0.00002450981,
             "unit": "seconds"
           }
         ]
