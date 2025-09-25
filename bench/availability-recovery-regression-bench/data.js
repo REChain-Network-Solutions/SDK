@@ -1,52 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758790965940,
+  "lastUpdate": 1758795311545,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "availability-recovery-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "jasl9187@hotmail.com",
-            "name": "Jun Jiang",
-            "username": "jasl"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": false,
-          "id": "ec32daa772b3ce106b1e1b5e451304d6ca23e7cd",
-          "message": "Upgrade deps to eliminate ancient dependencies (#7999)\n\nUpgrading these crates would help to remove tons of outdated (and\nobsoleted) dependencies.\n\nIn addition, a small group of crates do not use workspace deps, I\ncorrect these.\n\n---------\n\nCo-authored-by: Branislav Kontur <bkontur@gmail.com>",
-          "timestamp": "2025-03-24T10:14:19Z",
-          "tree_id": "aaa473325d18937d4554433f517d16d5cb8c10f1",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/ec32daa772b3ce106b1e1b5e451304d6ca23e7cd"
-        },
-        "date": 1742816555995,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Received from peers",
-            "value": 307203,
-            "unit": "KiB"
-          },
-          {
-            "name": "Sent to peers",
-            "value": 1.6666666666666665,
-            "unit": "KiB"
-          },
-          {
-            "name": "availability-recovery",
-            "value": 11.234817522433332,
-            "unit": "seconds"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.19890571936666665,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -21999,6 +21955,50 @@ window.BENCHMARK_DATA = {
           {
             "name": "test-environment",
             "value": 0.19662304526666666,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "robertvaneerdewijk@gmail.com",
+            "name": "0xRVE",
+            "username": "0xRVE"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "afbe4258991a60a7b41270d0fe47d1cd94a5681c",
+          "message": "bugfix revm set_storage gas cost (#9823)\n\nFixes bug in revm gasmetering where the initial charge was less than the\nadjusted charge.\n\n---------\n\nCo-authored-by: Robert van Eerdewijk <robert@Roberts-MacBook-Pro.local>\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>\nCo-authored-by: PG Herveou <pgherveou@gmail.com>",
+          "timestamp": "2025-09-25T09:05:41Z",
+          "tree_id": "093d3a6142cd89d6a78d461a8e82aa2251bcfeb6",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/afbe4258991a60a7b41270d0fe47d1cd94a5681c"
+        },
+        "date": 1758795293885,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Sent to peers",
+            "value": 1.6666666666666665,
+            "unit": "KiB"
+          },
+          {
+            "name": "Received from peers",
+            "value": 307203,
+            "unit": "KiB"
+          },
+          {
+            "name": "availability-recovery",
+            "value": 11.1862263669,
+            "unit": "seconds"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.1958031995666667,
             "unit": "seconds"
           }
         ]
