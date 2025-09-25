@@ -1,107 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758800866403,
+  "lastUpdate": 1758810493020,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "approval-voting-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "10196091+Ank4n@users.noreply.github.com",
-            "name": "Ankan",
-            "username": "Ank4n"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": false,
-          "id": "b82ef548cfa4ca2107967e114cac7c3006c0780c",
-          "message": "[AHM] Revert multi-block election, slashing and staking client pallets (#7939)\n\nRevert the following PRs which we are pulling from release stable2503:\n- https://github.com/paritytech/polkadot-sdk/pull/7582\n- https://github.com/paritytech/polkadot-sdk/pull/7424\n- https://github.com/paritytech/polkadot-sdk/pull/7282\n\nand leave pallet-staking in its pre-AHM state.\n\n## Context\n\nWe are forking pallet-staking into `pallet-staking` (also referred as\nstaking-classic, this is the version that will stay on RC) and\n`pallet-staking-next` which will live on AH post AHM.\n\nAdditional context:\nhttps://github.com/paritytech/polkadot-sdk/issues/7858#issuecomment-2711276767\n\nThese changes in crate `pallet-staking` will become the staking classic.\nThe staking next version is worked in the PR #7601.\n\n## For AHM migration\nThe `UnappliedSlashes` storage will need to be translated from\n`rc::staking-classic` to `ah::staking-next`.\n[Bookmarking](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/staking/src/migrations.rs#L91)\nthe code that can be referred for this.\n\n## Follow ups\n(cc: @tdimitrov and @seadanda )\n1) Revert pallet-staking v17 migration in westend.\n- Update `in code storage version` of pallet-staking storage from 17 to\n16 (separate PR).\n- Update `on chain storage version` of pallet-staking storage from 17 to\n16. The storage key for pallet-staking on chain version is\n`0x5f3e4907f716ac89b6347d15ececedca4e7b9012096b41c4eb3aaf947f6ea429`\nwhich should be set currently to `0x1100`, and needs to be updated to\n`0x1000`.\n- After the runtime upgrade with the code from this PR is deployed on\nWestend, kill the following storage prefixes under the Pallet prefix\n`Staking`:\n  - OffenceQueue\n  - OffenceQueueEras\n  - ProcessingOffence\n- UnappliedSlashes: This also exists in staking-classic as a storage map\n(one key) and in pre-revert code as double storage map (two keys).\nKilling with prefix `UnappliedSlashes` may kill the ones created post\nupgrade (but that's okay for westend).\n  - VoterSnapshotStatus\n  - NextElectionPage\n  - ElectableStashes\n\n2) Remove exposure dependency\nWorked in the PR: https://github.com/paritytech/polkadot-sdk/pull/7936.\n\n---------\n\nCo-authored-by: Tsvetomir Dimitrov <tsvetomir@parity.io>\nCo-authored-by: Maciej <maciej.zyszkiewicz@parity.io>",
-          "timestamp": "2025-03-24T13:24:36Z",
-          "tree_id": "c2aea0f86f1857f2122be4434168b5811275490a",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/b82ef548cfa4ca2107967e114cac7c3006c0780c"
-        },
-        "date": 1742826372679,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Sent to peers",
-            "value": 63627.38999999999,
-            "unit": "KiB"
-          },
-          {
-            "name": "Received from peers",
-            "value": 52943.3,
-            "unit": "KiB"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-parallel-1",
-            "value": 2.391274048469999,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-gather-signatures",
-            "value": 0.005598919230000003,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-parallel-subsystem",
-            "value": 0.4797885099999971,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-parallel-0",
-            "value": 2.38506436891,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel",
-            "value": 11.915751835170006,
-            "unit": "seconds"
-          },
-          {
-            "name": "test-environment",
-            "value": 3.3509448014121745,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting/test-environment",
-            "value": 0.0000182236,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting",
-            "value": 0.0000182236,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-distribution",
-            "value": 0.000019066309999999998,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-parallel-3",
-            "value": 2.3741090221000016,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-parallel-2",
-            "value": 2.41824609476,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-parallel-db",
-            "value": 1.8616708717000088,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-distribution/test-environment",
-            "value": 0.000019066309999999998,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -49499,6 +49400,105 @@ window.BENCHMARK_DATA = {
           {
             "name": "approval-distribution",
             "value": 0.00002450981,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "robertvaneerdewijk@gmail.com",
+            "name": "0xRVE",
+            "username": "0xRVE"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "7fc007deca8c14d0356367b2461300683bf890b4",
+          "message": "pallet revive evm backend add tests for cross vm contract calls (#9768)\n\nfixes https://github.com/paritytech/polkadot-sdk/issues/9576\n\n---------\n\nCo-authored-by: Robert van Eerdewijk <robert@Roberts-MacBook-Pro.local>\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>\nCo-authored-by: Alexander Theißen <alex.theissen@me.com>",
+          "timestamp": "2025-09-25T13:13:25Z",
+          "tree_id": "2099121124c3880f9004a9d06de28043c05ace37",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/7fc007deca8c14d0356367b2461300683bf890b4"
+        },
+        "date": 1758810475045,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Received from peers",
+            "value": 52942.59999999999,
+            "unit": "KiB"
+          },
+          {
+            "name": "Sent to peers",
+            "value": 63632.25,
+            "unit": "KiB"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-parallel-1",
+            "value": 2.4807492711899997,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-parallel-3",
+            "value": 2.4730271659600005,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-parallel-0",
+            "value": 2.4987551524900002,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-gather-signatures",
+            "value": 0.005706188710000002,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-parallel-db",
+            "value": 1.968135433150001,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-distribution/test-environment",
+            "value": 0.0000210641,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel",
+            "value": 12.394745717299996,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-parallel-subsystem",
+            "value": 0.44008662964999734,
+            "unit": "seconds"
+          },
+          {
+            "name": "test-environment",
+            "value": 2.6196824275110417,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting/test-environment",
+            "value": 0.0000211444,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting",
+            "value": 0.0000211444,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-parallel-2",
+            "value": 2.5282858761499996,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-distribution",
+            "value": 0.0000210641,
             "unit": "seconds"
           }
         ]
