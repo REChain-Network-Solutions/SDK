@@ -1,52 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758730197777,
+  "lastUpdate": 1758791047038,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "statement-distribution-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "60601340+lexnv@users.noreply.github.com",
-            "name": "Alexandru Vasile",
-            "username": "lexnv"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "e1a1e4d88d80cd3883de008378ba5a6d043be362",
-          "message": "rpc-v2/archive: Rename archive call method result to value (#7885)\n\nThis PR modifies the archive_call method result to align with the rpc-v2\nspec:\n-\nhttps://github.com/paritytech/json-rpc-interface-spec/blob/main/src/api/archive_unstable_call.md\n\nPreviously, the method result was encoded to a json containing a\n\"result\" field, however the spec specifies a \"value\" field. This aims to\nrectify that.\n\ncc @paritytech/subxt-team\n\n---------\n\nSigned-off-by: Alexandru Vasile <alexandru.vasile@parity.io>\nCo-authored-by: Niklas Adolfsson <niklasadolfsson1@gmail.com>",
-          "timestamp": "2025-03-21T08:50:54Z",
-          "tree_id": "815497e59867997c739f8dff40d41a5c9c770821",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/e1a1e4d88d80cd3883de008378ba5a6d043be362"
-        },
-        "date": 1742550994339,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Received from peers",
-            "value": 106.39999999999996,
-            "unit": "KiB"
-          },
-          {
-            "name": "Sent to peers",
-            "value": 127.94599999999996,
-            "unit": "KiB"
-          },
-          {
-            "name": "statement-distribution",
-            "value": 0.035160855920000005,
-            "unit": "seconds"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.04499681631599995,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -21999,6 +21955,50 @@ window.BENCHMARK_DATA = {
           {
             "name": "test-environment",
             "value": 0.044242913899999944,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "54316454+sandreim@users.noreply.github.com",
+            "name": "Andrei Sandu",
+            "username": "sandreim"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "58a6df32ec9a145615061cd203875c55db5e6fa1",
+          "message": "Elastic scaling runtime upgrade test (#9811)\n\nCloses https://github.com/paritytech/polkadot-sdk/issues/7259.\n\nTODO\n- [x] prdoc\n- [x] upgrade from sync backing\n\n---------\n\nSigned-off-by: Andrei Sandu <andrei-mihail@parity.io>\nCo-authored-by: Javier Viola <javier@parity.io>\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>\nCo-authored-by: Javier Viola <363911+pepoviola@users.noreply.github.com>",
+          "timestamp": "2025-09-25T07:55:03Z",
+          "tree_id": "3f4658109c44db355c366d8a854cb1975abcfa86",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/58a6df32ec9a145615061cd203875c55db5e6fa1"
+        },
+        "date": 1758791029051,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Sent to peers",
+            "value": 127.96599999999998,
+            "unit": "KiB"
+          },
+          {
+            "name": "Received from peers",
+            "value": 106.39999999999996,
+            "unit": "KiB"
+          },
+          {
+            "name": "statement-distribution",
+            "value": 0.034475158838,
+            "unit": "seconds"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.04466099199199996,
             "unit": "seconds"
           }
         ]
