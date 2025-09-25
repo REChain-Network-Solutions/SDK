@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758791074076,
+  "lastUpdate": 1758795419747,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "dispute-coordinator-regression-bench": [
@@ -9750,6 +9750,55 @@ window.BENCHMARK_DATA = {
           {
             "name": "dispute-distribution",
             "value": 0.008546229949999998,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "robertvaneerdewijk@gmail.com",
+            "name": "0xRVE",
+            "username": "0xRVE"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "afbe4258991a60a7b41270d0fe47d1cd94a5681c",
+          "message": "bugfix revm set_storage gas cost (#9823)\n\nFixes bug in revm gasmetering where the initial charge was less than the\nadjusted charge.\n\n---------\n\nCo-authored-by: Robert van Eerdewijk <robert@Roberts-MacBook-Pro.local>\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>\nCo-authored-by: PG Herveou <pgherveou@gmail.com>",
+          "timestamp": "2025-09-25T09:05:41Z",
+          "tree_id": "093d3a6142cd89d6a78d461a8e82aa2251bcfeb6",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/afbe4258991a60a7b41270d0fe47d1cd94a5681c"
+        },
+        "date": 1758795401805,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Sent to peers",
+            "value": 227.09999999999997,
+            "unit": "KiB"
+          },
+          {
+            "name": "Received from peers",
+            "value": 23.800000000000004,
+            "unit": "KiB"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.005147795699999996,
+            "unit": "seconds"
+          },
+          {
+            "name": "dispute-distribution",
+            "value": 0.00868360990999999,
+            "unit": "seconds"
+          },
+          {
+            "name": "dispute-coordinator",
+            "value": 0.0026035826699999996,
             "unit": "seconds"
           }
         ]
