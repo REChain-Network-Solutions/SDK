@@ -1,52 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758791047038,
+  "lastUpdate": 1758795392291,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "statement-distribution-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "363911+pepoviola@users.noreply.github.com",
-            "name": "Javier Viola",
-            "username": "pepoviola"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "470bada9507981d7b95384a3e62af7797554cfb6",
-          "message": "bump version of zombienet-sdk (#7964)\n\nBump zombienet-sdk version, including fixes for issues with init\ncontainers.\nThx!",
-          "timestamp": "2025-03-21T10:54:35Z",
-          "tree_id": "047ec9fcec63cdab945716d8e33d78dc77d2f23e",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/470bada9507981d7b95384a3e62af7797554cfb6"
-        },
-        "date": 1742557992010,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Received from peers",
-            "value": 106.39999999999996,
-            "unit": "KiB"
-          },
-          {
-            "name": "Sent to peers",
-            "value": 127.95599999999999,
-            "unit": "KiB"
-          },
-          {
-            "name": "statement-distribution",
-            "value": 0.03467360351999999,
-            "unit": "seconds"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.04424562538999996,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -21999,6 +21955,50 @@ window.BENCHMARK_DATA = {
           {
             "name": "test-environment",
             "value": 0.04466099199199996,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "robertvaneerdewijk@gmail.com",
+            "name": "0xRVE",
+            "username": "0xRVE"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "afbe4258991a60a7b41270d0fe47d1cd94a5681c",
+          "message": "bugfix revm set_storage gas cost (#9823)\n\nFixes bug in revm gasmetering where the initial charge was less than the\nadjusted charge.\n\n---------\n\nCo-authored-by: Robert van Eerdewijk <robert@Roberts-MacBook-Pro.local>\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>\nCo-authored-by: PG Herveou <pgherveou@gmail.com>",
+          "timestamp": "2025-09-25T09:05:41Z",
+          "tree_id": "093d3a6142cd89d6a78d461a8e82aa2251bcfeb6",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/afbe4258991a60a7b41270d0fe47d1cd94a5681c"
+        },
+        "date": 1758795374599,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Sent to peers",
+            "value": 127.93199999999992,
+            "unit": "KiB"
+          },
+          {
+            "name": "Received from peers",
+            "value": 106.39999999999996,
+            "unit": "KiB"
+          },
+          {
+            "name": "statement-distribution",
+            "value": 0.03383893823799999,
+            "unit": "seconds"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.04371315818999996,
             "unit": "seconds"
           }
         ]
