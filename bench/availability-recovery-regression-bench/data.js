@@ -1,52 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758797759557,
+  "lastUpdate": 1758800812777,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "availability-recovery-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "117534+vgeddes@users.noreply.github.com",
-            "name": "Vincent Geddes",
-            "username": "vgeddes"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "98c6ffcea6794d338514cf9bd84446d2f276cb63",
-          "message": "Snowbridge V2 (#7402)\n\nImplementation of the Snowbridge V2\n[specification](https://github.com/paritytech/polkadot-sdk/blob/master/bridges/snowbridge/docs/v2.md).\n\nCompanion PR for changes on the Ethereum side:\nhttps://github.com/Snowfork/snowbridge/pull/1371\n\n# High-level overview\n\nThe implementation of V2 is additive and does not affect the V1 protocol\nin any manner.\n\n## BridgeHub\n\n* Adds pallet `snowbridge-pallet-inbound-queue-v2` which is responsible\nfor:\n  * Receiving and verifying messages from Ethereum\n  * Converting those messages to XCM\n  * Forwarding the XCMs to AssetHub\n* Adds pallet `snowbridge-pallet-outbound-queue-v2` which is responsible\nfor:\n* Receiving XCMs from AH or governance messages from\n`snowbridge-pallet-system-v2`\n* Converting those XCMs to messages that can be interpreted on Ethereum\n(our Gateway contract specifically)\n* Adds pallet `snowbridge-pallet-system-v2` which is the governance\ncontrolplane for V2\n* The primitives crates for V1 and V2 have been refactored and\nconsolidated:\n* Added pallet `snowbridge-inbound-queue-primitives` with all primitives\nfor the inbound path for V1 and V2.\n* Added pallet `snowbridge-outbound-queue-primitives` with all\nprimitives for the outbound path for V1 and V2.\n\nNote that much of the code for the inbound-queue and outbound-queue\npallets is derived from the original V1 pallets.\n\n## AssetHub\n\n* Adds pallet `snowbridge-pallet-system-frontend`. This pallet acts as a\nproxy for `snowbridge-pallet-system-v2` on BH, and allows any AH account\nto interface with the V2 controlplane without having to interact with BH\nin any manner.\n\n## Supported messaging functionality\n\n### Ethereum->Polkadot\n\n* Users can transfer up to 8 ERC20 tokens, as well as native ether\n* Users can provide an arbitrary xcm message\n\nThe assets will placed into holding on AH, and the user-supplied XCM is\nresponsible\nfor handling those assets in holding.\n\nFor reference, see the inbound message [format](\nhttps://github.com/vgeddes/polkadot-sdk/blob/387c72546be38763a2d3c9b52c0f6cc1d8ac707e/bridges/snowbridge/primitives/inbound-queue/src/v2/message.rs#L101).\n\n### Polkadot->Ethereum\n\nUsers can provide an XCM that includes:\n* Transfers for up to 7 Polkadot-native or Ethereum-native assets\nregistered on AH.\n* A single `Transact` instruction to call an Ethereum mainnet contract\n\nThese XCM instructions are converted to a batch of commands that are\nexecuted on the Ethereum side. For reference, see the outbound message\n[format](https://github.com/vgeddes/polkadot-sdk/blob/387c72546be38763a2d3c9b52c0f6cc1d8ac707e/bridges/snowbridge/primitives/outbound-queue/src/v2/message.rs#L122)\n\n## Relayer Incentivization\n\nBH holds wrapped ether that will be used to reward relayers for both the\ninbound and outbound directions. When a reward is marked as claimable,\nit can be minted on AH when the beneficiary desires to do so.\n\n### Ethereum->Polkadot\n\nUsers supply an an arbitrary reward in ether on Ethereum. This is\nincluded in the message sent to BH, where it added as a reward for the\nrelayer. The relayer can claim these rewards on AH at a later point\nusing the `pallet-bridge-relayers` API.\n\n### Polkadot->Ethereum \n\nUsers supply an an arbitrary reward in wrapped ether using their funds\non AH. When the message is committed for delivery on BH, this reward is\ntracked in `outbound_queue_v2::PendingOrders[MessageNonce]`\n\nAfter a relayer has delivered the message to Ethereum and forwarded the\ndelivery receipt back to `outbound-queue-v2`, the reward will be\nrendered claimable, and the relayer can claim these rewards on AH at a\nlater point using the `pallet-bridge-relayers` API.\n\n---------\n\nSigned-off-by: Adrian Catangiu <adrian@parity.io>\nCo-authored-by: claravanstaden <claravanstaden64@gmail.com>\nCo-authored-by: ron <yrong1997@gmail.com>\nCo-authored-by: Adrian Catangiu <adrian@parity.io>",
-          "timestamp": "2025-03-24T16:43:26Z",
-          "tree_id": "918228ca8aba1ec7e999bc3a2a5152db964cbc5a",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/98c6ffcea6794d338514cf9bd84446d2f276cb63"
-        },
-        "date": 1742838144686,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Received from peers",
-            "value": 307203,
-            "unit": "KiB"
-          },
-          {
-            "name": "Sent to peers",
-            "value": 1.6666666666666665,
-            "unit": "KiB"
-          },
-          {
-            "name": "availability-recovery",
-            "value": 11.248030058733335,
-            "unit": "seconds"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.19888315886666663,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -21999,6 +21955,50 @@ window.BENCHMARK_DATA = {
           {
             "name": "availability-recovery",
             "value": 11.202029231199997,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "1728078+michalkucharczyk@users.noreply.github.com",
+            "name": "Michal Kucharczyk",
+            "username": "michalkucharczyk"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8978c005de6631dce20e204380bb43149127cdce",
+          "message": "wasmtime: support for perfmap added (#9821)\n\nThis PR add  support for `perfmap` in wasmtime executor.\n\nFor more technical details refer to this\n[doc](https://docs.wasmtime.dev/examples-profiling-perf.html#profiling-with-perfmap).\n\nInstruction on how to configure profiling on substrate nodes (tested\nwith cumulus benchmarks) is\n[here](https://hackmd.io/o_Ghc86OT4KzCE4x04MeOg?view#Getting-the-right-flamegraph).\n\nThe following environment variable needs to be set when executing the\nnode binary:\n```\nexport WASMTIME_PROFILING_STRATEGY=perfmap\n```\n\n---------\n\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+          "timestamp": "2025-09-25T10:38:47Z",
+          "tree_id": "5014ce67276b6f7ddaf68d6ea916b50e1937a11d",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/8978c005de6631dce20e204380bb43149127cdce"
+        },
+        "date": 1758800794783,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Received from peers",
+            "value": 307203,
+            "unit": "KiB"
+          },
+          {
+            "name": "Sent to peers",
+            "value": 1.6666666666666665,
+            "unit": "KiB"
+          },
+          {
+            "name": "availability-recovery",
+            "value": 11.320050762166671,
+            "unit": "seconds"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.1987611747,
             "unit": "seconds"
           }
         ]
