@@ -1,52 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758795392291,
+  "lastUpdate": 1758797840713,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "statement-distribution-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "gorka.irazoki@gmail.com",
-            "name": "girazoki",
-            "username": "girazoki"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "1a514f6d3753189c21a6b68d38cc6289999de047",
-          "message": "Add digest processor xcm emulator (#7915)\n\nCurrently parachains are injecting through the xcm-emulator the default\ndigests in each block, something that can prevent testing certain\nconsensus aspects.\n\nWe propose to add the type `DigestProvider`, which needs to implement\nthe trait `Convert<blockNumber, Digest>`. The idea is that we can call\nthe implementation of this trait before initializing every block, and\nthus, allowing us to inject custom digests provided by this trait.\n\nObviously the default behavior persists if you set this type to `().`\n\nThe utilization of the `Convert` trait was arbitrary, as it was the\neasiest to accomplish the solution. I am not against using a custom\ntrait defined for this purpose if that is preferred.\n\n---------\n\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
-          "timestamp": "2025-03-21T12:38:10Z",
-          "tree_id": "78e2ca8681b711c0fc851bde1f674792eb9527c6",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/1a514f6d3753189c21a6b68d38cc6289999de047"
-        },
-        "date": 1742564447167,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Sent to peers",
-            "value": 127.95399999999994,
-            "unit": "KiB"
-          },
-          {
-            "name": "Received from peers",
-            "value": 106.39999999999996,
-            "unit": "KiB"
-          },
-          {
-            "name": "statement-distribution",
-            "value": 0.03525809667599999,
-            "unit": "seconds"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.04510087665799992,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -21999,6 +21955,50 @@ window.BENCHMARK_DATA = {
           {
             "name": "test-environment",
             "value": 0.04371315818999996,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "skunert49@gmail.com",
+            "name": "Sebastian Kunert",
+            "username": "skunert"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "fbf98c8dee09e3dc02506a6fea26a9704cc9c05d",
+          "message": "Elastic-scaling-guide: Mention slot duration (#9713)\n\nFollow-up to #9677 . I think it would be good to add our view on the\nslot duration, as it is often confused with the actual block production\ninterval. This short addition should clarify things a bit.\n\n---------\n\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>\nCo-authored-by: Andrei Sandu <54316454+sandreim@users.noreply.github.com>\nCo-authored-by: Bastian Köcher <git@kchr.de>",
+          "timestamp": "2025-09-25T09:48:11Z",
+          "tree_id": "75703f988b95d5e94d435f35011ef1e17f150e54",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/fbf98c8dee09e3dc02506a6fea26a9704cc9c05d"
+        },
+        "date": 1758797822925,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Sent to peers",
+            "value": 127.93399999999994,
+            "unit": "KiB"
+          },
+          {
+            "name": "Received from peers",
+            "value": 106.39999999999996,
+            "unit": "KiB"
+          },
+          {
+            "name": "statement-distribution",
+            "value": 0.03448166318,
+            "unit": "seconds"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.04469169570999991,
             "unit": "seconds"
           }
         ]
