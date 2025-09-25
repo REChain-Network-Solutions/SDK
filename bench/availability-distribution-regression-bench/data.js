@@ -1,62 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758795338358,
+  "lastUpdate": 1758797785991,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "availability-distribution-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "10196091+Ank4n@users.noreply.github.com",
-            "name": "Ankan",
-            "username": "Ank4n"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": false,
-          "id": "b82ef548cfa4ca2107967e114cac7c3006c0780c",
-          "message": "[AHM] Revert multi-block election, slashing and staking client pallets (#7939)\n\nRevert the following PRs which we are pulling from release stable2503:\n- https://github.com/paritytech/polkadot-sdk/pull/7582\n- https://github.com/paritytech/polkadot-sdk/pull/7424\n- https://github.com/paritytech/polkadot-sdk/pull/7282\n\nand leave pallet-staking in its pre-AHM state.\n\n## Context\n\nWe are forking pallet-staking into `pallet-staking` (also referred as\nstaking-classic, this is the version that will stay on RC) and\n`pallet-staking-next` which will live on AH post AHM.\n\nAdditional context:\nhttps://github.com/paritytech/polkadot-sdk/issues/7858#issuecomment-2711276767\n\nThese changes in crate `pallet-staking` will become the staking classic.\nThe staking next version is worked in the PR #7601.\n\n## For AHM migration\nThe `UnappliedSlashes` storage will need to be translated from\n`rc::staking-classic` to `ah::staking-next`.\n[Bookmarking](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/staking/src/migrations.rs#L91)\nthe code that can be referred for this.\n\n## Follow ups\n(cc: @tdimitrov and @seadanda )\n1) Revert pallet-staking v17 migration in westend.\n- Update `in code storage version` of pallet-staking storage from 17 to\n16 (separate PR).\n- Update `on chain storage version` of pallet-staking storage from 17 to\n16. The storage key for pallet-staking on chain version is\n`0x5f3e4907f716ac89b6347d15ececedca4e7b9012096b41c4eb3aaf947f6ea429`\nwhich should be set currently to `0x1100`, and needs to be updated to\n`0x1000`.\n- After the runtime upgrade with the code from this PR is deployed on\nWestend, kill the following storage prefixes under the Pallet prefix\n`Staking`:\n  - OffenceQueue\n  - OffenceQueueEras\n  - ProcessingOffence\n- UnappliedSlashes: This also exists in staking-classic as a storage map\n(one key) and in pre-revert code as double storage map (two keys).\nKilling with prefix `UnappliedSlashes` may kill the ones created post\nupgrade (but that's okay for westend).\n  - VoterSnapshotStatus\n  - NextElectionPage\n  - ElectableStashes\n\n2) Remove exposure dependency\nWorked in the PR: https://github.com/paritytech/polkadot-sdk/pull/7936.\n\n---------\n\nCo-authored-by: Tsvetomir Dimitrov <tsvetomir@parity.io>\nCo-authored-by: Maciej <maciej.zyszkiewicz@parity.io>",
-          "timestamp": "2025-03-24T13:24:36Z",
-          "tree_id": "c2aea0f86f1857f2122be4434168b5811275490a",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/b82ef548cfa4ca2107967e114cac7c3006c0780c"
-        },
-        "date": 1742826347570,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Received from peers",
-            "value": 433.3333333333332,
-            "unit": "KiB"
-          },
-          {
-            "name": "Sent to peers",
-            "value": 18481.666666666653,
-            "unit": "KiB"
-          },
-          {
-            "name": "availability-distribution",
-            "value": 0.01279364348,
-            "unit": "seconds"
-          },
-          {
-            "name": "bitfield-distribution",
-            "value": 0.02637541015333333,
-            "unit": "seconds"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.00876660184000009,
-            "unit": "seconds"
-          },
-          {
-            "name": "availability-store",
-            "value": 0.15887023510666665,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -26999,6 +26945,60 @@ window.BENCHMARK_DATA = {
           {
             "name": "bitfield-distribution",
             "value": 0.022753231500000002,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "skunert49@gmail.com",
+            "name": "Sebastian Kunert",
+            "username": "skunert"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "fbf98c8dee09e3dc02506a6fea26a9704cc9c05d",
+          "message": "Elastic-scaling-guide: Mention slot duration (#9713)\n\nFollow-up to #9677 . I think it would be good to add our view on the\nslot duration, as it is often confused with the actual block production\ninterval. This short addition should clarify things a bit.\n\n---------\n\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>\nCo-authored-by: Andrei Sandu <54316454+sandreim@users.noreply.github.com>\nCo-authored-by: Bastian Köcher <git@kchr.de>",
+          "timestamp": "2025-09-25T09:48:11Z",
+          "tree_id": "75703f988b95d5e94d435f35011ef1e17f150e54",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/fbf98c8dee09e3dc02506a6fea26a9704cc9c05d"
+        },
+        "date": 1758797768570,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Received from peers",
+            "value": 433.3333333333332,
+            "unit": "KiB"
+          },
+          {
+            "name": "Sent to peers",
+            "value": 18481.666666666653,
+            "unit": "KiB"
+          },
+          {
+            "name": "availability-store",
+            "value": 0.15701110734666668,
+            "unit": "seconds"
+          },
+          {
+            "name": "bitfield-distribution",
+            "value": 0.02233409769333334,
+            "unit": "seconds"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.007602966999999991,
+            "unit": "seconds"
+          },
+          {
+            "name": "availability-distribution",
+            "value": 0.012812013439999999,
             "unit": "seconds"
           }
         ]
