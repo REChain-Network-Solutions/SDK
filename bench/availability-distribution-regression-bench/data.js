@@ -1,62 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758790992725,
+  "lastUpdate": 1758795338358,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "availability-distribution-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "jasl9187@hotmail.com",
-            "name": "Jun Jiang",
-            "username": "jasl"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": false,
-          "id": "ec32daa772b3ce106b1e1b5e451304d6ca23e7cd",
-          "message": "Upgrade deps to eliminate ancient dependencies (#7999)\n\nUpgrading these crates would help to remove tons of outdated (and\nobsoleted) dependencies.\n\nIn addition, a small group of crates do not use workspace deps, I\ncorrect these.\n\n---------\n\nCo-authored-by: Branislav Kontur <bkontur@gmail.com>",
-          "timestamp": "2025-03-24T10:14:19Z",
-          "tree_id": "aaa473325d18937d4554433f517d16d5cb8c10f1",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/ec32daa772b3ce106b1e1b5e451304d6ca23e7cd"
-        },
-        "date": 1742816580454,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Sent to peers",
-            "value": 18481.666666666653,
-            "unit": "KiB"
-          },
-          {
-            "name": "Received from peers",
-            "value": 433.3333333333332,
-            "unit": "KiB"
-          },
-          {
-            "name": "bitfield-distribution",
-            "value": 0.026152707066666666,
-            "unit": "seconds"
-          },
-          {
-            "name": "availability-distribution",
-            "value": 0.012846790593333334,
-            "unit": "seconds"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.008930651873333416,
-            "unit": "seconds"
-          },
-          {
-            "name": "availability-store",
-            "value": 0.15851428789333338,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -26999,6 +26945,60 @@ window.BENCHMARK_DATA = {
           {
             "name": "availability-distribution",
             "value": 0.013091340420000003,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "robertvaneerdewijk@gmail.com",
+            "name": "0xRVE",
+            "username": "0xRVE"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "afbe4258991a60a7b41270d0fe47d1cd94a5681c",
+          "message": "bugfix revm set_storage gas cost (#9823)\n\nFixes bug in revm gasmetering where the initial charge was less than the\nadjusted charge.\n\n---------\n\nCo-authored-by: Robert van Eerdewijk <robert@Roberts-MacBook-Pro.local>\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>\nCo-authored-by: PG Herveou <pgherveou@gmail.com>",
+          "timestamp": "2025-09-25T09:05:41Z",
+          "tree_id": "093d3a6142cd89d6a78d461a8e82aa2251bcfeb6",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/afbe4258991a60a7b41270d0fe47d1cd94a5681c"
+        },
+        "date": 1758795320733,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Sent to peers",
+            "value": 18481.666666666653,
+            "unit": "KiB"
+          },
+          {
+            "name": "Received from peers",
+            "value": 433.3333333333332,
+            "unit": "KiB"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.007703187159999998,
+            "unit": "seconds"
+          },
+          {
+            "name": "availability-distribution",
+            "value": 0.013065930933333334,
+            "unit": "seconds"
+          },
+          {
+            "name": "availability-store",
+            "value": 0.15883102896666676,
+            "unit": "seconds"
+          },
+          {
+            "name": "bitfield-distribution",
+            "value": 0.022753231500000002,
             "unit": "seconds"
           }
         ]
