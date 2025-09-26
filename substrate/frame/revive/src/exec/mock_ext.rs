@@ -16,9 +16,11 @@
 // limitations under the License.
 
 #![cfg(test)]
-
 use crate::{
-	exec::{AccountIdOf, ExecError, Ext, Key, Origin, PrecompileExt, PrecompileWithInfoExt},
+	exec::{
+		AccountIdOf, DispatchResult, ExecError, Ext, Key, Origin, PrecompileExt,
+		PrecompileWithInfoExt,
+	},
 	gas::GasMeter,
 	precompiles::Diff,
 	storage::{ContractInfo, WriteOutcome},
@@ -210,6 +212,14 @@ impl<T: Config> PrecompileExt for MockExt<T> {
 		panic!("MockExt::copy_code_slice")
 	}
 
+	fn terminate_caller(
+		&mut self,
+		_beneficiary: &H160,
+		_caller_address: &H160,
+	) -> Result<CodeRemoved, DispatchError> {
+		panic!("MockExt::terminate_caller")
+	}
+
 	fn to_account_id(&self, _address: &H160) -> AccountIdOf<Self::T> {
 		panic!("MockExt::to_account_id")
 	}
@@ -259,7 +269,11 @@ impl<T: Config> Ext for MockExt<T> {
 		panic!("MockExt::delegate_call")
 	}
 
-	fn terminate(&mut self, _beneficiary: &H160) -> Result<CodeRemoved, DispatchError> {
+	fn terminate(
+		&mut self,
+		_beneficiary: &H160,
+		_allow_from_outside_tx: bool,
+	) -> Result<CodeRemoved, DispatchError> {
 		panic!("MockExt::terminate")
 	}
 

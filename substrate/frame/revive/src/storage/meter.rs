@@ -362,23 +362,41 @@ where
 	/// This drops the root meter in order to make sure it is only called when the whole
 	/// execution did finish.
 	pub fn try_into_deposit(
-		self,
+		mut self,
 		origin: &Origin<T>,
 		skip_transfer: bool,
 	) -> Result<DepositOf<T>, DispatchError> {
+		use itertools::Itertools;
 		if !skip_transfer {
 			// Only refund or charge deposit if the origin is not root.
 			let origin = match origin {
 				Origin::Root => return Ok(Deposit::Charge(Zero::zero())),
 				Origin::Signed(o) => o,
 			};
+			self.charges.sort_by(|a, b| {
+				a.contract.cmp(&b.contract).then_with(|| {
+					// Refund first: Deposit::Charge => true, Deposit::Refund => false
+					matches!(a.amount, Deposit::Charge(_))
+						.cmp(&matches!(b.amount, Deposit::Charge(_)))
+				})
+			});
+			let coalesced: Vec<Charge<T>> = self
+				.charges
+				.into_iter()
+				.coalesce(|mut a, b| {
+					if a.contract != b.contract {
+						return Err((a, b));
+					}
+					a.amount = a.amount.saturating_add(&b.amount);
+					Ok(a)
+				})
+				.collect();
+			log::info!("meter.rs coalesced: {:#?}", coalesced);
 			let try_charge = || {
-				for charge in self.charges.iter().filter(|c| matches!(c.amount, Deposit::Refund(_)))
-				{
+				for charge in coalesced.iter().filter(|c| matches!(c.amount, Deposit::Refund(_))) {
 					E::charge(origin, &charge.contract, &charge.amount, &charge.state)?;
 				}
-				for charge in self.charges.iter().filter(|c| matches!(c.amount, Deposit::Charge(_)))
-				{
+				for charge in coalesced.iter().filter(|c| matches!(c.amount, Deposit::Charge(_))) {
 					E::charge(origin, &charge.contract, &charge.amount, &charge.state)?;
 				}
 				Ok(())
@@ -460,6 +478,7 @@ impl<T: Config> Ext<T> for ReservingExt {
 		match amount {
 			Deposit::Charge(amount) | Deposit::Refund(amount) if amount.is_zero() => return Ok(()),
 			Deposit::Charge(amount) => {
+				log::info!("meter.rs charge() CHARGE amount: {:?}", amount);
 				T::Currency::transfer_and_hold(
 					&HoldReason::StorageDepositReserve.into(),
 					origin,
@@ -471,6 +490,7 @@ impl<T: Config> Ext<T> for ReservingExt {
 				)?;
 			},
 			Deposit::Refund(amount) => {
+				log::info!("meter.rs charge() REFUND amount: {:?}", amount);
 				let transferred = T::Currency::transfer_on_hold(
 					&HoldReason::StorageDepositReserve.into(),
 					contract,
@@ -480,6 +500,11 @@ impl<T: Config> Ext<T> for ReservingExt {
 					Restriction::Free,
 					Fortitude::Polite,
 				)?;
+				log::info!(
+					"meter.rs charge() amount: {:?}, transferred: {:?}",
+					amount,
+					transferred
+				);
 
 				if transferred < *amount {
 					// This should never happen, if it does it means that there is a bug in the
@@ -674,13 +699,7 @@ mod tests {
 						Charge {
 							origin: ALICE,
 							contract: CHARLIE,
-							amount: Deposit::Refund(10),
-							state: ContractState::Alive,
-						},
-						Charge {
-							origin: ALICE,
-							contract: CHARLIE,
-							amount: Deposit::Refund(20),
+							amount: Deposit::Refund(30),
 							state: ContractState::Alive,
 						},
 						Charge {

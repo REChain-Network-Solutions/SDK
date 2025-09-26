@@ -17,7 +17,7 @@
 
 use crate::{
 	address::AddressMapper,
-	precompiles::{BuiltinAddressMatcher, BuiltinPrecompile, Error, Ext},
+	precompiles::{BuiltinAddressMatcher, BuiltinPrecompile, Error, Ext, ExtWithInfo, Revert},
 	vm::RuntimeCosts,
 	Config, H160,
 };
@@ -87,6 +87,22 @@ impl<T: Config> BuiltinPrecompile for System<T> {
 				let proof_size = env.gas_meter().gas_left().proof_size();
 				let res = (ref_time, proof_size);
 				Ok(res.abi_encode())
+			},
+			ISystemCalls::terminate(ISystem::terminateCall { beneficiary }) => {
+				use crate::Origin;
+				env.gas_meter_mut().charge(RuntimeCosts::Terminate { code_removed: true })?;
+				let h160 = H160::from_slice(beneficiary.as_slice());
+				let caller_account_id = match env.caller() {
+					Origin::<T>::Root => {
+						return Err(Error::Revert(Revert::from(
+							"Not allowed to call terminate as Root",
+						)));
+					},
+					Origin::<T>::Signed(c) => c,
+				};
+				let caller_h160: H160 = T::AddressMapper::to_address(&caller_account_id);
+				let _ = env.terminate_caller(&h160, &caller_h160)?;
+				Ok(Vec::new())
 			},
 		}
 	}
