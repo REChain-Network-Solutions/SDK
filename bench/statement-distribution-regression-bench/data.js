@@ -1,52 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758810520034,
+  "lastUpdate": 1758869362234,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "statement-distribution-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "10196091+Ank4n@users.noreply.github.com",
-            "name": "Ankan",
-            "username": "Ank4n"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": false,
-          "id": "b82ef548cfa4ca2107967e114cac7c3006c0780c",
-          "message": "[AHM] Revert multi-block election, slashing and staking client pallets (#7939)\n\nRevert the following PRs which we are pulling from release stable2503:\n- https://github.com/paritytech/polkadot-sdk/pull/7582\n- https://github.com/paritytech/polkadot-sdk/pull/7424\n- https://github.com/paritytech/polkadot-sdk/pull/7282\n\nand leave pallet-staking in its pre-AHM state.\n\n## Context\n\nWe are forking pallet-staking into `pallet-staking` (also referred as\nstaking-classic, this is the version that will stay on RC) and\n`pallet-staking-next` which will live on AH post AHM.\n\nAdditional context:\nhttps://github.com/paritytech/polkadot-sdk/issues/7858#issuecomment-2711276767\n\nThese changes in crate `pallet-staking` will become the staking classic.\nThe staking next version is worked in the PR #7601.\n\n## For AHM migration\nThe `UnappliedSlashes` storage will need to be translated from\n`rc::staking-classic` to `ah::staking-next`.\n[Bookmarking](https://github.com/paritytech/polkadot-sdk/blob/master/substrate/frame/staking/src/migrations.rs#L91)\nthe code that can be referred for this.\n\n## Follow ups\n(cc: @tdimitrov and @seadanda )\n1) Revert pallet-staking v17 migration in westend.\n- Update `in code storage version` of pallet-staking storage from 17 to\n16 (separate PR).\n- Update `on chain storage version` of pallet-staking storage from 17 to\n16. The storage key for pallet-staking on chain version is\n`0x5f3e4907f716ac89b6347d15ececedca4e7b9012096b41c4eb3aaf947f6ea429`\nwhich should be set currently to `0x1100`, and needs to be updated to\n`0x1000`.\n- After the runtime upgrade with the code from this PR is deployed on\nWestend, kill the following storage prefixes under the Pallet prefix\n`Staking`:\n  - OffenceQueue\n  - OffenceQueueEras\n  - ProcessingOffence\n- UnappliedSlashes: This also exists in staking-classic as a storage map\n(one key) and in pre-revert code as double storage map (two keys).\nKilling with prefix `UnappliedSlashes` may kill the ones created post\nupgrade (but that's okay for westend).\n  - VoterSnapshotStatus\n  - NextElectionPage\n  - ElectableStashes\n\n2) Remove exposure dependency\nWorked in the PR: https://github.com/paritytech/polkadot-sdk/pull/7936.\n\n---------\n\nCo-authored-by: Tsvetomir Dimitrov <tsvetomir@parity.io>\nCo-authored-by: Maciej <maciej.zyszkiewicz@parity.io>",
-          "timestamp": "2025-03-24T13:24:36Z",
-          "tree_id": "c2aea0f86f1857f2122be4434168b5811275490a",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/b82ef548cfa4ca2107967e114cac7c3006c0780c"
-        },
-        "date": 1742826397751,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Received from peers",
-            "value": 106.39999999999996,
-            "unit": "KiB"
-          },
-          {
-            "name": "Sent to peers",
-            "value": 127.95599999999995,
-            "unit": "KiB"
-          },
-          {
-            "name": "statement-distribution",
-            "value": 0.035209435486,
-            "unit": "seconds"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.04502039713799994,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -21999,6 +21955,50 @@ window.BENCHMARK_DATA = {
           {
             "name": "test-environment",
             "value": 0.04421842910199998,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "tsvetomir@parity.io",
+            "name": "Tsvetomir Dimitrov",
+            "username": "tdimitrov"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": false,
+          "id": "ad4ae97793083c2b08369fe7b0e63331e7753a4c",
+          "message": "Handle invulnerable AH collators with priority in collator-protocol/validator-side (#9458)\n\nImplements priority handling of invulnerable AH collators which consists\nof:\n1. Connection management - there is a connection limit in the networking\nstack of 100 peers after which no new connections are accepted. To make\nsure that the invulnerable collators can always connect to the\nvalidators permissionless collators are getting disconnected one the\nconnection count is close to the limit.\n2. Collations from permissionless collators are held off for some time\nbefore processing so that the invulnerables have got a chance to put a\ncollation on their own.\n\nTODOs:\n- [x] Add the invulnerables list.\n- [x] Test if the change works for collators claiming positions further\ninto the CQ.\n- [x] Find a good value for `HOLD_OFF_DURATION` and test it on a\ntestnet.\n- [x] Safetynet: Add a command line parameter which overrides\n`HOLD_OFF_DURATION`.\n- [x] Make the hold off more idiomatic.\n- [x] Hold off per relay parent.\n- [x] Fix failing tests.\n\n---------\n\nCo-authored-by: Andrei Sandu <54316454+sandreim@users.noreply.github.com>",
+          "timestamp": "2025-09-26T05:37:51Z",
+          "tree_id": "17846cf3dfa6de29d1559d0660723069ab287da8",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/ad4ae97793083c2b08369fe7b0e63331e7753a4c"
+        },
+        "date": 1758869344403,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Received from peers",
+            "value": 106.39999999999996,
+            "unit": "KiB"
+          },
+          {
+            "name": "Sent to peers",
+            "value": 127.95799999999997,
+            "unit": "KiB"
+          },
+          {
+            "name": "statement-distribution",
+            "value": 0.034135401648,
+            "unit": "seconds"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.044172816313999934,
             "unit": "seconds"
           }
         ]
