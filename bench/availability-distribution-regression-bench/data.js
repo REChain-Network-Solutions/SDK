@@ -1,62 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758869308375,
+  "lastUpdate": 1758875929566,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "availability-distribution-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "eresav@me.com",
-            "name": "Andrei Eres",
-            "username": "AndreiEres"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "1d5d8aac07d41f3c2aa57a80562af7955dcc8af3",
-          "message": "Rewrite zombienet-polkadot-functional-0012-spam-statement-distribution-requests (#7657)\n\nFixes https://github.com/paritytech/polkadot-sdk/issues/5973\n\n---------\n\nCo-authored-by: Javier Viola <363911+pepoviola@users.noreply.github.com>\nCo-authored-by: Javier Viola <javier@parity.io>\nCo-authored-by: Stephane Gurgenidze <59443568+sw10pa@users.noreply.github.com>",
-          "timestamp": "2025-03-26T06:54:15Z",
-          "tree_id": "854a11f7e27bc49ee643adf7864f1c48b6a56676",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/1d5d8aac07d41f3c2aa57a80562af7955dcc8af3"
-        },
-        "date": 1742975492124,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Received from peers",
-            "value": 433.3333333333332,
-            "unit": "KiB"
-          },
-          {
-            "name": "Sent to peers",
-            "value": 18481.666666666653,
-            "unit": "KiB"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.008818951093333409,
-            "unit": "seconds"
-          },
-          {
-            "name": "availability-distribution",
-            "value": 0.013053985946666671,
-            "unit": "seconds"
-          },
-          {
-            "name": "bitfield-distribution",
-            "value": 0.0265605425,
-            "unit": "seconds"
-          },
-          {
-            "name": "availability-store",
-            "value": 0.1604100095600001,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -26999,6 +26945,60 @@ window.BENCHMARK_DATA = {
           {
             "name": "availability-store",
             "value": 0.15664777712666672,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "gui.thiolliere@gmail.com",
+            "name": "Guillaume Thiolliere",
+            "username": "gui1117"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9e0636567bebf312b065ca3acb285a8b32499df7",
+          "message": "Add remove_by method in runtime interface and extension. (#9836)\n\nCurrently the runtime is responsible to remove statements from the\nstore. this is the only for the statements to expire and not grow\nindefinitely until the store gobal limits.\n\nIf we use a statements store with 4GiB of statements, the method\n`statements` and `remove` to query and remove statements from the\noffchain worker is unusable given `statements` cannot be called.\n\nI introduce the method `remove_by` which is safe.\n\nLater we can also introduce a method `valid_statement_change` which\nresize the usage of the statement store of one account given a new\nusage. But I don't have time for this now.\n\nThere are some other possibilities (both implemented in different commit\nof https://github.com/paritytech/polkadot-sdk/pull/9827):\n* Do no make the runtime responsible of cleaning the store: make the\nstatement store clean the statements after some duration like 7 days.\n* Make the user responsible to refresh their statements. The statement\nstore would clean statements by order of insertion. User with remaining\nallowance must resubmit their statements regularly. (the pace depends on\nhow fast the allowance of user is changing in the runtime).\n\n---------\n\nCo-authored-by: Bastian Köcher <git@kchr.de>\nCo-authored-by: georgepisaltu <52418509+georgepisaltu@users.noreply.github.com>",
+          "timestamp": "2025-09-26T07:27:40Z",
+          "tree_id": "3b0ad9124e47dd265152387ff55d9685f4566649",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/9e0636567bebf312b065ca3acb285a8b32499df7"
+        },
+        "date": 1758875911739,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Received from peers",
+            "value": 433.3333333333332,
+            "unit": "KiB"
+          },
+          {
+            "name": "Sent to peers",
+            "value": 18481.666666666653,
+            "unit": "KiB"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.007757722053333358,
+            "unit": "seconds"
+          },
+          {
+            "name": "availability-store",
+            "value": 0.15793422392666667,
+            "unit": "seconds"
+          },
+          {
+            "name": "availability-distribution",
+            "value": 0.012965652473333335,
+            "unit": "seconds"
+          },
+          {
+            "name": "bitfield-distribution",
+            "value": 0.02272561255333334,
             "unit": "seconds"
           }
         ]
