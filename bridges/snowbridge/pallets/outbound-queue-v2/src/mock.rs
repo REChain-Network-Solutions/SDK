@@ -9,6 +9,7 @@ use frame_support::{
 	BoundedVec,
 };
 
+use bridge_hub_common::AggregateMessageOrigin;
 use hex_literal::hex;
 use snowbridge_core::{
 	gwei, meth,
@@ -119,6 +120,7 @@ impl crate::Config for Test {
 	type OnNewCommitment = ();
 	#[cfg(feature = "runtime-benchmarks")]
 	type Helper = Test;
+	type AggregateMessageOrigin = AggregateMessageOrigin;
 }
 
 fn setup() {
