@@ -1,52 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758875984329,
+  "lastUpdate": 1758879589775,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "statement-distribution-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "egor@parity.io",
-            "name": "Egor_P",
-            "username": "EgorPopelyaev"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "e8698299f6ec5bd16b6958de60931d082bf6a7bc",
-          "message": "Update RELEASE.md (#7903)\n\nThis PR updates outdated RELEASE.md file\n\nAddresses: #7188\n\n---------\n\nCo-authored-by: Michal Kucharczyk <1728078+michalkucharczyk@users.noreply.github.com>\nCo-authored-by: Iulian Barbu <14218860+iulianbarbu@users.noreply.github.com>\nCo-authored-by: Oliver Tale-Yazdi <oliver.tale-yazdi@parity.io>",
-          "timestamp": "2025-03-25T14:16:49Z",
-          "tree_id": "4eecf2e738a51840fd6077dca62158b6fceea3a2",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/e8698299f6ec5bd16b6958de60931d082bf6a7bc"
-        },
-        "date": 1742916704280,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Received from peers",
-            "value": 106.39999999999996,
-            "unit": "KiB"
-          },
-          {
-            "name": "Sent to peers",
-            "value": 127.94199999999995,
-            "unit": "KiB"
-          },
-          {
-            "name": "statement-distribution",
-            "value": 0.03514356039399999,
-            "unit": "seconds"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.04488137208399994,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -21999,6 +21955,50 @@ window.BENCHMARK_DATA = {
           {
             "name": "test-environment",
             "value": 0.04475899004999993,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "diego2737@gmail.com",
+            "name": "Diego",
+            "username": "dimartiro"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d5473e6fa3633c3355f8ef19a8b8921673657a9f",
+          "message": "Add new zepter duplicate-deps check as part of CI (#9809)\n\n# Description\n\nThis PR builds on my previous\n[PR](https://github.com/paritytech/polkadot-sdk/pull/9233) and addresses\nfeedback from Basti’s comment\n[here](https://github.com/paritytech/polkadot-sdk/pull/9283#issuecomment-3104712426).\n\nTo prevent the same situation from recurring in the future, I’ve\nintroduced a new **lint check** in **Zepter**, which is now also\nintegrated into the CI workflow. The purpose of this check is to\nautomatically detect and block cases where the same dependency is\ndeclared both under `[dependencies]` and `[dev-dependencies]`.",
+          "timestamp": "2025-09-26T08:23:23Z",
+          "tree_id": "0cfd615bddc52c65baf5cb7983f6d7f4e2d362c6",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/d5473e6fa3633c3355f8ef19a8b8921673657a9f"
+        },
+        "date": 1758879572054,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Received from peers",
+            "value": 106.39999999999996,
+            "unit": "KiB"
+          },
+          {
+            "name": "Sent to peers",
+            "value": 127.95399999999994,
+            "unit": "KiB"
+          },
+          {
+            "name": "statement-distribution",
+            "value": 0.03417374363400002,
+            "unit": "seconds"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.044233926673999946,
             "unit": "seconds"
           }
         ]
