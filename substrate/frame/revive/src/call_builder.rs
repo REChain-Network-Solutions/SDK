@@ -32,8 +32,8 @@ use crate::{
 	storage::meter::Meter,
 	transient_storage::MeterEntry,
 	vm::pvm::{PreparedCall, Runtime},
-	AccountInfo, BalanceOf, BalanceWithDust, BumpNonce, Code, CodeInfoOf, Config, ContractBlob,
-	ContractInfo, DepositLimit, Error, GasMeter, MomentOf, Origin, Pallet as Contracts,
+	AccountInfo, BalanceOf, BalanceWithDust, Code, CodeInfoOf, Config, ContractBlob, ContractInfo,
+	Error, ExecConfig, ExecOrigin as Origin, GasMeter, MomentOf, OriginFor, Pallet as Contracts,
 	PristineCode, Weight,
 };
 use alloc::{vec, vec::Vec};
@@ -56,6 +56,7 @@ pub struct CallSetup<T: Config> {
 	value: BalanceOf<T>,
 	data: Vec<u8>,
 	transient_storage_size: u32,
+	exec_config: ExecConfig,
 }
 
 impl<T> Default for CallSetup<T>
@@ -111,6 +112,7 @@ where
 			value: 0u32.into(),
 			data: vec![],
 			transient_storage_size: 0,
+			exec_config: ExecConfig::new_substrate_tx(),
 		}
 	}
 
@@ -157,6 +159,7 @@ where
 			&mut self.gas_meter,
 			&mut self.storage_meter,
 			self.value,
+			&self.exec_config,
 		);
 		if self.transient_storage_size > 0 {
 			Self::with_transient_storage(&mut ext.0, self.transient_storage_size).unwrap();
@@ -252,7 +255,7 @@ where
 	) -> Result<Contract<T>, &'static str> {
 		T::Currency::set_balance(&caller, caller_funding::<T>());
 		let salt = Some([0xffu8; 32]);
-		let origin: T::RuntimeOrigin = RawOrigin::Signed(caller.clone()).into();
+		let origin: OriginFor<T> = RawOrigin::Signed(caller.clone()).into();
 
 		// We ignore the error since we might also pass an already mapped account here.
 		Contracts::<T>::map_account(origin.clone()).ok();
@@ -266,11 +269,11 @@ where
 			origin,
 			U256::zero(),
 			Weight::MAX,
-			DepositLimit::Balance(default_deposit_limit::<T>()),
+			default_deposit_limit::<T>(),
 			Code::Upload(module.code),
 			data,
 			salt,
-			BumpNonce::Yes,
+			ExecConfig::new_substrate_tx(),
 		);
 
 		let address = outcome.result?.addr;

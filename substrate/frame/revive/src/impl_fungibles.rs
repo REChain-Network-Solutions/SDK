@@ -24,6 +24,7 @@
 
 #![cfg(any(feature = "std", feature = "runtime-benchmarks", test))]
 
+use crate::OriginFor;
 use alloy_core::{
 	primitives::{Address, U256 as EU256},
 	sol_types::*,
@@ -42,7 +43,7 @@ use sp_core::{H160, H256, U256};
 use sp_runtime::{traits::AccountIdConversion, DispatchError};
 
 use super::{
-	address::AddressMapper, pallet, BalanceOf, Bounded, Config, ContractResult, DepositLimit,
+	address::AddressMapper, pallet, BalanceOf, Bounded, Config, ContractResult, ExecConfig,
 	MomentOf, Pallet, Weight,
 };
 use ethereum_standards::IERC20;
@@ -73,14 +74,13 @@ where
 	fn total_issuance(asset_id: Self::AssetId) -> Self::Balance {
 		let data = IERC20::totalSupplyCall {}.abi_encode();
 		let ContractResult { result, .. } = Self::bare_call(
-			T::RuntimeOrigin::signed(Self::checking_account()),
+			OriginFor::<T>::signed(Self::checking_account()),
 			asset_id,
 			U256::zero(),
 			GAS_LIMIT,
-			DepositLimit::Balance(
-				<<T as pallet::Config>::Currency as fungible::Inspect<_>>::total_issuance(),
-			),
+			<<T as pallet::Config>::Currency as fungible::Inspect<_>>::total_issuance(),
 			data,
+			ExecConfig::new_substrate_tx(),
 		);
 		if let Ok(return_value) = result {
 			if let Ok(eu256) = EU256::abi_decode_validate(&return_value.data) {
@@ -109,14 +109,13 @@ where
 		let address = Address::from(Into::<[u8; 20]>::into(eth_address));
 		let data = IERC20::balanceOfCall { account: address }.abi_encode();
 		let ContractResult { result, .. } = Self::bare_call(
-			T::RuntimeOrigin::signed(account_id.clone()),
+			OriginFor::<T>::signed(account_id.clone()),
 			asset_id,
 			U256::zero(),
 			GAS_LIMIT,
-			DepositLimit::Balance(
-				<<T as pallet::Config>::Currency as fungible::Inspect<_>>::total_issuance(),
-			),
+			<<T as pallet::Config>::Currency as fungible::Inspect<_>>::total_issuance(),
 			data,
+			ExecConfig::new_substrate_tx(),
 		);
 		if let Ok(return_value) = result {
 			if let Ok(eu256) = EU256::abi_decode_validate(&return_value.data) {
@@ -184,14 +183,13 @@ where
 		let data =
 			IERC20::transferCall { to: checking_address, value: EU256::from(amount) }.abi_encode();
 		let ContractResult { result, gas_consumed, .. } = Self::bare_call(
-			T::RuntimeOrigin::signed(who.clone()),
+			OriginFor::<T>::signed(who.clone()),
 			asset_id,
 			U256::zero(),
 			GAS_LIMIT,
-			DepositLimit::Balance(
-				<<T as pallet::Config>::Currency as fungible::Inspect<_>>::total_issuance(),
-			),
+			<<T as pallet::Config>::Currency as fungible::Inspect<_>>::total_issuance(),
 			data,
+			ExecConfig::new_substrate_tx(),
 		);
 		log::trace!(target: "whatiwant", "{gas_consumed}");
 		if let Ok(return_value) = result {
@@ -221,14 +219,13 @@ where
 		let address = Address::from(Into::<[u8; 20]>::into(eth_address));
 		let data = IERC20::transferCall { to: address, value: EU256::from(amount) }.abi_encode();
 		let ContractResult { result, .. } = Self::bare_call(
-			T::RuntimeOrigin::signed(Self::checking_account()),
+			OriginFor::<T>::signed(Self::checking_account()),
 			asset_id,
 			U256::zero(),
 			GAS_LIMIT,
-			DepositLimit::Balance(
-				<<T as pallet::Config>::Currency as fungible::Inspect<_>>::total_issuance(),
-			),
+			<<T as pallet::Config>::Currency as fungible::Inspect<_>>::total_issuance(),
 			data,
+			ExecConfig::new_substrate_tx(),
 		);
 		if let Ok(return_value) = result {
 			if return_value.did_revert() {
@@ -416,7 +413,7 @@ mod tests {
 				RuntimeOrigin::signed(checking_account.clone()),
 				Code::Upload(code),
 			)
-			.storage_deposit_limit((1_000_000_000_000).into())
+			.storage_deposit_limit(1_000_000_000_000)
 			.data(constructor_data)
 			.build_and_unwrap_contract();
 			assert_eq!(
