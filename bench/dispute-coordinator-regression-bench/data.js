@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758810547019,
+  "lastUpdate": 1758869389653,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "dispute-coordinator-regression-bench": [
@@ -9946,6 +9946,55 @@ window.BENCHMARK_DATA = {
           {
             "name": "dispute-coordinator",
             "value": 0.00264947959,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "tsvetomir@parity.io",
+            "name": "Tsvetomir Dimitrov",
+            "username": "tdimitrov"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": false,
+          "id": "ad4ae97793083c2b08369fe7b0e63331e7753a4c",
+          "message": "Handle invulnerable AH collators with priority in collator-protocol/validator-side (#9458)\n\nImplements priority handling of invulnerable AH collators which consists\nof:\n1. Connection management - there is a connection limit in the networking\nstack of 100 peers after which no new connections are accepted. To make\nsure that the invulnerable collators can always connect to the\nvalidators permissionless collators are getting disconnected one the\nconnection count is close to the limit.\n2. Collations from permissionless collators are held off for some time\nbefore processing so that the invulnerables have got a chance to put a\ncollation on their own.\n\nTODOs:\n- [x] Add the invulnerables list.\n- [x] Test if the change works for collators claiming positions further\ninto the CQ.\n- [x] Find a good value for `HOLD_OFF_DURATION` and test it on a\ntestnet.\n- [x] Safetynet: Add a command line parameter which overrides\n`HOLD_OFF_DURATION`.\n- [x] Make the hold off more idiomatic.\n- [x] Hold off per relay parent.\n- [x] Fix failing tests.\n\n---------\n\nCo-authored-by: Andrei Sandu <54316454+sandreim@users.noreply.github.com>",
+          "timestamp": "2025-09-26T05:37:51Z",
+          "tree_id": "17846cf3dfa6de29d1559d0660723069ab287da8",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/ad4ae97793083c2b08369fe7b0e63331e7753a4c"
+        },
+        "date": 1758869371141,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Received from peers",
+            "value": 23.800000000000004,
+            "unit": "KiB"
+          },
+          {
+            "name": "Sent to peers",
+            "value": 227.09999999999997,
+            "unit": "KiB"
+          },
+          {
+            "name": "dispute-distribution",
+            "value": 0.008643726509999993,
+            "unit": "seconds"
+          },
+          {
+            "name": "dispute-coordinator",
+            "value": 0.0026408965200000007,
+            "unit": "seconds"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.005056125739999987,
             "unit": "seconds"
           }
         ]
