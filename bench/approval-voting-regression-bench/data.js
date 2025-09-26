@@ -1,107 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758810493020,
+  "lastUpdate": 1758869335431,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "approval-voting-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "117534+vgeddes@users.noreply.github.com",
-            "name": "Vincent Geddes",
-            "username": "vgeddes"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "98c6ffcea6794d338514cf9bd84446d2f276cb63",
-          "message": "Snowbridge V2 (#7402)\n\nImplementation of the Snowbridge V2\n[specification](https://github.com/paritytech/polkadot-sdk/blob/master/bridges/snowbridge/docs/v2.md).\n\nCompanion PR for changes on the Ethereum side:\nhttps://github.com/Snowfork/snowbridge/pull/1371\n\n# High-level overview\n\nThe implementation of V2 is additive and does not affect the V1 protocol\nin any manner.\n\n## BridgeHub\n\n* Adds pallet `snowbridge-pallet-inbound-queue-v2` which is responsible\nfor:\n  * Receiving and verifying messages from Ethereum\n  * Converting those messages to XCM\n  * Forwarding the XCMs to AssetHub\n* Adds pallet `snowbridge-pallet-outbound-queue-v2` which is responsible\nfor:\n* Receiving XCMs from AH or governance messages from\n`snowbridge-pallet-system-v2`\n* Converting those XCMs to messages that can be interpreted on Ethereum\n(our Gateway contract specifically)\n* Adds pallet `snowbridge-pallet-system-v2` which is the governance\ncontrolplane for V2\n* The primitives crates for V1 and V2 have been refactored and\nconsolidated:\n* Added pallet `snowbridge-inbound-queue-primitives` with all primitives\nfor the inbound path for V1 and V2.\n* Added pallet `snowbridge-outbound-queue-primitives` with all\nprimitives for the outbound path for V1 and V2.\n\nNote that much of the code for the inbound-queue and outbound-queue\npallets is derived from the original V1 pallets.\n\n## AssetHub\n\n* Adds pallet `snowbridge-pallet-system-frontend`. This pallet acts as a\nproxy for `snowbridge-pallet-system-v2` on BH, and allows any AH account\nto interface with the V2 controlplane without having to interact with BH\nin any manner.\n\n## Supported messaging functionality\n\n### Ethereum->Polkadot\n\n* Users can transfer up to 8 ERC20 tokens, as well as native ether\n* Users can provide an arbitrary xcm message\n\nThe assets will placed into holding on AH, and the user-supplied XCM is\nresponsible\nfor handling those assets in holding.\n\nFor reference, see the inbound message [format](\nhttps://github.com/vgeddes/polkadot-sdk/blob/387c72546be38763a2d3c9b52c0f6cc1d8ac707e/bridges/snowbridge/primitives/inbound-queue/src/v2/message.rs#L101).\n\n### Polkadot->Ethereum\n\nUsers can provide an XCM that includes:\n* Transfers for up to 7 Polkadot-native or Ethereum-native assets\nregistered on AH.\n* A single `Transact` instruction to call an Ethereum mainnet contract\n\nThese XCM instructions are converted to a batch of commands that are\nexecuted on the Ethereum side. For reference, see the outbound message\n[format](https://github.com/vgeddes/polkadot-sdk/blob/387c72546be38763a2d3c9b52c0f6cc1d8ac707e/bridges/snowbridge/primitives/outbound-queue/src/v2/message.rs#L122)\n\n## Relayer Incentivization\n\nBH holds wrapped ether that will be used to reward relayers for both the\ninbound and outbound directions. When a reward is marked as claimable,\nit can be minted on AH when the beneficiary desires to do so.\n\n### Ethereum->Polkadot\n\nUsers supply an an arbitrary reward in ether on Ethereum. This is\nincluded in the message sent to BH, where it added as a reward for the\nrelayer. The relayer can claim these rewards on AH at a later point\nusing the `pallet-bridge-relayers` API.\n\n### Polkadot->Ethereum \n\nUsers supply an an arbitrary reward in wrapped ether using their funds\non AH. When the message is committed for delivery on BH, this reward is\ntracked in `outbound_queue_v2::PendingOrders[MessageNonce]`\n\nAfter a relayer has delivered the message to Ethereum and forwarded the\ndelivery receipt back to `outbound-queue-v2`, the reward will be\nrendered claimable, and the relayer can claim these rewards on AH at a\nlater point using the `pallet-bridge-relayers` API.\n\n---------\n\nSigned-off-by: Adrian Catangiu <adrian@parity.io>\nCo-authored-by: claravanstaden <claravanstaden64@gmail.com>\nCo-authored-by: ron <yrong1997@gmail.com>\nCo-authored-by: Adrian Catangiu <adrian@parity.io>",
-          "timestamp": "2025-03-24T16:43:26Z",
-          "tree_id": "918228ca8aba1ec7e999bc3a2a5152db964cbc5a",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/98c6ffcea6794d338514cf9bd84446d2f276cb63"
-        },
-        "date": 1742838194867,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Sent to peers",
-            "value": 63627.31000000001,
-            "unit": "KiB"
-          },
-          {
-            "name": "Received from peers",
-            "value": 52942.09999999999,
-            "unit": "KiB"
-          },
-          {
-            "name": "approval-distribution/test-environment",
-            "value": 0.000020838010000000003,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel",
-            "value": 11.98288963485999,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-parallel-1",
-            "value": 2.385220800899999,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting",
-            "value": 0.000018864409999999996,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-gather-signatures",
-            "value": 0.005947087980000004,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-parallel-0",
-            "value": 2.408280219600001,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting/test-environment",
-            "value": 0.000018864409999999996,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-parallel-2",
-            "value": 2.4408171343299996,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-parallel-db",
-            "value": 1.8562851203399966,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-parallel-subsystem",
-            "value": 0.493131396619993,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-voting-parallel/approval-voting-parallel-3",
-            "value": 2.3932078750900025,
-            "unit": "seconds"
-          },
-          {
-            "name": "test-environment",
-            "value": 3.4082098623321238,
-            "unit": "seconds"
-          },
-          {
-            "name": "approval-distribution",
-            "value": 0.000020838010000000003,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -49499,6 +49400,105 @@ window.BENCHMARK_DATA = {
           {
             "name": "approval-distribution",
             "value": 0.0000210641,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "tsvetomir@parity.io",
+            "name": "Tsvetomir Dimitrov",
+            "username": "tdimitrov"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": false,
+          "id": "ad4ae97793083c2b08369fe7b0e63331e7753a4c",
+          "message": "Handle invulnerable AH collators with priority in collator-protocol/validator-side (#9458)\n\nImplements priority handling of invulnerable AH collators which consists\nof:\n1. Connection management - there is a connection limit in the networking\nstack of 100 peers after which no new connections are accepted. To make\nsure that the invulnerable collators can always connect to the\nvalidators permissionless collators are getting disconnected one the\nconnection count is close to the limit.\n2. Collations from permissionless collators are held off for some time\nbefore processing so that the invulnerables have got a chance to put a\ncollation on their own.\n\nTODOs:\n- [x] Add the invulnerables list.\n- [x] Test if the change works for collators claiming positions further\ninto the CQ.\n- [x] Find a good value for `HOLD_OFF_DURATION` and test it on a\ntestnet.\n- [x] Safetynet: Add a command line parameter which overrides\n`HOLD_OFF_DURATION`.\n- [x] Make the hold off more idiomatic.\n- [x] Hold off per relay parent.\n- [x] Fix failing tests.\n\n---------\n\nCo-authored-by: Andrei Sandu <54316454+sandreim@users.noreply.github.com>",
+          "timestamp": "2025-09-26T05:37:51Z",
+          "tree_id": "17846cf3dfa6de29d1559d0660723069ab287da8",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/ad4ae97793083c2b08369fe7b0e63331e7753a4c"
+        },
+        "date": 1758869317363,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Sent to peers",
+            "value": 63635.76000000001,
+            "unit": "KiB"
+          },
+          {
+            "name": "Received from peers",
+            "value": 52939.7,
+            "unit": "KiB"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-parallel-0",
+            "value": 2.4697963861700014,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-distribution",
+            "value": 0.000019056830000000002,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-distribution/test-environment",
+            "value": 0.000019056830000000002,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-parallel-db",
+            "value": 1.9422567934700061,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting",
+            "value": 0.00001819171,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-parallel-1",
+            "value": 2.4505789770099997,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting/test-environment",
+            "value": 0.00001819171,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel",
+            "value": 12.250937244200008,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-gather-signatures",
+            "value": 0.005511791460000006,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-parallel-subsystem",
+            "value": 0.413363635680001,
+            "unit": "seconds"
+          },
+          {
+            "name": "test-environment",
+            "value": 2.6637441833810205,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-parallel-2",
+            "value": 2.5009250354700017,
+            "unit": "seconds"
+          },
+          {
+            "name": "approval-voting-parallel/approval-voting-parallel-3",
+            "value": 2.4685046249399996,
             "unit": "seconds"
           }
         ]
