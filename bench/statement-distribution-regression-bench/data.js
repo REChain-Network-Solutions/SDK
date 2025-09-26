@@ -1,52 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758869362234,
+  "lastUpdate": 1758875984329,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "statement-distribution-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "117534+vgeddes@users.noreply.github.com",
-            "name": "Vincent Geddes",
-            "username": "vgeddes"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "98c6ffcea6794d338514cf9bd84446d2f276cb63",
-          "message": "Snowbridge V2 (#7402)\n\nImplementation of the Snowbridge V2\n[specification](https://github.com/paritytech/polkadot-sdk/blob/master/bridges/snowbridge/docs/v2.md).\n\nCompanion PR for changes on the Ethereum side:\nhttps://github.com/Snowfork/snowbridge/pull/1371\n\n# High-level overview\n\nThe implementation of V2 is additive and does not affect the V1 protocol\nin any manner.\n\n## BridgeHub\n\n* Adds pallet `snowbridge-pallet-inbound-queue-v2` which is responsible\nfor:\n  * Receiving and verifying messages from Ethereum\n  * Converting those messages to XCM\n  * Forwarding the XCMs to AssetHub\n* Adds pallet `snowbridge-pallet-outbound-queue-v2` which is responsible\nfor:\n* Receiving XCMs from AH or governance messages from\n`snowbridge-pallet-system-v2`\n* Converting those XCMs to messages that can be interpreted on Ethereum\n(our Gateway contract specifically)\n* Adds pallet `snowbridge-pallet-system-v2` which is the governance\ncontrolplane for V2\n* The primitives crates for V1 and V2 have been refactored and\nconsolidated:\n* Added pallet `snowbridge-inbound-queue-primitives` with all primitives\nfor the inbound path for V1 and V2.\n* Added pallet `snowbridge-outbound-queue-primitives` with all\nprimitives for the outbound path for V1 and V2.\n\nNote that much of the code for the inbound-queue and outbound-queue\npallets is derived from the original V1 pallets.\n\n## AssetHub\n\n* Adds pallet `snowbridge-pallet-system-frontend`. This pallet acts as a\nproxy for `snowbridge-pallet-system-v2` on BH, and allows any AH account\nto interface with the V2 controlplane without having to interact with BH\nin any manner.\n\n## Supported messaging functionality\n\n### Ethereum->Polkadot\n\n* Users can transfer up to 8 ERC20 tokens, as well as native ether\n* Users can provide an arbitrary xcm message\n\nThe assets will placed into holding on AH, and the user-supplied XCM is\nresponsible\nfor handling those assets in holding.\n\nFor reference, see the inbound message [format](\nhttps://github.com/vgeddes/polkadot-sdk/blob/387c72546be38763a2d3c9b52c0f6cc1d8ac707e/bridges/snowbridge/primitives/inbound-queue/src/v2/message.rs#L101).\n\n### Polkadot->Ethereum\n\nUsers can provide an XCM that includes:\n* Transfers for up to 7 Polkadot-native or Ethereum-native assets\nregistered on AH.\n* A single `Transact` instruction to call an Ethereum mainnet contract\n\nThese XCM instructions are converted to a batch of commands that are\nexecuted on the Ethereum side. For reference, see the outbound message\n[format](https://github.com/vgeddes/polkadot-sdk/blob/387c72546be38763a2d3c9b52c0f6cc1d8ac707e/bridges/snowbridge/primitives/outbound-queue/src/v2/message.rs#L122)\n\n## Relayer Incentivization\n\nBH holds wrapped ether that will be used to reward relayers for both the\ninbound and outbound directions. When a reward is marked as claimable,\nit can be minted on AH when the beneficiary desires to do so.\n\n### Ethereum->Polkadot\n\nUsers supply an an arbitrary reward in ether on Ethereum. This is\nincluded in the message sent to BH, where it added as a reward for the\nrelayer. The relayer can claim these rewards on AH at a later point\nusing the `pallet-bridge-relayers` API.\n\n### Polkadot->Ethereum \n\nUsers supply an an arbitrary reward in wrapped ether using their funds\non AH. When the message is committed for delivery on BH, this reward is\ntracked in `outbound_queue_v2::PendingOrders[MessageNonce]`\n\nAfter a relayer has delivered the message to Ethereum and forwarded the\ndelivery receipt back to `outbound-queue-v2`, the reward will be\nrendered claimable, and the relayer can claim these rewards on AH at a\nlater point using the `pallet-bridge-relayers` API.\n\n---------\n\nSigned-off-by: Adrian Catangiu <adrian@parity.io>\nCo-authored-by: claravanstaden <claravanstaden64@gmail.com>\nCo-authored-by: ron <yrong1997@gmail.com>\nCo-authored-by: Adrian Catangiu <adrian@parity.io>",
-          "timestamp": "2025-03-24T16:43:26Z",
-          "tree_id": "918228ca8aba1ec7e999bc3a2a5152db964cbc5a",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/98c6ffcea6794d338514cf9bd84446d2f276cb63"
-        },
-        "date": 1742838220342,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Received from peers",
-            "value": 106.39999999999996,
-            "unit": "KiB"
-          },
-          {
-            "name": "Sent to peers",
-            "value": 127.95199999999997,
-            "unit": "KiB"
-          },
-          {
-            "name": "statement-distribution",
-            "value": 0.03488794974199999,
-            "unit": "seconds"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.04479648034599995,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -21999,6 +21955,50 @@ window.BENCHMARK_DATA = {
           {
             "name": "test-environment",
             "value": 0.044172816313999934,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "gui.thiolliere@gmail.com",
+            "name": "Guillaume Thiolliere",
+            "username": "gui1117"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9e0636567bebf312b065ca3acb285a8b32499df7",
+          "message": "Add remove_by method in runtime interface and extension. (#9836)\n\nCurrently the runtime is responsible to remove statements from the\nstore. this is the only for the statements to expire and not grow\nindefinitely until the store gobal limits.\n\nIf we use a statements store with 4GiB of statements, the method\n`statements` and `remove` to query and remove statements from the\noffchain worker is unusable given `statements` cannot be called.\n\nI introduce the method `remove_by` which is safe.\n\nLater we can also introduce a method `valid_statement_change` which\nresize the usage of the statement store of one account given a new\nusage. But I don't have time for this now.\n\nThere are some other possibilities (both implemented in different commit\nof https://github.com/paritytech/polkadot-sdk/pull/9827):\n* Do no make the runtime responsible of cleaning the store: make the\nstatement store clean the statements after some duration like 7 days.\n* Make the user responsible to refresh their statements. The statement\nstore would clean statements by order of insertion. User with remaining\nallowance must resubmit their statements regularly. (the pace depends on\nhow fast the allowance of user is changing in the runtime).\n\n---------\n\nCo-authored-by: Bastian Köcher <git@kchr.de>\nCo-authored-by: georgepisaltu <52418509+georgepisaltu@users.noreply.github.com>",
+          "timestamp": "2025-09-26T07:27:40Z",
+          "tree_id": "3b0ad9124e47dd265152387ff55d9685f4566649",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/9e0636567bebf312b065ca3acb285a8b32499df7"
+        },
+        "date": 1758875966041,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Sent to peers",
+            "value": 127.96399999999998,
+            "unit": "KiB"
+          },
+          {
+            "name": "Received from peers",
+            "value": 106.39999999999996,
+            "unit": "KiB"
+          },
+          {
+            "name": "statement-distribution",
+            "value": 0.034602647922,
+            "unit": "seconds"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.04475899004999993,
             "unit": "seconds"
           }
         ]
