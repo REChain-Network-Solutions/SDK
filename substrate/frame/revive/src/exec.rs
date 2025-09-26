@@ -430,6 +430,9 @@ pub trait PrecompileExt: sealing::Sealed {
 	/// Check if running in read-only context.
 	fn is_read_only(&self) -> bool;
 
+	/// Check if running as a delegate call.
+	fn is_delegate_call(&self) -> bool;
+
 	/// Returns an immutable reference to the output of the last executed call frame.
 	fn last_frame_output(&self) -> &ExecReturnValue;
 
@@ -969,6 +972,7 @@ where
 							return Ok(None);
 						},
 					(None, Some(precompile)) if precompile.has_contract_info() => {
+						log::trace!(target: crate::LOG_TARGET, "found precompile for address {address:?}");
 						if let Some(info) = AccountInfo::<T>::load_contract(&address) {
 							CachedContract::Cached(info)
 						} else {
@@ -1881,6 +1885,8 @@ where
 		allows_reentry: bool,
 		read_only: bool,
 	) -> Result<(), ExecError> {
+		log::debug!(target: crate::LOG_TARGET, "attempting to call pre-compile at {dest_addr:?}");
+
 		// Before pushing the new frame: Protect the caller contract against reentrancy attacks.
 		// It is important to do this before calling `allows_reentry` so that a direct recursion
 		// is caught by it.
@@ -1952,6 +1958,7 @@ where
 						&mut frame.nested_storage,
 					)
 				};
+				log::debug!(target: crate::LOG_TARGET, "result of calling {dest_addr:?} pre-compile: {:?}", result);
 
 				if_tracing(|t| match result {
 					Ok(ref output) => t.exit_child_span(&output, Weight::zero()),
@@ -2161,6 +2168,10 @@ where
 
 	fn is_read_only(&self) -> bool {
 		self.top_frame().read_only
+	}
+
+	fn is_delegate_call(&self) -> bool {
+		self.top_frame().delegate.is_some()
 	}
 
 	fn last_frame_output(&self) -> &ExecReturnValue {
