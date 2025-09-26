@@ -1,62 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758875929566,
+  "lastUpdate": 1758879536168,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "availability-distribution-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "lazam@users.noreply.github.com",
-            "name": "Anthony Lazam",
-            "username": "lazam"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "4d3354f2c63f0897a5f73b73c383dae4af73088c",
-          "message": "CI: Update the pushgateway url for zombienet (#8025)\n\nUpdated the new pushgateway url for zombienet due to the restructuring\nof the zombienet infra\n\nhttps://github.com/paritytech/devops/issues/3857",
-          "timestamp": "2025-03-26T08:44:28Z",
-          "tree_id": "8dbb754d3268ca69faf44c23205732d3df8729b4",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/4d3354f2c63f0897a5f73b73c383dae4af73088c"
-        },
-        "date": 1742982145996,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Received from peers",
-            "value": 433.3333333333332,
-            "unit": "KiB"
-          },
-          {
-            "name": "Sent to peers",
-            "value": 18481.666666666653,
-            "unit": "KiB"
-          },
-          {
-            "name": "bitfield-distribution",
-            "value": 0.026218661633333334,
-            "unit": "seconds"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.008592236626666748,
-            "unit": "seconds"
-          },
-          {
-            "name": "availability-distribution",
-            "value": 0.012972861506666664,
-            "unit": "seconds"
-          },
-          {
-            "name": "availability-store",
-            "value": 0.1584640738066667,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -26999,6 +26945,60 @@ window.BENCHMARK_DATA = {
           {
             "name": "bitfield-distribution",
             "value": 0.02272561255333334,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "diego2737@gmail.com",
+            "name": "Diego",
+            "username": "dimartiro"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d5473e6fa3633c3355f8ef19a8b8921673657a9f",
+          "message": "Add new zepter duplicate-deps check as part of CI (#9809)\n\n# Description\n\nThis PR builds on my previous\n[PR](https://github.com/paritytech/polkadot-sdk/pull/9233) and addresses\nfeedback from Basti’s comment\n[here](https://github.com/paritytech/polkadot-sdk/pull/9283#issuecomment-3104712426).\n\nTo prevent the same situation from recurring in the future, I’ve\nintroduced a new **lint check** in **Zepter**, which is now also\nintegrated into the CI workflow. The purpose of this check is to\nautomatically detect and block cases where the same dependency is\ndeclared both under `[dependencies]` and `[dev-dependencies]`.",
+          "timestamp": "2025-09-26T08:23:23Z",
+          "tree_id": "0cfd615bddc52c65baf5cb7983f6d7f4e2d362c6",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/d5473e6fa3633c3355f8ef19a8b8921673657a9f"
+        },
+        "date": 1758879518576,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Received from peers",
+            "value": 433.3333333333332,
+            "unit": "KiB"
+          },
+          {
+            "name": "Sent to peers",
+            "value": 18481.666666666653,
+            "unit": "KiB"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.007766015513333336,
+            "unit": "seconds"
+          },
+          {
+            "name": "availability-distribution",
+            "value": 0.01329739624666667,
+            "unit": "seconds"
+          },
+          {
+            "name": "availability-store",
+            "value": 0.15697002841333332,
+            "unit": "seconds"
+          },
+          {
+            "name": "bitfield-distribution",
+            "value": 0.02243736224666666,
             "unit": "seconds"
           }
         ]
