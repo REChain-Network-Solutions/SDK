@@ -104,26 +104,29 @@ pub struct AuraVerifier<C, P: Pair, CIDP, B: BlockT> {
 	create_inherent_data_providers: CIDP,
 	check_for_equivocation: CheckForEquivocation,
 	telemetry: Option<TelemetryHandle>,
-	compatibility_mode: CompatibilityMode<NumberFor<B>>,
 	authorities_tracker: AuthoritiesTracker<P, B, C>,
 }
 
-impl<C, P: Pair, CIDP, B: BlockT> AuraVerifier<C, P, CIDP, B> {
+impl<C, P: Pair, CIDP, B: BlockT> AuraVerifier<C, P, CIDP, B>
+where
+	C: HeaderBackend<B> + HeaderMetadata<B, Error = sp_blockchain::Error> + ProvideRuntimeApi<B>,
+	P::Public: Codec + Debug,
+	C::Api: AuraApi<B, AuthorityId<P>>,
+{
 	pub(crate) fn new(
 		client: Arc<C>,
 		create_inherent_data_providers: CIDP,
 		check_for_equivocation: CheckForEquivocation,
 		telemetry: Option<TelemetryHandle>,
 		compatibility_mode: CompatibilityMode<NumberFor<B>>,
-	) -> Self {
-		Self {
+	) -> Result<Self, String> {
+		Ok(Self {
 			client: client.clone(),
 			create_inherent_data_providers,
 			check_for_equivocation,
 			telemetry,
-			compatibility_mode,
-			authorities_tracker: AuthoritiesTracker::new(client),
-		}
+			authorities_tracker: AuthoritiesTracker::new(client, &compatibility_mode)?,
+		})
 	}
 }
 
@@ -153,7 +156,11 @@ where
 		// This is done for example when gap syncing and it is expected that the block after the gap
 		// was checked/chosen properly, e.g. by warp syncing to this block using a finality proof.
 		// Or when we are importing state only and can not verify the seal.
-		if block.with_state() || block.state_action.skip_execution_checks() {
+		let number = *block.header.number();
+		let info = self.client.info();
+		if info.block_gap.map_or(false, |gap| gap.start <= number && number <= gap.end) ||
+			block.with_state()
+		{
 			// When we are importing only the state of a block, it will be the best block.
 			block.fork_choice = Some(ForkChoiceStrategy::Custom(block.with_state()));
 
@@ -161,16 +168,12 @@ where
 		}
 
 		let hash = block.header.hash();
-		let number = *block.header.number();
 		let parent_hash = *block.header.parent_hash();
 		let post_header = block.post_header();
 
-		let authorities = self
-			.authorities_tracker
-			.fetch_or_update(&block.header, &self.compatibility_mode)
-			.map_err(|e| {
-				format!("Could not fetch authorities for block {hash:?} at number {number}: {e}")
-			})?;
+		let authorities = self.authorities_tracker.fetch(&block.header).map_err(|e| {
+			format!("Could not fetch authorities for block {hash:?} at number {number}: {e}")
+		})?;
 
 		let create_inherent_data_providers = self
 			.create_inherent_data_providers
@@ -355,7 +358,8 @@ where
 		check_for_equivocation,
 		telemetry,
 		compatibility_mode,
-	});
+	})
+	.map_err(|e| sp_consensus::Error::Other(e.into()))?;
 
 	Ok(BasicQueue::new(verifier, Box::new(block_import), justification_import, spawner, registry))
 }
@@ -385,7 +389,12 @@ pub fn build_verifier<P: Pair, C, CIDP, B: BlockT>(
 		telemetry,
 		compatibility_mode,
 	}: BuildVerifierParams<C, CIDP, NumberFor<B>>,
-) -> AuraVerifier<C, P, CIDP, B> {
+) -> Result<AuraVerifier<C, P, CIDP, B>, String>
+where
+	C: HeaderBackend<B> + HeaderMetadata<B, Error = sp_blockchain::Error> + ProvideRuntimeApi<B>,
+	P::Public: Codec + Debug,
+	C::Api: AuraApi<B, AuthorityId<P>>,
+{
 	AuraVerifier::<_, P, _, _>::new(
 		client,
 		create_inherent_data_providers,
