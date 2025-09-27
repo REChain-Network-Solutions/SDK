@@ -67,7 +67,7 @@ use frame_system::{
 	EnsureRoot, EnsureSigned, EnsureSignedBy,
 };
 use pallet_asset_conversion_tx_payment::SwapAssetAdapter;
-use pallet_assets::precompiles::{InlineIdConfig, ERC20};
+use pallet_assets_precompiles::{InlineIdConfig, ERC20};
 use pallet_nfts::{DestroyWitness, PalletFeatures};
 use pallet_nomination_pools::PoolId;
 use pallet_revive::evm::runtime::EthExtra;
@@ -307,6 +307,9 @@ impl pallet_assets_freezer::Config<AssetsFreezerInstance> for Runtime {
 	type RuntimeFreezeReason = RuntimeFreezeReason;
 	type RuntimeEvent = RuntimeEvent;
 }
+
+impl pallet_assets_precompiles::Config<TrustBackedAssetsInstance> for Runtime {}
+impl pallet_assets_precompiles::Config<PoolAssetsInstance> for Runtime {}
 
 parameter_types! {
 	pub const AssetConversionPalletId: PalletId = PalletId(*b"py/ascon");
@@ -1346,6 +1349,8 @@ construct_runtime!(
 		Revive: pallet_revive = 60,
 
 		AssetRewards: pallet_asset_rewards = 61,
+		AssetsPrecompiles: pallet_assets_precompiles::<Instance1> = 62,
+		PoolAssetsPrecompiles: pallet_assets_precompiles::<Instance3> = 63,
 
 		StateTrieMigration: pallet_state_trie_migration = 70,
 
