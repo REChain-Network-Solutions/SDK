@@ -1,52 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758879509300,
+  "lastUpdate": 1758958893974,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "availability-recovery-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "git@kchr.de",
-            "name": "Bastian Köcher",
-            "username": "bkchr"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": false,
-          "id": "7626a46351fc65a55a6b89f5a1cebe1307af20ca",
-          "message": "Cumulus Zombienet: Fix readme + provide a script (#8034)\n\nMake the life easier for users who want to reproduce these tests\nlocally.",
-          "timestamp": "2025-03-26T10:02:30Z",
-          "tree_id": "aed6289e448f4ce1beeec02e68667084389885f0",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/7626a46351fc65a55a6b89f5a1cebe1307af20ca"
-        },
-        "date": 1742987982835,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Received from peers",
-            "value": 307203,
-            "unit": "KiB"
-          },
-          {
-            "name": "Sent to peers",
-            "value": 1.6666666666666665,
-            "unit": "KiB"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.19547783346666664,
-            "unit": "seconds"
-          },
-          {
-            "name": "availability-recovery",
-            "value": 11.256970827966665,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -21999,6 +21955,50 @@ window.BENCHMARK_DATA = {
           {
             "name": "test-environment",
             "value": 0.1997940932333333,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "git@kchr.de",
+            "name": "Bastian Köcher",
+            "username": "bkchr"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5e28de73b153391e15233ea51089874eb2544db7",
+          "message": "xcm: Do not require `Asset` to be sorted on `decode` (#9842)\n\n`Asset` was requiring that all the assets are sorted at decoding. This\nis quite confusing for people writingg frontends, because this is not\nreally documented anywhere. There are also only at max 20 assets\navailable, we can just make everyones life easier and always sort the\nassets after decoding.\n\n---------\n\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+          "timestamp": "2025-09-27T06:33:19Z",
+          "tree_id": "5d2e6f3e3e75d9c01fd3a700060f11ca07081231",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/5e28de73b153391e15233ea51089874eb2544db7"
+        },
+        "date": 1758958875760,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Sent to peers",
+            "value": 1.6666666666666665,
+            "unit": "KiB"
+          },
+          {
+            "name": "Received from peers",
+            "value": 307203,
+            "unit": "KiB"
+          },
+          {
+            "name": "availability-recovery",
+            "value": 11.249372511933334,
+            "unit": "seconds"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.19997771983333326,
             "unit": "seconds"
           }
         ]
