@@ -120,8 +120,9 @@ use frame_support::traits::PalletInfoAccess;
 
 #[cfg(feature = "runtime-benchmarks")]
 use xcm::latest::prelude::{
-	Asset, Assets as XcmAssets, Fungible, Here, InteriorLocation, Junction, Junction::*, Location,
-	NetworkId, NonFungible, ParentThen, Response, WeightLimit, XCM_VERSION,
+	Asset, Assets as XcmAssets, Fungible, Here, Instruction, InteriorLocation, Junction,
+	Junction::*, Location, NetworkId, NonFungible, ParentThen, Response, WeightLimit, Xcm,
+	XCM_VERSION,
 };
 
 use xcm_runtime_apis::{
@@ -2560,6 +2561,26 @@ pallet_revive::impl_runtime_apis_plus_revive!(
 						Location::new(1, [Parachain(1001)]),
 						Location::new(1, [Parachain(1001), AccountId32 { id: [111u8; 32], network: None }]),
 					))
+				}
+
+				fn worst_case_for_not_passing_barrier() -> Result<Xcm<Instruction<Self>>, BenchmarkError> {
+					use xcm::latest::prelude::{ClearOrigin, SetAppendix, SetTopic};
+
+					// Within the recursion limit, this is fine.
+					let mut set_topic = Xcm(vec![SetTopic([42; 32])]);
+					for _ in 0..(xcm_executor::RECURSION_LIMIT - 1) {
+						set_topic = Xcm(vec![SetAppendix(set_topic)]);
+					}
+
+					// Exceed the recursion limit, this will be rejected.
+					let mut clear_origin = Xcm(vec![SetAppendix(Xcm(vec![ClearOrigin]))]);
+					for _ in 0..=xcm_executor::RECURSION_LIMIT {
+						clear_origin = Xcm(vec![SetAppendix(clear_origin)]);
+					}
+
+					let xcm = Xcm(vec![SetAppendix(set_topic), SetAppendix(clear_origin)]);
+
+					Ok(xcm)
 				}
 			}
 

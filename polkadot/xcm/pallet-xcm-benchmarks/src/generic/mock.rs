@@ -20,18 +20,19 @@ use crate::{generic, mock::*, *};
 use codec::Decode;
 use frame_support::{
 	derive_impl, parameter_types,
-	traits::{Contains, Everything, OriginTrait},
+	traits::{Contains, Everything, OriginTrait, ProcessMessageError},
 };
 use sp_runtime::traits::TrailingZeroInput;
+use std::ops::ControlFlow;
 use xcm_builder::{
 	test_utils::{
 		AssetsInHolding, TestAssetExchanger, TestAssetLocker, TestAssetTrap,
 		TestSubscriptionService, TestUniversalAliases,
 	},
-	AliasForeignAccountId32, AllowUnpaidExecutionFrom, EnsureDecodableXcm,
-	FrameTransactionalProcessor,
+	AliasForeignAccountId32, AllowUnpaidExecutionFrom, CreateMatcher, DenyRecursively, DenyThenTry,
+	EnsureDecodableXcm, FrameTransactionalProcessor, MatchXcm,
 };
-use xcm_executor::traits::ConvertOrigin;
+use xcm_executor::traits::{ConvertOrigin, DenyExecution, Properties};
 
 type Block = frame_system::mocking::MockBlock<Test>;
 
@@ -78,6 +79,25 @@ impl Contains<Location> for OnlyParachains {
 	}
 }
 
+pub struct DenyClearOrigin;
+impl DenyExecution for DenyClearOrigin {
+	fn deny_execution<RuntimeCall>(
+		_origin: &Location,
+		instructions: &mut [Instruction<RuntimeCall>],
+		_max_weight: Weight,
+		_properties: &mut Properties,
+	) -> Result<(), ProcessMessageError> {
+		instructions.matcher().match_next_inst_while(
+			|_| true,
+			|inst| match inst {
+				ClearOrigin => Err(ProcessMessageError::Unsupported),
+				_ => Ok(ControlFlow::Continue(())),
+			},
+		)?;
+		Ok(())
+	}
+}
+
 type Aliasers = AliasForeignAccountId32<OnlyParachains>;
 pub struct XcmConfig;
 impl xcm_executor::Config for XcmConfig {
@@ -89,7 +109,8 @@ impl xcm_executor::Config for XcmConfig {
 	type IsReserve = AllAssetLocationsPass;
 	type IsTeleporter = ();
 	type UniversalLocation = UniversalLocation;
-	type Barrier = AllowUnpaidExecutionFrom<Everything>;
+	type Barrier =
+		DenyThenTry<DenyRecursively<DenyClearOrigin>, AllowUnpaidExecutionFrom<Everything>>;
 	type Weigher = xcm_builder::FixedWeightBounds<UnitWeightCost, RuntimeCall, MaxInstructions>;
 	type Trader = xcm_builder::FixedRateOfFungible<WeightPrice, ()>;
 	type ResponseHandler = DevNull;
@@ -192,6 +213,26 @@ impl generic::Config for Test {
 		let origin: Location = (Parachain(1), AccountId32 { network: None, id: [0; 32] }).into();
 		let target: Location = AccountId32 { network: None, id: [0; 32] }.into();
 		Ok((origin, target))
+	}
+
+	fn worst_case_for_not_passing_barrier() -> Result<Xcm<Instruction<Self>>, BenchmarkError> {
+		use xcm::latest::prelude::{ClearOrigin, SetAppendix, SetTopic};
+
+		// Within the recursion limit, this is fine.
+		let mut set_topic = Xcm(vec![SetTopic([42; 32])]);
+		for _ in 0..(xcm_executor::RECURSION_LIMIT - 1) {
+			set_topic = Xcm(vec![SetAppendix(set_topic)]);
+		}
+
+		// Exceed the recursion limit, this will be rejected.
+		let mut clear_origin = Xcm(vec![SetAppendix(Xcm(vec![ClearOrigin]))]);
+		for _ in 0..=xcm_executor::RECURSION_LIMIT {
+			clear_origin = Xcm(vec![SetAppendix(clear_origin)]);
+		}
+
+		let xcm = Xcm(vec![SetAppendix(set_topic), SetAppendix(clear_origin)]);
+
+		Ok(xcm)
 	}
 }
 
