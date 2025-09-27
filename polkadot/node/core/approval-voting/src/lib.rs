@@ -95,6 +95,8 @@ use persisted_entries::{ApprovalEntry, BlockEntry, CandidateEntry};
 use polkadot_node_primitives::approval::time::{
 	slot_number_to_tick, Clock, ClockExt, DelayedApprovalTimer, SystemClock, Tick,
 };
+use polkadot_node_subsystem::messages::ConsensusStatisticsCollectorMessage;
+use polkadot_overseer::Subsystem;
 
 mod approval_checking;
 pub mod approval_db;
@@ -1228,6 +1230,7 @@ async fn run<
 	Sender: SubsystemSender<ChainApiMessage>
 		+ SubsystemSender<RuntimeApiMessage>
 		+ SubsystemSender<ChainSelectionMessage>
+		+ SubsystemSender<ConsensusStatisticsCollectorMessage>
 		+ SubsystemSender<AvailabilityRecoveryMessage>
 		+ SubsystemSender<DisputeCoordinatorMessage>
 		+ SubsystemSender<CandidateValidationMessage>
@@ -1463,6 +1466,7 @@ pub async fn start_approval_worker<
 		+ SubsystemSender<RuntimeApiMessage>
 		+ SubsystemSender<ChainSelectionMessage>
 		+ SubsystemSender<AvailabilityRecoveryMessage>
+		+ SubsystemSender<ConsensusStatisticsCollectorMessage>
 		+ SubsystemSender<DisputeCoordinatorMessage>
 		+ SubsystemSender<CandidateValidationMessage>
 		+ Clone,
@@ -1542,6 +1546,7 @@ async fn handle_actions<
 		+ SubsystemSender<AvailabilityRecoveryMessage>
 		+ SubsystemSender<DisputeCoordinatorMessage>
 		+ SubsystemSender<CandidateValidationMessage>
+		+ SubsystemSender<ConsensusStatisticsCollectorMessage>
 		+ Clone,
 	ADSender: SubsystemSender<ApprovalDistributionMessage>,
 >(
@@ -2006,6 +2011,7 @@ async fn handle_from_overseer<
 	Sender: SubsystemSender<ChainApiMessage>
 		+ SubsystemSender<RuntimeApiMessage>
 		+ SubsystemSender<ChainSelectionMessage>
+		+ SubsystemSender<ConsensusStatisticsCollectorMessage>
 		+ Clone,
 	ADSender: SubsystemSender<ApprovalDistributionMessage>,
 >(
@@ -2883,7 +2889,8 @@ async fn import_approval<Sender>(
 	wakeups: &Wakeups,
 ) -> SubsystemResult<(Vec<Action>, ApprovalCheckResult)>
 where
-	Sender: SubsystemSender<RuntimeApiMessage>,
+	Sender: SubsystemSender<RuntimeApiMessage>
+		+ SubsystemSender<ConsensusStatisticsCollectorMessage>,
 {
 	macro_rules! respond_early {
 		($e: expr) => {{
@@ -3036,7 +3043,8 @@ async fn advance_approval_state<Sender>(
 	wakeups: &Wakeups,
 ) -> Vec<Action>
 where
-	Sender: SubsystemSender<RuntimeApiMessage>,
+	Sender: SubsystemSender<RuntimeApiMessage>
+		+ SubsystemSender<ConsensusStatisticsCollectorMessage>,
 {
 	let validator_index = transition.validator_index();
 
@@ -3150,7 +3158,7 @@ where
 		return Vec::new()
 	};
 
-	{
+	let newly_approved = {
 		let approval_entry = candidate_entry
 			.approval_entry_mut(&block_hash)
 			.expect("Approval entry just fetched; qed");
@@ -3161,17 +3169,19 @@ where
 		if is_approved {
 			approval_entry.mark_approved();
 		}
+
 		if newly_approved {
 			state.record_no_shows(session_index, para_id.into(), &status.no_show_validators);
 		}
+
 		actions.extend(schedule_wakeup_action(
 			&approval_entry,
 			block_hash,
 			block_number,
 			candidate_hash,
-			status.block_tick,
+			status.block_tick.clone(),
 			tick_now,
-			status.required_tranches,
+			status.required_tranches.clone(),
 		));
 
 		if is_approved && transition.is_remote_approval() {
@@ -3211,6 +3221,8 @@ where
 				}
 			}
 		}
+
+
 		// We have no need to write the candidate entry if all of the following
 		// is true:
 		//
@@ -3222,7 +3234,23 @@ where
 		if transition.is_local_approval() || newly_approved || !already_approved_by.unwrap_or(true)
 		{
 			// In all other cases, we need to write the candidate entry.
-			db.write_candidate_entry(candidate_entry);
+			db.write_candidate_entry(candidate_entry.clone());
+		}
+
+		newly_approved
+	};
+
+	if newly_approved {
+		println!("collecting approvals...");
+		collect_useful_approvals(sender,  &status, block_hash, &candidate_entry);
+
+		println!("checking for no-shows: {:?}...", status.no_show_validators.len());
+		if status.no_show_validators.len() > 0 {
+			_ = sender
+				.try_send_message(ConsensusStatisticsCollectorMessage::NoShows(
+					session_index,
+					status.no_show_validators,
+				));
 		}
 	}
 
@@ -3263,7 +3291,7 @@ fn should_trigger_assignment(
 	}
 }
 
-async fn process_wakeup<Sender: SubsystemSender<RuntimeApiMessage>>(
+async fn process_wakeup<Sender>(
 	sender: &mut Sender,
 	state: &mut State,
 	db: &mut OverlayedBackend<'_, impl Backend>,
@@ -3272,7 +3300,11 @@ async fn process_wakeup<Sender: SubsystemSender<RuntimeApiMessage>>(
 	candidate_hash: CandidateHash,
 	metrics: &Metrics,
 	wakeups: &Wakeups,
-) -> SubsystemResult<Vec<Action>> {
+) -> SubsystemResult<Vec<Action>>
+where
+	Sender: SubsystemSender<RuntimeApiMessage>
+		+ SubsystemSender<ConsensusStatisticsCollectorMessage>
+{
 	let block_entry = db.load_block_entry(&relay_block)?;
 	let candidate_entry = db.load_candidate_entry(&candidate_hash)?;
 
@@ -3673,7 +3705,8 @@ async fn launch_approval<
 // have been done.
 #[overseer::contextbounds(ApprovalVoting, prefix = self::overseer)]
 async fn issue_approval<
-	Sender: SubsystemSender<RuntimeApiMessage>,
+	Sender: SubsystemSender<RuntimeApiMessage> +
+		SubsystemSender<ConsensusStatisticsCollectorMessage>,
 	ADSender: SubsystemSender<ApprovalDistributionMessage>,
 >(
 	sender: &mut Sender,
@@ -4044,4 +4077,51 @@ fn compute_delayed_approval_sending_tick(
 
 	metrics.on_delayed_approval(sign_no_later_than.checked_sub(tick_now).unwrap_or_default());
 	sign_no_later_than
+}
+
+// collect all the approvals required to approve the
+// candidate, ignoring any other approval that belongs
+// to not required tranches
+fn collect_useful_approvals<Sender>(
+	sender: &mut Sender,
+	status: &ApprovalStatus,
+	block_hash: Hash,
+	candidate_entry: &CandidateEntry,
+)
+where
+	Sender: SubsystemSender<ConsensusStatisticsCollectorMessage>
+{
+	let candidate_hash = candidate_entry.candidate.hash();
+	let candidate_approvals = candidate_entry.approvals();
+
+	let approval_entry = candidate_entry
+		.approval_entry(&block_hash)
+		.expect("Approval entry just fetched; qed");
+
+	let collected_useful_approvals: Vec<ValidatorIndex> = match status.required_tranches {
+		RequiredTranches::All => {
+			candidate_approvals.iter_ones().map(|idx| ValidatorIndex(idx as _)).collect()
+		},
+		RequiredTranches::Exact {needed, ..} => {
+			let mut assigned_mask = approval_entry.assignments_up_to(needed);
+			assigned_mask &= candidate_approvals;
+			assigned_mask.iter_ones().map(|idx| ValidatorIndex(idx as _)).collect()
+		},
+		RequiredTranches::Pending {..} => panic!("Newly approved candidate should never be pending; qed"),
+	};
+
+	if collected_useful_approvals.len() > 0 {
+		_ = sender.try_send_message(ConsensusStatisticsCollectorMessage::CandidateApproved(
+			candidate_hash,
+			block_hash,
+			collected_useful_approvals,
+		)).map_err(|_| {
+			gum::warn!(
+					target: LOG_TARGET,
+					?candidate_hash,
+					?block_hash,
+					"Failed to send approvals to statistics subsystem",
+				);
+		});
+	}
 }

@@ -60,10 +60,13 @@ use std::{
 	collections::{BTreeMap, HashMap, HashSet, VecDeque},
 	sync::Arc,
 };
+use bitvec::{order::Lsb0 as BitOrderLsb0, slice::BitSlice};
 
 /// Network events as transmitted to other subsystems, wrapped in their message types.
 pub mod network_bridge_event;
 pub use network_bridge_event::NetworkBridgeEvent;
+use polkadot_node_primitives::approval::time::Tick;
+use polkadot_node_primitives::approval::v2::Bitfield;
 
 /// A request to the candidate backing subsystem to check whether
 /// we can second this candidate.
@@ -1456,4 +1459,16 @@ pub enum ProspectiveParachainsMessage {
 		ProspectiveValidationDataRequest,
 		oneshot::Sender<Option<PersistedValidationData>>,
 	),
+}
+
+/// Messages sent to the Statistics Collector subsystem.
+#[derive(Debug)]
+pub enum ConsensusStatisticsCollectorMessage {
+	ChunksDownloaded(SessionIndex, CandidateHash, HashMap<ValidatorIndex, u64>),
+
+	// Candidate received enough approval and now is approved
+	CandidateApproved(CandidateHash, Hash, Vec<ValidatorIndex>),
+
+	// Set of candidates that has not shared votes in time
+	NoShows(SessionIndex, Vec<ValidatorIndex>),
 }

@@ -77,6 +77,7 @@ pub use polkadot_node_core_provisioner::ProvisionerSubsystem;
 pub use polkadot_node_core_pvf_checker::PvfCheckerSubsystem;
 pub use polkadot_node_core_runtime_api::RuntimeApiSubsystem;
 pub use polkadot_statement_distribution::StatementDistributionSubsystem;
+pub use polkadot_node_core_consensus_statistics_collector::ConsensusStatisticsCollector;
 
 /// Arguments passed for overseer construction.
 pub struct OverseerGenArgs<'a, Spawner, RuntimeClient>
@@ -218,6 +219,7 @@ pub fn validator_overseer_builder<Spawner, RuntimeClient>(
 		DisputeDistributionSubsystem<AuthorityDiscoveryService>,
 		ChainSelectionSubsystem,
 		ProspectiveParachainsSubsystem,
+		ConsensusStatisticsCollector,
 	>,
 	Error,
 >
@@ -350,6 +352,7 @@ where
 		))
 		.chain_selection(ChainSelectionSubsystem::new(chain_selection_config, parachains_db))
 		.prospective_parachains(ProspectiveParachainsSubsystem::new(Metrics::register(registry)?))
+		.statistics_collector(ConsensusStatisticsCollector::new(Metrics::register(registry)?))
 		.activation_external_listeners(Default::default())
 		.active_leaves(Default::default())
 		.supports_parachains(runtime_client)
@@ -408,6 +411,7 @@ pub fn collator_overseer_builder<Spawner, RuntimeClient>(
 		ChainApiSubsystem<RuntimeClient>,
 		CollationGenerationSubsystem,
 		CollatorProtocolSubsystem,
+		DummySubsystem,
 		DummySubsystem,
 		DummySubsystem,
 		DummySubsystem,
@@ -495,6 +499,7 @@ where
 		.dispute_distribution(DummySubsystem)
 		.chain_selection(DummySubsystem)
 		.prospective_parachains(DummySubsystem)
+		.statistics_collector(DummySubsystem)
 		.activation_external_listeners(Default::default())
 		.active_leaves(Default::default())
 		.supports_parachains(runtime_client)
