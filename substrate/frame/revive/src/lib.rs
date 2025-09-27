@@ -89,7 +89,7 @@ pub use crate::{
 	},
 	exec::{Key, MomentOf, Origin},
 	pallet::{genesis, *},
-	storage::{AccountInfo, ContractInfo},
+	storage::{AccountInfo, ContractInfo, DebugSettings},
 };
 pub use codec;
 pub use frame_support::{self, dispatch::DispatchInfo, weights::Weight};
@@ -278,6 +278,10 @@ pub mod pallet {
 		/// Only valid value is `()`. See [`GasEncoder`].
 		#[pallet::no_default_bounds]
 		type EthGasEncoder: GasEncoder<BalanceOf<Self>>;
+
+		/// Allows debug-mode configuration, such as enabling unlimited contract size.
+		#[pallet::constant]
+		type DebugEnabled: Get<bool>;
 	}
 
 	/// Container for different types that implement [`DefaultConfig`]` of this pallet.
@@ -350,6 +354,7 @@ pub mod pallet {
 			type NativeToEthRatio = ConstU32<1_000_000>;
 			type EthGasEncoder = ();
 			type FindAuthor = ();
+			type DebugEnabled = ConstBool<false>;
 		}
 	}
 
@@ -534,6 +539,11 @@ pub mod pallet {
 	#[pallet::storage]
 	pub(crate) type OriginalAccount<T: Config> = StorageMap<_, Identity, H160, AccountId32>;
 
+	/// Debugging settings that can be configured when DebugEnabled config is true.
+	#[pallet::storage]
+	#[pallet::getter(fn debug_settings)]
+	pub(crate) type DebugSettingsOf<T: Config> = StorageValue<_, DebugSettings, OptionQuery>;
+
 	pub mod genesis {
 		use super::*;
 		use crate::evm::Bytes32;
@@ -575,6 +585,10 @@ pub mod pallet {
 		/// Account entries (both EOAs and contracts)
 		#[serde(default, skip_serializing_if = "Vec::is_empty")]
 		pub accounts: Vec<genesis::Account<T>>,
+
+		/// Optional debugging settings applied at genesis.
+		#[serde(default, skip_serializing_if = "Option::is_some")]
+		pub debug_settings: Option<DebugSettings>,
 	}
 
 	#[pallet::genesis_build]
@@ -660,6 +674,9 @@ pub mod pallet {
 					log::error!(target: LOG_TARGET, "Failed to set EVM balance for {address:?}: {err:?}");
 				});
 			}
+
+			// Set debug settings.
+			Pallet::<T>::set_debug_settings(&self.debug_settings)
 		}
 	}
 
@@ -1876,6 +1893,22 @@ impl<T: Config> Pallet<T> {
 			.and_then(|contract| <PristineCode<T>>::get(contract.code_hash))
 			.map(|code| code.into())
 			.unwrap_or_default()
+	}
+
+	/// Returns true if unlimited contract size is allowed.
+	pub fn is_unlimited_contract_size_allowed() -> bool {
+		T::DebugEnabled::get()
+			&& DebugSettingsOf::<T>::get().unwrap_or_default().allow_unlimited_contract_size
+	}
+
+	/// Set the debug settings for the pallet.
+	pub fn set_debug_settings(settings: &Option<DebugSettings>) {
+		if let Some(settings) = settings {
+			DebugSettingsOf::<T>::put(settings);
+			if !T::DebugEnabled::get() {
+				log::warn!("Revive: Debug settings changed, but debug features are disabled in the runtime configuration.");
+			}
+		}
 	}
 }
 
