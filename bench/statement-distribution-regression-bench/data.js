@@ -1,52 +1,8 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758879589775,
+  "lastUpdate": 1758958974851,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "statement-distribution-regression-bench": [
-      {
-        "commit": {
-          "author": {
-            "email": "yrong1997@gmail.com",
-            "name": "Ron",
-            "username": "yrong"
-          },
-          "committer": {
-            "email": "noreply@github.com",
-            "name": "GitHub",
-            "username": "web-flow"
-          },
-          "distinct": true,
-          "id": "8b87a0e246385a9deceff6d7515295cad0e35083",
-          "message": "Snowbridge - Change the hash of the outbound queue PendingOrders storage item (#8024)\n\nSigned-off-by: Adrian Catangiu <adrian@parity.io>\nCo-authored-by: claravanstaden <claravanstaden64@gmail.com>\nCo-authored-by: Vincent Geddes <117534+vgeddes@users.noreply.github.com>\nCo-authored-by: Adrian Catangiu <adrian@parity.io>",
-          "timestamp": "2025-03-25T17:13:11Z",
-          "tree_id": "72ceb3a4049ed05934c220e820c6a77d2a6df48d",
-          "url": "https://github.com/paritytech/polkadot-sdk/commit/8b87a0e246385a9deceff6d7515295cad0e35083"
-        },
-        "date": 1742926415510,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "Sent to peers",
-            "value": 127.94599999999993,
-            "unit": "KiB"
-          },
-          {
-            "name": "Received from peers",
-            "value": 106.39999999999996,
-            "unit": "KiB"
-          },
-          {
-            "name": "test-environment",
-            "value": 0.04495811310799997,
-            "unit": "seconds"
-          },
-          {
-            "name": "statement-distribution",
-            "value": 0.03529987355600001,
-            "unit": "seconds"
-          }
-        ]
-      },
       {
         "commit": {
           "author": {
@@ -21999,6 +21955,50 @@ window.BENCHMARK_DATA = {
           {
             "name": "test-environment",
             "value": 0.044233926673999946,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "git@kchr.de",
+            "name": "Bastian Köcher",
+            "username": "bkchr"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5e28de73b153391e15233ea51089874eb2544db7",
+          "message": "xcm: Do not require `Asset` to be sorted on `decode` (#9842)\n\n`Asset` was requiring that all the assets are sorted at decoding. This\nis quite confusing for people writingg frontends, because this is not\nreally documented anywhere. There are also only at max 20 assets\navailable, we can just make everyones life easier and always sort the\nassets after decoding.\n\n---------\n\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+          "timestamp": "2025-09-27T06:33:19Z",
+          "tree_id": "5d2e6f3e3e75d9c01fd3a700060f11ca07081231",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/5e28de73b153391e15233ea51089874eb2544db7"
+        },
+        "date": 1758958957150,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Sent to peers",
+            "value": 127.94999999999993,
+            "unit": "KiB"
+          },
+          {
+            "name": "Received from peers",
+            "value": 106.39999999999996,
+            "unit": "KiB"
+          },
+          {
+            "name": "statement-distribution",
+            "value": 0.03396033571200001,
+            "unit": "seconds"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.04387017805199993,
             "unit": "seconds"
           }
         ]
