@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1758879616899,
+  "lastUpdate": 1758959001689,
   "repoUrl": "https://github.com/paritytech/polkadot-sdk",
   "entries": {
     "dispute-coordinator-regression-bench": [
@@ -10093,6 +10093,55 @@ window.BENCHMARK_DATA = {
           {
             "name": "test-environment",
             "value": 0.005113730359999994,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "git@kchr.de",
+            "name": "Bastian Köcher",
+            "username": "bkchr"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5e28de73b153391e15233ea51089874eb2544db7",
+          "message": "xcm: Do not require `Asset` to be sorted on `decode` (#9842)\n\n`Asset` was requiring that all the assets are sorted at decoding. This\nis quite confusing for people writingg frontends, because this is not\nreally documented anywhere. There are also only at max 20 assets\navailable, we can just make everyones life easier and always sort the\nassets after decoding.\n\n---------\n\nCo-authored-by: cmd[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+          "timestamp": "2025-09-27T06:33:19Z",
+          "tree_id": "5d2e6f3e3e75d9c01fd3a700060f11ca07081231",
+          "url": "https://github.com/paritytech/polkadot-sdk/commit/5e28de73b153391e15233ea51089874eb2544db7"
+        },
+        "date": 1758958983586,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Sent to peers",
+            "value": 227.09999999999997,
+            "unit": "KiB"
+          },
+          {
+            "name": "Received from peers",
+            "value": 23.800000000000004,
+            "unit": "KiB"
+          },
+          {
+            "name": "dispute-distribution",
+            "value": 0.008616151609999989,
+            "unit": "seconds"
+          },
+          {
+            "name": "dispute-coordinator",
+            "value": 0.0026457856600000007,
+            "unit": "seconds"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.005126657559999994,
             "unit": "seconds"
           }
         ]
