@@ -51,7 +51,7 @@ jobs:
           ]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Check Rust
         run: |
@@ -78,7 +78,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: gh-pages
           fetch-depth: 0
@@ -86,7 +86,7 @@ jobs:
       - run: git checkout master --
 
       - name: Download artifacts
-        uses: actions/download-artifact@v4.1.8
+        uses: actions/download-artifact@v5
         with:
           path: ./charts
 
@@ -96,7 +96,7 @@ jobs:
           git config --global --add safe.directory '*'
           ls -lsR ./charts
 
-      - uses: actions/create-github-app-token@v1
+      - uses: actions/create-github-app-token@v2
         id: app-token
         with:
           app-id: ${{ secrets.POLKADOTSDK_GHPAGES_APP_ID }}
