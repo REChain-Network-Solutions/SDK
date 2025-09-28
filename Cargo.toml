@@ -852,7 +852,7 @@ libp2p-identity = { version = "0.2.9" }
 libsecp256k1 = { version = "0.7.0", default-features = false }
 linked-hash-map = { version = "0.5.4" }
 linked_hash_set = { version = "0.1.4" }
-linregress = { version = "0.5.1" }
+linregress = { version = "0.5.4" }
 lite-json = { version = "0.2.0", default-features = false }
 litep2p = { version = "0.9.1", features = ["websocket"] }
 log = { version = "0.4.22", default-features = false }
