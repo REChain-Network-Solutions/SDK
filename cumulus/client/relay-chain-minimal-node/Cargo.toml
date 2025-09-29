@@ -13,14 +13,14 @@ workspace = true
 
 [dependencies]
 # polkadot deps
-polkadot-core-primitives = { workspace = true, default-features = true }
-polkadot-node-network-protocol = { workspace = true, default-features = true }
-polkadot-node-subsystem-util = { workspace = true, default-features = true }
-polkadot-overseer = { workspace = true, default-features = true }
-polkadot-primitives = { workspace = true, default-features = true }
+rechain-core-primitives = { workspace = true, default-features = true }
+rechain-node-network-protocol = { workspace = true, default-features = true }
+rechain-node-subsystem-util = { workspace = true, default-features = true }
+rechain-overseer = { workspace = true, default-features = true }
+rechain-primitives = { workspace = true, default-features = true }
 
-polkadot-network-bridge = { workspace = true, default-features = true }
-polkadot-service = { workspace = true, default-features = true }
+rechain-network-bridge = { workspace = true, default-features = true }
+rechain-service = { workspace = true, default-features = true }
 
 # substrate deps
 prometheus-endpoint = { workspace = true, default-features = true }
@@ -47,3 +47,4 @@ array-bytes = { workspace = true, default-features = true }
 async-trait = { workspace = true }
 futures = { workspace = true }
 tracing = { workspace = true, default-features = true }
+

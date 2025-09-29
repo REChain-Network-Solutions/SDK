@@ -19,7 +19,7 @@ scale-info = { features = ["derive"], workspace = true }
 
 bp-header-chain = { workspace = true }
 bp-parachains = { workspace = true }
-bp-polkadot-core = { workspace = true }
+bp-rechain-core = { workspace = true }
 bp-runtime = { workspace = true }
 pallet-bridge-grandpa = { workspace = true }
 
@@ -42,7 +42,7 @@ default = ["std"]
 std = [
 	"bp-header-chain/std",
 	"bp-parachains/std",
-	"bp-polkadot-core/std",
+	"bp-rechain-core/std",
 	"bp-runtime/std",
 	"codec/std",
 	"frame-benchmarking/std",
@@ -67,3 +67,4 @@ try-runtime = [
 	"pallet-bridge-grandpa/try-runtime",
 	"sp-runtime/try-runtime",
 ]
+

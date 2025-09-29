@@ -19,3 +19,4 @@ emulated-integration-tests-common = { workspace = true }
 parachains-common = { workspace = true, default-features = true }
 people-rococo-runtime = { workspace = true }
 testnet-parachains-constants = { features = ["rococo"], workspace = true, default-features = true }
+

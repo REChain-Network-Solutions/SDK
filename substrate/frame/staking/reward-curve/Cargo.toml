@@ -25,3 +25,4 @@ syn = { features = ["full", "visit"], workspace = true }
 
 [dev-dependencies]
 sp-runtime = { workspace = true, default-features = true }
+

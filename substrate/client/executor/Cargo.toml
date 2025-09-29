@@ -77,3 +77,4 @@ std = [
 	"substrate-test-runtime/std",
 ]
 wasm-extern-trace = []
+

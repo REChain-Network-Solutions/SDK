@@ -33,3 +33,4 @@ std = [
 	"sp-runtime-interface/std",
 	"substrate-wasm-builder",
 ]
+

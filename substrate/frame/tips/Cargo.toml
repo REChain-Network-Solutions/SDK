@@ -64,3 +64,4 @@ try-runtime = [
 	"pallet-treasury/try-runtime",
 	"sp-runtime/try-runtime",
 ]
+

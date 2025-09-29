@@ -19,7 +19,7 @@ pallet-xcm = { workspace = true }
 sp-runtime = { workspace = true }
 
 # Polkadot
-polkadot-runtime-common = { workspace = true, default-features = true }
+rechain-runtime-common = { workspace = true, default-features = true }
 westend-runtime = { workspace = true }
 westend-runtime-constants = { workspace = true, default-features = true }
 xcm = { workspace = true }
@@ -30,3 +30,4 @@ asset-test-utils = { workspace = true, default-features = true }
 emulated-integration-tests-common = { workspace = true }
 parachains-common = { workspace = true, default-features = true }
 westend-system-emulated-network = { workspace = true }
+

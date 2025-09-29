@@ -19,3 +19,4 @@ id = 1000
 name = "charlie"
 ws_port = 9988
 command = "parachain-template-node"
+

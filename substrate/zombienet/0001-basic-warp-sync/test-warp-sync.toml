@@ -28,3 +28,4 @@ chain_spec_path = "chain-spec.json"
   name = "dave"
   validator = false
   args = ["--sync warp -ldb::blockchain"]
+

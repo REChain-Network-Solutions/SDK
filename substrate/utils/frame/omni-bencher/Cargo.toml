@@ -28,3 +28,4 @@ sc-chain-spec = { workspace = true }
 sp-genesis-builder = { workspace = true, default-features = true }
 sp-tracing = { workspace = true, default-features = true }
 tempfile = { workspace = true }
+

@@ -24,3 +24,4 @@ sp-state-machine = { workspace = true, default-features = true }
 
 # Cumulus
 cumulus-primitives-parachain-inherent = { workspace = true, default-features = true }
+

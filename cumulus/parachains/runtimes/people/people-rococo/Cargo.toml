@@ -58,8 +58,8 @@ sp-version = { workspace = true }
 # Polkadot
 pallet-xcm = { workspace = true }
 pallet-xcm-benchmarks = { optional = true, workspace = true }
-polkadot-parachain-primitives = { workspace = true }
-polkadot-runtime-common = { workspace = true }
+rechain-parachain-primitives = { workspace = true }
+rechain-runtime-common = { workspace = true }
 rococo-runtime-constants = { workspace = true }
 xcm = { workspace = true }
 xcm-builder = { workspace = true }
@@ -124,8 +124,8 @@ std = [
 	"pallet-xcm/std",
 	"parachain-info/std",
 	"parachains-common/std",
-	"polkadot-parachain-primitives/std",
-	"polkadot-runtime-common/std",
+	"rechain-parachain-primitives/std",
+	"rechain-runtime-common/std",
 	"rococo-runtime-constants/std",
 	"scale-info/std",
 	"serde",
@@ -175,8 +175,8 @@ runtime-benchmarks = [
 	"pallet-xcm-benchmarks/runtime-benchmarks",
 	"pallet-xcm/runtime-benchmarks",
 	"parachains-common/runtime-benchmarks",
-	"polkadot-parachain-primitives/runtime-benchmarks",
-	"polkadot-runtime-common/runtime-benchmarks",
+	"rechain-parachain-primitives/runtime-benchmarks",
+	"rechain-runtime-common/runtime-benchmarks",
 	"sp-runtime/runtime-benchmarks",
 	"xcm-builder/runtime-benchmarks",
 	"xcm-executor/runtime-benchmarks",
@@ -209,7 +209,7 @@ try-runtime = [
 	"pallet-utility/try-runtime",
 	"pallet-xcm/try-runtime",
 	"parachain-info/try-runtime",
-	"polkadot-runtime-common/try-runtime",
+	"rechain-runtime-common/try-runtime",
 	"sp-runtime/try-runtime",
 ]
 
@@ -217,3 +217,4 @@ try-runtime = [
 # deployment. This will disable stuff that shouldn't be part of the on-chain wasm
 # to make it smaller, like logging for example.
 on-chain-release-build = []
+

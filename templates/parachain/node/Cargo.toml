@@ -21,7 +21,7 @@ log = { workspace = true, default-features = true }
 serde = { features = ["derive"], workspace = true, default-features = true }
 serde_json = { workspace = true, default-features = true }
 
-polkadot-sdk = { workspace = true, features = ["node"] }
+rechain-sdk = { workspace = true, features = ["node"] }
 
 parachain-template-runtime = { workspace = true }
 
@@ -30,20 +30,21 @@ prometheus-endpoint = { workspace = true, default-features = true }
 sc-tracing = { workspace = true, default-features = true }
 
 [build-dependencies]
-polkadot-sdk = { workspace = true, features = ["substrate-build-script-utils"] }
+rechain-sdk = { workspace = true, features = ["substrate-build-script-utils"] }
 
 [features]
 default = ["std"]
 std = [
 	"log/std",
 	"parachain-template-runtime/std",
-	"polkadot-sdk/std",
+	"rechain-sdk/std",
 ]
 runtime-benchmarks = [
 	"parachain-template-runtime/runtime-benchmarks",
-	"polkadot-sdk/runtime-benchmarks",
+	"rechain-sdk/runtime-benchmarks",
 ]
 try-runtime = [
 	"parachain-template-runtime/try-runtime",
-	"polkadot-sdk/try-runtime",
+	"rechain-sdk/try-runtime",
 ]
+

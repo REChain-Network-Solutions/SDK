@@ -1,7 +1,7 @@
 [package]
-name = "polkadot-sdk"
+name = "rechain-sdk"
 version = "0.1.0"
-description = "Polkadot SDK umbrella crate."
+description = "Rechain SDK umbrella crate by REChain Network Solutions LLC."
 license = "Apache-2.0"
 
 [features]
@@ -13,7 +13,7 @@ std = [
 	"bp-header-chain?/std",
 	"bp-messages?/std",
 	"bp-parachains?/std",
-	"bp-polkadot-core?/std",
+	"bp-rechain-core?/std",
 	"bp-polkadot?/std",
 	"bp-relayers?/std",
 	"bp-runtime?/std",
@@ -162,13 +162,13 @@ std = [
 	"pallet-xcm?/std",
 	"parachains-common?/std",
 	"parachains-runtimes-test-utils?/std",
-	"polkadot-core-primitives?/std",
-	"polkadot-parachain-primitives?/std",
-	"polkadot-primitives?/std",
-	"polkadot-runtime-common?/std",
-	"polkadot-runtime-metrics?/std",
-	"polkadot-runtime-parachains?/std",
-	"polkadot-sdk-frame?/std",
+	"rechain-core-primitives?/std",
+	"rechain-parachain-primitives?/std",
+	"rechain-primitives?/std",
+	"rechain-runtime-common?/std",
+	"rechain-runtime-metrics?/std",
+	"rechain-runtime-parachains?/std",
+	"rechain-sdk-frame?/std",
 	"sc-executor?/std",
 	"slot-range-helper?/std",
 	"snowbridge-beacon-primitives?/std",
@@ -347,15 +347,15 @@ runtime-benchmarks = [
 	"pallet-xcm-bridge-hub?/runtime-benchmarks",
 	"pallet-xcm?/runtime-benchmarks",
 	"parachains-common?/runtime-benchmarks",
-	"polkadot-cli?/runtime-benchmarks",
-	"polkadot-node-metrics?/runtime-benchmarks",
-	"polkadot-omni-node-lib?/runtime-benchmarks",
-	"polkadot-parachain-primitives?/runtime-benchmarks",
-	"polkadot-primitives?/runtime-benchmarks",
-	"polkadot-runtime-common?/runtime-benchmarks",
-	"polkadot-runtime-parachains?/runtime-benchmarks",
-	"polkadot-sdk-frame?/runtime-benchmarks",
-	"polkadot-service?/runtime-benchmarks",
+	"rechain-cli?/runtime-benchmarks",
+	"rechain-node-metrics?/runtime-benchmarks",
+	"rechain-omni-node-lib?/runtime-benchmarks",
+	"rechain-parachain-primitives?/runtime-benchmarks",
+	"rechain-primitives?/runtime-benchmarks",
+	"rechain-runtime-common?/runtime-benchmarks",
+	"rechain-runtime-parachains?/runtime-benchmarks",
+	"rechain-sdk-frame?/runtime-benchmarks",
+	"rechain-service?/runtime-benchmarks",
 	"sc-client-db?/runtime-benchmarks",
 	"sc-service?/runtime-benchmarks",
 	"snowbridge-core?/runtime-benchmarks",
@@ -488,12 +488,12 @@ try-runtime = [
 	"pallet-xcm-bridge-hub-router?/try-runtime",
 	"pallet-xcm-bridge-hub?/try-runtime",
 	"pallet-xcm?/try-runtime",
-	"polkadot-cli?/try-runtime",
-	"polkadot-omni-node-lib?/try-runtime",
-	"polkadot-runtime-common?/try-runtime",
-	"polkadot-runtime-parachains?/try-runtime",
-	"polkadot-sdk-frame?/try-runtime",
-	"polkadot-service?/try-runtime",
+	"rechain-cli?/try-runtime",
+	"rechain-omni-node-lib?/try-runtime",
+	"rechain-runtime-common?/try-runtime",
+	"rechain-runtime-parachains?/try-runtime",
+	"rechain-sdk-frame?/try-runtime",
+	"rechain-service?/try-runtime",
 	"snowbridge-pallet-ethereum-client?/try-runtime",
 	"snowbridge-pallet-inbound-queue?/try-runtime",
 	"snowbridge-pallet-outbound-queue?/try-runtime",
@@ -502,7 +502,7 @@ try-runtime = [
 	"staging-parachain-info?/try-runtime",
 ]
 serde = [
-	"bp-polkadot-core?/serde",
+	"bp-rechain-core?/serde",
 	"frame-benchmarking?/serde",
 	"pallet-asset-tx-payment?/serde",
 	"pallet-beefy-mmr?/serde",
@@ -548,7 +548,7 @@ experimental = [
 	"frame-support-procedural?/experimental",
 	"frame-support?/experimental",
 	"frame-system?/experimental",
-	"polkadot-sdk-frame?/experimental",
+	"rechain-sdk-frame?/experimental",
 ]
 with-tracing = [
 	"frame-executive?/with-tracing",
@@ -558,7 +558,7 @@ with-tracing = [
 	"sp-tracing?/with-tracing",
 	"sp-tracing?/with-tracing",
 ]
-runtime-full = ["assets-common", "binary-merkle-tree", "bp-header-chain", "bp-messages", "bp-parachains", "bp-polkadot", "bp-polkadot-core", "bp-relayers", "bp-runtime", "bp-test-utils", "bp-xcm-bridge-hub", "bp-xcm-bridge-hub-router", "bridge-hub-common", "bridge-runtime-common", "cumulus-pallet-aura-ext", "cumulus-pallet-dmp-queue", "cumulus-pallet-parachain-system", "cumulus-pallet-parachain-system-proc-macro", "cumulus-pallet-session-benchmarking", "cumulus-pallet-solo-to-para", "cumulus-pallet-weight-reclaim", "cumulus-pallet-xcm", "cumulus-pallet-xcmp-queue", "cumulus-ping", "cumulus-primitives-aura", "cumulus-primitives-core", "cumulus-primitives-parachain-inherent", "cumulus-primitives-proof-size-hostfunction", "cumulus-primitives-storage-weight-reclaim", "cumulus-primitives-timestamp", "cumulus-primitives-utility", "frame-benchmarking", "frame-benchmarking-pallet-pov", "frame-election-provider-solution-type", "frame-election-provider-support", "frame-executive", "frame-metadata-hash-extension", "frame-support", "frame-support-procedural", "frame-support-procedural-tools-derive", "frame-system", "frame-system-benchmarking", "frame-system-rpc-runtime-api", "frame-try-runtime", "pallet-alliance", "pallet-asset-conversion", "pallet-asset-conversion-ops", "pallet-asset-conversion-tx-payment", "pallet-asset-rate", "pallet-asset-rewards", "pallet-asset-tx-payment", "pallet-assets", "pallet-assets-freezer", "pallet-assets-holder", "pallet-atomic-swap", "pallet-aura", "pallet-authority-discovery", "pallet-authorship", "pallet-babe", "pallet-bags-list", "pallet-balances", "pallet-beefy", "pallet-beefy-mmr", "pallet-bounties", "pallet-bridge-grandpa", "pallet-bridge-messages", "pallet-bridge-parachains", "pallet-bridge-relayers", "pallet-broker", "pallet-child-bounties", "pallet-collator-selection", "pallet-collective", "pallet-collective-content", "pallet-contracts", "pallet-contracts-proc-macro", "pallet-contracts-uapi", "pallet-conviction-voting", "pallet-core-fellowship", "pallet-delegated-staking", "pallet-democracy", "pallet-dev-mode", "pallet-election-provider-multi-block", "pallet-election-provider-multi-phase", "pallet-election-provider-support-benchmarking", "pallet-elections-phragmen", "pallet-fast-unstake", "pallet-glutton", "pallet-grandpa", "pallet-identity", "pallet-im-online", "pallet-indices", "pallet-insecure-randomness-collective-flip", "pallet-lottery", "pallet-membership", "pallet-message-queue", "pallet-migrations", "pallet-mixnet", "pallet-mmr", "pallet-multisig", "pallet-nft-fractionalization", "pallet-nfts", "pallet-nfts-runtime-api", "pallet-nis", "pallet-node-authorization", "pallet-nomination-pools", "pallet-nomination-pools-benchmarking", "pallet-nomination-pools-runtime-api", "pallet-offences", "pallet-offences-benchmarking", "pallet-paged-list", "pallet-parameters", "pallet-preimage", "pallet-proxy", "pallet-ranked-collective", "pallet-recovery", "pallet-referenda", "pallet-remark", "pallet-revive", "pallet-revive-proc-macro", "pallet-revive-uapi", "pallet-root-offences", "pallet-root-testing", "pallet-safe-mode", "pallet-salary", "pallet-scheduler", "pallet-scored-pool", "pallet-session", "pallet-session-benchmarking", "pallet-skip-feeless-payment", "pallet-society", "pallet-staking", "pallet-staking-ah-client", "pallet-staking-rc-client", "pallet-staking-reward-curve", "pallet-staking-reward-fn", "pallet-staking-runtime-api", "pallet-state-trie-migration", "pallet-statement", "pallet-sudo", "pallet-timestamp", "pallet-tips", "pallet-transaction-payment", "pallet-transaction-payment-rpc-runtime-api", "pallet-transaction-storage", "pallet-treasury", "pallet-tx-pause", "pallet-uniques", "pallet-utility", "pallet-verify-signature", "pallet-vesting", "pallet-whitelist", "pallet-xcm", "pallet-xcm-benchmarks", "pallet-xcm-bridge-hub", "pallet-xcm-bridge-hub-router", "parachains-common", "polkadot-core-primitives", "polkadot-parachain-primitives", "polkadot-primitives", "polkadot-runtime-common", "polkadot-runtime-metrics", "polkadot-runtime-parachains", "polkadot-sdk-frame", "sc-chain-spec-derive", "sc-tracing-proc-macro", "slot-range-helper", "snowbridge-beacon-primitives", "snowbridge-core", "snowbridge-ethereum", "snowbridge-outbound-queue-merkle-tree", "snowbridge-outbound-queue-runtime-api", "snowbridge-pallet-ethereum-client", "snowbridge-pallet-ethereum-client-fixtures", "snowbridge-pallet-inbound-queue", "snowbridge-pallet-inbound-queue-fixtures", "snowbridge-pallet-outbound-queue", "snowbridge-pallet-system", "snowbridge-router-primitives", "snowbridge-runtime-common", "snowbridge-system-runtime-api", "sp-api", "sp-api-proc-macro", "sp-application-crypto", "sp-arithmetic", "sp-authority-discovery", "sp-block-builder", "sp-consensus-aura", "sp-consensus-babe", "sp-consensus-beefy", "sp-consensus-grandpa", "sp-consensus-pow", "sp-consensus-slots", "sp-core", "sp-crypto-ec-utils", "sp-crypto-hashing", "sp-crypto-hashing-proc-macro", "sp-debug-derive", "sp-externalities", "sp-genesis-builder", "sp-inherents", "sp-io", "sp-keyring", "sp-keystore", "sp-metadata-ir", "sp-mixnet", "sp-mmr-primitives", "sp-npos-elections", "sp-offchain", "sp-runtime", "sp-runtime-interface", "sp-runtime-interface-proc-macro", "sp-session", "sp-staking", "sp-state-machine", "sp-statement-store", "sp-std", "sp-storage", "sp-timestamp", "sp-tracing", "sp-transaction-pool", "sp-transaction-storage-proof", "sp-trie", "sp-version", "sp-version-proc-macro", "sp-wasm-interface", "sp-weights", "staging-parachain-info", "staging-xcm", "staging-xcm-builder", "staging-xcm-executor", "substrate-bip39", "testnet-parachains-constants", "tracing-gum-proc-macro", "xcm-procedural", "xcm-runtime-apis"]
+runtime-full = ["assets-common", "binary-merkle-tree", "bp-header-chain", "bp-messages", "bp-parachains", "bp-polkadot", "bp-rechain-core", "bp-relayers", "bp-runtime", "bp-test-utils", "bp-xcm-bridge-hub", "bp-xcm-bridge-hub-router", "bridge-hub-common", "bridge-runtime-common", "cumulus-pallet-aura-ext", "cumulus-pallet-dmp-queue", "cumulus-pallet-parachain-system", "cumulus-pallet-parachain-system-proc-macro", "cumulus-pallet-session-benchmarking", "cumulus-pallet-solo-to-para", "cumulus-pallet-weight-reclaim", "cumulus-pallet-xcm", "cumulus-pallet-xcmp-queue", "cumulus-ping", "cumulus-primitives-aura", "cumulus-primitives-core", "cumulus-primitives-parachain-inherent", "cumulus-primitives-proof-size-hostfunction", "cumulus-primitives-storage-weight-reclaim", "cumulus-primitives-timestamp", "cumulus-primitives-utility", "frame-benchmarking", "frame-benchmarking-pallet-pov", "frame-election-provider-solution-type", "frame-election-provider-support", "frame-executive", "frame-metadata-hash-extension", "frame-support", "frame-support-procedural", "frame-support-procedural-tools-derive", "frame-system", "frame-system-benchmarking", "frame-system-rpc-runtime-api", "frame-try-runtime", "pallet-alliance", "pallet-asset-conversion", "pallet-asset-conversion-ops", "pallet-asset-conversion-tx-payment", "pallet-asset-rate", "pallet-asset-rewards", "pallet-asset-tx-payment", "pallet-assets", "pallet-assets-freezer", "pallet-assets-holder", "pallet-atomic-swap", "pallet-aura", "pallet-authority-discovery", "pallet-authorship", "pallet-babe", "pallet-bags-list", "pallet-balances", "pallet-beefy", "pallet-beefy-mmr", "pallet-bounties", "pallet-bridge-grandpa", "pallet-bridge-messages", "pallet-bridge-parachains", "pallet-bridge-relayers", "pallet-broker", "pallet-child-bounties", "pallet-collator-selection", "pallet-collective", "pallet-collective-content", "pallet-contracts", "pallet-contracts-proc-macro", "pallet-contracts-uapi", "pallet-conviction-voting", "pallet-core-fellowship", "pallet-delegated-staking", "pallet-democracy", "pallet-dev-mode", "pallet-election-provider-multi-block", "pallet-election-provider-multi-phase", "pallet-election-provider-support-benchmarking", "pallet-elections-phragmen", "pallet-fast-unstake", "pallet-glutton", "pallet-grandpa", "pallet-identity", "pallet-im-online", "pallet-indices", "pallet-insecure-randomness-collective-flip", "pallet-lottery", "pallet-membership", "pallet-message-queue", "pallet-migrations", "pallet-mixnet", "pallet-mmr", "pallet-multisig", "pallet-nft-fractionalization", "pallet-nfts", "pallet-nfts-runtime-api", "pallet-nis", "pallet-node-authorization", "pallet-nomination-pools", "pallet-nomination-pools-benchmarking", "pallet-nomination-pools-runtime-api", "pallet-offences", "pallet-offences-benchmarking", "pallet-paged-list", "pallet-parameters", "pallet-preimage", "pallet-proxy", "pallet-ranked-collective", "pallet-recovery", "pallet-referenda", "pallet-remark", "pallet-revive", "pallet-revive-proc-macro", "pallet-revive-uapi", "pallet-root-offences", "pallet-root-testing", "pallet-safe-mode", "pallet-salary", "pallet-scheduler", "pallet-scored-pool", "pallet-session", "pallet-session-benchmarking", "pallet-skip-feeless-payment", "pallet-society", "pallet-staking", "pallet-staking-ah-client", "pallet-staking-rc-client", "pallet-staking-reward-curve", "pallet-staking-reward-fn", "pallet-staking-runtime-api", "pallet-state-trie-migration", "pallet-statement", "pallet-sudo", "pallet-timestamp", "pallet-tips", "pallet-transaction-payment", "pallet-transaction-payment-rpc-runtime-api", "pallet-transaction-storage", "pallet-treasury", "pallet-tx-pause", "pallet-uniques", "pallet-utility", "pallet-verify-signature", "pallet-vesting", "pallet-whitelist", "pallet-xcm", "pallet-xcm-benchmarks", "pallet-xcm-bridge-hub", "pallet-xcm-bridge-hub-router", "parachains-common", "rechain-core-primitives", "rechain-parachain-primitives", "rechain-primitives", "rechain-runtime-common", "rechain-runtime-metrics", "rechain-runtime-parachains", "rechain-sdk-frame", "sc-chain-spec-derive", "sc-tracing-proc-macro", "slot-range-helper", "snowbridge-beacon-primitives", "snowbridge-core", "snowbridge-ethereum", "snowbridge-outbound-queue-merkle-tree", "snowbridge-outbound-queue-runtime-api", "snowbridge-pallet-ethereum-client", "snowbridge-pallet-ethereum-client-fixtures", "snowbridge-pallet-inbound-queue", "snowbridge-pallet-inbound-queue-fixtures", "snowbridge-pallet-outbound-queue", "snowbridge-pallet-system", "snowbridge-router-primitives", "snowbridge-runtime-common", "snowbridge-system-runtime-api", "sp-api", "sp-api-proc-macro", "sp-application-crypto", "sp-arithmetic", "sp-authority-discovery", "sp-block-builder", "sp-consensus-aura", "sp-consensus-babe", "sp-consensus-beefy", "sp-consensus-grandpa", "sp-consensus-pow", "sp-consensus-slots", "sp-core", "sp-crypto-ec-utils", "sp-crypto-hashing", "sp-crypto-hashing-proc-macro", "sp-debug-derive", "sp-externalities", "sp-genesis-builder", "sp-inherents", "sp-io", "sp-keyring", "sp-keystore", "sp-metadata-ir", "sp-mixnet", "sp-mmr-primitives", "sp-npos-elections", "sp-offchain", "sp-runtime", "sp-runtime-interface", "sp-runtime-interface-proc-macro", "sp-session", "sp-staking", "sp-state-machine", "sp-statement-store", "sp-std", "sp-storage", "sp-timestamp", "sp-tracing", "sp-transaction-pool", "sp-transaction-storage-proof", "sp-trie", "sp-version", "sp-version-proc-macro", "sp-wasm-interface", "sp-weights", "staging-parachain-info", "staging-xcm", "staging-xcm-builder", "staging-xcm-executor", "substrate-bip39", "testnet-parachains-constants", "tracing-gum-proc-macro", "xcm-procedural", "xcm-runtime-apis"]
 runtime = [
 	"frame-benchmarking",
 	"frame-benchmarking-pallet-pov",
@@ -573,8 +573,8 @@ runtime = [
 	"frame-system-benchmarking",
 	"frame-system-rpc-runtime-api",
 	"frame-try-runtime",
-	"polkadot-sdk-frame",
-	"polkadot-sdk-frame?/runtime",
+	"rechain-sdk-frame",
+	"rechain-sdk-frame?/runtime",
 	"sp-api",
 	"sp-api-proc-macro",
 	"sp-application-crypto",
@@ -622,7 +622,7 @@ runtime = [
 	"sp-wasm-interface",
 	"sp-weights",
 ]
-node = ["asset-test-utils", "bridge-hub-test-utils", "cumulus-client-cli", "cumulus-client-collator", "cumulus-client-consensus-aura", "cumulus-client-consensus-common", "cumulus-client-consensus-proposer", "cumulus-client-consensus-relay-chain", "cumulus-client-network", "cumulus-client-parachain-inherent", "cumulus-client-pov-recovery", "cumulus-client-service", "cumulus-relay-chain-inprocess-interface", "cumulus-relay-chain-interface", "cumulus-relay-chain-minimal-node", "cumulus-relay-chain-rpc-interface", "cumulus-test-relay-sproof-builder", "emulated-integration-tests-common", "fork-tree", "frame-benchmarking-cli", "frame-remote-externalities", "frame-support-procedural-tools", "generate-bags", "mmr-gadget", "mmr-rpc", "pallet-contracts-mock-network", "pallet-revive-eth-rpc", "pallet-revive-mock-network", "pallet-transaction-payment-rpc", "parachains-runtimes-test-utils", "polkadot-approval-distribution", "polkadot-availability-bitfield-distribution", "polkadot-availability-distribution", "polkadot-availability-recovery", "polkadot-cli", "polkadot-collator-protocol", "polkadot-dispute-distribution", "polkadot-erasure-coding", "polkadot-gossip-support", "polkadot-network-bridge", "polkadot-node-collation-generation", "polkadot-node-core-approval-voting", "polkadot-node-core-approval-voting-parallel", "polkadot-node-core-av-store", "polkadot-node-core-backing", "polkadot-node-core-bitfield-signing", "polkadot-node-core-candidate-validation", "polkadot-node-core-chain-api", "polkadot-node-core-chain-selection", "polkadot-node-core-dispute-coordinator", "polkadot-node-core-parachains-inherent", "polkadot-node-core-prospective-parachains", "polkadot-node-core-provisioner", "polkadot-node-core-pvf", "polkadot-node-core-pvf-checker", "polkadot-node-core-pvf-common", "polkadot-node-core-pvf-execute-worker", "polkadot-node-core-pvf-prepare-worker", "polkadot-node-core-runtime-api", "polkadot-node-metrics", "polkadot-node-network-protocol", "polkadot-node-primitives", "polkadot-node-subsystem", "polkadot-node-subsystem-types", "polkadot-node-subsystem-util", "polkadot-omni-node-lib", "polkadot-overseer", "polkadot-rpc", "polkadot-service", "polkadot-statement-distribution", "polkadot-statement-table", "sc-allocator", "sc-authority-discovery", "sc-basic-authorship", "sc-block-builder", "sc-chain-spec", "sc-cli", "sc-client-api", "sc-client-db", "sc-consensus", "sc-consensus-aura", "sc-consensus-babe", "sc-consensus-babe-rpc", "sc-consensus-beefy", "sc-consensus-beefy-rpc", "sc-consensus-epochs", "sc-consensus-grandpa", "sc-consensus-grandpa-rpc", "sc-consensus-manual-seal", "sc-consensus-pow", "sc-consensus-slots", "sc-executor", "sc-executor-common", "sc-executor-polkavm", "sc-executor-wasmtime", "sc-informant", "sc-keystore", "sc-mixnet", "sc-network", "sc-network-common", "sc-network-gossip", "sc-network-light", "sc-network-statement", "sc-network-sync", "sc-network-transactions", "sc-network-types", "sc-offchain", "sc-proposer-metrics", "sc-rpc", "sc-rpc-api", "sc-rpc-server", "sc-rpc-spec-v2", "sc-runtime-utilities", "sc-service", "sc-state-db", "sc-statement-store", "sc-storage-monitor", "sc-sync-state-rpc", "sc-sysinfo", "sc-telemetry", "sc-tracing", "sc-transaction-pool", "sc-transaction-pool-api", "sc-utils", "snowbridge-runtime-test-common", "sp-blockchain", "sp-consensus", "sp-core-hashing", "sp-core-hashing-proc-macro", "sp-database", "sp-maybe-compressed-blob", "sp-panic-handler", "sp-rpc", "staging-chain-spec-builder", "staging-node-inspect", "staging-tracking-allocator", "std", "subkey", "substrate-build-script-utils", "substrate-frame-rpc-support", "substrate-frame-rpc-system", "substrate-prometheus-endpoint", "substrate-rpc-client", "substrate-state-trie-migration-rpc", "substrate-wasm-builder", "tracing-gum", "xcm-emulator", "xcm-simulator"]
+node = ["asset-test-utils", "bridge-hub-test-utils", "cumulus-client-cli", "cumulus-client-collator", "cumulus-client-consensus-aura", "cumulus-client-consensus-common", "cumulus-client-consensus-proposer", "cumulus-client-consensus-relay-chain", "cumulus-client-network", "cumulus-client-parachain-inherent", "cumulus-client-pov-recovery", "cumulus-client-service", "cumulus-relay-chain-inprocess-interface", "cumulus-relay-chain-interface", "cumulus-relay-chain-minimal-node", "cumulus-relay-chain-rpc-interface", "cumulus-test-relay-sproof-builder", "emulated-integration-tests-common", "fork-tree", "frame-benchmarking-cli", "frame-remote-externalities", "frame-support-procedural-tools", "generate-bags", "mmr-gadget", "mmr-rpc", "pallet-contracts-mock-network", "pallet-revive-eth-rpc", "pallet-revive-mock-network", "pallet-transaction-payment-rpc", "parachains-runtimes-test-utils", "rechain-approval-distribution", "rechain-availability-bitfield-distribution", "rechain-availability-distribution", "rechain-availability-recovery", "rechain-cli", "rechain-collator-protocol", "rechain-dispute-distribution", "rechain-erasure-coding", "rechain-gossip-support", "rechain-network-bridge", "rechain-node-collation-generation", "rechain-node-core-approval-voting", "rechain-node-core-approval-voting-parallel", "rechain-node-core-av-store", "rechain-node-core-backing", "rechain-node-core-bitfield-signing", "rechain-node-core-candidate-validation", "rechain-node-core-chain-api", "rechain-node-core-chain-selection", "rechain-node-core-dispute-coordinator", "rechain-node-core-parachains-inherent", "rechain-node-core-prospective-parachains", "rechain-node-core-provisioner", "rechain-node-core-pvf", "rechain-node-core-pvf-checker", "rechain-node-core-pvf-common", "rechain-node-core-pvf-execute-worker", "rechain-node-core-pvf-prepare-worker", "rechain-node-core-runtime-api", "rechain-node-metrics", "rechain-node-network-protocol", "rechain-node-primitives", "rechain-node-subsystem", "rechain-node-subsystem-types", "rechain-node-subsystem-util", "rechain-omni-node-lib", "rechain-overseer", "rechain-rpc", "rechain-service", "rechain-statement-distribution", "rechain-statement-table", "sc-allocator", "sc-authority-discovery", "sc-basic-authorship", "sc-block-builder", "sc-chain-spec", "sc-cli", "sc-client-api", "sc-client-db", "sc-consensus", "sc-consensus-aura", "sc-consensus-babe", "sc-consensus-babe-rpc", "sc-consensus-beefy", "sc-consensus-beefy-rpc", "sc-consensus-epochs", "sc-consensus-grandpa", "sc-consensus-grandpa-rpc", "sc-consensus-manual-seal", "sc-consensus-pow", "sc-consensus-slots", "sc-executor", "sc-executor-common", "sc-executor-polkavm", "sc-executor-wasmtime", "sc-informant", "sc-keystore", "sc-mixnet", "sc-network", "sc-network-common", "sc-network-gossip", "sc-network-light", "sc-network-statement", "sc-network-sync", "sc-network-transactions", "sc-network-types", "sc-offchain", "sc-proposer-metrics", "sc-rpc", "sc-rpc-api", "sc-rpc-server", "sc-rpc-spec-v2", "sc-runtime-utilities", "sc-service", "sc-state-db", "sc-statement-store", "sc-storage-monitor", "sc-sync-state-rpc", "sc-sysinfo", "sc-telemetry", "sc-tracing", "sc-transaction-pool", "sc-transaction-pool-api", "sc-utils", "snowbridge-runtime-test-common", "sp-blockchain", "sp-consensus", "sp-core-hashing", "sp-core-hashing-proc-macro", "sp-database", "sp-maybe-compressed-blob", "sp-panic-handler", "sp-rpc", "staging-chain-spec-builder", "staging-node-inspect", "staging-tracking-allocator", "std", "subkey", "substrate-build-script-utils", "substrate-frame-rpc-support", "substrate-frame-rpc-system", "substrate-prometheus-endpoint", "substrate-rpc-client", "substrate-state-trie-migration-rpc", "substrate-wasm-builder", "tracing-gum", "xcm-emulator", "xcm-simulator"]
 tuples-96 = [
 	"frame-support-procedural?/tuples-96",
 	"frame-support?/tuples-96",
@@ -670,10 +670,10 @@ default-features = false
 optional = true
 path = "../bridges/chains/chain-polkadot"
 
-[dependencies.bp-polkadot-core]
+[dependencies.bp-rechain-core]
 default-features = false
 optional = true
-path = "../bridges/primitives/polkadot-core"
+path = "../bridges/primitives/rechain-core"
 
 [dependencies.bp-relayers]
 default-features = false
@@ -1398,12 +1398,12 @@ path = "../substrate/frame/whitelist"
 [dependencies.pallet-xcm]
 default-features = false
 optional = true
-path = "../polkadot/xcm/pallet-xcm"
+path = "../rechain/xcm/pallet-xcm"
 
 [dependencies.pallet-xcm-benchmarks]
 default-features = false
 optional = true
-path = "../polkadot/xcm/pallet-xcm-benchmarks"
+path = "../rechain/xcm/pallet-xcm-benchmarks"
 
 [dependencies.pallet-xcm-bridge-hub]
 default-features = false
@@ -1420,37 +1420,37 @@ default-features = false
 optional = true
 path = "../cumulus/parachains/common"
 
-[dependencies.polkadot-core-primitives]
+[dependencies.rechain-core-primitives]
 default-features = false
 optional = true
-path = "../polkadot/core-primitives"
+path = "../rechain/core-primitives"
 
-[dependencies.polkadot-parachain-primitives]
+[dependencies.rechain-parachain-primitives]
 default-features = false
 optional = true
-path = "../polkadot/parachain"
+path = "../rechain/parachain"
 
-[dependencies.polkadot-primitives]
+[dependencies.rechain-primitives]
 default-features = false
 optional = true
-path = "../polkadot/primitives"
+path = "../rechain/primitives"
 
-[dependencies.polkadot-runtime-common]
+[dependencies.rechain-runtime-common]
 default-features = false
 optional = true
-path = "../polkadot/runtime/common"
+path = "../rechain/runtime/common"
 
-[dependencies.polkadot-runtime-metrics]
+[dependencies.rechain-runtime-metrics]
 default-features = false
 optional = true
-path = "../polkadot/runtime/metrics"
+path = "../rechain/runtime/metrics"
 
-[dependencies.polkadot-runtime-parachains]
+[dependencies.rechain-runtime-parachains]
 default-features = false
 optional = true
-path = "../polkadot/runtime/parachains"
+path = "../rechain/runtime/parachains"
 
-[dependencies.polkadot-sdk-frame]
+[dependencies.rechain-sdk-frame]
 default-features = false
 optional = true
 path = "../substrate/frame"
@@ -1468,7 +1468,7 @@ path = "../substrate/client/tracing/proc-macro"
 [dependencies.slot-range-helper]
 default-features = false
 optional = true
-path = "../polkadot/runtime/common/slot_range_helper"
+path = "../rechain/runtime/common/slot_range_helper"
 
 [dependencies.snowbridge-beacon-primitives]
 default-features = false
@@ -1778,17 +1778,17 @@ path = "../cumulus/parachains/pallets/parachain-info"
 [dependencies.staging-xcm]
 default-features = false
 optional = true
-path = "../polkadot/xcm"
+path = "../rechain/xcm"
 
 [dependencies.staging-xcm-builder]
 default-features = false
 optional = true
-path = "../polkadot/xcm/xcm-builder"
+path = "../rechain/xcm/xcm-builder"
 
 [dependencies.staging-xcm-executor]
 default-features = false
 optional = true
-path = "../polkadot/xcm/xcm-executor"
+path = "../rechain/xcm/xcm-executor"
 
 [dependencies.substrate-bip39]
 default-features = false
@@ -1803,17 +1803,17 @@ path = "../cumulus/parachains/runtimes/constants"
 [dependencies.tracing-gum-proc-macro]
 default-features = false
 optional = true
-path = "../polkadot/node/gum/proc-macro"
+path = "../rechain/node/gum/proc-macro"
 
 [dependencies.xcm-procedural]
 default-features = false
 optional = true
-path = "../polkadot/xcm/procedural"
+path = "../rechain/xcm/procedural"
 
 [dependencies.xcm-runtime-apis]
 default-features = false
 optional = true
-path = "../polkadot/xcm/xcm-runtime-apis"
+path = "../rechain/xcm/xcm-runtime-apis"
 
 [dependencies.asset-test-utils]
 default-features = false
@@ -1965,210 +1965,210 @@ default-features = false
 optional = true
 path = "../cumulus/parachains/runtimes/test-utils"
 
-[dependencies.polkadot-approval-distribution]
+[dependencies.rechain-approval-distribution]
 default-features = false
 optional = true
-path = "../polkadot/node/network/approval-distribution"
+path = "../rechain/node/network/approval-distribution"
 
-[dependencies.polkadot-availability-bitfield-distribution]
+[dependencies.rechain-availability-bitfield-distribution]
 default-features = false
 optional = true
-path = "../polkadot/node/network/bitfield-distribution"
+path = "../rechain/node/network/bitfield-distribution"
 
-[dependencies.polkadot-availability-distribution]
+[dependencies.rechain-availability-distribution]
 default-features = false
 optional = true
-path = "../polkadot/node/network/availability-distribution"
+path = "../rechain/node/network/availability-distribution"
 
-[dependencies.polkadot-availability-recovery]
+[dependencies.rechain-availability-recovery]
 default-features = false
 optional = true
-path = "../polkadot/node/network/availability-recovery"
+path = "../rechain/node/network/availability-recovery"
 
-[dependencies.polkadot-cli]
+[dependencies.rechain-cli]
 default-features = false
 optional = true
-path = "../polkadot/cli"
+path = "../rechain/cli"
 
-[dependencies.polkadot-collator-protocol]
+[dependencies.rechain-collator-protocol]
 default-features = false
 optional = true
-path = "../polkadot/node/network/collator-protocol"
+path = "../rechain/node/network/collator-protocol"
 
-[dependencies.polkadot-dispute-distribution]
+[dependencies.rechain-dispute-distribution]
 default-features = false
 optional = true
-path = "../polkadot/node/network/dispute-distribution"
+path = "../rechain/node/network/dispute-distribution"
 
-[dependencies.polkadot-erasure-coding]
+[dependencies.rechain-erasure-coding]
 default-features = false
 optional = true
-path = "../polkadot/erasure-coding"
+path = "../rechain/erasure-coding"
 
-[dependencies.polkadot-gossip-support]
+[dependencies.rechain-gossip-support]
 default-features = false
 optional = true
-path = "../polkadot/node/network/gossip-support"
+path = "../rechain/node/network/gossip-support"
 
-[dependencies.polkadot-network-bridge]
+[dependencies.rechain-network-bridge]
 default-features = false
 optional = true
-path = "../polkadot/node/network/bridge"
+path = "../rechain/node/network/bridge"
 
-[dependencies.polkadot-node-collation-generation]
+[dependencies.rechain-node-collation-generation]
 default-features = false
 optional = true
-path = "../polkadot/node/collation-generation"
+path = "../rechain/node/collation-generation"
 
-[dependencies.polkadot-node-core-approval-voting]
+[dependencies.rechain-node-core-approval-voting]
 default-features = false
 optional = true
-path = "../polkadot/node/core/approval-voting"
+path = "../rechain/node/core/approval-voting"
 
-[dependencies.polkadot-node-core-approval-voting-parallel]
+[dependencies.rechain-node-core-approval-voting-parallel]
 default-features = false
 optional = true
-path = "../polkadot/node/core/approval-voting-parallel"
+path = "../rechain/node/core/approval-voting-parallel"
 
-[dependencies.polkadot-node-core-av-store]
+[dependencies.rechain-node-core-av-store]
 default-features = false
 optional = true
-path = "../polkadot/node/core/av-store"
+path = "../rechain/node/core/av-store"
 
-[dependencies.polkadot-node-core-backing]
+[dependencies.rechain-node-core-backing]
 default-features = false
 optional = true
-path = "../polkadot/node/core/backing"
+path = "../rechain/node/core/backing"
 
-[dependencies.polkadot-node-core-bitfield-signing]
+[dependencies.rechain-node-core-bitfield-signing]
 default-features = false
 optional = true
-path = "../polkadot/node/core/bitfield-signing"
+path = "../rechain/node/core/bitfield-signing"
 
-[dependencies.polkadot-node-core-candidate-validation]
+[dependencies.rechain-node-core-candidate-validation]
 default-features = false
 optional = true
-path = "../polkadot/node/core/candidate-validation"
+path = "../rechain/node/core/candidate-validation"
 
-[dependencies.polkadot-node-core-chain-api]
+[dependencies.rechain-node-core-chain-api]
 default-features = false
 optional = true
-path = "../polkadot/node/core/chain-api"
+path = "../rechain/node/core/chain-api"
 
-[dependencies.polkadot-node-core-chain-selection]
+[dependencies.rechain-node-core-chain-selection]
 default-features = false
 optional = true
-path = "../polkadot/node/core/chain-selection"
+path = "../rechain/node/core/chain-selection"
 
-[dependencies.polkadot-node-core-dispute-coordinator]
+[dependencies.rechain-node-core-dispute-coordinator]
 default-features = false
 optional = true
-path = "../polkadot/node/core/dispute-coordinator"
+path = "../rechain/node/core/dispute-coordinator"
 
-[dependencies.polkadot-node-core-parachains-inherent]
+[dependencies.rechain-node-core-parachains-inherent]
 default-features = false
 optional = true
-path = "../polkadot/node/core/parachains-inherent"
+path = "../rechain/node/core/parachains-inherent"
 
-[dependencies.polkadot-node-core-prospective-parachains]
+[dependencies.rechain-node-core-prospective-parachains]
 default-features = false
 optional = true
-path = "../polkadot/node/core/prospective-parachains"
+path = "../rechain/node/core/prospective-parachains"
 
-[dependencies.polkadot-node-core-provisioner]
+[dependencies.rechain-node-core-provisioner]
 default-features = false
 optional = true
-path = "../polkadot/node/core/provisioner"
+path = "../rechain/node/core/provisioner"
 
-[dependencies.polkadot-node-core-pvf]
+[dependencies.rechain-node-core-pvf]
 default-features = false
 optional = true
-path = "../polkadot/node/core/pvf"
+path = "../rechain/node/core/pvf"
 
-[dependencies.polkadot-node-core-pvf-checker]
+[dependencies.rechain-node-core-pvf-checker]
 default-features = false
 optional = true
-path = "../polkadot/node/core/pvf-checker"
+path = "../rechain/node/core/pvf-checker"
 
-[dependencies.polkadot-node-core-pvf-common]
+[dependencies.rechain-node-core-pvf-common]
 default-features = false
 optional = true
-path = "../polkadot/node/core/pvf/common"
+path = "../rechain/node/core/pvf/common"
 
-[dependencies.polkadot-node-core-pvf-execute-worker]
+[dependencies.rechain-node-core-pvf-execute-worker]
 default-features = false
 optional = true
-path = "../polkadot/node/core/pvf/execute-worker"
+path = "../rechain/node/core/pvf/execute-worker"
 
-[dependencies.polkadot-node-core-pvf-prepare-worker]
+[dependencies.rechain-node-core-pvf-prepare-worker]
 default-features = false
 optional = true
-path = "../polkadot/node/core/pvf/prepare-worker"
+path = "../rechain/node/core/pvf/prepare-worker"
 
-[dependencies.polkadot-node-core-runtime-api]
+[dependencies.rechain-node-core-runtime-api]
 default-features = false
 optional = true
-path = "../polkadot/node/core/runtime-api"
+path = "../rechain/node/core/runtime-api"
 
-[dependencies.polkadot-node-metrics]
+[dependencies.rechain-node-metrics]
 default-features = false
 optional = true
-path = "../polkadot/node/metrics"
+path = "../rechain/node/metrics"
 
-[dependencies.polkadot-node-network-protocol]
+[dependencies.rechain-node-network-protocol]
 default-features = false
 optional = true
-path = "../polkadot/node/network/protocol"
+path = "../rechain/node/network/protocol"
 
-[dependencies.polkadot-node-primitives]
+[dependencies.rechain-node-primitives]
 default-features = false
 optional = true
-path = "../polkadot/node/primitives"
+path = "../rechain/node/primitives"
 
-[dependencies.polkadot-node-subsystem]
+[dependencies.rechain-node-subsystem]
 default-features = false
 optional = true
-path = "../polkadot/node/subsystem"
+path = "../rechain/node/subsystem"
 
-[dependencies.polkadot-node-subsystem-types]
+[dependencies.rechain-node-subsystem-types]
 default-features = false
 optional = true
-path = "../polkadot/node/subsystem-types"
+path = "../rechain/node/subsystem-types"
 
-[dependencies.polkadot-node-subsystem-util]
+[dependencies.rechain-node-subsystem-util]
 default-features = false
 optional = true
-path = "../polkadot/node/subsystem-util"
+path = "../rechain/node/subsystem-util"
 
-[dependencies.polkadot-omni-node-lib]
+[dependencies.rechain-omni-node-lib]
 default-features = false
 optional = true
-path = "../cumulus/polkadot-omni-node/lib"
+path = "../cumulus/rechain-omni-node/lib"
 
-[dependencies.polkadot-overseer]
+[dependencies.rechain-overseer]
 default-features = false
 optional = true
-path = "../polkadot/node/overseer"
+path = "../rechain/node/overseer"
 
-[dependencies.polkadot-rpc]
+[dependencies.rechain-rpc]
 default-features = false
 optional = true
-path = "../polkadot/rpc"
+path = "../rechain/rpc"
 
-[dependencies.polkadot-service]
+[dependencies.rechain-service]
 default-features = false
 optional = true
-path = "../polkadot/node/service"
+path = "../rechain/node/service"
 
-[dependencies.polkadot-statement-distribution]
+[dependencies.rechain-statement-distribution]
 default-features = false
 optional = true
-path = "../polkadot/node/network/statement-distribution"
+path = "../rechain/node/network/statement-distribution"
 
-[dependencies.polkadot-statement-table]
+[dependencies.rechain-statement-table]
 default-features = false
 optional = true
-path = "../polkadot/statement-table"
+path = "../rechain/statement-table"
 
 [dependencies.sc-allocator]
 default-features = false
@@ -2493,7 +2493,7 @@ path = "../substrate/bin/node/inspect"
 [dependencies.staging-tracking-allocator]
 default-features = false
 optional = true
-path = "../polkadot/node/tracking-allocator"
+path = "../rechain/node/tracking-allocator"
 
 [dependencies.subkey]
 default-features = false
@@ -2538,7 +2538,7 @@ path = "../substrate/utils/wasm-builder"
 [dependencies.tracing-gum]
 default-features = false
 optional = true
-path = "../polkadot/node/gum"
+path = "../rechain/node/gum"
 
 [dependencies.xcm-emulator]
 default-features = false
@@ -2548,8 +2548,9 @@ path = "../cumulus/xcm/xcm-emulator"
 [dependencies.xcm-simulator]
 default-features = false
 optional = true
-path = "../polkadot/xcm/xcm-simulator"
+path = "../rechain/xcm/xcm-simulator"
 
 [package.metadata.docs.rs]
 features = ["node", "runtime-full"]
 targets = ["x86_64-unknown-linux-gnu"]
+

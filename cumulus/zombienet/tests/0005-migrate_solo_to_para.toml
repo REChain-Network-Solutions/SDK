@@ -43,3 +43,4 @@ key = "5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty"
   image = "{{COL_IMAGE}}"
   command = "test-parachain"
   args = ["-lparachain=debug"]
+

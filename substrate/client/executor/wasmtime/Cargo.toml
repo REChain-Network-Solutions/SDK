@@ -52,3 +52,4 @@ sc-runtime-test = { workspace = true }
 sp-io = { workspace = true, default-features = true }
 tempfile = { workspace = true }
 wat = { workspace = true }
+

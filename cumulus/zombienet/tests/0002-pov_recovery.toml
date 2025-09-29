@@ -80,3 +80,4 @@ add_to_genesis = false
   image = "{{COL_IMAGE}}"
   command = "test-parachain"
   args = ["-lparachain::availability=trace,sync=debug,parachain=debug,cumulus-pov-recovery=debug,cumulus-consensus=debug", "--disable-block-announcements", "--in-peers 0", "--out-peers 0", "--bootnodes {{'bob'|zombie('multiAddress')}}", "--relay-chain-light-client", "--", "--reserved-only", "--reserved-nodes {{'ferdie'|zombie('multiAddress')}}"]
+

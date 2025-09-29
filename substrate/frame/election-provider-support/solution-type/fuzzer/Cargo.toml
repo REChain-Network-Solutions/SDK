@@ -33,3 +33,4 @@ sp-npos-elections = { workspace = true }
 [[bin]]
 name = "compact"
 path = "src/compact.rs"
+

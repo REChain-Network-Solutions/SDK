@@ -51,3 +51,4 @@ snowbridge-pallet-inbound-queue-fixtures = { workspace = true }
 snowbridge-pallet-outbound-queue = { workspace = true }
 snowbridge-pallet-system = { workspace = true }
 snowbridge-router-primitives = { workspace = true }
+

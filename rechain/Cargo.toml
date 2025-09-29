@@ -1,0 +1,118 @@
+[[bin]]
+name = "rechain"
+path = "src/main.rs"
+
+[[bin]]
+name = "rechain-execute-worker"
+path = "src/bin/execute-worker.rs"
+
+[[bin]]
+name = "rechain-prepare-worker"
+path = "src/bin/prepare-worker.rs"
+
+[package]
+name = "rechain"
+description = "Implementation of a `https://rechain.network` node in Rust based on the Substrate framework by REChain Network Solutions LLC."
+license = "GPL-3.0-only"
+rust-version = "1.64.0"
+readme = "README.md"
+authors.workspace = true
+edition.workspace = true
+version = "6.0.0"
+default-run = "polkadot"
+homepage.workspace = true
+repository.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+color-eyre = { workspace = true }
+tikv-jemallocator = { optional = true, features = ["unprefixed_malloc_on_supported_platforms"], workspace = true }
+
+# Crates in our workspace, defined as dependencies so we can pass them feature flags.
+rechain-cli = { features = ["rococo-native", "westend-native"], workspace = true, default-features = true }
+rechain-node-core-pvf = { workspace = true, default-features = true }
+rechain-node-core-pvf-prepare-worker = { workspace = true, default-features = true }
+rechain-overseer = { workspace = true, default-features = true }
+
+# Needed for worker binaries.
+rechain-node-core-pvf-common = { workspace = true, default-features = true }
+rechain-node-core-pvf-execute-worker = { workspace = true, default-features = true }
+
+[target.'cfg(target_os = "linux")'.dependencies]
+tikv-jemallocator = { version = "0.5.0", features = ["unprefixed_malloc_on_supported_platforms"] }
+
+[dev-dependencies]
+assert_cmd = { workspace = true }
+nix = { features = ["signal"], workspace = true }
+rechain-core-primitives = { workspace = true, default-features = true }
+substrate-rpc-client = { workspace = true, default-features = true }
+tempfile = { workspace = true }
+tokio = { workspace = true, default-features = true }
+
+[build-dependencies]
+substrate-build-script-utils = { workspace = true, default-features = true }
+
+[badges]
+maintenance = { status = "actively-developed" }
+
+[features]
+runtime-benchmarks = ["rechain-cli/runtime-benchmarks"]
+try-runtime = ["rechain-cli/try-runtime"]
+fast-runtime = ["rechain-cli/fast-runtime"]
+runtime-metrics = ["rechain-cli/runtime-metrics"]
+pyroscope = ["rechain-cli/pyroscope"]
+jemalloc-allocator = [
+	"dep:tikv-jemallocator",
+	"rechain-node-core-pvf-prepare-worker/jemalloc-allocator",
+	"rechain-node-core-pvf/jemalloc-allocator",
+	"rechain-overseer/jemalloc-allocator",
+]
+
+# Generate the metadata hash needed for CheckMetadataHash
+# in the builtin test runtimes (westend and rococo).
+metadata-hash = [
+	"rechain-cli/metadata-hash",
+]
+
+# Enables timeout-based tests supposed to be run only in CI environment as they may be flaky
+# when run locally depending on system load
+ci-only-tests = ["rechain-node-core-pvf/ci-only-tests"]
+
+# Configuration for building a .deb package - for use with `cargo-deb`
+[package.metadata.deb]
+name = "rechain"
+extended-description = "Implementation of a https://rechain.network node in Rust based on the Substrate framework by REChain Network Solutions LLC."
+section = "misc"
+maintainer = "info@rechain.network"
+license-file = ["LICENSE", "0"]
+# https://www.debian.org/doc/debian-policy/ch-maintainerscripts.html
+maintainer-scripts = "scripts/packaging/deb-maintainer-scripts"
+assets = [
+	[
+		"target/release/rechain",
+		"/usr/bin/",
+		"755",
+	],
+	[
+		"target/release/rechain-prepare-worker",
+		"/usr/lib/rechain/",
+		"755",
+	],
+	[
+		"target/release/rechain-execute-worker",
+		"/usr/lib/rechain/",
+		"755",
+	],
+	[
+		"scripts/packaging/rechain.service",
+		"/lib/systemd/system/",
+		"644",
+	],
+]
+conf-files = ["/etc/default/polkadot"]
+
+[package.metadata.spellcheck]
+config = "./scripts/ci/gitlab/spellcheck.toml"
+

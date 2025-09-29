@@ -33,7 +33,7 @@ tokio = { features = [
 
 bp-header-chain = { workspace = true, default-features = true }
 bp-messages = { workspace = true, default-features = true }
-bp-polkadot-core = { workspace = true, default-features = true }
+bp-rechain-core = { workspace = true, default-features = true }
 bp-runtime = { workspace = true, default-features = true }
 finality-relay = { workspace = true }
 relay-utils = { workspace = true }
@@ -62,3 +62,4 @@ xcm = { workspace = true, default-features = true }
 [features]
 default = []
 test-helpers = []
+

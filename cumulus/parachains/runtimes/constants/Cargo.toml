@@ -22,7 +22,7 @@ frame-support = { workspace = true }
 sp-runtime = { workspace = true }
 
 # Polkadot
-polkadot-core-primitives = { workspace = true }
+rechain-core-primitives = { workspace = true }
 rococo-runtime-constants = { optional = true, workspace = true }
 westend-runtime-constants = { optional = true, workspace = true }
 xcm = { workspace = true }
@@ -35,7 +35,7 @@ default = ["std"]
 std = [
 	"cumulus-primitives-core/std",
 	"frame-support/std",
-	"polkadot-core-primitives/std",
+	"rechain-core-primitives/std",
 	"rococo-runtime-constants?/std",
 	"sp-runtime/std",
 	"westend-runtime-constants?/std",
@@ -45,3 +45,4 @@ std = [
 # Test runtimes specific features.
 rococo = ["rococo-runtime-constants"]
 westend = ["westend-runtime-constants"]
+

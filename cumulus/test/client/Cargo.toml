@@ -35,8 +35,8 @@ sp-timestamp = { workspace = true, default-features = true }
 substrate-test-client = { workspace = true }
 
 # Polkadot
-polkadot-parachain-primitives = { workspace = true, default-features = true }
-polkadot-primitives = { workspace = true, default-features = true }
+rechain-parachain-primitives = { workspace = true, default-features = true }
+rechain-primitives = { workspace = true, default-features = true }
 
 # Cumulus
 cumulus-pallet-weight-reclaim = { workspace = true, default-features = true }
@@ -55,8 +55,9 @@ runtime-benchmarks = [
 	"frame-system/runtime-benchmarks",
 	"pallet-balances/runtime-benchmarks",
 	"pallet-transaction-payment/runtime-benchmarks",
-	"polkadot-parachain-primitives/runtime-benchmarks",
-	"polkadot-primitives/runtime-benchmarks",
+	"rechain-parachain-primitives/runtime-benchmarks",
+	"rechain-primitives/runtime-benchmarks",
 	"sc-service/runtime-benchmarks",
 	"sp-runtime/runtime-benchmarks",
 ]
+
