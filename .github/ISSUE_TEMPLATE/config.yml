@@ -1,7 +1,17 @@
-blank_issues_enabled: true
+blank_issues_enabled: false
 contact_links:
-  - name: Support & Troubleshooting with the Substrate Stack Exchange Community
+  - name: REChain Documentation
+    url: https://docs.rechain.network
+    about: Check the documentation for help and guides
+
+  - name: Discord Community
+    url: https://discord.gg/rechain
+    about: Join our Discord for community discussions
+
+  - name: Security Issues
+    url: mailto:security@rechain.network
+    about: Report security vulnerabilities privately
+
+  - name: Stack Exchange
     url: https://substrate.stackexchange.com
-    about: |
-      For general problems with Substrate or related technologies, please search here first
-      for solutions, by keyword and tags. If you discover no solution, please then ask and questions in our community! We highly encourage everyone also share their understanding by answering questions for others.
+    about: Ask technical questions on Stack Exchange
