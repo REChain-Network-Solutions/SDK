@@ -1,0 +1,19 @@
+name: Release tracker
+description: Track work for a new release
+labels: [release]
+title: "release: vX.Y.Z"
+body:
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: What is included in this release?
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: Update changelog / release notes
+        - label: Bump versions
+        - label: CI green on main
+        - label: Tag and publish

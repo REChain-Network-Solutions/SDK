@@ -1,4 +1,5 @@
 [build]
+target-dir = "target"
 rustdocflags = [
 	"-Dwarnings",
 	"-Arustdoc::redundant_explicit_links", # stylistic
@@ -11,7 +12,10 @@ CXX_x86_64_unknown_linux_musl = { value = ".cargo/musl-g++", force = true, relat
 CARGO_WORKSPACE_ROOT_DIR = { value = "", relative = true }
 SQLX_OFFLINE = "true"
 
+[term]
+color = "auto"
+
 [net]
 retry = 5
-# git-fetch-with-cli = true # commented because there is a risk that a runner can be banned by github
+git-fetch-with-cli = true
 
