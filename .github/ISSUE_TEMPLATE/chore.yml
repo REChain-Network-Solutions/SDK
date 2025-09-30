@@ -1,0 +1,12 @@
+name: Chore
+description: Non-functional tasks (infra, tooling, cleanup)
+labels: [chore]
+title: "chore: "
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What needs to be done?
+    validations:
+      required: true

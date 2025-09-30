@@ -1,0 +1,3 @@
+# shellcheck configuration
+# shellcheck disable=SC1091
+# Set default severity to style

@@ -1,0 +1,12 @@
+name: Docs
+description: Request documentation changes
+labels: [documentation]
+title: "docs: "
+body:
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: What docs need to change and why?
+    validations:
+      required: true
