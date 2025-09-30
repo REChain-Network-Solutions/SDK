@@ -1,82 +1,260 @@
+# 🌐 REChain SDK
+
 <div align="center">
 
-# REChain SDK
-
-![GitHub stars](https://img.shields.io/github/stars/REChain-Network-Solutions/SDK)&nbsp;&nbsp;![GitHub
-forks](https://img.shields.io/github/forks/REChain-Network-Solutions/SDK)
-
-<!-- markdownlint-disable-next-line MD013 -->
-[![StackExchange](https://img.shields.io/badge/StackExchange-Community%20&%20Support-222222?logo=stackexchange)](https://substrate.stackexchange.com/)&nbsp;&nbsp;![GitHub contributors](https://img.shields.io/github/contributors/paritytech/REChain-sdk)&nbsp;&nbsp;![GitHub commit activity](https://img.shields.io/github/commit-activity/m/paritytech/REChain-sdk)&nbsp;&nbsp;![GitHub last commit](https://img.shields.io/github/last-commit/paritytech/REChain-sdk)
-
-> The REChain SDK repository provides all the components needed to start building on the
-> [REChain](https://REChain.network) network, a multi-chain blockchain platform that enables
-> different blockchains to interoperate and share information in a secure and scalable way.
+![GitHub stars](https://img.shields.io/github/stars/REChain-Network-Solutions/SDK?style=for-the-badge&color=yellow)
+![GitHub forks](https://img.shields.io/github/forks/REChain-Network-Solutions/SDK?style=for-the-badge&color=orange)
+![License](https://img.shields.io/github/license/REChain-Network-Solutions/SDK?style=for-the-badge&color=blue)
+[![StackExchange](https://img.shields.io/badge/StackExchange-Community%20Support-1E4E8C?logo=stackexchange&style=flat-square)](https://substrate.stackexchange.com)
 
 </div>
 
-## ⚡ Quickstart
-If you want to get an example node running quickly you can execute the following getting started script:
+---
 
-```
+## 1️⃣ Home / Overview
+
+**REChain SDK** is the ultimate toolkit for building **scalable, interoperable, and secure blockchains**.
+
+**Quick Facts:**
+- 🌍 Multi-chain & parachain-ready
+- 🛠️ FRAME + Cumulus + XCM built-in
+- 📦 Pre-built pallets & templates
+- 🦀 Rust-native development
+
+**Links**
+- 🌐 [Website](https://rechain.network)  
+- 📚 [Documentation](https://docs.rechain.network)  
+- 🛠️ [SDK Manager](https://github.com/REChain-Network-Solutions/REChain-SDK-Manager)  
+- 💬 [Community Support](https://substrate.stackexchange.com)
+
+**Quickstart**
+---
+
 curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/REChain-Network-Solutions/SDK/master/scripts/getting-started.sh | bash
+
+---
+
+---
+
+## 2️⃣ Getting Started
+
+### Prerequisites
+
+* Rust & Cargo (`rustc --version`)
+* Node.js & npm (`node -v`)
+* WASM toolchain (`wasm32-unknown-unknown target`)
+
+### Steps
+
+1. Run the quickstart script
+2. Set environment variables
+3. Launch node: `rechain-node --version`
+4. Create your first chain using a template
+
+### Troubleshooting
+
+* Check logs: `~/.rechain/logs/node.log`
+* Common errors & solutions table:
+
+| Error                  | Solution                                         |
+| ---------------------- | ------------------------------------------------ |
+| Cargo build fails      | Update Rust to latest stable                     |
+| WASM compilation fails | Ensure `wasm32-unknown-unknown` target installed |
+| Node won't start       | Verify environment variables & ports             |
+
+---
+
+## 3️⃣ Architecture
+
+**REChain SDK Layered Architecture**
+
+**Components**
+
+* FRAME → Runtime logic
+* Cumulus → Parachain integration
+* XCM → Cross-chain messaging
+* Runtime Pallets → Plug-and-play modules
+
+**Topology Example**
+
+```
++--------------------+
+|  REChain Relay     |
++--------+-----------+
+         |
++--------v-----------+
+|  Parachain Node    |
++--------------------+
 ```
 
-## 📚 Documentation
+---
 
-* [REChain Documentation Portal](https://docs.REChain.network)
-* [🦀 rust-docs](https://REChain-Network-Solutions.github.io/SDK/master/REChain_sdk_docs/index.html): Where we keep track of
-the API docs of our Rust crates. Includes:
-  * [Introduction](https://REChain-Network-Solutions.github.io/SDK/master/REChain_sdk_docs/REChain_sdk/index.html)
-to each component of the REChain SDK: Substrate, FRAME, Cumulus, and XCM
-  * [Guides](https://REChain-Network-Solutions.github.io/SDK/master/REChain_sdk_docs/guides/index.html),
-namely how to build your first FRAME pallet
-  * [Templates](https://REChain-Network-Solutions.github.io/SDK/master/REChain_sdk_docs/REChain_sdk/templates/index.html)
-    for starting a new project.
-  * [External Resources](https://REChain-Network-Solutions.github.io/SDK/master/REChain_sdk_docs/external_resources/index.html)
+## 4️⃣ Guides
 
-## 🚀 Releases
+### FRAME Pallet Development
 
-<!-- markdownlint-disable-next-line MD013 -->
+* Create pallet, define storage, events, extrinsics
+* Unit testing & debugging
 
-The REChain SDK is released every three months as a `stableYYMM` release. They are supported for
-one year with patches. See the next upcoming versions in the [Release
-Registry](https://github.com/paritytech/release-registry/) and more docs in [RELEASE.md](./docs/RELEASE.md).
+### Cumulus Parachain
 
-You can use [`psvm`](https://github.com/paritytech/psvm) to update all dependencies to a specific
-version without needing to manually select the correct version for each crate.
+* Deploy parachain
+* Connect to relay chain
+* Lifecycle & upgrade management
 
-## 🛠️ Tooling
+### XCM Messaging
 
-[REChain SDK Version Manager](https://github.com/REChain-Network-Solutions/REChain-SDK-Manager):
-A simple tool to manage and update the REChain SDK dependencies in any Cargo.toml file.
-It will automatically update the REChain SDK dependencies to their correct crates.io version.
+* Cross-chain token & message transfers
+* Security considerations
 
-## 🔐 Security
+### Runtime Upgrades
 
-The security policy and procedures can be found in
-[docs/contributor/SECURITY.md](./docs/contributor/SECURITY.md).
+* Upgrade pallets & runtime versions
+* Migration best practices
 
-## 🤍 Contributing & Code of Conduct
+---
 
-Ensure you follow our [contribution guidelines](./docs/contributor/CONTRIBUTING.md). In every
-interaction and contribution, this project adheres to the [Contributor Covenant Code of
-Conduct](./docs/contributor/CODE_OF_CONDUCT.md).
+## 5️⃣ Templates
 
-### 👾 Ready to Contribute?
+* Minimal chain template
+* Enterprise chain template
+* Pallet starter kits
 
-Take a look at the issues labeled with [`mentor`](https://github.com/REChain-Network-Solutions/SDK/labels/C1-mentor)
-(or alternatively [this](https://mentor.tasty.limo/) page, created by one of the maintainers) label to get started!
-We always recognize valuable contributions by proposing an on-chain tip to the REChain network as a token of our
-appreciation.
+**Example**
 
-## Polkadot Fellowship
+```bash
+git clone https://github.com/REChain-Network-Solutions/SDK-template.git
+cd SDK-template
+cargo build
+cargo run
+```
 
-Development in this repo is led by REChain Network Solutions LLC. In short,
-this repository provides all the SDK pieces needed to build both REChain and its parachains.
-The REChain runtime is developed and maintained by REChain Network Solutions LLC.
+---
 
-## History
+## 6️⃣ Tutorials
 
-This repository represents the REChain SDK developed by REChain Network Solutions LLC,
-built upon the Substrate framework and related technologies to provide a complete blockchain
-development platform.
+**Levels**
+
+* Beginner: First blockchain app
+* Intermediate: NFT marketplace
+* Advanced: Cross-chain DeFi protocol
+
+**Step-by-step examples**, diagrams, and code snippets included.
+
+---
+
+## 7️⃣ Tooling
+
+* **REChain SDK Version Manager** → Manage dependencies in `Cargo.toml`
+* CLI commands cheat sheet
+* Debug & logging utilities
+* IDE integrations: VSCode, JetBrains
+
+---
+
+## 8️⃣ API Reference
+
+* Rust crates & modules
+* Full function & struct reference
+* Examples for each major module
+
+📖 [Generated Rust Docs](https://REChain-Network-Solutions.github.io/SDK/master/REChain_sdk_docs/index.html)
+
+---
+
+## 9️⃣ Security
+
+* [Security Policy](./docs/contributor/SECURITY.md)
+* Bug bounty program (upcoming)
+* Responsible disclosure guidelines
+* Encryption & signing best practices
+* XCM safety tips
+
+---
+
+## 🔟 Contributing
+
+* [Contribution Guidelines](./docs/contributor/CONTRIBUTING.md)
+* [Code of Conduct](./docs/contributor/CODE_OF_CONDUCT.md)
+* Start with `mentor` issues
+* Earn **on-chain tips** for contributions
+
+---
+
+## 11️⃣ Ecosystem
+
+* REChain mainnet & parachains
+* Partner projects & integrations
+* Community initiatives
+* Enterprise & DeFi adoption
+
+---
+
+## 12️⃣ Roadmap
+
+| Timeline            | Goals                                     |
+| ------------------- | ----------------------------------------- |
+| Short-term (3-6m)   | Core SDK release, FRAME pallet templates  |
+| Medium-term (6-12m) | Advanced XCM tutorials, SDK GUI dashboard |
+| Long-term (2-3y)    | WASM IDE, enterprise adoption             |
+
+---
+
+## 13️⃣ FAQ
+
+**Q:** What is REChain SDK?
+**A:** Modular blockchain development kit built on Substrate.
+
+**Q:** Can I launch a parachain?
+**A:** Yes, FRAME + Cumulus + XCM support included.
+
+**Q:** Do I need Rust?
+**A:** Recommended, but templates & guides available.
+
+---
+
+## 14️⃣ Changelog / Releases
+
+* Stable releases: `stableYYMM`
+* Patch updates & hotfixes
+* Migration notes
+
+[Release Registry](https://github.com/paritytech/release-registry/)
+
+---
+
+## 15️⃣ References & Resources
+
+* Official docs & portal
+* Substrate, Rust, Cumulus references
+* Tutorials, blogs, webinars
+* Community links
+
+---
+
+## 16️⃣ Community
+
+* Forums & StackExchange
+* Discord / Telegram / Twitter
+* Meetups & events
+* How to get involved
+
+---
+
+## Optional Advanced Pages
+
+### Case Studies
+
+* Showcase of projects using REChain SDK
+
+### SDK Internals
+
+* Deep dive into runtime & pallets
+
+### Migration Guide
+
+* From Substrate / Polkadot SDKs to REChain
+
+---
+
+**🔥 REChain SDK is the backbone of the decentralized internet. Start building today!**
