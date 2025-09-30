@@ -30,3 +30,4 @@ std = [
 	"sp-std/std",
 ]
 runtime-benchmarks = ["snowbridge-core/runtime-benchmarks"]
+

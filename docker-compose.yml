@@ -1,0 +1,132 @@
+version: '3.8'
+services:
+  # REChain validator node
+  rechain-validator:
+    build:
+      context: .
+      dockerfile: docker/rechain.Dockerfile
+    ports:
+      - "30333:30333"  # P2P
+      - "9933:9933"   # RPC
+      - "9944:9944"   # WebSocket
+    volumes:
+      - rechain_data:/data
+    command: >
+      rechain
+      --base-path /data
+      --chain rechain
+      --port 30333
+      --ws-port 9944
+      --rpc-port 9933
+      --telemetry-url "wss://telemetry.rechain.network/submit 0"
+      --validator
+      --rpc-methods Unsafe
+      --name "rechain-validator-01"
+    networks:
+      - rechain_network
+
+  # REChain full node
+  rechain-node:
+    build:
+      context: .
+      dockerfile: docker/rechain.Dockerfile
+    ports:
+      - "30334:30334"
+      - "9934:9934"
+      - "9945:9945"
+    volumes:
+      - rechain_node_data:/data
+    command: >
+      rechain
+      --base-path /data
+      --chain rechain
+      --port 30334
+      --ws-port 9945
+      --rpc-port 9934
+      --telemetry-url "wss://telemetry.rechain.network/submit 0"
+      --name "rechain-node-01"
+    networks:
+      - rechain_network
+
+  # Prometheus monitoring
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    networks:
+      - rechain_network
+
+  # Grafana dashboard
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana-dashboards.json:/etc/grafana/provisioning/dashboards/dashboard.json
+      - ./monitoring/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    networks:
+      - rechain_network
+
+  # PostgreSQL database for off-chain data
+  database:
+    image: postgres:15
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: rechain
+      POSTGRES_USER: rechain
+      POSTGRES_PASSWORD: rechain_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - rechain_network
+
+  # Redis for caching
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    networks:
+      - rechain_network
+
+  # Nginx load balancer
+  load-balancer:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - rechain-validator
+      - rechain-node
+    networks:
+      - rechain_network
+
+volumes:
+  rechain_data:
+  rechain_node_data:
+  prometheus_data:
+  grafana_data:
+  postgres_data:
+  redis_data:
+
+networks:
+  rechain_network:
+    driver: bridge

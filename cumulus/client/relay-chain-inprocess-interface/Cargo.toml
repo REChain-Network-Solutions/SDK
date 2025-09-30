@@ -29,8 +29,8 @@ sp-runtime = { workspace = true, default-features = true }
 sp-state-machine = { workspace = true, default-features = true }
 
 # Polkadot
-polkadot-cli = { features = ["cli"], workspace = true }
-polkadot-service = { workspace = true, default-features = true }
+rechain-cli = { features = ["cli"], workspace = true }
+rechain-service = { workspace = true, default-features = true }
 
 # Cumulus
 cumulus-primitives-core = { workspace = true, default-features = true }
@@ -43,5 +43,6 @@ sp-keyring = { workspace = true, default-features = true }
 
 # Polkadot
 metered = { features = ["futures_channel"], workspace = true }
-polkadot-primitives = { workspace = true, default-features = true }
-polkadot-test-client = { workspace = true }
+rechain-primitives = { workspace = true, default-features = true }
+rechain-test-client = { workspace = true }
+

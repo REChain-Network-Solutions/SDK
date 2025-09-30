@@ -14,3 +14,4 @@ SQLX_OFFLINE = "true"
 [net]
 retry = 5
 # git-fetch-with-cli = true # commented because there is a risk that a runner can be banned by github
+

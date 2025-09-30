@@ -60,8 +60,8 @@ sp-version = { workspace = true }
 # Polkadot
 pallet-xcm = { workspace = true }
 pallet-xcm-benchmarks = { optional = true, workspace = true }
-polkadot-parachain-primitives = { workspace = true }
-polkadot-runtime-common = { workspace = true }
+rechain-parachain-primitives = { workspace = true }
+rechain-runtime-common = { workspace = true }
 rococo-runtime-constants = { workspace = true }
 xcm = { workspace = true }
 xcm-builder = { workspace = true }
@@ -91,8 +91,8 @@ bp-bridge-hub-westend = { workspace = true }
 bp-header-chain = { workspace = true }
 bp-messages = { workspace = true }
 bp-parachains = { workspace = true }
-bp-polkadot-bulletin = { workspace = true }
-bp-polkadot-core = { workspace = true }
+bp-rechain-bulletin = { workspace = true }
+bp-rechain-core = { workspace = true }
 bp-relayers = { workspace = true }
 bp-rococo = { workspace = true }
 bp-runtime = { workspace = true }
@@ -136,8 +136,8 @@ std = [
 	"bp-header-chain/std",
 	"bp-messages/std",
 	"bp-parachains/std",
-	"bp-polkadot-bulletin/std",
-	"bp-polkadot-core/std",
+	"bp-rechain-bulletin/std",
+	"bp-rechain-core/std",
 	"bp-relayers/std",
 	"bp-rococo/std",
 	"bp-runtime/std",
@@ -184,8 +184,8 @@ std = [
 	"pallet-xcm/std",
 	"parachain-info/std",
 	"parachains-common/std",
-	"polkadot-parachain-primitives/std",
-	"polkadot-runtime-common/std",
+	"rechain-parachain-primitives/std",
+	"rechain-runtime-common/std",
 	"rococo-runtime-constants/std",
 	"scale-info/std",
 	"serde",
@@ -251,8 +251,8 @@ runtime-benchmarks = [
 	"pallet-xcm-bridge-hub/runtime-benchmarks",
 	"pallet-xcm/runtime-benchmarks",
 	"parachains-common/runtime-benchmarks",
-	"polkadot-parachain-primitives/runtime-benchmarks",
-	"polkadot-runtime-common/runtime-benchmarks",
+	"rechain-parachain-primitives/runtime-benchmarks",
+	"rechain-runtime-common/runtime-benchmarks",
 	"snowbridge-core/runtime-benchmarks",
 	"snowbridge-pallet-ethereum-client/runtime-benchmarks",
 	"snowbridge-pallet-inbound-queue/runtime-benchmarks",
@@ -295,7 +295,7 @@ try-runtime = [
 	"pallet-xcm-bridge-hub/try-runtime",
 	"pallet-xcm/try-runtime",
 	"parachain-info/try-runtime",
-	"polkadot-runtime-common/try-runtime",
+	"rechain-runtime-common/try-runtime",
 	"snowbridge-pallet-ethereum-client/try-runtime",
 	"snowbridge-pallet-inbound-queue/try-runtime",
 	"snowbridge-pallet-outbound-queue/try-runtime",
@@ -309,3 +309,4 @@ fast-runtime = []
 # deployment. This will disable stuff that shouldn't be part of the on-chain wasm
 # to make it smaller, like logging for example.
 on-chain-release-build = []
+

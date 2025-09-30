@@ -70,3 +70,4 @@ std = [
 	"serde_json/std",
 	"substrate-wasm-builder",
 ]
+

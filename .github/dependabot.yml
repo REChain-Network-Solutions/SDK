@@ -1,31 +1,55 @@
 version: 2
 updates:
-  # Update github actions:
-  - package-ecosystem: github-actions
-    directory: '/'
-    labels: ["A1-insubstantial", "R0-silent"]
-    schedule:
-      interval: weekly
-    groups:
-      ci_dependencies:
-        patterns:
-        - "*"
-  # Update Rust dependencies:
+  # Rust dependencies
   - package-ecosystem: "cargo"
     directory: "/"
-    labels: ["A1-insubstantial", "R0-silent"]
     schedule:
       interval: "weekly"
-    groups:
-      # We assume these crates to be semver abiding and can therefore group them together.
-      known_good_semver:
-        patterns:
-        - "syn"
-        - "quote"
-        - "log"
-        - "paste"
-        - "*serde*"
-        - "clap"
-        update-types:
-        - "minor"
-        - "patch"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 10
+    assignees:
+      - "REChain-Network-Solutions/maintainers"
+    reviewers:
+      - "REChain-Network-Solutions/developers"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "automated"
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    assignees:
+      - "REChain-Network-Solutions/devops"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+
+  # Docker images
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "tuesday"
+      time: "10:00"
+    open-pull-requests-limit: 5
+
+  # NPM packages (for SDKs and tools)
+  - package-ecosystem: "npm"
+    directory: "/sdk"
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+      time: "11:00"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore"
+      include: "scope"

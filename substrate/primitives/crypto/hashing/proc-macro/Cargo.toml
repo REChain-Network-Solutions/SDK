@@ -22,3 +22,4 @@ proc-macro = true
 quote = { workspace = true }
 sp-crypto-hashing = { workspace = true }
 syn = { features = ["full", "parsing"], workspace = true }
+

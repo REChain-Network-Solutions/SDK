@@ -44,3 +44,4 @@ add_to_genesis = true
   image = "{{COL_IMAGE}}"
   command = "test-parachain"
   args = ["-laura=trace,runtime=info,cumulus-consensus=trace,consensus::common=trace,parachain::collation-generation=trace,parachain::collator-protocol=trace,parachain=debug", "--force-authoring", "--experimental-use-slot-based"]
+

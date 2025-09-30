@@ -31,3 +31,4 @@ std = [
 	"log/std",
 ]
 wasmtime = ["anyhow", "dep:wasmtime"]
+

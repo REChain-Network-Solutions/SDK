@@ -40,3 +40,4 @@ runtime-benchmarks = [
 try-runtime = [
 	"frame/try-runtime",
 ]
+

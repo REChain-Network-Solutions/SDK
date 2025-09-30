@@ -57,3 +57,4 @@ try-runtime = [
 	"pallet-ranked-collective?/try-runtime",
 	"sp-runtime/try-runtime",
 ]
+

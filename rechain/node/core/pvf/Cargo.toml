@@ -1,0 +1,87 @@
+[package]
+name = "rechain-node-core-pvf"
+description = "Polkadot crate that implements the PVF validation host. Responsible for coordinating preparation and execution of PVFs."
+version = "7.0.0"
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+homepage.workspace = true
+repository.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+always-assert = { workspace = true }
+array-bytes = { workspace = true, default-features = true }
+blake3 = { workspace = true }
+cfg-if = { workspace = true }
+futures = { workspace = true }
+futures-timer = { workspace = true }
+gum = { workspace = true, default-features = true }
+is_executable = { optional = true, workspace = true }
+pin-project = { workspace = true }
+rand = { workspace = true, default-features = true }
+slotmap = { workspace = true }
+strum = { features = ["derive"], workspace = true, default-features = true }
+tempfile = { workspace = true }
+thiserror = { workspace = true }
+tokio = { features = ["fs", "process"], workspace = true, default-features = true }
+
+codec = { features = [
+	"derive",
+], workspace = true }
+
+rechain-core-primitives = { workspace = true, default-features = true }
+rechain-node-core-pvf-common = { workspace = true, default-features = true }
+rechain-node-metrics = { workspace = true, default-features = true }
+rechain-node-primitives = { workspace = true, default-features = true }
+rechain-node-subsystem = { workspace = true, default-features = true }
+rechain-parachain-primitives = { workspace = true, default-features = true }
+rechain-primitives = { workspace = true, default-features = true }
+
+rechain-node-core-pvf-execute-worker = { optional = true, workspace = true, default-features = true }
+rechain-node-core-pvf-prepare-worker = { optional = true, workspace = true, default-features = true }
+sc-tracing = { workspace = true }
+sp-core = { workspace = true, default-features = true }
+sp-maybe-compressed-blob = { optional = true, workspace = true, default-features = true }
+
+[dev-dependencies]
+assert_matches = { workspace = true }
+criterion = { features = [
+	"async_tokio",
+	"cargo_bench_support",
+], workspace = true }
+hex-literal = { workspace = true, default-features = true }
+
+rechain-node-core-pvf-common = { features = ["test-utils"], workspace = true, default-features = true }
+rechain-node-subsystem-test-helpers = { workspace = true }
+# For benches and integration tests, depend on ourselves with the test-utils
+# feature.
+rechain-node-core-pvf = { features = ["test-utils"], workspace = true, default-features = true }
+rococo-runtime = { workspace = true }
+
+test-parachain-adder = { workspace = true }
+test-parachain-halt = { workspace = true }
+
+[target.'cfg(target_os = "linux")'.dev-dependencies]
+libc = "0.2.155"
+procfs = "0.16.0"
+rusty-fork = "0.3.0"
+sc-sysinfo = { workspace = true, default-features = true }
+
+[[bench]]
+name = "host_prepare_rococo_runtime"
+harness = false
+
+[features]
+ci-only-tests = []
+jemalloc-allocator = ["rechain-node-core-pvf-common/jemalloc-allocator"]
+# This feature is used to export test code to other crates without putting it in the production build.
+test-utils = [
+	"dep:is_executable",
+	"dep:rechain-node-core-pvf-execute-worker",
+	"dep:rechain-node-core-pvf-prepare-worker",
+	"dep:sp-maybe-compressed-blob",
+]
+

@@ -21,3 +21,4 @@ name = "fuzz_address_uri"
 path = "fuzz_targets/fuzz_address_uri.rs"
 test = false
 doc = false
+

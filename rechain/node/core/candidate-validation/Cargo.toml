@@ -1,0 +1,45 @@
+[package]
+name = "rechain-node-core-candidate-validation"
+description = "Polkadot crate that implements the Candidate Validation subsystem. Handles requests to validate candidates according to a PVF."
+version = "7.0.0"
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+homepage.workspace = true
+repository.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+async-trait = { workspace = true }
+futures = { workspace = true }
+futures-timer = { workspace = true }
+gum = { workspace = true, default-features = true }
+
+codec = { features = ["bit-vec", "derive"], workspace = true }
+sp-application-crypto = { workspace = true }
+sp-keystore = { workspace = true }
+
+rechain-node-metrics = { workspace = true, default-features = true }
+rechain-node-primitives = { workspace = true, default-features = true }
+rechain-node-subsystem = { workspace = true, default-features = true }
+rechain-node-subsystem-util = { workspace = true, default-features = true }
+rechain-overseer = { workspace = true, default-features = true }
+rechain-parachain-primitives = { workspace = true, default-features = true }
+rechain-primitives = { workspace = true, default-features = true }
+
+[target.'cfg(not(any(target_os = "android", target_os = "unknown")))'.dependencies]
+rechain-node-core-pvf = { workspace = true, default-features = true }
+
+[dev-dependencies]
+assert_matches = { workspace = true }
+futures = { features = ["thread-pool"], workspace = true }
+rechain-node-subsystem-test-helpers = { workspace = true }
+rechain-primitives = { workspace = true, features = ["test"] }
+rechain-primitives-test-helpers = { workspace = true }
+rstest = { workspace = true }
+sp-core = { workspace = true, default-features = true }
+sp-keyring = { workspace = true, default-features = true }
+sp-maybe-compressed-blob = { workspace = true, default-features = true }
+

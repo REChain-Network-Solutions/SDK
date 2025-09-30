@@ -31,3 +31,4 @@ cumulus_based = true
   validator = false
   image = "{{COL_IMAGE}}"
   command = "test-parachain"
+

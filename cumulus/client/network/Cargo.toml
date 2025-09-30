@@ -30,10 +30,10 @@ sp-state-machine = { workspace = true, default-features = true }
 sp-version = { workspace = true, default-features = true }
 
 # Polkadot
-polkadot-node-primitives = { workspace = true, default-features = true }
-polkadot-node-subsystem = { workspace = true, default-features = true }
-polkadot-parachain-primitives = { workspace = true, default-features = true }
-polkadot-primitives = { workspace = true, default-features = true }
+rechain-node-primitives = { workspace = true, default-features = true }
+rechain-node-subsystem = { workspace = true, default-features = true }
+rechain-parachain-primitives = { workspace = true, default-features = true }
+rechain-primitives = { workspace = true, default-features = true }
 
 # Cumulus
 cumulus-relay-chain-interface = { workspace = true, default-features = true }
@@ -52,9 +52,10 @@ sp-keyring = { workspace = true, default-features = true }
 sp-keystore = { workspace = true, default-features = true }
 
 # Polkadot
-polkadot-test-client = { workspace = true }
+rechain-test-client = { workspace = true }
 
 # Cumulus
 cumulus-primitives-core = { workspace = true, default-features = true }
 cumulus-relay-chain-inprocess-interface = { workspace = true, default-features = true }
 cumulus-test-service = { workspace = true }
+

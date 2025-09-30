@@ -1,0 +1,30 @@
+[package]
+name = "rechain-node-subsystem-test-helpers"
+description = "Subsystem traits and message definitions"
+publish = false
+version = "1.0.0"
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+async-trait = { workspace = true }
+futures = { workspace = true }
+parking_lot = { workspace = true, default-features = true }
+rechain-erasure-coding = { workspace = true, default-features = true }
+rechain-node-primitives = { workspace = true, default-features = true }
+rechain-node-subsystem = { workspace = true, default-features = true }
+rechain-node-subsystem-util = { workspace = true, default-features = true }
+rechain-primitives = { workspace = true, default-features = true }
+
+sc-client-api = { workspace = true, default-features = true }
+sc-keystore = { workspace = true, default-features = true }
+sc-utils = { workspace = true, default-features = true }
+sp-application-crypto = { workspace = true, default-features = true }
+sp-core = { workspace = true, default-features = true }
+sp-keyring = { workspace = true, default-features = true }
+sp-keystore = { workspace = true, default-features = true }
+

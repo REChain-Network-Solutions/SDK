@@ -2,7 +2,7 @@
 node_spawn_timeout = 240
 
 [relaychain]
-default_command = "{{POLKADOT_BINARY}}"
+default_command = "{{rechain_BINARY}}"
 default_args = ["-lparachain=debug,xcm=trace"]
 chain = "westend-local"
 [[relaychain.nodes]]
@@ -28,10 +28,11 @@ cumulus_based = true
 name = "asset-hub-westend-collator1"
 rpc_port = 9011
 ws_port = 9944
-command = "{{POLKADOT_PARACHAIN_BINARY}}"
+command = "{{rechain_PARACHAIN_BINARY}}"
 args = ["-lparachain=debug,runtime::revive=debug"]
 
 [[parachains.collators]]
 name = "asset-hub-westend-collator2"
-command = "{{POLKADOT_PARACHAIN_BINARY}}"
+command = "{{rechain_PARACHAIN_BINARY}}"
 args = ["-lparachain=debug,runtime::revive=debug"]
+

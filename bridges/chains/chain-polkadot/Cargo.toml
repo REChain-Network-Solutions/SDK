@@ -15,7 +15,7 @@ workspace = true
 # Bridge Dependencies
 
 bp-header-chain = { workspace = true }
-bp-polkadot-core = { workspace = true }
+bp-rechain-core = { workspace = true }
 bp-runtime = { workspace = true }
 
 # Substrate Based Dependencies
@@ -28,9 +28,10 @@ sp-std = { workspace = true }
 default = ["std"]
 std = [
 	"bp-header-chain/std",
-	"bp-polkadot-core/std",
+	"bp-rechain-core/std",
 	"bp-runtime/std",
 	"frame-support/std",
 	"sp-api/std",
 	"sp-std/std",
 ]
+

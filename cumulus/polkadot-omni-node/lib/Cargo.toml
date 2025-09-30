@@ -1,5 +1,5 @@
 [package]
-name = "polkadot-omni-node-lib"
+name = "rechain-omni-node-lib"
 version = "0.1.0"
 authors.workspace = true
 edition.workspace = true
@@ -81,8 +81,8 @@ substrate-frame-rpc-system = { workspace = true, default-features = true }
 substrate-state-trie-migration-rpc = { workspace = true, default-features = true }
 
 # Polkadot
-polkadot-cli = { workspace = true, default-features = true }
-polkadot-primitives = { workspace = true, default-features = true }
+rechain-cli = { workspace = true, default-features = true }
+rechain-primitives = { workspace = true, default-features = true }
 
 # Cumulus
 cumulus-client-cli = { workspace = true, default-features = true }
@@ -107,8 +107,8 @@ wait-timeout = { workspace = true }
 
 [features]
 default = []
-rococo-native = ["polkadot-cli/rococo-native"]
-westend-native = ["polkadot-cli/westend-native"]
+rococo-native = ["rechain-cli/rococo-native"]
+westend-native = ["rechain-cli/westend-native"]
 runtime-benchmarks = [
 	"cumulus-primitives-core/runtime-benchmarks",
 	"frame-benchmarking-cli/runtime-benchmarks",
@@ -116,8 +116,8 @@ runtime-benchmarks = [
 	"frame-support/runtime-benchmarks",
 	"pallet-transaction-payment/runtime-benchmarks",
 	"parachains-common/runtime-benchmarks",
-	"polkadot-cli/runtime-benchmarks",
-	"polkadot-primitives/runtime-benchmarks",
+	"rechain-cli/runtime-benchmarks",
+	"rechain-primitives/runtime-benchmarks",
 	"sc-client-db/runtime-benchmarks",
 	"sc-service/runtime-benchmarks",
 	"sp-runtime/runtime-benchmarks",
@@ -126,6 +126,7 @@ try-runtime = [
 	"frame-support/try-runtime",
 	"frame-try-runtime/try-runtime",
 	"pallet-transaction-payment/try-runtime",
-	"polkadot-cli/try-runtime",
+	"rechain-cli/try-runtime",
 	"sp-runtime/try-runtime",
 ]
+

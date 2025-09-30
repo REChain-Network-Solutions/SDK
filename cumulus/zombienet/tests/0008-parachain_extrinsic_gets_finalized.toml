@@ -20,6 +20,7 @@ chain = "asset-hub-rococo-local"
   [[parachains.collators]]
   name = "charlie"
   validator = true
-  image = "{{POLKADOT_PARACHAIN_IMAGE}}"
-  command = "polkadot-parachain"
+  image = "{{rechain_PARACHAIN_IMAGE}}"
+  command = "rechain-parachain"
   args = ["--force-authoring", "-ltxpool=trace", "--pool-type=fork-aware"]
+

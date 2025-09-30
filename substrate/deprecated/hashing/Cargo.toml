@@ -21,3 +21,4 @@ sp-crypto-hashing = { workspace = true, default-features = true }
 [features]
 default = ["std"]
 std = ["sp-crypto-hashing/std"]
+

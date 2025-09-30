@@ -1,0 +1,44 @@
+[package]
+name = "test-parachain-adder-collator"
+description = "Collator for the adder test parachain"
+publish = false
+version = "1.0.0"
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lints]
+workspace = true
+
+[[bin]]
+name = "adder-collator"
+path = "src/main.rs"
+
+[dependencies]
+clap = { features = ["derive"], workspace = true }
+codec = { features = ["derive"], workspace = true }
+futures = { workspace = true }
+futures-timer = { workspace = true }
+log = { workspace = true, default-features = true }
+
+rechain-cli = { workspace = true, default-features = true }
+rechain-node-primitives = { workspace = true, default-features = true }
+rechain-node-subsystem = { workspace = true, default-features = true }
+rechain-primitives = { workspace = true, default-features = true }
+rechain-service = { features = ["rococo-native"], workspace = true, default-features = true }
+test-parachain-adder = { workspace = true }
+
+sc-cli = { workspace = true, default-features = true }
+sc-service = { workspace = true, default-features = true }
+sp-core = { workspace = true, default-features = true }
+
+[dev-dependencies]
+rechain-node-core-pvf = { features = ["test-utils"], workspace = true, default-features = true }
+rechain-parachain-primitives = { workspace = true, default-features = true }
+rechain-test-service = { workspace = true }
+
+sc-service = { workspace = true, default-features = true }
+sp-keyring = { workspace = true, default-features = true }
+
+tokio = { features = ["macros"], workspace = true, default-features = true }
+

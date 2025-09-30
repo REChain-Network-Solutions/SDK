@@ -30,3 +30,4 @@ sp-trie = { workspace = true, default-features = true }
 [dev-dependencies]
 sp-state-machine = { workspace = true, default-features = true }
 substrate-test-runtime-client = { workspace = true }
+

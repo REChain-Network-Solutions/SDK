@@ -60,3 +60,4 @@ try-runtime = [
 	"pallet-verify-signature/try-runtime",
 	"sp-runtime/try-runtime",
 ]
+

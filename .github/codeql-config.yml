@@ -1,0 +1,35 @@
+name: "REChain Security Analysis"
+
+disable-default-queries: false
+
+queries:
+  - uses: security-experimental
+  - uses: security-and-quality
+  - uses: security-experimental/cwe-190
+  - uses: security-experimental/cwe-681
+
+paths-ignore:
+  - "**/tests/**"
+  - "**/*.test.rs"
+  - "**/mock.rs"
+  - "target/**"
+  - "**/node_modules/**"
+
+paths:
+  - "substrate/frame"
+  - "rechain"
+  - "bridges"
+  - "cumulus"
+
+query-filters:
+  - exclude:
+      id: rust/constant-comparison
+      reason: "Not relevant for blockchain consensus code"
+
+  - exclude:
+      id: rust/unsafe-code-used
+      reason: "Blockchain runtime requires some unsafe operations"
+
+  - exclude:
+      id: rust/panic
+      reason: "Blockchain runtime handles panics gracefully"

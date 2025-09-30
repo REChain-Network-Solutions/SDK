@@ -46,3 +46,4 @@ substrate-test-runtime = { workspace = true }
 [features]
 # `cargo build --feature=generate-readme` updates the `README.md` file.
 generate-readme = []
+

@@ -28,7 +28,7 @@ smallvec = { workspace = true, default-features = true }
 # Local
 pallet-parachain-template = { workspace = true }
 
-polkadot-sdk = { workspace = true, default-features = false, features = [
+rechain-sdk = { workspace = true, default-features = false, features = [
 	"pallet-aura",
 	"pallet-authorship",
 	"pallet-balances",
@@ -40,8 +40,8 @@ polkadot-sdk = { workspace = true, default-features = false, features = [
 	"pallet-transaction-payment-rpc-runtime-api",
 
 	"pallet-xcm",
-	"polkadot-parachain-primitives",
-	"polkadot-runtime-common",
+	"rechain-parachain-primitives",
+	"rechain-runtime-common",
 	"staging-xcm",
 	"staging-xcm-builder",
 	"staging-xcm-executor",
@@ -71,7 +71,7 @@ std = [
 	"cumulus-pallet-parachain-system/std",
 	"log/std",
 	"pallet-parachain-template/std",
-	"polkadot-sdk/std",
+	"rechain-sdk/std",
 	"scale-info/std",
 	"serde_json/std",
 	"substrate-wasm-builder",
@@ -81,13 +81,13 @@ runtime-benchmarks = [
 	"cumulus-pallet-parachain-system/runtime-benchmarks",
 	"hex-literal",
 	"pallet-parachain-template/runtime-benchmarks",
-	"polkadot-sdk/runtime-benchmarks",
+	"rechain-sdk/runtime-benchmarks",
 ]
 
 try-runtime = [
 	"cumulus-pallet-parachain-system/try-runtime",
 	"pallet-parachain-template/try-runtime",
-	"polkadot-sdk/try-runtime",
+	"rechain-sdk/try-runtime",
 ]
 
 # Enable the metadata hash generation.
@@ -102,3 +102,4 @@ metadata-hash = ["substrate-wasm-builder/metadata-hash"]
 # A convenience feature for enabling things when doing a build
 # for an on-chain release.
 on-chain-release-build = ["metadata-hash"]
+

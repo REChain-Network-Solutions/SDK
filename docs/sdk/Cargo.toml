@@ -1,6 +1,6 @@
 [package]
-name = "polkadot-sdk-docs"
-description = "The one stop shop for developers of the polkadot-sdk"
+name = "rechain-sdk-docs"
+description = "The one stop shop for developers of the rechain-sdk"
 license = "GPL-3.0-or-later WITH Classpath-exception-2.0"
 homepage = "paritytech.github.io"
 repository.workspace = true
@@ -43,7 +43,7 @@ log = { workspace = true, default-features = true }
 node-cli = { workspace = true }
 pallet-example-authorization-tx-extension = { workspace = true, default-features = true }
 pallet-example-single-block-migrations = { workspace = true, default-features = true }
-polkadot-sdk = { features = ["runtime-full"], workspace = true, default-features = true }
+rechain-sdk = { features = ["runtime-full"], workspace = true, default-features = true }
 subkey = { workspace = true, default-features = true }
 
 # Substrate Client
@@ -73,7 +73,7 @@ cumulus-primitives-proof-size-hostfunction = { workspace = true, default-feature
 parachain-info = { workspace = true, default-features = true }
 
 # Omni Node
-polkadot-omni-node-lib = { workspace = true, default-features = true }
+rechain-omni-node-lib = { workspace = true, default-features = true }
 
 # Pallets and FRAME internals
 pallet-asset-conversion-tx-payment = { workspace = true, default-features = true }
@@ -141,3 +141,4 @@ first-runtime = { workspace = true, default-features = true }
 assert_cmd = "2.0.14"
 cmd_lib = { workspace = true }
 rand = "0.8"
+

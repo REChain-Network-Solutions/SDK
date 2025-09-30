@@ -34,3 +34,4 @@ rand = { features = ["small_rng"], workspace = true, default-features = true }
 [[bin]]
 name = "call"
 path = "src/call.rs"
+

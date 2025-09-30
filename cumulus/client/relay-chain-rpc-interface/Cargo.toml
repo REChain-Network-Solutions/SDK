@@ -15,7 +15,7 @@ workspace = true
 portpicker = "0.1.1"
 
 [dependencies]
-polkadot-overseer = { workspace = true, default-features = true }
+rechain-overseer = { workspace = true, default-features = true }
 
 cumulus-primitives-core = { workspace = true, default-features = true }
 cumulus-relay-chain-interface = { workspace = true, default-features = true }
@@ -53,3 +53,4 @@ smoldot-light = { default-features = false, features = ["std"], workspace = true
 thiserror = { workspace = true }
 tracing = { workspace = true, default-features = true }
 url = { workspace = true }
+

@@ -29,3 +29,4 @@ sp-arithmetic = { workspace = true, default-features = true }
 
 [dev-dependencies]
 sp-core = { workspace = true }
+

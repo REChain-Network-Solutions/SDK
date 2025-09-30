@@ -48,3 +48,4 @@ cumulus_based = true
   image = "{{COL_IMAGE}}"
   command = "test-parachain"
   args = ["--relay-chain-light-client", "--reserved-only", "--reserved-nodes {{'charlie'|zombie('multiAddress')}}"]
+

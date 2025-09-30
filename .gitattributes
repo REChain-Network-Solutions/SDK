@@ -1,0 +1,158 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Rust files
+*.rs text eol=lf
+*.toml text eol=lf
+
+# Documentation
+*.md text eol=lf
+*.md diff=markdown
+
+# Scripts
+*.sh text eol=lf
+*.ps1 text eol=crlf
+*.py text eol=lf
+*.js text eol=lf
+*.ts text eol=lf
+
+# Configuration files
+*.yml text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+
+# Lock files
+Cargo.lock -text
+yarn.lock -text
+package-lock.json -text
+
+# Binary files
+*.wasm binary
+*.so binary
+*.dll binary
+*.exe binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+*.pdf binary
+
+# Archive files
+*.zip binary
+*.tar binary
+*.gz binary
+*.bz2 binary
+*.xz binary
+*.7z binary
+*.rar binary
+
+# Database files
+*.db binary
+*.sqlite binary
+*.sqlite3 binary
+
+# Log files
+*.log text eol=lf
+
+# Certificate files
+*.pem text eol=lf
+*.key text eol=lf
+*.crt text eol=lf
+
+# Docker files
+Dockerfile text eol=lf
+docker-compose*.yml text eol=lf
+docker-compose*.yaml text eol=lf
+
+# GitHub specific
+.github/ export-ignore
+.gitattributes text eol=lf
+.gitignore text eol=lf
+
+# Documentation images
+docs/**/*.png binary
+docs/**/*.jpg binary
+docs/**/*.jpeg binary
+docs/**/*.gif binary
+docs/**/*.svg binary
+
+# Test files
+**/*.profraw binary
+**/*.profdata binary
+
+# Fuzzing artifacts
+**/fuzz/**/*.rs text eol=lf
+**/fuzz/artifacts/ binary
+
+# Benchmark artifacts
+**/benchmarks/**/*.json text eol=lf
+
+# Coverage reports
+**/coverage/** binary
+**/lcov.info text eol=lf
+
+# IDE files
+.vscode/ export-ignore
+.idea/ export-ignore
+
+# OS generated files
+.DS_Store export-ignore
+Thumbs.db export-ignore
+
+# Temporary files
+**/*.tmp export-ignore
+**/*.temp export-ignore
+**/*.bak export-ignore
+**/*.backup export-ignore
+
+# Blockchain data (should not be committed)
+**/chains/ export-ignore
+**/parachains/ export-ignore
+**/validators/ export-ignore
+**/data/ export-ignore
+**/keystore/ export-ignore
+**/rechain-data/ export-ignore
+**/node-data/ export-ignore
+**/validator-data/ export-ignore
+**/testnet-data/ export-ignore
+
+# Build artifacts (should not be committed)
+**/target/ export-ignore
+**/dist/ export-ignore
+**/build/ export-ignore
+**/out/ export-ignore
+
+# Node modules (should not be committed)
+**/node_modules/ export-ignore
+
+# Test results (should not be committed)
+**/test-results/ export-ignore
+**/playwright-report/ export-ignore
+**/coverage/ export-ignore
+
+# Logs (should not be committed)
+**/logs/ export-ignore
+**/*.log export-ignore
+**/deploy-logs/ export-ignore
+
+# Environment files (should not be committed)
+**/.env* export-ignore
+
+# Monitoring data (should not be committed)
+**/monitoring/data/ export-ignore
+**/monitoring/prometheus.yml export-ignore
+**/monitoring/grafana-dashboards.json export-ignore
+
+# Deployment artifacts (should not be committed)
+**/deployment-artifacts/ export-ignore
+
+# SDK artifacts (should not be committed)
+**/sdk/dist/ export-ignore
+**/sdk/build/ export-ignore
+**/sdk/node_modules/ export-ignore
+
+# Temporary folders (should not be committed)
+**/tmp/ export-ignore
+**/temp/ export-ignore
