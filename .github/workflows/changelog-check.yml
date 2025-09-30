@@ -1,0 +1,23 @@
+name: Changelog Check
+on:
+  pull_request:
+    types: [opened, synchronize, edited]
+permissions:
+  contents: read
+  pull-requests: read
+jobs:
+  changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check for CHANGELOG update
+        run: |
+          git diff --name-only origin/${{ github.base_ref }}... | tee changed.txt
+          if grep -E '\.(rs|toml|json|yml|yaml|md)$' changed.txt | grep -vq '^CHANGELOG.md$'; then
+            if ! grep -q '^CHANGELOG.md$' changed.txt; then
+              echo "Please update CHANGELOG.md for this change." >&2
+              exit 1
+            fi
+          fi
