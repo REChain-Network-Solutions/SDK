@@ -37,3 +37,20 @@ test:
   stage: test
   script:
     - cargo test --workspace --locked
+
+security:cargo-audit:
+  stage: test
+  image: rust:latest
+  script:
+    - cargo install cargo-audit || true
+    - cargo audit --deny warnings
+
+security:cargo-deny:
+  stage: test
+  image: rust:latest
+  script:
+    - cargo install cargo-deny || true
+    - cargo deny check advisories
+    - cargo deny check licenses
+    - cargo deny check bans
+    - cargo deny check sources
