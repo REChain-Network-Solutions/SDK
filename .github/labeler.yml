@@ -1,0 +1,8 @@
+frontend:
+  - any: ['**/*.ts', '**/*.tsx', '**/*.js']
+backend:
+  - any: ['**/*.rs', '**/*.go', '**/*.py']
+docs:
+  - any: ['**/*.md']
+ci:
+  - any: ['.github/**', '.gitlab-ci.yml']
