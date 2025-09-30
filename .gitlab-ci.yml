@@ -57,3 +57,9 @@ security:cargo-deny:
 
 include:
   - local: '.gitlab/ci/release.yml'
+
+gitleaks:
+  stage: lint
+  image: zricethezav/gitleaks:latest
+  script:
+    - gitleaks detect --no-banner --redact --source . --config .gitleaks.toml

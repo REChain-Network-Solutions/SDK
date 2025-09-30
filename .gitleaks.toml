@@ -1,0 +1,10 @@
+title = "gitleaks config"
+
+[extend]
+# Can extend defaults if needed
+
+[allowlist]
+paths = [
+  "docs/",
+  "**/*.md",
+]
