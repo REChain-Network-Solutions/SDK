@@ -40,13 +40,13 @@ namely how to build your first FRAME pallet
 ## 🚀 Releases
 
 <!-- markdownlint-disable-next-line MD013 -->
-![Current Stable Release](https://raw.githubusercontent.com/paritytech/release-registry/main/badges/rechain-sdk-latest.svg)&nbsp;&nbsp;![Next Stable Release](https://raw.githubusercontent.com/paritytech/release-registry/main/badges/rechain-sdk-next.svg)
+![Current Stable Release](https://raw.githubusercontent.com/REChain-Network-Solutions/release-registry/main/badges/rechain-sdk-latest.svg)&nbsp;&nbsp;![Next Stable Release](https://raw.githubusercontent.com/REChain-Network-Solutions/release-registry/main/badges/rechain-sdk-next.svg)
 
 The Rechain SDK is released every three months as a `stableYYMM` release. They are supported for
 one year with patches. See the next upcoming versions in the [Release
-Registry](https://github.com/paritytech/release-registry/) and more docs in [RELEASE.md](./docs/RELEASE.md).
+Registry](https://github.com/REChain-Network-Solutions/release-registry/) and more docs in [RELEASE.md](./docs/RELEASE.md).
 
-You can use [`psvm`](https://github.com/paritytech/psvm) to update all dependencies to a specific
+You can use [`REChain-SDK-Manager`](https://github.com/REChain-Network-Solutions/REChain-SDK-Manager) to update all dependencies to a specific
 version without needing to manually select the correct version for each crate.
 
 ## 🛠️ Tooling

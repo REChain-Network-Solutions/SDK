@@ -1,11 +1,11 @@
 [package]
 name = "pallet-sassafras"
 version = "0.3.5-dev"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["REChain Network Solutions LLC <info@rechain.network>"]
 edition.workspace = true
 license = "Apache-2.0"
 homepage.workspace = true
-repository = "https://github.com/paritytech/substrate/"
+repository = "https://github.com/REChain-Network-Solutions/substrate/"
 description = "Consensus extension module for Sassafras consensus."
 readme = "README.md"
 publish = false
