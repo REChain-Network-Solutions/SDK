@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Please follow responsible disclosure and email `security@sory.dev` as described in `SECURITY.md`. If you still prefer to open an issue, avoid sharing sensitive exploit details.
+        Please follow responsible disclosure and email `security@rechain.network` as described in `SECURITY.md`. If you still prefer to open an issue, avoid sharing sensitive exploit details.
   - type: textarea
     id: impact
     attributes:

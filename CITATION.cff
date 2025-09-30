@@ -1,8 +1,8 @@
 cff-version: 1.2.0
-title: SDK Monorepo
+title: REChain SDK
 message: If you use this software, please cite it as below.
 authors:
-  - family-names: Sory
-    given-names: Dev
-repository-code: https://github.com/sorydev/SDK
-license: MIT
+  - family-names: REChain Network Solutions LLC
+    given-names: 
+repository-code: https://github.com/REChain-Network-Solutions/SDK
+license: GPL-3.0

@@ -1,6 +1,6 @@
 repository:
-  name: SDK
-  description: "SDK monorepo with Rust workspace and automation"
+  name: REChain-SDK
+  description: "REChain SDK monorepo with Rust workspace and automation"
   private: false
   has_issues: true
   has_projects: false

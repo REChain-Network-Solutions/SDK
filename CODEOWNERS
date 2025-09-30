@@ -1,7 +1,7 @@
 # Global owners
-* @sorydev
+* @REChain-Network-Solutions/maintainers
 
 # Example ownerships
-bridges/ @sorydev
-cumulus/ @sorydev
-substrate/ @sorydev
+bridges/ @REChain-Network-Solutions/maintainers
+cumulus/ @REChain-Network-Solutions/maintainers
+substrate/ @REChain-Network-Solutions/maintainers
