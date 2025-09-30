@@ -17,7 +17,7 @@ renderer = ["html"]
 additional-css = ["last-changed.css"]
 additional-js = ["mermaid-init.js", "mermaid.min.js"]
 # Repository URL used in the last-changed link.
-git-repository-url = "https://github.com/paritytech/rechain-sdk"
+git-repository-url = "https://github.com/REChain-Network-Solutions/REChain-SDK"
 
 [output.linkcheck]
 

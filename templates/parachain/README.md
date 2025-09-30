@@ -1,13 +1,23 @@
 <div align="center">
 
-# Polkadot SDK's Parachain Template
+# REChain SDK's Parachain Template
 
-<img height="70px" alt="Polkadot SDK Logo" src="https://github.com/paritytech/polkadot-sdk/raw/master/docs/images/Polkadot_Logo_Horizontal_Pink_White.png#gh-dark-mode-only"/>
-<img height="70px" alt="Polkadot SDK Logo" src="https://github.com/paritytech/polkadot-sdk/raw/master/docs/images/Polkadot_Logo_Horizontal_Pink_Black.png#gh-light-mode-only"/>
+<img height="70px" alt="REChain Logo" src="https://raw.githubusercontent.com/REChain-Network-Solutions/brand/main/images/Rechain_Logo_Horizontal_Pink_White.png#gh-dark-mode-only"/>
+<img height="70px" alt="REChain Logo" src="https://raw.githubusercontent.com/REChain-Network-Solutions/brand/main/images/Rechain_Logo_Horizontal_Pink_Black.png#gh-light-mode-only"/>
 
-> This is a template for creating a [parachain](https://wiki.polkadot.network/docs/learn-parachains) based on Polkadot SDK.
+> This is a template for creating a [parachain](https://docs.rechain.network/learn/parachains) based on the REChain SDK.
 >
-> This template is automatically updated after releases in the main [Polkadot SDK monorepo](https://github.com/paritytech/polkadot-sdk).
+> This template is kept up-to-date alongside releases in the main REChain SDK monorepo.
+
+A REChain SDK based project such as this one consists of:
+
+- Substrate FRAME-based runtime
+- Cumulus-based parachain integrations
+- Templates and utilities to get started quickly
+
+Download the `rechain` (and any accompanying worker) binaries from REChain SDK releases and expose them on `PATH`.
+
+For technical introduction, see the REChain SDK documentation resources at https://docs.rechain.network
 
 </div>
 

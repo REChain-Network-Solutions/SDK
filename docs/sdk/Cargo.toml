@@ -2,7 +2,7 @@
 name = "rechain-sdk-docs"
 description = "The one stop shop for developers of the rechain-sdk"
 license = "GPL-3.0-or-later WITH Classpath-exception-2.0"
-homepage = "paritytech.github.io"
+homepage = "https://docs.rechain.network"
 repository.workspace = true
 authors.workspace = true
 edition.workspace = true

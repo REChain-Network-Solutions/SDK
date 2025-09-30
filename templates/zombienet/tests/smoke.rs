@@ -5,7 +5,7 @@
 //! polkadot-prepare-worker`
 //! `cargo build --package parachain-template-node --release`
 //! `cargo build --package minimal-template-node --release`
-//! `export PATH=<path-to-polkadot-sdk-repo>/target/release:$PATH
+//! `export PATH=<path-to-rechain-sdk-repo>/target/release:$PATH
 //!
 //! There are also some tests related to omni node which run basaed on pre-generated chain specs,
 //! so to be able to run them you would need to generate the right chain spec (just minimal and

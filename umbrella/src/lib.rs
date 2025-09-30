@@ -3,13 +3,12 @@
 
 #![cfg_attr(not(feature = "std"), no_std)]
 
-//! Polkadot SDK umbrella crate re-exporting all other published crates.
+//! REChain SDK umbrella crate re-exporting all other published crates.
 //!
 //! This helps to set a single version number for all your dependencies. Docs are in the
-//! `polkadot-sdk-docs` crate.
+//! `rechain-sdk-docs` crate.
 
 // This file is auto-generated and checked by the CI.  You can edit it manually, but it must be
-// exactly the way that the CI expects it.
 
 /// Test utils for Asset Hub runtimes.
 #[cfg(feature = "asset-test-utils")]

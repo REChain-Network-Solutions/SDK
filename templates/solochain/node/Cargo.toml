@@ -1,6 +1,6 @@
 [package]
 name = "solochain-template-node"
-description = "A solochain node template built with Substrate, part of Polkadot Sdk."
+description = "A solochain node template built with Substrate, part of the REChain SDK."
 version = "0.0.0"
 license = "Unlicense"
 authors.workspace = true

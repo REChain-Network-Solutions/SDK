@@ -1,6 +1,6 @@
 [package]
 name = "minimal-template-runtime"
-description = "A solochain runtime template built with Substrate, part of Polkadot Sdk."
+description = "A solochain runtime template built with Substrate, part of the REChain SDK."
 version = "0.0.0"
 license = "Unlicense"
 authors.workspace = true

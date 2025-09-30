@@ -6,7 +6,7 @@ license = "Apache-2.0"
 authors = ["Parity Technologies <admin@parity.io>"]
 edition.workspace = true
 homepage.workspace = true
-repository = "https://github.com/paritytech/substrate/"
+repository = "https://github.com/REChain-Network-Solutions/substrate/"
 readme = "README.md"
 
 [lints]
