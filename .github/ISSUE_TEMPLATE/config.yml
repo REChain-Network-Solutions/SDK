@@ -1,17 +1,8 @@
 blank_issues_enabled: false
 contact_links:
-  - name: REChain Documentation
-    url: https://docs.rechain.network
-    about: Check the documentation for help and guides
-
-  - name: Discord Community
-    url: https://discord.gg/rechain
-    about: Join our Discord for community discussions
-
-  - name: Security Issues
-    url: mailto:security@rechain.network
-    about: Report security vulnerabilities privately
-
-  - name: Stack Exchange
-    url: https://substrate.stackexchange.com
-    about: Ask technical questions on Stack Exchange
+  - name: Security reports
+    url: https://sory.dev/security
+    about: Please report security issues privately.
+  - name: Discussions
+    url: https://github.com/sorydev/SDK/discussions
+    about: Ask questions and share ideas here.
