@@ -1,0 +1,24 @@
+name: RFC
+description: Propose a significant design or architectural change
+labels: [design]
+title: "rfc: "
+body:
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: Why is this change needed?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: High-level design, alternatives, and tradeoffs
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: Affected components, migration, compatibility

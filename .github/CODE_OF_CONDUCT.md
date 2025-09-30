@@ -87,3 +87,5 @@ For answers to common questions about this code of conduct, see the FAQ at https
 ---
 
 *REChain Network Solutions LLC - Building the Future of Decentralized Technology*
+
+See root Code of Conduct at `../CODE_OF_CONDUCT.md`.
