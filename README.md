@@ -37,7 +37,6 @@ namely how to build your first FRAME pallet
 ## 🚀 Releases
 
 <!-- markdownlint-disable-next-line MD013 -->
-![Current Stable Release](https://raw.githubusercontent.com/paritytech/release-registry/main/badges/REChain-sdk-latest.svg)&nbsp;&nbsp;![Next Stable Release](https://raw.githubusercontent.com/paritytech/release-registry/main/badges/REChain-sdk-next.svg)
 
 The REChain SDK is released every three months as a `stableYYMM` release. They are supported for
 one year with patches. See the next upcoming versions in the [Release
