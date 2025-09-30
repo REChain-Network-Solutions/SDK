@@ -1,0 +1,11 @@
+{
+  "printWidth": 100,
+  "tabWidth": 2,
+  "singleQuote": false,
+  "trailingComma": "es5",
+  "overrides": [
+    { "files": "*.md", "options": { "proseWrap": "always" } },
+    { "files": "*.yml", "options": { "singleQuote": true } },
+    { "files": "*.yaml", "options": { "singleQuote": true } }
+  ]
+}

@@ -1,0 +1,12 @@
+target/
+node_modules/
+dist/
+build/
+public/
+**/*.lock
+**/*.min.*
+**/*.png
+**/*.gif
+**/*.jpg
+**/*.jpeg
+**/*.svg
