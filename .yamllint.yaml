@@ -1,0 +1,10 @@
+extends: default
+rules:
+  line-length:
+    max: 120
+    allow-non-breakable-words: true
+  truthy:
+    level: warning
+  indentation:
+    indent-sequences: consistent
+    check-multi-line-strings: true

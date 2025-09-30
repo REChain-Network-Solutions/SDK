@@ -1,0 +1,17 @@
+name: Support request
+description: Ask for help using the SDK
+labels: [question]
+title: "support: "
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: What do you need help with?
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Versions, environment, and any relevant details.
