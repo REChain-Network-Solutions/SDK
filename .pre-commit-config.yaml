@@ -1,0 +1,152 @@
+# Pre-commit hooks configuration for REChain SDK
+# Install with: pip install pre-commit && pre-commit install
+
+repos:
+  # Rust formatting
+  - repo: local
+    hooks:
+      - id: rust-fmt
+        name: Rust Format
+        entry: cargo fmt --all
+        language: system
+        files: \.(rs|toml)$
+        pass_filenames: false
+
+  # Rust clippy
+  - repo: local
+    hooks:
+      - id: rust-clippy
+        name: Rust Clippy
+        entry: cargo clippy --workspace --all-targets -- -D warnings
+        language: system
+        files: \.(rs|toml)$
+        pass_filenames: false
+
+  # Rust tests
+  - repo: local
+    hooks:
+      - id: rust-test
+        name: Rust Tests
+        entry: cargo test --workspace
+        language: system
+        files: \.(rs|toml)$
+        pass_filenames: false
+
+  # Check for security vulnerabilities
+  - repo: https://github.com/rust-lang/cargo-audit.git
+    rev: v0.18.0
+    hooks:
+      - id: cargo-audit
+        name: Cargo Audit
+        entry: cargo audit
+        language: system
+        files: Cargo.lock
+        pass_filenames: false
+
+  # TOML formatting
+  - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
+    rev: v2.11.0
+    hooks:
+      - id: pretty-format-toml
+        name: Pretty Format TOML
+        entry: pretty-format-toml
+        language: system
+        files: \.(toml)$
+
+  # YAML formatting
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.0.0
+    hooks:
+      - id: prettier
+        name: Prettier
+        entry: prettier --write
+        language: system
+        files: \.(yml|yaml)$
+
+  # Markdown formatting
+  - repo: https://github.com/executablebooks/mdformat
+    rev: 0.7.17
+    hooks:
+      - id: mdformat
+        name: MD Format
+        entry: mdformat
+        language: system
+        files: \.(md)$
+        additional_dependencies:
+          - mdformat-gfm
+          - mdformat-tables
+          - mdformat-toc
+
+  # Check for large files
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-added-large-files
+        name: Check Added Large Files
+        entry: check-added-large-files
+        language: system
+
+      - id: check-merge-conflict
+        name: Check Merge Conflict
+        entry: check-merge-conflict
+        language: system
+
+      - id: check-yaml
+        name: Check YAML
+        entry: check-yaml
+        language: system
+        files: \.(yml|yaml)$
+
+      - id: check-toml
+        name: Check TOML
+        entry: check-toml
+        language: system
+        files: \.(toml)$
+
+      - id: check-json
+        name: Check JSON
+        entry: check-json
+        language: system
+        files: \.(json)$
+
+      - id: end-of-file-fixer
+        name: End of File Fixer
+        entry: end-of-file-fixer
+        language: system
+        exclude: ^target/.*$
+
+      - id: trailing-whitespace
+        name: Trailing Whitespace
+        entry: trailing-whitespace
+        language: system
+        exclude: ^target/.*$
+
+  # Shell script linting
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.9.0.5
+    hooks:
+      - id: shellcheck
+        name: Shellcheck
+        entry: shellcheck
+        language: system
+        files: \.(sh)$
+
+  # License header check
+  - repo: local
+    hooks:
+      - id: license-header
+        name: License Header
+        entry: scripts/check-license-header.sh
+        language: system
+        files: \.(rs|ts|js|py)$
+        pass_filenames: true
+
+  # Security scan
+  - repo: local
+    hooks:
+      - id: security-scan
+        name: Security Scan
+        entry: cargo audit
+        language: system
+        files: Cargo.lock
+        pass_filenames: false
