@@ -1,0 +1,10 @@
+rules:
+  - id: generic.security
+    languages: [generic]
+    message: Potential security issue found by Semgrep
+    severity: WARNING
+    patterns:
+      - pattern: $X
+    metadata:
+      references: []
+  # Use managed rulesets via CLI args in workflow

@@ -77,5 +77,15 @@ pages:
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
+semgrep:
+  stage: lint
+  image: returntocorp/semgrep:latest
+  script:
+    - semgrep --config p/default --config p/security-audit --error --json > semgrep.json || true
+  artifacts:
+    when: always
+    paths:
+      - semgrep.json
+
 default:
   interruptible: true

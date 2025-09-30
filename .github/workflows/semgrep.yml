@@ -1,0 +1,24 @@
+name: semgrep
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+permissions:
+  contents: read
+  security-events: write
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: returntocorp/semgrep-action@v1
+        with:
+          generateSarif: true
+          config: >-
+            p/default
+            p/security-audit
+      - uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: semgrep.sarif
