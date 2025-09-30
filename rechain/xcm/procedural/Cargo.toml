@@ -24,7 +24,7 @@ syn = { workspace = true }
 [dev-dependencies]
 trybuild = { features = ["diff"], workspace = true }
 # NOTE: we have to explicitly specify `std` because of trybuild
-# https://github.com/paritytech/rechain-sdk/pull/5167
+# https://github.com/REChain-Network-Solutions/SDK/pull/5167
 xcm = { workspace = true, default-features = true, features = ["std"] }
 # For testing macros.
 frame-support = { workspace = true }
