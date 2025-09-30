@@ -1,0 +1,32 @@
+[package]
+name = "rechain-omni-node"
+version = "0.1.0"
+authors.workspace = true
+edition.workspace = true
+build = "build.rs"
+description = "Generic binary that can run a parachain node with u32 block number and Aura consensus"
+license = "Apache-2.0"
+homepage.workspace = true
+repository.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+color-eyre = { workspace = true }
+
+# Local
+rechain-omni-node-lib = { workspace = true }
+
+[build-dependencies]
+substrate-build-script-utils = { workspace = true, default-features = true }
+
+[features]
+default = []
+runtime-benchmarks = [
+	"rechain-omni-node-lib/runtime-benchmarks",
+]
+try-runtime = [
+	"rechain-omni-node-lib/try-runtime",
+]
+

@@ -1,0 +1,39 @@
+name: Bug report
+description: File a bug report
+labels: [bug]
+title: "bug: "
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear and concise description of the bug.
+      placeholder: What happened? What did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Steps to reproduce the behavior.
+      placeholder: 1) ... 2) ...
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version/commit
+      description: SDK version or commit SHA
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Paste relevant logs or stack traces.
+      render: shell
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues
+          required: true

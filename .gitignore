@@ -1,0 +1,101 @@
+# General
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.swp
+*.swo
+*.orig
+*.bak
+*.backup
+
+# Environment files
+.env
+.env.*
+*.env
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+.npm/
+.yarn/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+.venv/
+venv/
+.env.py
+.pytest_cache/
+.mypy_cache/
+.pyre/
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+.gradle/
+build/
+
+# Go
+bin/
+*.exe
+*.test
+*.out
+
+# Rust
+/target/
+
+# Ruby
+.bundle/
+Gemfile.lock
+
+# PHP
+/vendor/
+composer.lock
+
+# .NET
+bin/
+obj/
+*.user
+*.suo
+*.cache
+
+# iOS / Xcode
+DerivedData/
+*.xcworkspace
+
+# Android / Gradle
+.gradle/
+/build/
+
+# IDEs
+.idea/
+.vscode/
+*.code-workspace
+
+# Coverage
+coverage/
+*.lcov
+
+# Misc
+.turbo/
+.next/
+.out/
+dist/
+.cache/
+.tmp/
+
+# OS-specific
+Icon?

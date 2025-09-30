@@ -1,0 +1,44 @@
+[package]
+name = "rechain-dispute-distribution"
+version = "7.0.0"
+description = "Polkadot Dispute Distribution subsystem, which ensures all concerned validators are aware of a dispute and have the relevant votes."
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+homepage.workspace = true
+repository.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+codec = { features = ["std"], workspace = true, default-features = true }
+derive_more = { workspace = true, default-features = true }
+fatality = { workspace = true }
+futures = { workspace = true }
+futures-timer = { workspace = true }
+gum = { workspace = true, default-features = true }
+indexmap = { workspace = true }
+rechain-erasure-coding = { workspace = true, default-features = true }
+rechain-node-network-protocol = { workspace = true, default-features = true }
+rechain-node-primitives = { workspace = true, default-features = true }
+rechain-node-subsystem = { workspace = true, default-features = true }
+rechain-node-subsystem-util = { workspace = true, default-features = true }
+rechain-primitives = { workspace = true, default-features = true }
+sc-network = { workspace = true, default-features = true }
+schnellru = { workspace = true }
+sp-application-crypto = { workspace = true, default-features = true }
+sp-keystore = { workspace = true, default-features = true }
+thiserror = { workspace = true }
+
+[dev-dependencies]
+assert_matches = { workspace = true }
+async-channel = { workspace = true }
+async-trait = { workspace = true }
+futures-timer = { workspace = true }
+rechain-node-subsystem-test-helpers = { workspace = true }
+rechain-primitives-test-helpers = { workspace = true }
+sc-keystore = { workspace = true, default-features = true }
+sp-keyring = { workspace = true, default-features = true }
+sp-tracing = { workspace = true, default-features = true }
+

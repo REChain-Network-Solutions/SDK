@@ -1,0 +1,32 @@
+* text=auto eol=lf
+
+# Normalize line endings for common text files
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+*.js text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.css text eol=lf
+*.scss text eol=lf
+*.html text eol=lf
+*.py text eol=lf
+*.go text eol=lf
+*.rs text eol=lf
+*.java text eol=lf
+*.rb text eol=lf
+*.php text eol=lf
+*.cs text eol=lf
+
+# Keep lockfiles as text but do not attempt to merge
+package-lock.json -merge
+pnpm-lock.yaml -merge
+yarn.lock -merge
+Cargo.lock -merge
+composer.lock -merge
+Gemfile.lock -merge
+
+# Linguist tweaks
+docs/** linguist-documentation
+.github/** linguist-vendored
