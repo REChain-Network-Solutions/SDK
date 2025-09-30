@@ -18,7 +18,7 @@ scale-info = { features = ["derive"], workspace = true }
 # Bridge dependencies
 
 bp-header-chain = { workspace = true }
-bp-polkadot-core = { workspace = true }
+bp-rechain-core = { workspace = true }
 bp-runtime = { workspace = true }
 
 # Substrate dependencies
@@ -32,7 +32,7 @@ sp-std = { workspace = true }
 default = ["std"]
 std = [
 	"bp-header-chain/std",
-	"bp-polkadot-core/std",
+	"bp-rechain-core/std",
 	"bp-runtime/std",
 	"codec/std",
 	"frame-support/std",
@@ -41,3 +41,4 @@ std = [
 	"sp-runtime/std",
 	"sp-std/std",
 ]
+

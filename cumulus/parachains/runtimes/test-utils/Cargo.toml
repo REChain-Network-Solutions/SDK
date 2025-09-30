@@ -38,7 +38,7 @@ parachains-common = { workspace = true }
 
 # Polkadot
 pallet-xcm = { workspace = true }
-polkadot-parachain-primitives = { workspace = true }
+rechain-parachain-primitives = { workspace = true }
 xcm = { workspace = true }
 xcm-executor = { workspace = true }
 xcm-runtime-apis = { workspace = true }
@@ -67,7 +67,7 @@ std = [
 	"pallet-xcm/std",
 	"parachain-info/std",
 	"parachains-common/std",
-	"polkadot-parachain-primitives/std",
+	"rechain-parachain-primitives/std",
 	"sp-consensus-aura/std",
 	"sp-core/std",
 	"sp-io/std",
@@ -76,3 +76,4 @@ std = [
 	"xcm-runtime-apis/std",
 	"xcm/std",
 ]
+

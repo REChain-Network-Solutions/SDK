@@ -1,5 +1,5 @@
 [relaychain]
-default_command = "../polkadot/target/release/polkadot"
+default_command = "../rechain/target/release/polkadot"
 default_args = [ "-lparachain=debug" ]
 chain = "rococo-local"
 
@@ -28,40 +28,41 @@ cumulus_based = true
 	[[parachains.collators]]
 	name = "alice"
 	validator = true
-	command = "./target/release/polkadot-parachain"
+	command = "./target/release/rechain-parachain"
 	args = ["-lparachain=debug"]
 
 	# run bob as parachain collator
 	[[parachains.collators]]
 	name = "bob"
 	validator = true
-	command = "./target/release/polkadot-parachain"
+	command = "./target/release/rechain-parachain"
 	args = ["-lparachain=debug"]
 
 	# run charlie as parachain collator
 	[[parachains.collators]]
 	name = "charlie"
 	validator = true
-	command = "./target/release/polkadot-parachain"
+	command = "./target/release/rechain-parachain"
 	args = ["-lparachain=debug"]
 
 	# run dave as parachain collator
 	[[parachains.collators]]
 	name = "dave"
 	validator = true
-	command = "./target/release/polkadot-parachain"
+	command = "./target/release/rechain-parachain"
 	args = ["-lparachain=debug"]
 
 	# run eve as parachain collator
 	[[parachains.collators]]
 	name = "eve"
 	validator = true
-	command = "./target/release/polkadot-parachain"
+	command = "./target/release/rechain-parachain"
 	args = ["-lparachain=debug"]
 
 	# run ferdie as parachain collator
 	[[parachains.collators]]
 	name = "ferdie"
 	validator = true
-	command = "./target/release/polkadot-parachain"
+	command = "./target/release/rechain-parachain"
 	args = ["-lparachain=debug"]
+

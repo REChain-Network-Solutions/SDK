@@ -1,5 +1,5 @@
 [package]
-name = "polkadot-omni-node"
+name = "rechain-omni-node"
 version = "0.1.0"
 authors.workspace = true
 edition.workspace = true
@@ -16,7 +16,7 @@ workspace = true
 color-eyre = { workspace = true }
 
 # Local
-polkadot-omni-node-lib = { workspace = true }
+rechain-omni-node-lib = { workspace = true }
 
 [build-dependencies]
 substrate-build-script-utils = { workspace = true, default-features = true }
@@ -24,8 +24,9 @@ substrate-build-script-utils = { workspace = true, default-features = true }
 [features]
 default = []
 runtime-benchmarks = [
-	"polkadot-omni-node-lib/runtime-benchmarks",
+	"rechain-omni-node-lib/runtime-benchmarks",
 ]
 try-runtime = [
-	"polkadot-omni-node-lib/try-runtime",
+	"rechain-omni-node-lib/try-runtime",
 ]
+

@@ -1,0 +1,36 @@
+[package]
+name = "rechain-node-core-pvf-checker"
+description = "Polkadot crate that implements the PVF pre-checking subsystem. Responsible for checking and voting for PVFs that are pending approval."
+version = "7.0.0"
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+homepage.workspace = true
+repository.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+futures = { workspace = true }
+gum = { workspace = true, default-features = true }
+thiserror = { workspace = true }
+
+rechain-node-primitives = { workspace = true, default-features = true }
+rechain-node-subsystem = { workspace = true, default-features = true }
+rechain-node-subsystem-util = { workspace = true, default-features = true }
+rechain-overseer = { workspace = true, default-features = true }
+rechain-primitives = { workspace = true, default-features = true }
+
+sp-keystore = { workspace = true, default-features = true }
+
+[dev-dependencies]
+futures-timer = { workspace = true }
+rechain-node-subsystem-test-helpers = { workspace = true }
+rechain-primitives-test-helpers = { workspace = true }
+sc-keystore = { workspace = true, default-features = true }
+sp-application-crypto = { workspace = true, default-features = true }
+sp-core = { workspace = true, default-features = true }
+sp-keyring = { workspace = true, default-features = true }
+sp-runtime = { workspace = true, default-features = true }
+

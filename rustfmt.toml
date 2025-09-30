@@ -1,0 +1,64 @@
+# Rust formatting configuration for REChain SDK
+
+# Basic formatting
+max_width = 100
+hard_tabs = false
+tab_spaces = 4
+newline_style = "Unix"
+use_small_heuristics = "Default"
+
+# Imports
+imports_granularity = "Crate"
+group_imports = "StdExternalCrate"
+reorder_imports = true
+
+# Ordering
+reorder_modules = true
+reorder_impl_items = true
+
+# Control structures
+control_brace_style = "AlwaysSameLine"
+indent_style = "Block"
+brace_style = "SameLineWhere"
+
+# Functions and methods
+fn_params_layout = "Tall"
+empty_item_single_line = true
+
+# Comments
+wrap_comments = true
+comment_width = 80
+normalize_comments = true
+
+# Documentation
+doc_comment_code_block_width = 80
+
+# Arrays and structures
+array_layout = "Block"
+struct_lit_single_line = false
+
+# Enums
+enum_discrim_align_threshold = 20
+
+# Traits
+trait_assoc_item_align_threshold = 20
+
+# Chains
+chain_width = 60
+single_line_if_else_max_width = 50
+
+# Expressions
+match_arm_leading_pipes = "Never"
+match_arm_blocks = true
+match_block_trailing_comma = true
+
+# Generics
+merge_derives = true
+use_try_shorthand = true
+format_code_in_doc_comments = true
+format_strings = true
+format_macro_matchers = true
+format_macro_bodies = true
+
+# Skip certain files
+skip_children = true

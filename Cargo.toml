@@ -1,9 +1,9 @@
 [workspace.package]
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["REChain Network Solutions LLC <info@rechain.network>"]
 edition = "2021"
-homepage = "https://paritytech.github.io/polkadot-sdk/"
+homepage = "https://rechain.network/"
 license = "GPL-3.0-only"
-repository = "https://github.com/paritytech/polkadot-sdk.git"
+repository = "https://github.com/REChain-Network-Solutions/SDK.git"
 
 [workspace]
 resolver = "2"
@@ -19,7 +19,7 @@ members = [
 	"bridges/chains/chain-bridge-hub-westend",
 	"bridges/chains/chain-kusama",
 	"bridges/chains/chain-polkadot",
-	"bridges/chains/chain-polkadot-bulletin",
+	"bridges/chains/chain-rechain-bulletin",
 	"bridges/chains/chain-rococo",
 	"bridges/chains/chain-westend",
 	"bridges/modules/beefy",
@@ -33,7 +33,7 @@ members = [
 	"bridges/primitives/header-chain",
 	"bridges/primitives/messages",
 	"bridges/primitives/parachains",
-	"bridges/primitives/polkadot-core",
+	"bridges/primitives/rechain-core",
 	"bridges/primitives/relayers",
 	"bridges/primitives/runtime",
 	"bridges/primitives/test-utils",
@@ -42,7 +42,6 @@ members = [
 	"bridges/relays/client-substrate",
 	"bridges/relays/equivocation",
 	"bridges/relays/finality",
-	"bridges/relays/lib-substrate-relay",
 	"bridges/relays/messages",
 	"bridges/relays/parachains",
 	"bridges/relays/utils",
@@ -91,6 +90,7 @@ members = [
 	"cumulus/parachains/integration-tests/emulated/chains/parachains/assets/asset-hub-westend",
 	"cumulus/parachains/integration-tests/emulated/chains/parachains/bridges/bridge-hub-rococo",
 	"cumulus/parachains/integration-tests/emulated/chains/parachains/bridges/bridge-hub-westend",
+	"cumulus/parachains/integration-tests/emulated/chains/parachains/bridges/bridge-hub-westend",
 	"cumulus/parachains/integration-tests/emulated/chains/parachains/collectives/collectives-westend",
 	"cumulus/parachains/integration-tests/emulated/chains/parachains/coretime/coretime-rococo",
 	"cumulus/parachains/integration-tests/emulated/chains/parachains/coretime/coretime-westend",
@@ -133,9 +133,9 @@ members = [
 	"cumulus/parachains/runtimes/test-utils",
 	"cumulus/parachains/runtimes/testing/penpal",
 	"cumulus/parachains/runtimes/testing/rococo-parachain",
-	"cumulus/polkadot-omni-node",
-	"cumulus/polkadot-omni-node/lib",
-	"cumulus/polkadot-parachain",
+	"cumulus/rechain-omni-node",
+	"cumulus/rechain-omni-node/lib",
+	"cumulus/rechain-parachain",
 	"cumulus/primitives/aura",
 	"cumulus/primitives/core",
 	"cumulus/primitives/parachain-inherent",
@@ -152,92 +152,92 @@ members = [
 	"docs/sdk/packages/guides/first-pallet",
 	"docs/sdk/packages/guides/first-runtime",
 	"docs/sdk/src/reference_docs/chain_spec_runtime",
-	"polkadot",
-	"polkadot/cli",
-	"polkadot/core-primitives",
-	"polkadot/erasure-coding",
-	"polkadot/erasure-coding/fuzzer",
-	"polkadot/node/collation-generation",
-	"polkadot/node/core/approval-voting",
-	"polkadot/node/core/approval-voting-parallel",
-	"polkadot/node/core/av-store",
-	"polkadot/node/core/backing",
-	"polkadot/node/core/bitfield-signing",
-	"polkadot/node/core/candidate-validation",
-	"polkadot/node/core/chain-api",
-	"polkadot/node/core/chain-selection",
-	"polkadot/node/core/dispute-coordinator",
-	"polkadot/node/core/parachains-inherent",
-	"polkadot/node/core/prospective-parachains",
-	"polkadot/node/core/provisioner",
-	"polkadot/node/core/pvf",
-	"polkadot/node/core/pvf-checker",
-	"polkadot/node/core/pvf/common",
-	"polkadot/node/core/pvf/execute-worker",
-	"polkadot/node/core/pvf/prepare-worker",
-	"polkadot/node/core/runtime-api",
-	"polkadot/node/gum",
-	"polkadot/node/gum/proc-macro",
-	"polkadot/node/malus",
-	"polkadot/node/metrics",
-	"polkadot/node/network/approval-distribution",
-	"polkadot/node/network/availability-distribution",
-	"polkadot/node/network/availability-recovery",
-	"polkadot/node/network/bitfield-distribution",
-	"polkadot/node/network/bridge",
-	"polkadot/node/network/collator-protocol",
-	"polkadot/node/network/dispute-distribution",
-	"polkadot/node/network/gossip-support",
-	"polkadot/node/network/protocol",
-	"polkadot/node/network/statement-distribution",
-	"polkadot/node/overseer",
-	"polkadot/node/primitives",
-	"polkadot/node/service",
-	"polkadot/node/subsystem",
-	"polkadot/node/subsystem-bench",
-	"polkadot/node/subsystem-test-helpers",
-	"polkadot/node/subsystem-types",
-	"polkadot/node/subsystem-util",
-	"polkadot/node/test/client",
-	"polkadot/node/test/service",
-	"polkadot/node/tracking-allocator",
-	"polkadot/node/zombienet-backchannel",
-	"polkadot/parachain",
-	"polkadot/parachain/test-parachains",
-	"polkadot/parachain/test-parachains/adder",
-	"polkadot/parachain/test-parachains/adder/collator",
-	"polkadot/parachain/test-parachains/halt",
-	"polkadot/parachain/test-parachains/undying",
-	"polkadot/parachain/test-parachains/undying/collator",
-	"polkadot/primitives",
-	"polkadot/primitives/test-helpers",
-	"polkadot/rpc",
-	"polkadot/runtime/common",
-	"polkadot/runtime/common/slot_range_helper",
-	"polkadot/runtime/metrics",
-	"polkadot/runtime/parachains",
-	"polkadot/runtime/rococo",
-	"polkadot/runtime/rococo/constants",
-	"polkadot/runtime/test-runtime",
-	"polkadot/runtime/test-runtime/constants",
-	"polkadot/runtime/westend",
-	"polkadot/runtime/westend/constants",
-	"polkadot/statement-table",
-	"polkadot/utils/generate-bags",
-	"polkadot/utils/remote-ext-tests/bags-list",
-	"polkadot/xcm",
-	"polkadot/xcm/docs",
-	"polkadot/xcm/pallet-xcm",
-	"polkadot/xcm/pallet-xcm-benchmarks",
-	"polkadot/xcm/procedural",
-	"polkadot/xcm/xcm-builder",
-	"polkadot/xcm/xcm-executor",
-	"polkadot/xcm/xcm-executor/integration-tests",
-	"polkadot/xcm/xcm-runtime-apis",
-	"polkadot/xcm/xcm-simulator",
-	"polkadot/xcm/xcm-simulator/example",
-	"polkadot/xcm/xcm-simulator/fuzzer",
-	"polkadot/zombienet-sdk-tests",
+	"rechain",
+	"rechain/cli",
+	"rechain/core-primitives",
+	"rechain/erasure-coding",
+	"rechain/erasure-coding/fuzzer",
+	"rechain/node/collation-generation",
+	"rechain/node/core/approval-voting",
+	"rechain/node/core/approval-voting-parallel",
+	"rechain/node/core/av-store",
+	"rechain/node/core/backing",
+	"rechain/node/core/bitfield-signing",
+	"rechain/node/core/candidate-validation",
+	"rechain/node/core/chain-api",
+	"rechain/node/core/chain-selection",
+	"rechain/node/core/dispute-coordinator",
+	"rechain/node/core/parachains-inherent",
+	"rechain/node/core/prospective-parachains",
+	"rechain/node/core/provisioner",
+	"rechain/node/core/pvf",
+	"rechain/node/core/pvf-checker",
+	"rechain/node/core/pvf/common",
+	"rechain/node/core/pvf/execute-worker",
+	"rechain/node/core/pvf/prepare-worker",
+	"rechain/node/core/runtime-api",
+	"rechain/node/gum",
+	"rechain/node/gum/proc-macro",
+	"rechain/node/malus",
+	"rechain/node/metrics",
+	"rechain/node/network/approval-distribution",
+	"rechain/node/network/availability-distribution",
+	"rechain/node/network/availability-recovery",
+	"rechain/node/network/bitfield-distribution",
+	"rechain/node/network/bridge",
+	"rechain/node/network/collator-protocol",
+	"rechain/node/network/dispute-distribution",
+	"rechain/node/network/gossip-support",
+	"rechain/node/network/protocol",
+	"rechain/node/network/statement-distribution",
+	"rechain/node/overseer",
+	"rechain/node/primitives",
+	"rechain/node/service",
+	"rechain/node/subsystem",
+	"rechain/node/subsystem-bench",
+	"rechain/node/subsystem-test-helpers",
+	"rechain/node/subsystem-types",
+	"rechain/node/subsystem-util",
+	"rechain/node/test/client",
+	"rechain/node/test/service",
+	"rechain/node/tracking-allocator",
+	"rechain/node/zombienet-backchannel",
+	"rechain/parachain",
+	"rechain/parachain/test-parachains",
+	"rechain/parachain/test-parachains/adder",
+	"rechain/parachain/test-parachains/adder/collator",
+	"rechain/parachain/test-parachains/halt",
+	"rechain/parachain/test-parachains/undying",
+	"rechain/parachain/test-parachains/undying/collator",
+	"rechain/primitives",
+	"rechain/primitives/test-helpers",
+	"rechain/rpc",
+	"rechain/runtime/common",
+	"rechain/runtime/common/slot_range_helper",
+	"rechain/runtime/metrics",
+	"rechain/runtime/parachains",
+	"rechain/runtime/rococo",
+	"rechain/runtime/rococo/constants",
+	"rechain/runtime/test-runtime",
+	"rechain/runtime/test-runtime/constants",
+	"rechain/runtime/westend",
+	"rechain/runtime/westend/constants",
+	"rechain/statement-table",
+	"rechain/utils/generate-bags",
+	"rechain/utils/remote-ext-tests/bags-list",
+	"rechain/xcm",
+	"rechain/xcm/docs",
+	"rechain/xcm/pallet-xcm",
+	"rechain/xcm/pallet-xcm-benchmarks",
+	"rechain/xcm/procedural",
+	"rechain/xcm/xcm-builder",
+	"rechain/xcm/xcm-executor",
+	"rechain/xcm/xcm-executor/integration-tests",
+	"rechain/xcm/xcm-runtime-apis",
+	"rechain/xcm/xcm-simulator",
+	"rechain/xcm/xcm-simulator/example",
+	"rechain/xcm/xcm-simulator/fuzzer",
+	"rechain/zombienet-sdk-tests",
 	"substrate/bin/node/bench",
 	"substrate/bin/node/cli",
 	"substrate/bin/node/inspect",
@@ -310,6 +310,19 @@ members = [
 	"substrate/deprecated/hashing",
 	"substrate/deprecated/hashing/proc-macro",
 	"substrate/frame",
+	"substrate/frame/ai",
+	"substrate/frame/bridge",
+	"substrate/frame/defi",
+	"substrate/frame/governance",
+	"substrate/frame/iot",
+	"substrate/frame/layer2",
+	"substrate/frame/multisig",
+	"substrate/frame/nft",
+	"substrate/frame/oracle",
+	"substrate/frame/web3",
+	"substrate/frame/web4",
+	"substrate/frame/web5",
+	"substrate/frame/zkp",
 	"substrate/frame/alliance",
 	"substrate/frame/asset-conversion",
 	"substrate/frame/asset-conversion/ops",
@@ -554,9 +567,9 @@ members = [
 ]
 
 default-members = [
-	"cumulus/polkadot-omni-node",
-	"cumulus/polkadot-parachain",
-	"polkadot",
+	"cumulus/rechain-omni-node",
+	"cumulus/rechain-parachain",
+	"rechain",
 	"substrate/bin/node/cli",
 ]
 
@@ -658,8 +671,8 @@ bp-kusama = { default-features = false, path = "bridges/chains/chain-kusama" }
 bp-messages = { path = "bridges/primitives/messages", default-features = false }
 bp-parachains = { path = "bridges/primitives/parachains", default-features = false }
 bp-polkadot = { default-features = false, path = "bridges/chains/chain-polkadot" }
-bp-polkadot-bulletin = { path = "bridges/chains/chain-polkadot-bulletin", default-features = false }
-bp-polkadot-core = { path = "bridges/primitives/polkadot-core", default-features = false }
+bp-rechain-bulletin = { path = "bridges/chains/chain-rechain-bulletin", default-features = false }
+bp-rechain-core = { path = "bridges/primitives/rechain-core", default-features = false }
 bp-relayers = { path = "bridges/primitives/relayers", default-features = false }
 bp-rococo = { path = "bridges/chains/chain-rococo", default-features = false }
 bp-runtime = { path = "bridges/primitives/runtime", default-features = false }
@@ -771,14 +784,14 @@ femme = { version = "2.2.1" }
 filetime = { version = "0.2.16" }
 finality-grandpa = { version = "0.16.3", default-features = false }
 finality-relay = { path = "bridges/relays/finality" }
-first-pallet = { package = "polkadot-sdk-docs-first-pallet", path = "docs/sdk/packages/guides/first-pallet", default-features = false }
-first-runtime = { package = "polkadot-sdk-docs-first-runtime", path = "docs/sdk/packages/guides/first-runtime", default-features = false }
+first-pallet = { package = "rechain-sdk-docs-first-pallet", path = "docs/sdk/packages/guides/first-pallet", default-features = false }
+first-runtime = { package = "rechain-sdk-docs-first-runtime", path = "docs/sdk/packages/guides/first-runtime", default-features = false }
 flate2 = { version = "1.0" }
 fnv = { version = "1.0.6" }
 fork-tree = { path = "substrate/utils/fork-tree", default-features = false }
 forwarded-header-value = { version = "0.1.1" }
 fraction = { version = "0.13.1" }
-frame = { path = "substrate/frame", default-features = false, package = "polkadot-sdk-frame" }
+frame = { path = "substrate/frame", default-features = false, package = "rechain-sdk-frame" }
 frame-benchmarking = { path = "substrate/frame/benchmarking", default-features = false }
 frame-benchmarking-cli = { path = "substrate/utils/frame/benchmarking-cli", default-features = false }
 frame-benchmarking-pallet-pov = { default-features = false, path = "substrate/frame/benchmarking/pov" }
@@ -807,8 +820,8 @@ gethostname = { version = "0.2.3" }
 glob = { version = "0.3" }
 glutton-westend-runtime = { path = "cumulus/parachains/runtimes/glutton/glutton-westend" }
 governor = { version = "0.6.0" }
-gum = { path = "polkadot/node/gum", default-features = false, package = "tracing-gum" }
-gum-proc-macro = { path = "polkadot/node/gum/proc-macro", default-features = false, package = "tracing-gum-proc-macro" }
+gum = { path = "rechain/node/gum", default-features = false, package = "tracing-gum" }
+gum-proc-macro = { path = "rechain/node/gum/proc-macro", default-features = false, package = "tracing-gum-proc-macro" }
 handlebars = { version = "5.1.0" }
 hash-db = { version = "0.16.0", default-features = false }
 hash256-std-hasher = { version = "0.15.2", default-features = false }
@@ -1020,8 +1033,8 @@ pallet-utility = { path = "substrate/frame/utility", default-features = false }
 pallet-verify-signature = { path = "substrate/frame/verify-signature", default-features = false }
 pallet-vesting = { path = "substrate/frame/vesting", default-features = false }
 pallet-whitelist = { path = "substrate/frame/whitelist", default-features = false }
-pallet-xcm = { path = "polkadot/xcm/pallet-xcm", default-features = false }
-pallet-xcm-benchmarks = { path = "polkadot/xcm/pallet-xcm-benchmarks", default-features = false }
+pallet-xcm = { path = "rechain/xcm/pallet-xcm", default-features = false }
+pallet-xcm-benchmarks = { path = "rechain/xcm/pallet-xcm-benchmarks", default-features = false }
 pallet-xcm-bridge-hub = { path = "bridges/modules/xcm-bridge-hub", default-features = false }
 pallet-xcm-bridge-hub-router = { path = "bridges/modules/xcm-bridge-hub-router", default-features = false }
 parachain-info = { path = "cumulus/parachains/pallets/parachain-info", default-features = false, package = "staging-parachain-info" }
@@ -1043,62 +1056,62 @@ people-rococo-runtime = { path = "cumulus/parachains/runtimes/people/people-roco
 people-westend-emulated-chain = { path = "cumulus/parachains/integration-tests/emulated/chains/parachains/people/people-westend" }
 people-westend-runtime = { path = "cumulus/parachains/runtimes/people/people-westend" }
 pin-project = { version = "1.1.3" }
-polkadot-approval-distribution = { path = "polkadot/node/network/approval-distribution", default-features = false }
-polkadot-availability-bitfield-distribution = { path = "polkadot/node/network/bitfield-distribution", default-features = false }
-polkadot-availability-distribution = { path = "polkadot/node/network/availability-distribution", default-features = false }
-polkadot-availability-recovery = { path = "polkadot/node/network/availability-recovery", default-features = false }
-polkadot-cli = { path = "polkadot/cli", default-features = false }
-polkadot-collator-protocol = { path = "polkadot/node/network/collator-protocol", default-features = false }
-polkadot-core-primitives = { path = "polkadot/core-primitives", default-features = false }
-polkadot-dispute-distribution = { path = "polkadot/node/network/dispute-distribution", default-features = false }
-polkadot-erasure-coding = { path = "polkadot/erasure-coding", default-features = false }
-polkadot-gossip-support = { path = "polkadot/node/network/gossip-support", default-features = false }
-polkadot-network-bridge = { path = "polkadot/node/network/bridge", default-features = false }
-polkadot-node-collation-generation = { path = "polkadot/node/collation-generation", default-features = false }
-polkadot-node-core-approval-voting = { path = "polkadot/node/core/approval-voting", default-features = false }
-polkadot-node-core-approval-voting-parallel = { path = "polkadot/node/core/approval-voting-parallel", default-features = false }
-polkadot-node-core-av-store = { path = "polkadot/node/core/av-store", default-features = false }
-polkadot-node-core-backing = { path = "polkadot/node/core/backing", default-features = false }
-polkadot-node-core-bitfield-signing = { path = "polkadot/node/core/bitfield-signing", default-features = false }
-polkadot-node-core-candidate-validation = { path = "polkadot/node/core/candidate-validation", default-features = false }
-polkadot-node-core-chain-api = { path = "polkadot/node/core/chain-api", default-features = false }
-polkadot-node-core-chain-selection = { path = "polkadot/node/core/chain-selection", default-features = false }
-polkadot-node-core-dispute-coordinator = { path = "polkadot/node/core/dispute-coordinator", default-features = false }
-polkadot-node-core-parachains-inherent = { path = "polkadot/node/core/parachains-inherent", default-features = false }
-polkadot-node-core-prospective-parachains = { path = "polkadot/node/core/prospective-parachains", default-features = false }
-polkadot-node-core-provisioner = { path = "polkadot/node/core/provisioner", default-features = false }
-polkadot-node-core-pvf = { path = "polkadot/node/core/pvf", default-features = false }
-polkadot-node-core-pvf-checker = { path = "polkadot/node/core/pvf-checker", default-features = false }
-polkadot-node-core-pvf-common = { path = "polkadot/node/core/pvf/common", default-features = false }
-polkadot-node-core-pvf-execute-worker = { path = "polkadot/node/core/pvf/execute-worker", default-features = false }
-polkadot-node-core-pvf-prepare-worker = { path = "polkadot/node/core/pvf/prepare-worker", default-features = false }
-polkadot-node-core-runtime-api = { path = "polkadot/node/core/runtime-api", default-features = false }
-polkadot-node-metrics = { path = "polkadot/node/metrics", default-features = false }
-polkadot-node-network-protocol = { path = "polkadot/node/network/protocol", default-features = false }
-polkadot-node-primitives = { path = "polkadot/node/primitives", default-features = false }
-polkadot-node-subsystem = { path = "polkadot/node/subsystem", default-features = false }
-polkadot-node-subsystem-test-helpers = { path = "polkadot/node/subsystem-test-helpers" }
-polkadot-node-subsystem-types = { path = "polkadot/node/subsystem-types", default-features = false }
-polkadot-node-subsystem-util = { path = "polkadot/node/subsystem-util", default-features = false }
-polkadot-omni-node = { path = "cumulus/polkadot-omni-node", default-features = false }
-polkadot-omni-node-lib = { path = "cumulus/polkadot-omni-node/lib", default-features = false }
-polkadot-overseer = { path = "polkadot/node/overseer", default-features = false }
-polkadot-parachain-primitives = { path = "polkadot/parachain", default-features = false }
-polkadot-primitives = { path = "polkadot/primitives", default-features = false }
-polkadot-primitives-test-helpers = { path = "polkadot/primitives/test-helpers" }
-polkadot-rpc = { path = "polkadot/rpc", default-features = false }
-polkadot-runtime-common = { path = "polkadot/runtime/common", default-features = false }
-polkadot-runtime-metrics = { path = "polkadot/runtime/metrics", default-features = false }
-polkadot-runtime-parachains = { path = "polkadot/runtime/parachains", default-features = false }
-polkadot-sdk = { path = "umbrella", default-features = false }
-polkadot-sdk-docs = { path = "docs/sdk" }
-polkadot-service = { path = "polkadot/node/service", default-features = false }
-polkadot-statement-distribution = { path = "polkadot/node/network/statement-distribution", default-features = false }
-polkadot-statement-table = { path = "polkadot/statement-table", default-features = false }
-polkadot-subsystem-bench = { path = "polkadot/node/subsystem-bench" }
-polkadot-test-client = { path = "polkadot/node/test/client" }
-polkadot-test-runtime = { path = "polkadot/runtime/test-runtime" }
-polkadot-test-service = { path = "polkadot/node/test/service" }
+rechain-approval-distribution = { path = "rechain/node/network/approval-distribution", default-features = false }
+rechain-availability-bitfield-distribution = { path = "rechain/node/network/bitfield-distribution", default-features = false }
+rechain-availability-distribution = { path = "rechain/node/network/availability-distribution", default-features = false }
+rechain-availability-recovery = { path = "rechain/node/network/availability-recovery", default-features = false }
+rechain-cli = { path = "rechain/cli", default-features = false }
+rechain-collator-protocol = { path = "rechain/node/network/collator-protocol", default-features = false }
+rechain-core-primitives = { path = "rechain/core-primitives", default-features = false }
+rechain-dispute-distribution = { path = "rechain/node/network/dispute-distribution", default-features = false }
+rechain-erasure-coding = { path = "rechain/erasure-coding", default-features = false }
+rechain-gossip-support = { path = "rechain/node/network/gossip-support", default-features = false }
+rechain-network-bridge = { path = "rechain/node/network/bridge", default-features = false }
+rechain-node-collation-generation = { path = "rechain/node/collation-generation", default-features = false }
+rechain-node-core-approval-voting = { path = "rechain/node/core/approval-voting", default-features = false }
+rechain-node-core-approval-voting-parallel = { path = "rechain/node/core/approval-voting-parallel", default-features = false }
+rechain-node-core-av-store = { path = "rechain/node/core/av-store", default-features = false }
+rechain-node-core-backing = { path = "rechain/node/core/backing", default-features = false }
+rechain-node-core-bitfield-signing = { path = "rechain/node/core/bitfield-signing", default-features = false }
+rechain-node-core-candidate-validation = { path = "rechain/node/core/candidate-validation", default-features = false }
+rechain-node-core-chain-api = { path = "rechain/node/core/chain-api", default-features = false }
+rechain-node-core-chain-selection = { path = "rechain/node/core/chain-selection", default-features = false }
+rechain-node-core-dispute-coordinator = { path = "rechain/node/core/dispute-coordinator", default-features = false }
+rechain-node-core-parachains-inherent = { path = "rechain/node/core/parachains-inherent", default-features = false }
+rechain-node-core-prospective-parachains = { path = "rechain/node/core/prospective-parachains", default-features = false }
+rechain-node-core-provisioner = { path = "rechain/node/core/provisioner", default-features = false }
+rechain-node-core-pvf = { path = "rechain/node/core/pvf", default-features = false }
+rechain-node-core-pvf-checker = { path = "rechain/node/core/pvf-checker", default-features = false }
+rechain-node-core-pvf-common = { path = "rechain/node/core/pvf/common", default-features = false }
+rechain-node-core-pvf-execute-worker = { path = "rechain/node/core/pvf/execute-worker", default-features = false }
+rechain-node-core-pvf-prepare-worker = { path = "rechain/node/core/pvf/prepare-worker", default-features = false }
+rechain-node-core-runtime-api = { path = "rechain/node/core/runtime-api", default-features = false }
+rechain-node-metrics = { path = "rechain/node/metrics", default-features = false }
+rechain-node-network-protocol = { path = "rechain/node/network/protocol", default-features = false }
+rechain-node-primitives = { path = "rechain/node/primitives", default-features = false }
+rechain-node-subsystem = { path = "rechain/node/subsystem", default-features = false }
+rechain-node-subsystem-test-helpers = { path = "rechain/node/subsystem-test-helpers" }
+rechain-node-subsystem-types = { path = "rechain/node/subsystem-types", default-features = false }
+rechain-node-subsystem-util = { path = "rechain/node/subsystem-util", default-features = false }
+rechain-omni-node = { path = "cumulus/rechain-omni-node", default-features = false }
+rechain-omni-node-lib = { path = "cumulus/rechain-omni-node/lib", default-features = false }
+rechain-overseer = { path = "rechain/node/overseer", default-features = false }
+rechain-parachain-primitives = { path = "rechain/parachain", default-features = false }
+rechain-primitives = { path = "rechain/primitives", default-features = false }
+rechain-primitives-test-helpers = { path = "rechain/primitives/test-helpers" }
+rechain-rpc = { path = "rechain/rpc", default-features = false }
+rechain-runtime-common = { path = "rechain/runtime/common", default-features = false }
+rechain-runtime-metrics = { path = "rechain/runtime/metrics", default-features = false }
+rechain-runtime-parachains = { path = "rechain/runtime/parachains", default-features = false }
+rechain-sdk = { path = "umbrella", default-features = false }
+rechain-sdk-docs = { path = "docs/sdk" }
+rechain-service = { path = "rechain/node/service", default-features = false }
+rechain-statement-distribution = { path = "rechain/node/network/statement-distribution", default-features = false }
+rechain-statement-table = { path = "rechain/statement-table", default-features = false }
+rechain-subsystem-bench = { path = "rechain/node/subsystem-bench" }
+rechain-test-client = { path = "rechain/node/test/client" }
+rechain-test-runtime = { path = "rechain/runtime/test-runtime" }
+rechain-test-service = { path = "rechain/node/test/service" }
 polkavm = { version = "0.18.0", default-features = false }
 polkavm-derive = "0.18.0"
 polkavm-linker = "0.18.0"
@@ -1137,8 +1150,8 @@ reqwest = { version = "0.12.9", default-features = false }
 rlp = { version = "0.6.1", default-features = false }
 rococo-emulated-chain = { path = "cumulus/parachains/integration-tests/emulated/chains/relays/rococo" }
 rococo-parachain-runtime = { path = "cumulus/parachains/runtimes/testing/rococo-parachain" }
-rococo-runtime = { path = "polkadot/runtime/rococo" }
-rococo-runtime-constants = { path = "polkadot/runtime/rococo/constants", default-features = false }
+rococo-runtime = { path = "rechain/runtime/rococo" }
+rococo-runtime-constants = { path = "rechain/runtime/rococo/constants", default-features = false }
 rococo-system-emulated-network = { path = "cumulus/parachains/integration-tests/emulated/networks/rococo-system" }
 rococo-westend-system-emulated-network = { path = "cumulus/parachains/integration-tests/emulated/networks/rococo-westend-system" }
 rpassword = { version = "7.0.0" }
@@ -1224,7 +1237,7 @@ sha1 = { version = "0.10.6" }
 sha2 = { version = "0.10.7", default-features = false }
 sha3 = { version = "0.10.0", default-features = false }
 shlex = { version = "1.3.0" }
-slot-range-helper = { path = "polkadot/runtime/common/slot_range_helper", default-features = false }
+slot-range-helper = { path = "rechain/runtime/common/slot_range_helper", default-features = false }
 slotmap = { version = "1.0" }
 smallvec = { version = "1.11.0", default-features = false }
 smoldot = { version = "0.11.0", default-features = false }
@@ -1335,10 +1348,10 @@ tar = { version = "0.4" }
 tempfile = { version = "3.23.0" }
 test-log = { version = "0.2.14" }
 test-pallet = { path = "substrate/frame/support/test/pallet", default-features = false, package = "frame-support-test-pallet" }
-test-parachain-adder = { path = "polkadot/parachain/test-parachains/adder" }
-test-parachain-halt = { path = "polkadot/parachain/test-parachains/halt" }
-test-parachain-undying = { path = "polkadot/parachain/test-parachains/undying" }
-test-runtime-constants = { path = "polkadot/runtime/test-runtime/constants", default-features = false }
+test-parachain-adder = { path = "rechain/parachain/test-parachains/adder" }
+test-parachain-halt = { path = "rechain/parachain/test-parachains/halt" }
+test-parachain-undying = { path = "rechain/parachain/test-parachains/undying" }
+test-runtime-constants = { path = "rechain/runtime/test-runtime/constants", default-features = false }
 testnet-parachains-constants = { path = "cumulus/parachains/runtimes/constants", default-features = false }
 thiserror = { version = "1.0.64" }
 thousands = { version = "0.2.0" }
@@ -1362,7 +1375,7 @@ tracing-core = { version = "0.1.32", default-features = false }
 tracing-futures = { version = "0.2.4" }
 tracing-log = { version = "0.2.0" }
 tracing-subscriber = { version = "0.3.18" }
-tracking-allocator = { path = "polkadot/node/tracking-allocator", default-features = false, package = "staging-tracking-allocator" }
+tracking-allocator = { path = "rechain/node/tracking-allocator", default-features = false, package = "staging-tracking-allocator" }
 trie-bench = { version = "0.39.0" }
 trie-db = { version = "0.29.1", default-features = false }
 trie-root = { version = "0.18.0", default-features = false }
@@ -1384,18 +1397,18 @@ wasmi = { version = "0.32.3", default-features = false }
 wasmtime = { version = "8.0.1", default-features = false }
 wat = { version = "1.0.0" }
 westend-emulated-chain = { path = "cumulus/parachains/integration-tests/emulated/chains/relays/westend", default-features = false }
-westend-runtime = { path = "polkadot/runtime/westend" }
-westend-runtime-constants = { path = "polkadot/runtime/westend/constants", default-features = false }
+westend-runtime = { path = "rechain/runtime/westend" }
+westend-runtime-constants = { path = "rechain/runtime/westend/constants", default-features = false }
 westend-system-emulated-network = { path = "cumulus/parachains/integration-tests/emulated/networks/westend-system" }
 x25519-dalek = { version = "2.0" }
-xcm = { path = "polkadot/xcm", default-features = false, package = "staging-xcm" }
-xcm-builder = { path = "polkadot/xcm/xcm-builder", default-features = false, package = "staging-xcm-builder" }
-xcm-docs = { path = "polkadot/xcm/docs" }
+xcm = { path = "rechain/xcm", default-features = false, package = "staging-xcm" }
+xcm-builder = { path = "rechain/xcm/xcm-builder", default-features = false, package = "staging-xcm-builder" }
+xcm-docs = { path = "rechain/xcm/docs" }
 xcm-emulator = { path = "cumulus/xcm/xcm-emulator", default-features = false }
-xcm-executor = { path = "polkadot/xcm/xcm-executor", default-features = false, package = "staging-xcm-executor" }
-xcm-procedural = { path = "polkadot/xcm/procedural", default-features = false }
-xcm-runtime-apis = { path = "polkadot/xcm/xcm-runtime-apis", default-features = false }
-xcm-simulator = { path = "polkadot/xcm/xcm-simulator", default-features = false }
+xcm-executor = { path = "rechain/xcm/xcm-executor", default-features = false, package = "staging-xcm-executor" }
+xcm-procedural = { path = "rechain/xcm/procedural", default-features = false }
+xcm-runtime-apis = { path = "rechain/xcm/xcm-runtime-apis", default-features = false }
+xcm-simulator = { path = "rechain/xcm/xcm-simulator", default-features = false }
 zeroize = { version = "1.7.0", default-features = false }
 zombienet-sdk = { version = "0.2.20" }
 zstd = { version = "0.12.4", default-features = false }
@@ -1475,3 +1488,4 @@ wasmi = { opt-level = 3 }
 x25519-dalek = { opt-level = 3 }
 yamux = { opt-level = 3 }
 zeroize = { opt-level = 3 }
+

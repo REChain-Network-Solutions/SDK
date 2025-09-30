@@ -22,3 +22,4 @@ use_field_init_shorthand = true
 # Format comments
 comment_width = 100
 wrap_comments = true
+

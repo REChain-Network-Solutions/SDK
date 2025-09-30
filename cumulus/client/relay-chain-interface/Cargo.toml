@@ -12,7 +12,7 @@ repository.workspace = true
 workspace = true
 
 [dependencies]
-polkadot-overseer = { workspace = true, default-features = true }
+rechain-overseer = { workspace = true, default-features = true }
 
 cumulus-primitives-core = { workspace = true, default-features = true }
 
@@ -27,3 +27,4 @@ codec = { workspace = true, default-features = true }
 futures = { workspace = true }
 jsonrpsee-core = { workspace = true }
 thiserror = { workspace = true }
+

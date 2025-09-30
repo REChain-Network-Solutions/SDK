@@ -33,3 +33,4 @@ chain_spec_path = "chain-spec.json"
   name = "eve"
   validator = false
   db_snapshot="{{DB_SNAPSHOT}}"
+

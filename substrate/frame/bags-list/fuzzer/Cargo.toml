@@ -21,3 +21,4 @@ rand = { features = ["small_rng", "std"], workspace = true, default-features = t
 [[bin]]
 name = "bags-list"
 path = "src/main.rs"
+

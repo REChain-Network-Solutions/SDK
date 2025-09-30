@@ -1,0 +1,25 @@
+[package]
+name = "erasure_coding_fuzzer"
+version = "1.0.0"
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]
+honggfuzz = { workspace = true }
+rechain-erasure-coding = { workspace = true, default-features = true }
+rechain-node-primitives = { workspace = true, default-features = true }
+rechain-primitives = { workspace = true, default-features = true }
+
+[[bin]]
+name = "reconstruct"
+path = "src/reconstruct.rs"
+
+[[bin]]
+name = "round_trip"
+path = "src/round_trip.rs"
+

@@ -21,10 +21,11 @@ sp-core = { workspace = true }
 sp-keyring = { workspace = true }
 
 # Polkadot
-polkadot-primitives = { workspace = true }
+rechain-primitives = { workspace = true }
 rococo-runtime = { workspace = true }
 rococo-runtime-constants = { workspace = true }
 
 # Cumulus
 emulated-integration-tests-common = { workspace = true }
 parachains-common = { workspace = true, default-features = true }
+

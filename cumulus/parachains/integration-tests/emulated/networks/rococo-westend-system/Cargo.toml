@@ -20,3 +20,4 @@ emulated-integration-tests-common = { workspace = true }
 penpal-emulated-chain = { workspace = true }
 rococo-emulated-chain = { workspace = true }
 westend-emulated-chain = { workspace = true, default-features = true }
+

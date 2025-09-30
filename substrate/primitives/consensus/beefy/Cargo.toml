@@ -66,3 +66,4 @@ bls-experimental = [
 	"sp-application-crypto/bls-experimental",
 	"sp-core/bls-experimental",
 ]
+

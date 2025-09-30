@@ -9,3 +9,4 @@ description = "Common utilities for pallet-revive-fixtures."
 
 [dependencies]
 uapi = { package = 'pallet-revive-uapi', path = "../../../uapi", default-features = false }
+

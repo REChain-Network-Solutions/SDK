@@ -1,5 +1,5 @@
 [package]
-name = "polkadot-sdk-frame"
+name = "rechain-sdk-frame"
 version = "0.1.0"
 authors = ["Parity Technologies <admin@parity.io>"]
 edition.workspace = true
@@ -127,3 +127,4 @@ try-runtime = [
 	"pallet-examples/try-runtime",
 	"sp-runtime/try-runtime",
 ]
+

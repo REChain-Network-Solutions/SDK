@@ -24,8 +24,8 @@ targets = ["x86_64-unknown-linux-gnu"]
 
 [badges]
 maintenance = { status = "actively-developed" }
-is-it-maintained-issue-resolution = { repository = "paritytech/polkadot-sdk" }
-is-it-maintained-open-issues = { repository = "paritytech/polkadot-sdk" }
+is-it-maintained-issue-resolution = { repository = "paritytech/rechain-sdk" }
+is-it-maintained-open-issues = { repository = "paritytech/rechain-sdk" }
 
 [[bin]]
 name = "substrate-node"
@@ -48,8 +48,8 @@ serde = { features = ["derive"], workspace = true, default-features = true }
 serde_json = { workspace = true, default-features = true }
 subxt-signer = { workspace = true, features = ["unstable-eth"] }
 
-# The Polkadot-SDK:
-polkadot-sdk = { features = [
+# The rechain-SDK:
+rechain-sdk = { features = [
 	"fork-tree",
 	"frame-benchmarking-cli",
 	"frame-remote-externalities",
@@ -156,7 +156,7 @@ tokio-util = { features = ["compat"], workspace = true }
 wait-timeout = { workspace = true }
 wat = { workspace = true }
 
-# These testing-only dependencies are not exported by the Polkadot-SDK crate:
+# These testing-only dependencies are not exported by the rechain-SDK crate:
 node-testing = { workspace = true }
 sc-service-test = { workspace = true }
 substrate-cli-test-utils = { workspace = true }
@@ -167,19 +167,19 @@ clap_complete = { optional = true, workspace = true }
 
 node-inspect = { optional = true, workspace = true, default-features = true }
 
-polkadot-sdk = { features = ["frame-benchmarking-cli", "sc-cli", "sc-storage-monitor", "substrate-build-script-utils"], optional = true, workspace = true, default-features = true }
+rechain-sdk = { features = ["frame-benchmarking-cli", "sc-cli", "sc-storage-monitor", "substrate-build-script-utils"], optional = true, workspace = true, default-features = true }
 
 [features]
 default = ["cli"]
-cli = ["clap", "clap_complete", "node-inspect", "polkadot-sdk"]
+cli = ["clap", "clap_complete", "node-inspect", "rechain-sdk"]
 runtime-benchmarks = [
 	"kitchensink-runtime/runtime-benchmarks",
 	"node-inspect?/runtime-benchmarks",
-	"polkadot-sdk/runtime-benchmarks",
+	"rechain-sdk/runtime-benchmarks",
 ]
 try-runtime = [
 	"kitchensink-runtime/try-runtime",
-	"polkadot-sdk/try-runtime",
+	"rechain-sdk/try-runtime",
 	"substrate-cli-test-utils/try-runtime",
 ]
 staking-playground = [
@@ -197,3 +197,4 @@ harness = false
 [[bench]]
 name = "executor"
 harness = false
+

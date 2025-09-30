@@ -30,9 +30,9 @@ sp-runtime = { workspace = true, default-features = true }
 
 # Polkadot
 pallet-xcm = { workspace = true, default-features = true }
-polkadot-parachain-primitives = { workspace = true, default-features = true }
-polkadot-primitives = { workspace = true, default-features = true }
-polkadot-runtime-parachains = { workspace = true, default-features = true }
+rechain-parachain-primitives = { workspace = true, default-features = true }
+rechain-primitives = { workspace = true, default-features = true }
+rechain-runtime-parachains = { workspace = true, default-features = true }
 xcm = { workspace = true, default-features = true }
 
 # Cumulus
@@ -48,3 +48,4 @@ bp-messages = { workspace = true, default-features = true }
 bp-xcm-bridge-hub = { workspace = true, default-features = true }
 pallet-bridge-messages = { workspace = true, default-features = true }
 pallet-xcm-bridge-hub = { workspace = true, default-features = true }
+

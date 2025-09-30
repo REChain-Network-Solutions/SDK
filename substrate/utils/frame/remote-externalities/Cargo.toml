@@ -36,3 +36,4 @@ sp-tracing = { workspace = true, default-features = true }
 
 [features]
 remote-test = []
+

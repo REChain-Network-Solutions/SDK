@@ -25,3 +25,4 @@ zeroize = { workspace = true }
 
 [dev-dependencies]
 quickcheck = { workspace = true, default-features = true }
+

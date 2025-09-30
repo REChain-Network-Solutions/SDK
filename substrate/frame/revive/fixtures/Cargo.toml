@@ -9,7 +9,7 @@ homepage.workspace = true
 repository.workspace = true
 rust-version = "1.84"
 
-[package.metadata.polkadot-sdk]
+[package.metadata.rechain-sdk]
 exclude-from-umbrella = true
 
 [lints]
@@ -29,3 +29,4 @@ toml = { workspace = true }
 default = ["std"]
 # only when std is enabled all fixtures are available
 std = ["anyhow", "sp-core", "sp-io"]
+
