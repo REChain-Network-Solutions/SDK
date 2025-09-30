@@ -54,3 +54,6 @@ security:cargo-deny:
     - cargo deny check licenses
     - cargo deny check bans
     - cargo deny check sources
+
+include:
+  - local: '.gitlab/ci/release.yml'

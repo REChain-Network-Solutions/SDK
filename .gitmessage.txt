@@ -1,0 +1,12 @@
+# Conventional Commit template
+# <type>(scope?): <description>
+# types: feat | fix | chore | docs | style | refactor | perf | test | build | ci
+#
+# Body (wrap at 72):
+# - Why is this change necessary?
+# - What problem does it solve?
+# - Are there side effects?
+#
+# Footer:
+# - Breaking changes
+# - Issue references, e.g. Closes #123
