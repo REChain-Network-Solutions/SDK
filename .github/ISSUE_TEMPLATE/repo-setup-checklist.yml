@@ -1,0 +1,29 @@
+name: Repository setup checklist
+description: Track enabling and configuring repository features
+labels: [task]
+title: "repo: setup checklist"
+body:
+  - type: checkboxes
+    id: protections
+    attributes:
+      label: Branch protections
+      options:
+        - label: Protect main and require status checks
+        - label: Require PR reviews by CODEOWNERS
+  - type: checkboxes
+    id: automation
+    attributes:
+      label: Automations
+      options:
+        - label: Enable GitHub Actions
+        - label: Enable Release Drafter
+        - label: Enable Dependabot / Renovate
+        - label: Enable Pages
+        - label: Enable Code scanning (CodeQL)
+        - label: Enable Secret scanning and Push protection
+  - type: checkboxes
+    id: labels
+    attributes:
+      label: Labels
+      options:
+        - label: Sync labels via labels.yml
