@@ -21,18 +21,18 @@ sp-runtime = { workspace = true }
 sp-trie = { workspace = true }
 
 # Polkadot
-polkadot-core-primitives = { workspace = true }
-polkadot-parachain-primitives = { workspace = true }
-polkadot-primitives = { workspace = true }
+rechain-core-primitives = { workspace = true }
+rechain-parachain-primitives = { workspace = true }
+rechain-primitives = { workspace = true }
 xcm = { workspace = true }
 
 [features]
 default = ["std"]
 std = [
 	"codec/std",
-	"polkadot-core-primitives/std",
-	"polkadot-parachain-primitives/std",
-	"polkadot-primitives/std",
+	"rechain-core-primitives/std",
+	"rechain-parachain-primitives/std",
+	"rechain-primitives/std",
 	"scale-info/std",
 	"sp-api/std",
 	"sp-runtime/std",
@@ -40,8 +40,9 @@ std = [
 	"xcm/std",
 ]
 runtime-benchmarks = [
-	"polkadot-parachain-primitives/runtime-benchmarks",
-	"polkadot-primitives/runtime-benchmarks",
+	"rechain-parachain-primitives/runtime-benchmarks",
+	"rechain-primitives/runtime-benchmarks",
 	"sp-runtime/runtime-benchmarks",
 	"xcm/runtime-benchmarks",
 ]
+

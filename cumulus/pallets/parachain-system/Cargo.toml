@@ -36,8 +36,8 @@ sp-trie = { workspace = true }
 sp-version = { workspace = true }
 
 # Polkadot
-polkadot-parachain-primitives = { features = ["wasm-api"], workspace = true }
-polkadot-runtime-parachains = { workspace = true }
+rechain-parachain-primitives = { features = ["wasm-api"], workspace = true }
+rechain-runtime-parachains = { workspace = true }
 xcm = { workspace = true }
 xcm-builder = { workspace = true }
 
@@ -82,8 +82,8 @@ std = [
 	"frame-system/std",
 	"log/std",
 	"pallet-message-queue/std",
-	"polkadot-parachain-primitives/std",
-	"polkadot-runtime-parachains/std",
+	"rechain-parachain-primitives/std",
+	"rechain-runtime-parachains/std",
 	"scale-info/std",
 	"sp-core/std",
 	"sp-externalities/std",
@@ -106,8 +106,8 @@ runtime-benchmarks = [
 	"frame-support/runtime-benchmarks",
 	"frame-system/runtime-benchmarks",
 	"pallet-message-queue/runtime-benchmarks",
-	"polkadot-parachain-primitives/runtime-benchmarks",
-	"polkadot-runtime-parachains/runtime-benchmarks",
+	"rechain-parachain-primitives/runtime-benchmarks",
+	"rechain-runtime-parachains/runtime-benchmarks",
 	"sp-runtime/runtime-benchmarks",
 	"xcm-builder/runtime-benchmarks",
 	"xcm/runtime-benchmarks",
@@ -117,8 +117,9 @@ try-runtime = [
 	"frame-support/try-runtime",
 	"frame-system/try-runtime",
 	"pallet-message-queue/try-runtime",
-	"polkadot-runtime-parachains/try-runtime",
+	"rechain-runtime-parachains/try-runtime",
 	"sp-runtime/try-runtime",
 ]
 
 experimental-ump-signals = []
+

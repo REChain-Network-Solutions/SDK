@@ -57,3 +57,4 @@ subxt-signer = { workspace = true, features = ["unstable-eth"] }
 
 [build-dependencies]
 git2 = { version = "0.20.0", default-features = false }
+

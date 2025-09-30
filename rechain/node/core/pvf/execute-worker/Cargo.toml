@@ -1,0 +1,32 @@
+[package]
+name = "rechain-node-core-pvf-execute-worker"
+description = "Polkadot crate that contains the logic for executing PVFs. Used by the rechain-execute-worker binary."
+version = "7.0.0"
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+homepage.workspace = true
+repository.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+cfg-if = { workspace = true }
+cpu-time = { workspace = true }
+gum = { workspace = true, default-features = true }
+libc = { workspace = true }
+nix = { features = ["process", "resource", "sched"], workspace = true }
+
+codec = { features = ["derive"], workspace = true }
+
+rechain-node-core-pvf-common = { workspace = true, default-features = true }
+rechain-node-primitives = { workspace = true, default-features = true }
+rechain-parachain-primitives = { workspace = true, default-features = true }
+rechain-primitives = { workspace = true, default-features = true }
+
+sp-maybe-compressed-blob = { workspace = true, default-features = true }
+
+[features]
+builder = []
+

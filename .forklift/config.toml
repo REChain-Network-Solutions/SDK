@@ -27,3 +27,4 @@ type = "gcs"
 
 [storage.gcs]
 bucketName = "parity-ci-forklift-regional"
+

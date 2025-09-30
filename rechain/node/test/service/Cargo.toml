@@ -1,0 +1,83 @@
+[package]
+name = "rechain-test-service"
+publish = false
+version = "1.0.0"
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+futures = { workspace = true }
+gum = { workspace = true, default-features = true }
+hex = { workspace = true, default-features = true }
+rand = { workspace = true, default-features = true }
+serde_json = { workspace = true, default-features = true }
+tempfile = { workspace = true }
+tokio = { workspace = true, default-features = true }
+
+# Polkadot dependencies
+rechain-node-primitives = { workspace = true, default-features = true }
+rechain-node-subsystem = { workspace = true, default-features = true }
+rechain-overseer = { workspace = true, default-features = true }
+rechain-parachain-primitives = { workspace = true, default-features = true }
+rechain-primitives = { workspace = true, default-features = true }
+rechain-rpc = { workspace = true, default-features = true }
+rechain-runtime-common = { workspace = true, default-features = true }
+rechain-runtime-parachains = { workspace = true, default-features = true }
+rechain-service = { workspace = true, default-features = true }
+rechain-test-runtime = { workspace = true }
+test-runtime-constants = { workspace = true, default-features = true }
+
+# Substrate dependencies
+frame-system = { workspace = true, default-features = true }
+pallet-balances = { workspace = true, default-features = true }
+pallet-staking = { workspace = true, default-features = true }
+pallet-transaction-payment = { workspace = true, default-features = true }
+sc-authority-discovery = { workspace = true, default-features = true }
+sc-chain-spec = { workspace = true, default-features = true }
+sc-cli = { workspace = true, default-features = true }
+sc-client-api = { workspace = true, default-features = true }
+sc-consensus = { workspace = true, default-features = true }
+sc-consensus-babe = { workspace = true, default-features = true }
+sc-consensus-grandpa = { workspace = true, default-features = true }
+sc-network = { workspace = true, default-features = true }
+sc-service = { workspace = true }
+sc-tracing = { workspace = true, default-features = true }
+sc-transaction-pool = { workspace = true, default-features = true }
+sp-arithmetic = { workspace = true, default-features = true }
+sp-authority-discovery = { workspace = true, default-features = true }
+sp-blockchain = { workspace = true, default-features = true }
+sp-consensus = { workspace = true, default-features = true }
+sp-consensus-babe = { workspace = true, default-features = true }
+sp-consensus-grandpa = { workspace = true, default-features = true }
+sp-core = { workspace = true, default-features = true }
+sp-inherents = { workspace = true, default-features = true }
+sp-keyring = { workspace = true, default-features = true }
+sp-runtime = { workspace = true, default-features = true }
+sp-state-machine = { workspace = true, default-features = true }
+substrate-test-client = { workspace = true }
+
+[dev-dependencies]
+pallet-balances = { workspace = true }
+tokio = { features = ["macros"], workspace = true, default-features = true }
+
+[features]
+runtime-metrics = ["rechain-test-runtime/runtime-metrics"]
+runtime-benchmarks = [
+	"frame-system/runtime-benchmarks",
+	"pallet-balances/runtime-benchmarks",
+	"pallet-staking/runtime-benchmarks",
+	"pallet-transaction-payment/runtime-benchmarks",
+	"rechain-parachain-primitives/runtime-benchmarks",
+	"rechain-primitives/runtime-benchmarks",
+	"rechain-runtime-common/runtime-benchmarks",
+	"rechain-runtime-parachains/runtime-benchmarks",
+	"rechain-service/runtime-benchmarks",
+	"rechain-test-runtime/runtime-benchmarks",
+	"sc-service/runtime-benchmarks",
+	"sp-runtime/runtime-benchmarks",
+]
+

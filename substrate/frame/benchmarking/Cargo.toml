@@ -70,3 +70,4 @@ runtime-benchmarks = [
 	"sc-client-db/runtime-benchmarks",
 	"sp-runtime/runtime-benchmarks",
 ]
+

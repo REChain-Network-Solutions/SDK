@@ -1,0 +1,37 @@
+[package]
+name = "test-parachain-undying"
+description = "Test parachain for zombienet integration tests"
+build = "build.rs"
+publish = false
+version = "1.0.0"
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+codec = { features = ["derive"], workspace = true }
+dlmalloc = { features = ["global"], workspace = true }
+log = { workspace = true }
+rechain-parachain-primitives = { features = ["wasm-api"], workspace = true }
+rechain-primitives = { workspace = true, default-features = false }
+tiny-keccak = { features = ["keccak"], workspace = true }
+
+# We need to make sure the global allocator is disabled until we have support of full substrate externalities
+sp-io = { features = ["disable_allocator"], workspace = true }
+
+[build-dependencies]
+substrate-wasm-builder = { workspace = true, default-features = true }
+
+[features]
+default = ["std"]
+std = [
+	"codec/std",
+	"log/std",
+	"rechain-parachain-primitives/std",
+	"rechain-primitives/std",
+	"sp-io/std",
+]
+

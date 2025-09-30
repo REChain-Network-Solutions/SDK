@@ -2,7 +2,7 @@
 node_spawn_timeout = 240
 
 [relaychain]
-default_command = "{{POLKADOT_BINARY}}"
+default_command = "{{rechain_BINARY}}"
 default_args = [ "-lparachain=debug,xcm=trace" ]
 chain = "rococo-local"
 
@@ -33,7 +33,7 @@ cumulus_based = true
 	[[parachains.collators]]
 	name = "bridge-hub-rococo-collator1"
 	validator = true
-	command = "{{POLKADOT_PARACHAIN_BINARY}}"
+	command = "{{rechain_PARACHAIN_BINARY}}"
 	rpc_port = 8943
 	args = [
 		"-lparachain=debug,runtime::bridge=trace,xcm=trace,txpool=trace"
@@ -43,7 +43,7 @@ cumulus_based = true
 	[[parachains.collators]]
 	name = "bridge-hub-rococo-collator2"
 	validator = true
-	command = "{{POLKADOT_PARACHAIN_BINARY}}"
+	command = "{{rechain_PARACHAIN_BINARY}}"
 	rpc_port = 8944
 	args = [
 		"-lparachain=debug,runtime::bridge=trace,xcm=trace,txpool=trace"
@@ -57,14 +57,14 @@ cumulus_based = true
 	[[parachains.collators]]
 	name = "asset-hub-rococo-collator1"
 	rpc_port = 9910
-	command = "{{POLKADOT_PARACHAIN_BINARY}}"
+	command = "{{rechain_PARACHAIN_BINARY}}"
 	args = [
 		"-lparachain=debug,xcm=trace,runtime::bridge=trace,txpool=trace"
 	]
 
 	[[parachains.collators]]
 	name = "asset-hub-rococo-collator2"
-	command = "{{POLKADOT_PARACHAIN_BINARY}}"
+	command = "{{rechain_PARACHAIN_BINARY}}"
 	args = [
 		"-lparachain=debug,xcm=trace,runtime::bridge=trace,txpool=trace"
 	]
@@ -80,3 +80,4 @@ cumulus_based = true
 #recipient = 1000
 #max_capacity = 4
 #max_message_size = 524288
+

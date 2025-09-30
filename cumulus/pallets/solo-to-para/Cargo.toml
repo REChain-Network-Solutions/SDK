@@ -22,7 +22,7 @@ pallet-sudo = { workspace = true }
 sp-runtime = { workspace = true }
 
 # Polkadot
-polkadot-primitives = { workspace = true }
+rechain-primitives = { workspace = true }
 
 # Cumulus
 cumulus-pallet-parachain-system = { workspace = true }
@@ -35,7 +35,7 @@ std = [
 	"frame-support/std",
 	"frame-system/std",
 	"pallet-sudo/std",
-	"polkadot-primitives/std",
+	"rechain-primitives/std",
 	"scale-info/std",
 	"sp-runtime/std",
 ]
@@ -46,3 +46,4 @@ try-runtime = [
 	"pallet-sudo/try-runtime",
 	"sp-runtime/try-runtime",
 ]
+

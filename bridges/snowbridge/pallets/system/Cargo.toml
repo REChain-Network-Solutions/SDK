@@ -39,7 +39,7 @@ hex = { workspace = true, default-features = true }
 hex-literal = { workspace = true, default-features = true }
 pallet-balances = { workspace = true, default-features = true }
 pallet-message-queue = { workspace = true, default-features = true }
-polkadot-primitives = { workspace = true, default-features = true }
+rechain-primitives = { workspace = true, default-features = true }
 snowbridge-pallet-outbound-queue = { workspace = true, default-features = true }
 
 [features]
@@ -65,7 +65,7 @@ runtime-benchmarks = [
 	"frame-system/runtime-benchmarks",
 	"pallet-balances/runtime-benchmarks",
 	"pallet-message-queue/runtime-benchmarks",
-	"polkadot-primitives/runtime-benchmarks",
+	"rechain-primitives/runtime-benchmarks",
 	"snowbridge-core/runtime-benchmarks",
 	"snowbridge-pallet-outbound-queue/runtime-benchmarks",
 	"sp-runtime/runtime-benchmarks",
@@ -80,3 +80,4 @@ try-runtime = [
 	"snowbridge-pallet-outbound-queue/try-runtime",
 	"sp-runtime/try-runtime",
 ]
+

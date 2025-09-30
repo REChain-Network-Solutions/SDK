@@ -1,0 +1,53 @@
+[package]
+name = "pallet-nft"
+version = "1.0.0-dev"
+description = "FRAME pallet for non-fungible token (NFT) marketplace functionality"
+authors.workspace = true
+homepage.workspace = true
+repository.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lints]
+workspace = true
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+
+[dependencies]
+codec = { package = "parity-scale-codec", version = "3.6.1", default-features = false, features = ["derive"] }
+frame-benchmarking = { version = "4.0.0-dev", default-features = false, optional = true, path = "../../benchmarking" }
+frame-support = { version = "4.0.0-dev", default-features = false, path = "../../support" }
+frame-system = { version = "4.0.0-dev", default-features = false, path = "../../system" }
+scale-info = { version = "2.5.0", default-features = false, features = ["derive"] }
+sp-core = { version = "21.0.0", default-features = false, path = "../../../primitives/core" }
+sp-io = { version = "23.0.0", default-features = false, path = "../../../primitives/io" }
+sp-runtime = { version = "24.0.0", default-features = false, path = "../../../primitives/runtime" }
+sp-std = { version = "8.0.0", default-features = false, path = "../../../primitives/std" }
+
+[dev-dependencies]
+sp-core = { version = "21.0.0", path = "../../../primitives/core" }
+sp-io = { version = "23.0.0", path = "../../../primitives/io" }
+sp-runtime = { version = "24.0.0", path = "../../../primitives/runtime" }
+
+[features]
+default = [ "std" ]
+std = [
+	"codec/std",
+	"frame-benchmarking?/std",
+	"frame-support/std",
+	"frame-system/std",
+	"scale-info/std",
+	"sp-core/std",
+	"sp-io/std",
+	"sp-runtime/std",
+	"sp-std/std",
+]
+runtime-benchmarks = [
+	"frame-benchmarking/runtime-benchmarks",
+	"frame-support/runtime-benchmarks",
+	"frame-system/runtime-benchmarks",
+]
+try-runtime = [
+	"frame-support/try-runtime",
+]

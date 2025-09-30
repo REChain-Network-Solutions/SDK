@@ -4,8 +4,8 @@
 exclude = [
 	"bridges/testing/**",
 	"cumulus/zombienet/**",
-	"polkadot/node/malus/integrationtests/**",
-	"polkadot/zombienet_tests/**",
+	"rechain/node/malus/integrationtests/**",
+	"rechain/zombienet_tests/**",
 	"substrate/zombienet/**",
 	"target/**",
 ]
@@ -20,7 +20,7 @@ indent_string = "	"         # tab
 
 # don't re-order order-dependent deb package metadata
 [[rule]]
-include = ["polkadot/Cargo.toml"]
+include = ["rechain/Cargo.toml"]
 keys = ["package.metadata.deb"]
 
 [rule.formatting]
@@ -47,3 +47,4 @@ keys = ["build-dependencies", "dependencies", "dev-dependencies"]
 
 [rule.formatting]
 reorder_keys = true
+

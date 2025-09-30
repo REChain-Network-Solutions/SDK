@@ -27,7 +27,7 @@ thiserror = { workspace = true }
 # Bridge dependencies
 bp-header-chain = { workspace = true, default-features = true }
 bp-parachains = { workspace = true, default-features = true }
-bp-polkadot-core = { workspace = true, default-features = true }
+bp-rechain-core = { workspace = true, default-features = true }
 bp-relayers = { workspace = true, default-features = true }
 
 equivocation-detector = { workspace = true }
@@ -58,3 +58,4 @@ sp-trie = { workspace = true }
 pallet-transaction-payment = { workspace = true, default-features = true }
 relay-substrate-client = { features = ["test-helpers"], workspace = true }
 scale-info = { features = ["derive"], workspace = true }
+

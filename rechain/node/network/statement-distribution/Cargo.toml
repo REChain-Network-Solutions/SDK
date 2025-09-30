@@ -1,0 +1,59 @@
+[package]
+name = "rechain-statement-distribution"
+description = "Statement Distribution Subsystem"
+version = "7.0.0"
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+homepage.workspace = true
+repository.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+arrayvec = { workspace = true }
+bitvec = { workspace = true, default-features = true }
+codec = { features = ["derive"], workspace = true }
+fatality = { workspace = true }
+futures = { workspace = true }
+futures-timer = { workspace = true }
+gum = { workspace = true, default-features = true }
+indexmap = { workspace = true }
+rechain-node-network-protocol = { workspace = true, default-features = true }
+rechain-node-primitives = { workspace = true, default-features = true }
+rechain-node-subsystem = { workspace = true, default-features = true }
+rechain-node-subsystem-util = { workspace = true, default-features = true }
+rechain-primitives = { workspace = true, default-features = true }
+sp-keystore = { workspace = true, default-features = true }
+sp-staking = { workspace = true }
+thiserror = { workspace = true }
+
+[dev-dependencies]
+assert_matches = { workspace = true }
+async-channel = { workspace = true }
+futures-timer = { workspace = true }
+rechain-node-subsystem-test-helpers = { workspace = true }
+rechain-primitives = { workspace = true, features = ["test"] }
+rechain-primitives-test-helpers = { workspace = true }
+rechain-subsystem-bench = { workspace = true }
+rand_chacha = { workspace = true, default-features = true }
+rstest = { workspace = true }
+sc-keystore = { workspace = true, default-features = true }
+sc-network = { workspace = true, default-features = true }
+sp-application-crypto = { workspace = true, default-features = true }
+sp-authority-discovery = { workspace = true, default-features = true }
+sp-core = { workspace = true, default-features = true }
+sp-keyring = { workspace = true, default-features = true }
+sp-keystore = { workspace = true, default-features = true }
+sp-tracing = { workspace = true, default-features = true }
+
+[[bench]]
+name = "statement-distribution-regression-bench"
+path = "benches/statement-distribution-regression-bench.rs"
+harness = false
+required-features = ["subsystem-benchmarks"]
+
+[features]
+subsystem-benchmarks = []
+

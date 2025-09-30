@@ -1,5 +1,5 @@
 [package]
-name = "polkadot-parachain-bin"
+name = "rechain-parachain-bin"
 version = "4.0.0"
 authors.workspace = true
 edition.workspace = true
@@ -13,7 +13,7 @@ repository.workspace = true
 workspace = true
 
 [[bin]]
-name = "polkadot-parachain"
+name = "rechain-parachain"
 path = "src/main.rs"
 
 [dependencies]
@@ -36,7 +36,7 @@ parachains-common = { workspace = true, default-features = true }
 penpal-runtime = { workspace = true }
 people-rococo-runtime = { workspace = true }
 people-westend-runtime = { workspace = true }
-polkadot-omni-node-lib = { features = ["rococo-native", "westend-native"], workspace = true }
+rechain-omni-node-lib = { features = ["rococo-native", "westend-native"], workspace = true }
 rococo-parachain-runtime = { workspace = true }
 
 # Substrate
@@ -61,7 +61,7 @@ default = []
 runtime-benchmarks = [
 	"cumulus-primitives-core/runtime-benchmarks",
 	"parachains-common/runtime-benchmarks",
-	"polkadot-omni-node-lib/runtime-benchmarks",
+	"rechain-omni-node-lib/runtime-benchmarks",
 	"sc-service/runtime-benchmarks",
 
 	"asset-hub-rococo-runtime/runtime-benchmarks",
@@ -79,7 +79,7 @@ runtime-benchmarks = [
 	"xcm/runtime-benchmarks",
 ]
 try-runtime = [
-	"polkadot-omni-node-lib/try-runtime",
+	"rechain-omni-node-lib/try-runtime",
 
 	"asset-hub-rococo-runtime/try-runtime",
 	"asset-hub-westend-runtime/try-runtime",
@@ -99,3 +99,4 @@ fast-runtime = [
 	"coretime-rococo-runtime/fast-runtime",
 	"coretime-westend-runtime/fast-runtime",
 ]
+

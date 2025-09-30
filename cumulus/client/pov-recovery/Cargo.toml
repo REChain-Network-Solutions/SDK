@@ -28,10 +28,10 @@ sp-runtime = { workspace = true, default-features = true }
 sp-version = { workspace = true, default-features = true }
 
 # Polkadot
-polkadot-node-primitives = { workspace = true, default-features = true }
-polkadot-node-subsystem = { workspace = true, default-features = true }
-polkadot-overseer = { workspace = true, default-features = true }
-polkadot-primitives = { workspace = true, default-features = true }
+rechain-node-primitives = { workspace = true, default-features = true }
+rechain-node-subsystem = { workspace = true, default-features = true }
+rechain-overseer = { workspace = true, default-features = true }
+rechain-primitives = { workspace = true, default-features = true }
 
 # Cumulus
 async-trait = { workspace = true }
@@ -53,3 +53,4 @@ cumulus-test-service = { workspace = true }
 # Substrate
 sc-cli = { workspace = true, default-features = true }
 sc-client-api = { workspace = true, default-features = true }
+

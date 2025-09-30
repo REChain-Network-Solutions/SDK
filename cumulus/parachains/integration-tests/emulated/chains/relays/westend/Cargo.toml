@@ -22,7 +22,7 @@ sp-core = { workspace = true }
 sp-runtime = { workspace = true }
 
 # Polkadot
-polkadot-primitives = { workspace = true }
+rechain-primitives = { workspace = true }
 westend-runtime = { workspace = true }
 westend-runtime-constants = { workspace = true }
 xcm = { workspace = true }
@@ -31,3 +31,4 @@ xcm-runtime-apis = { workspace = true }
 # Cumulus
 emulated-integration-tests-common = { workspace = true }
 parachains-common = { workspace = true, default-features = true }
+

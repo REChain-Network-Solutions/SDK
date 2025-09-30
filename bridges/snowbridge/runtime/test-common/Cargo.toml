@@ -95,3 +95,4 @@ runtime-benchmarks = [
 	"xcm/runtime-benchmarks",
 ]
 fast-runtime = []
+

@@ -20,6 +20,7 @@ chain = "asset-hub-rococo-local"
 [[parachains.collators]]
 name = "charlie"
 validator = true
-image = "parity/polkadot-parachain:latest"
-command = "polkadot-parachain"
+image = "parity/rechain-parachain:latest"
+command = "rechain-parachain"
 args = ["--force-authoring"]
+

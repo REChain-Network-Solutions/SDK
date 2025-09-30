@@ -25,3 +25,4 @@ sp-runtime-interface-test-wasm-deprecated = { workspace = true }
 sp-state-machine = { workspace = true, default-features = true }
 tracing = { workspace = true, default-features = true }
 tracing-core = { workspace = true, default-features = true }
+

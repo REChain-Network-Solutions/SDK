@@ -32,7 +32,7 @@ static_assertions = { workspace = true, default-features = true }
 # pallet-asset-conversion: turn on "num-traits" feature
 primitive-types = { features = ["codec", "num-traits", "scale-info"], workspace = true }
 
-polkadot-sdk = { features = ["runtime-full", "tuples-96"], workspace = true }
+rechain-sdk = { features = ["runtime-full", "tuples-96"], workspace = true }
 
 # shared code between runtime and node
 node-primitives = { workspace = true }
@@ -46,14 +46,14 @@ substrate-wasm-builder = { optional = true, workspace = true, default-features =
 
 [features]
 default = ["std"]
-with-tracing = ["polkadot-sdk/with-tracing"]
+with-tracing = ["rechain-sdk/with-tracing"]
 std = [
 	"codec/std",
 	"log/std",
 	"node-primitives/std",
 	"pallet-example-mbm/std",
 	"pallet-example-tasks/std",
-	"polkadot-sdk/std",
+	"rechain-sdk/std",
 	"primitive-types/std",
 	"scale-info/std",
 	"serde_json/std",
@@ -63,12 +63,12 @@ std = [
 runtime-benchmarks = [
 	"pallet-example-mbm/runtime-benchmarks",
 	"pallet-example-tasks/runtime-benchmarks",
-	"polkadot-sdk/runtime-benchmarks",
+	"rechain-sdk/runtime-benchmarks",
 ]
 try-runtime = [
 	"pallet-example-mbm/try-runtime",
 	"pallet-example-tasks/try-runtime",
-	"polkadot-sdk/try-runtime",
+	"rechain-sdk/try-runtime",
 ]
 experimental = [
 	"pallet-example-tasks/experimental",
@@ -80,3 +80,4 @@ metadata-hash = ["substrate-wasm-builder/metadata-hash"]
 # ergo block production works fine with --dev and is independent of staking election. See ` pub
 # struct AliceAsOnlyValidator`.
 staking-playground = []
+

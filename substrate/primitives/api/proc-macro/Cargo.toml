@@ -35,3 +35,4 @@ assert_matches = { workspace = true }
 default = ["std"]
 std = ["blake2/std"]
 no-metadata-docs = []
+

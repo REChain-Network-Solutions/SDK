@@ -19,3 +19,4 @@ emulated-integration-tests-common = { workspace = true }
 penpal-emulated-chain = { workspace = true }
 people-rococo-emulated-chain = { workspace = true }
 rococo-emulated-chain = { workspace = true }
+

@@ -11,7 +11,7 @@ publish = false
 
 [dependencies]
 codec = { workspace = true }
-polkadot-sdk = { workspace = true, features = [
+rechain-sdk = { workspace = true, features = [
 	"pallet-balances",
 	"pallet-sudo",
 	"pallet-timestamp",
@@ -26,7 +26,7 @@ serde_json = { workspace = true, default-features = false, features = ["alloc"] 
 pallet-minimal-template = { workspace = true }
 
 [build-dependencies]
-polkadot-sdk = { optional = true, workspace = true, features = [
+rechain-sdk = { optional = true, workspace = true, features = [
 	"substrate-wasm-builder",
 ] }
 
@@ -35,7 +35,8 @@ default = ["std"]
 std = [
 	"codec/std",
 	"pallet-minimal-template/std",
-	"polkadot-sdk/std",
+	"rechain-sdk/std",
 	"scale-info/std",
 	"serde_json/std",
 ]
+

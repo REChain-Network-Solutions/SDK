@@ -48,3 +48,4 @@ serde = [
 ]
 
 json-schema = ["dep:schemars"]
+

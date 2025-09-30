@@ -17,7 +17,7 @@ hex-literal = { workspace = true, default-features = true }
 scale-info = { features = ["derive"], workspace = true }
 serde = { optional = true, features = ["alloc", "derive"], workspace = true }
 
-polkadot-parachain-primitives = { workspace = true }
+rechain-parachain-primitives = { workspace = true }
 xcm = { workspace = true }
 xcm-builder = { workspace = true }
 
@@ -44,7 +44,7 @@ std = [
 	"ethabi/std",
 	"frame-support/std",
 	"frame-system/std",
-	"polkadot-parachain-primitives/std",
+	"rechain-parachain-primitives/std",
 	"scale-info/std",
 	"serde/std",
 	"snowbridge-beacon-primitives/std",
@@ -60,9 +60,10 @@ serde = ["dep:serde", "scale-info/serde"]
 runtime-benchmarks = [
 	"frame-support/runtime-benchmarks",
 	"frame-system/runtime-benchmarks",
-	"polkadot-parachain-primitives/runtime-benchmarks",
+	"rechain-parachain-primitives/runtime-benchmarks",
 	"sp-runtime/runtime-benchmarks",
 	"xcm-builder/runtime-benchmarks",
 	"xcm-executor/runtime-benchmarks",
 	"xcm/runtime-benchmarks",
 ]
+

@@ -21,7 +21,7 @@ tuplex = { workspace = true }
 bp-header-chain = { workspace = true }
 bp-messages = { workspace = true }
 bp-parachains = { workspace = true }
-bp-polkadot-core = { workspace = true }
+bp-rechain-core = { workspace = true }
 bp-relayers = { workspace = true }
 bp-runtime = { workspace = true }
 pallet-bridge-grandpa = { workspace = true }
@@ -58,7 +58,7 @@ std = [
 	"bp-header-chain/std",
 	"bp-messages/std",
 	"bp-parachains/std",
-	"bp-polkadot-core/std",
+	"bp-rechain-core/std",
 	"bp-relayers/std",
 	"bp-runtime/std",
 	"bp-test-utils/std",
@@ -101,3 +101,4 @@ runtime-benchmarks = [
 ]
 integrity-test = ["static_assertions"]
 test-helpers = ["bp-runtime/test-helpers", "sp-trie"]
+

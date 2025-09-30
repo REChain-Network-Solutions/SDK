@@ -21,7 +21,7 @@ pallet-asset-conversion = { workspace = true }
 sp-runtime = { workspace = true }
 
 # Polkadot
-polkadot-runtime-common = { workspace = true }
+rechain-runtime-common = { workspace = true }
 xcm = { workspace = true }
 xcm-builder = { workspace = true }
 xcm-executor = { workspace = true }
@@ -37,7 +37,7 @@ std = [
 	"frame-support/std",
 	"log/std",
 	"pallet-asset-conversion/std",
-	"polkadot-runtime-common/std",
+	"rechain-runtime-common/std",
 	"sp-runtime/std",
 	"xcm-builder/std",
 	"xcm-executor/std",
@@ -48,9 +48,10 @@ runtime-benchmarks = [
 	"cumulus-primitives-core/runtime-benchmarks",
 	"frame-support/runtime-benchmarks",
 	"pallet-asset-conversion/runtime-benchmarks",
-	"polkadot-runtime-common/runtime-benchmarks",
+	"rechain-runtime-common/runtime-benchmarks",
 	"sp-runtime/runtime-benchmarks",
 	"xcm-builder/runtime-benchmarks",
 	"xcm-executor/runtime-benchmarks",
 	"xcm/runtime-benchmarks",
 ]
+

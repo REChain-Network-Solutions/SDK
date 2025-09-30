@@ -22,14 +22,15 @@ jsonrpsee = { features = ["server"], workspace = true }
 serde_json = { workspace = true, default-features = true }
 
 minimal-template-runtime = { workspace = true }
-polkadot-sdk = { workspace = true, features = ["experimental", "node"] }
+rechain-sdk = { workspace = true, features = ["experimental", "node"] }
 
 [build-dependencies]
-polkadot-sdk = { workspace = true, features = ["substrate-build-script-utils"] }
+rechain-sdk = { workspace = true, features = ["substrate-build-script-utils"] }
 
 [features]
 default = ["std"]
 std = [
 	"minimal-template-runtime/std",
-	"polkadot-sdk/std",
+	"rechain-sdk/std",
 ]
+

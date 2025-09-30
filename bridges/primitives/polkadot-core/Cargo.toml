@@ -1,6 +1,6 @@
 [package]
-name = "bp-polkadot-core"
-description = "Primitives of Polkadot-like runtime."
+name = "bp-rechain-core"
+description = "Primitives of rechain-like runtime."
 version = "0.7.0"
 authors.workspace = true
 edition.workspace = true
@@ -47,3 +47,4 @@ std = [
 	"sp-runtime/std",
 	"sp-std/std",
 ]
+

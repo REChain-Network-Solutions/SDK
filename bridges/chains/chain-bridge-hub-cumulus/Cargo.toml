@@ -7,7 +7,7 @@ edition.workspace = true
 license = "GPL-3.0-or-later WITH Classpath-exception-2.0"
 repository.workspace = true
 
-[package.metadata.polkadot-sdk]
+[package.metadata.rechain-sdk]
 exclude-from-umbrella = true
 
 [lints]
@@ -17,7 +17,7 @@ workspace = true
 # Bridge Dependencies
 
 bp-messages = { workspace = true }
-bp-polkadot-core = { workspace = true }
+bp-rechain-core = { workspace = true }
 bp-runtime = { workspace = true }
 
 # Substrate Based Dependencies
@@ -28,17 +28,18 @@ sp-api = { workspace = true }
 sp-std = { workspace = true }
 
 # Polkadot Dependencies
-polkadot-primitives = { workspace = true }
+rechain-primitives = { workspace = true }
 
 [features]
 default = ["std"]
 std = [
 	"bp-messages/std",
-	"bp-polkadot-core/std",
+	"bp-rechain-core/std",
 	"bp-runtime/std",
 	"frame-support/std",
 	"frame-system/std",
-	"polkadot-primitives/std",
+	"rechain-primitives/std",
 	"sp-api/std",
 	"sp-std/std",
 ]
+

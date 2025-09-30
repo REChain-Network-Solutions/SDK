@@ -26,3 +26,4 @@ default = ["std"]
 runtime-benchmarks = ["frame/runtime-benchmarks"]
 std = ["codec/std", "frame/std", "scale-info/std"]
 try-runtime = ["frame/try-runtime"]
+

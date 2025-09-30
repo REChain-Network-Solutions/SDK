@@ -16,8 +16,8 @@ pallet-authorship = { workspace = true }
 pallet-session = { features = ["historical"], workspace = true }
 pallet-staking = { workspace = true }
 pallet-staking-rc-client = { workspace = true }
-polkadot-primitives = { workspace = true }
-polkadot-runtime-parachains = { workspace = true }
+rechain-primitives = { workspace = true }
+rechain-runtime-parachains = { workspace = true }
 scale-info = { workspace = true, features = ["derive"] }
 sp-core = { workspace = true }
 sp-runtime = { workspace = true }
@@ -35,8 +35,8 @@ std = [
 	"pallet-session/std",
 	"pallet-staking-rc-client/std",
 	"pallet-staking/std",
-	"polkadot-primitives/std",
-	"polkadot-runtime-parachains/std",
+	"rechain-primitives/std",
+	"rechain-runtime-parachains/std",
 	"scale-info/std",
 	"sp-core/std",
 	"sp-runtime/std",
@@ -48,8 +48,8 @@ runtime-benchmarks = [
 	"frame-system/runtime-benchmarks",
 	"pallet-staking-rc-client/runtime-benchmarks",
 	"pallet-staking/runtime-benchmarks",
-	"polkadot-primitives/runtime-benchmarks",
-	"polkadot-runtime-parachains/runtime-benchmarks",
+	"rechain-primitives/runtime-benchmarks",
+	"rechain-runtime-parachains/runtime-benchmarks",
 	"sp-runtime/runtime-benchmarks",
 	"sp-staking/runtime-benchmarks",
 	"xcm/runtime-benchmarks",
@@ -61,6 +61,7 @@ try-runtime = [
 	"pallet-session/try-runtime",
 	"pallet-staking-rc-client/try-runtime",
 	"pallet-staking/try-runtime",
-	"polkadot-runtime-parachains/try-runtime",
+	"rechain-runtime-parachains/try-runtime",
 	"sp-runtime/try-runtime",
 ]
+

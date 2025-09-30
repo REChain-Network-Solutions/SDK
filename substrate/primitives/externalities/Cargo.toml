@@ -24,3 +24,4 @@ sp-storage = { workspace = true }
 [features]
 default = ["std"]
 std = ["codec/std", "environmental/std", "sp-storage/std"]
+

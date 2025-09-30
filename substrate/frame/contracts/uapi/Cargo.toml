@@ -26,3 +26,4 @@ targets = ["wasm32-unknown-unknown"]
 [features]
 default = ["scale"]
 scale = ["dep:codec", "scale-info"]
+
