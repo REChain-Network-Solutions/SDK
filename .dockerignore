@@ -1,0 +1,27 @@
+# VCS
+.git
+.gitignore
+.gitattributes
+
+# Node
+node_modules
+npm-debug.log*
+yarn*.log
+
+# Rust
+/target
+
+# Python
+__pycache__
+*.py[cod]
+
+# Build artifacts
+/dist
+/build
+/out
+.cache
+.tmp
+
+# OS files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  "language": "en",
+  "useGitignore": true,
+  "ignorePaths": [
+    "target",
+    "node_modules",
+    "**/*.lock",
+    "**/dist",
+    "**/.cache",
+    "**/.git"
+  ],
+  "dictionaries": ["softwareTerms", "en_US"],
+  "words": [
+    "cumulus",
+    "zombienet",
+    "snowbridge",
+    "polkadot",
+    "kusama",
+    "rococo",
+    "wasm",
+    "rechain"
+  ]
+}

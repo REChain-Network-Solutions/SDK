@@ -1,0 +1,22 @@
+name: Task
+description: Track a task or work item
+labels: [task]
+title: "task: "
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What needs to be done?
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      description: Measurable outcomes to consider this done.
+  - type: input
+    id: owner
+    attributes:
+      label: Owner
+      description: Who will do this?
