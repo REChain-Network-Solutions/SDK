@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+title: SDK Monorepo
+message: If you use this software, please cite it as below.
+authors:
+  - family-names: Sory
+    given-names: Dev
+repository-code: https://github.com/sorydev/SDK
+license: MIT

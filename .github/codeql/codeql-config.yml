@@ -1,0 +1,9 @@
+name: SDK CodeQL Config
+paths-ignore:
+  - .github/
+  - docs/
+  - prdoc/
+  - '**/*.md'
+  - '**/*.html'
+  - '**/*.png'
+  - '**/*.gif'

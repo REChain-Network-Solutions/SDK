@@ -76,3 +76,6 @@ pages:
       - public
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+default:
+  interruptible: true
