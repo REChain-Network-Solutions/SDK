@@ -47,7 +47,7 @@ jobs:
             runtime_wasm_path: parachain-template-runtime/parachain_template_runtime.compact.compressed.wasm
             relay_chain: 'rococo-local'
     steps:
-        - uses: actions/checkout@v4
+        - uses: actions/checkout@v5
           with:
             ref: "${{ github.event.inputs.stable_release_branch }}"
 
@@ -107,7 +107,7 @@ jobs:
         run: |
           git config --global user.name "Template Bot"
           git config --global user.email "163342540+paritytech-polkadotsdk-templatebot[bot]@users.noreply.github.com"
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           path: polkadot-sdk
           ref: "${{ github.event.inputs.stable_release_branch }}"
@@ -125,7 +125,7 @@ jobs:
           repositories: "polkadot-sdk-${{ matrix.template }}-template"
           app-id: ${{ secrets.TEMPLATE_APP_ID }}
           private-key: ${{ secrets.TEMPLATE_APP_KEY }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           repository: "paritytech/polkadot-sdk-${{ matrix.template }}-template"
           path: "${{ env.template-path }}"
@@ -259,7 +259,7 @@ jobs:
         timeout-minutes: 90
       - name: Create PR on failure
         if: failure() && steps.check-compilation.outcome == 'failure'
-        uses: peter-evans/create-pull-request@67ccf781d68cd99b580ae25a5c18a1cc84ffff1f # v5
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v5
         with:
           path: "${{ env.template-path }}"
           token: ${{ steps.app_token.outputs.token }}
@@ -269,7 +269,7 @@ jobs:
           body: "The template has NOT been successfully built and needs to be inspected."
           branch: "update-template/${{ github.event.inputs.stable_release_branch }}"
       - name: Create PR on success
-        uses: peter-evans/create-pull-request@67ccf781d68cd99b580ae25a5c18a1cc84ffff1f # v5
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v5
         with:
           path: "${{ env.template-path }}"
           token: ${{ steps.app_token.outputs.token }}
