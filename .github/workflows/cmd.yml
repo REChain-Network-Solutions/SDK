@@ -26,7 +26,7 @@ jobs:
 
       - name: Check if user is a member of the organization
         id: is-member
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           github-token: ${{ steps.generate_token.outputs.token }}
           result-encoding: string
@@ -61,7 +61,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Add reaction to triggered comment
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -76,7 +76,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clean previous comments
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         if: ${{ startsWith(github.event.comment.body, '/cmd') && contains(github.event.comment.body, '--clean') }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -139,7 +139,7 @@ jobs:
       - name: Get PR Branch Name and Repo
         if: steps.check-pr.outcome == 'success'
         id: get-pr
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const pr = await github.rest.pulls.get({
@@ -182,7 +182,7 @@ jobs:
           echo 'EOF' >> $GITHUB_OUTPUT
 
       - name: Comment PR (Help)
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -200,7 +200,7 @@ jobs:
             })
 
       - name: Add confused reaction on failure
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         if: ${{ failure() }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -213,7 +213,7 @@ jobs:
             })
 
       - name: Add 👍 reaction on success
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         if: ${{ !failure() }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -296,7 +296,7 @@ jobs:
       - name: Comment PR (Start)
         # No need to comment on prdoc start or if --quiet
         if: ${{ !contains(github.event.comment.body, '--quiet') && !startsWith(needs.get-pr-info.outputs.CMD, 'prdoc') && !startsWith(needs.get-pr-info.outputs.CMD, 'fmt')}}
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -456,7 +456,7 @@ jobs:
           ref: ${{ needs.get-pr-info.outputs.pr-branch }}
 
       - name: Download all artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with: 
           name: command-diff
           path: command-diff
@@ -503,7 +503,7 @@ jobs:
       - name: Comment PR (End)
         # No need to comment on prdoc success or --quiet
         if: ${{ needs.cmd.result == 'success' && !contains(github.event.comment.body, '--quiet') && !startsWith(needs.get-pr-info.outputs.CMD, 'prdoc') && !startsWith(needs.get-pr-info.outputs.CMD, 'fmt') }}
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         env:
           SUBWEIGHT: "${{ needs.cmd.outputs.subweight }}"
           CMD_OUTPUT: "${{ needs.cmd.outputs.cmd_output }}"
@@ -541,7 +541,7 @@ jobs:
     steps:
       - name: Comment PR (Failure)
         if: ${{ needs.cmd.result == 'failure' || needs.after-cmd.result == 'failure' }}
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -562,7 +562,7 @@ jobs:
 
       - name: Add 😕 reaction on failure
         if: ${{ needs.cmd.result == 'failure' || needs.after-cmd.result == 'failure' }}
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -575,7 +575,7 @@ jobs:
 
       - name: Add 👍 reaction on success
         if: ${{ needs.cmd.result == 'success' && needs.after-cmd.result == 'success' }}
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
