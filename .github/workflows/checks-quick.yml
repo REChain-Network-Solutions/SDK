@@ -113,7 +113,7 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493 # v4.1.7
       - name: Setup Node.js
-        uses: actions/setup-node@v4.1.0
+        uses: actions/setup-node@v6
         with:
           node-version: "18.x"
           registry-url: "https://npm.pkg.github.com"
