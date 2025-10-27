@@ -42,7 +42,7 @@ jobs:
           ls -lsa ./charts
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: ${{ matrix.features.bench }}-${{ github.sha }}
           path: ./charts
