@@ -131,7 +131,7 @@ jobs:
           check_gpg  ${{ matrix.binaries }}
 
       - name: Upload ${{ matrix.binaries }} artifacts
-        uses: actions/upload-artifact@2848b2cda0e5190984587ec6bb1f36730ca78d50 # v4.3.1
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v4.3.1
         with:
           name: ${{ matrix.binaries }}_${{ inputs.target }}
           path: /artifacts/${{ matrix.binaries }}
@@ -246,7 +246,7 @@ jobs:
           check_gpg  ${{ matrix.binaries }}
 
       - name: Upload ${{ matrix.binaries }} artifacts
-        uses: actions/upload-artifact@2848b2cda0e5190984587ec6bb1f36730ca78d50 # v4.3.1
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v4.3.1
         with:
           name: ${{ matrix.binaries }}_${{ inputs.target }}
           path: ${{ env.ARTIFACTS_PATH }}
@@ -297,7 +297,7 @@ jobs:
         subject-path: target/production/*.deb
 
     - name: Upload ${{inputs.package }} artifacts
-      uses: actions/upload-artifact@2848b2cda0e5190984587ec6bb1f36730ca78d50 # v4.3.1
+      uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v4.3.1
       with:
         name: ${{ inputs.package }}_${{ inputs.target }}
         path: target/production

@@ -83,7 +83,7 @@ jobs:
 
       - name: Collect tests results
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: evm-test-suite-${{ github.sha }}
           path: evm-test-suite/test-logs/matter-labs-tests.log

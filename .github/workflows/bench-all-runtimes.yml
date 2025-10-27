@@ -112,7 +112,7 @@ jobs:
           git reset
       
       - name: Upload diff
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: diff-${{ matrix.runtime.name }}
           path: diff-${{ matrix.runtime.name }}.patch
