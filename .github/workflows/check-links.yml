@@ -33,7 +33,7 @@ jobs:
           # This should restore from the most recent one:
           restore-keys: cache-lychee-
 
-      - uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493 # v4.1.0 (22. Sep 2023)
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v4.1.0 (22. Sep 2023)
 
       - name: Lychee link checker
         uses: lycheeverse/lychee-action@a8c4c7cb88f0c7386610c35eb25108e448569cb0 # for v1.9.1 (10. Jan 2024)
