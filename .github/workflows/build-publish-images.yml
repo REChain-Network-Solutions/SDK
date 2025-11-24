@@ -42,7 +42,7 @@ jobs:
       RUSTFLAGS: "-Cdebug-assertions=y -Dwarnings"
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: build
         run: |
           forklift cargo build --locked --profile testnet --features pyroscope,fast-runtime --bin polkadot --bin polkadot-prepare-worker --bin polkadot-execute-worker
@@ -95,7 +95,7 @@ jobs:
       RUSTFLAGS: "-Cdebug-assertions=y -Dwarnings"
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: build
         run: |
           echo "___Building a binary, please refrain from using it in production since it goes with the debug assertions.___"
@@ -129,7 +129,7 @@ jobs:
       RUSTFLAGS: "-Cdebug-assertions=y -Dwarnings"
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: build
         run: |
           echo "___Building a binary, please refrain from using it in production since it goes with the debug assertions.___"
@@ -163,7 +163,7 @@ jobs:
       image: ${{ needs.preflight.outputs.IMAGE }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: build
         run: |
           forklift cargo build --locked --profile testnet -p test-parachain-adder-collator
@@ -200,7 +200,7 @@ jobs:
       image: ${{ needs.preflight.outputs.IMAGE }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: build
         run: |
           forklift cargo build --locked --profile testnet -p polkadot-test-malus --bin malus --bin polkadot-prepare-worker --bin polkadot-execute-worker
@@ -236,7 +236,7 @@ jobs:
       image: ${{ needs.preflight.outputs.IMAGE }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: build
         run: |
           mkdir -p ./artifacts/substrate/
@@ -277,7 +277,7 @@ jobs:
       image: ${{ needs.preflight.outputs.IMAGE }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: build
         run: |
           forklift cargo build --locked --profile testnet -p polkadot-test-malus --bin malus --bin polkadot-prepare-worker --bin polkadot-execute-worker
@@ -307,7 +307,7 @@ jobs:
     timeout-minutes: 60
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - uses: actions/download-artifact@v6
         with:
@@ -331,7 +331,7 @@ jobs:
     timeout-minutes: 60
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - uses: actions/download-artifact@v6
         with:
@@ -355,7 +355,7 @@ jobs:
     timeout-minutes: 60
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - uses: actions/download-artifact@v6
         with:
@@ -379,7 +379,7 @@ jobs:
     timeout-minutes: 60
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - uses: actions/download-artifact@v6
         with:
@@ -403,7 +403,7 @@ jobs:
     timeout-minutes: 60
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - uses: actions/download-artifact@v6
         with:
@@ -435,7 +435,7 @@ jobs:
     timeout-minutes: 60
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - uses: actions/download-artifact@v6
         with:
@@ -476,7 +476,7 @@ jobs:
     timeout-minutes: 60
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - uses: actions/download-artifact@v6
         with:
