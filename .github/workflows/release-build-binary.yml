@@ -31,7 +31,7 @@ jobs:
       RUNNER: ${{ steps.set_runner.outputs.RUNNER }}
     steps:
       - name: Checkout
-        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v4.2.0
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v4.2.0
 
       - name: Set image
         id: set_image
@@ -54,7 +54,7 @@ jobs:
       image: ${{ needs.setup.outputs.IMAGE }}
     steps:
       - name: Checkout
-        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v4.2.0
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v4.2.0
 
       - name: Build binary
         run: |
