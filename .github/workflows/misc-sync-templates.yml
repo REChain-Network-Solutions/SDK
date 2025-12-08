@@ -259,7 +259,7 @@ jobs:
         timeout-minutes: 90
       - name: Create PR on failure
         if: failure() && steps.check-compilation.outcome == 'failure'
-        uses: peter-evans/create-pull-request@84ae59a2cdc2258d6fa0732dd66352dddae2a412 # v5
+        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v5
         with:
           path: "${{ env.template-path }}"
           token: ${{ steps.app_token.outputs.token }}
@@ -269,7 +269,7 @@ jobs:
           body: "The template has NOT been successfully built and needs to be inspected."
           branch: "update-template/${{ github.event.inputs.stable_release_branch }}"
       - name: Create PR on success
-        uses: peter-evans/create-pull-request@84ae59a2cdc2258d6fa0732dd66352dddae2a412 # v5
+        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v5
         with:
           path: "${{ env.template-path }}"
           token: ${{ steps.app_token.outputs.token }}
