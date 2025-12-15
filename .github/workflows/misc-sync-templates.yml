@@ -84,7 +84,7 @@ jobs:
             cp dev_chain_spec.json artifacts-${{ matrix.template }}/dev_chain_spec.json
 
         - name: Upload template directory
-          uses: actions/upload-artifact@v5
+          uses: actions/upload-artifact@v6
           with:
             name: artifacts-${{ matrix.template }}
             path: artifacts-${{ matrix.template }}/dev_chain_spec.json
