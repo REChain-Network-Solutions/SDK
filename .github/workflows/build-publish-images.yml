@@ -76,7 +76,7 @@ jobs:
         run: tar -cvf artifacts.tar artifacts
 
       - name: upload artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ github.job }}-${{ needs.preflight.outputs.SOURCE_REF_SLUG }}
           path: artifacts.tar
@@ -110,7 +110,7 @@ jobs:
         run: tar -cvf artifacts.tar artifacts
 
       - name: upload artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ github.job }}-${{ needs.preflight.outputs.SOURCE_REF_SLUG }}
           path: artifacts.tar
@@ -146,7 +146,7 @@ jobs:
         run: tar -cvf artifacts.tar artifacts
 
       - name: upload artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ github.job }}-${{ needs.preflight.outputs.SOURCE_REF_SLUG }}
           path: artifacts.tar
@@ -183,7 +183,7 @@ jobs:
         run: tar -cvf artifacts.tar artifacts
 
       - name: upload artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ github.job }}-${{ needs.preflight.outputs.SOURCE_REF_SLUG }}
           path: artifacts.tar
@@ -219,7 +219,7 @@ jobs:
         run: tar -cvf artifacts.tar artifacts
 
       - name: upload artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ github.job }}-${{ needs.preflight.outputs.SOURCE_REF_SLUG }}
           path: artifacts.tar
@@ -260,7 +260,7 @@ jobs:
         run: tar -cvf artifacts.tar artifacts
 
       - name: upload artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ github.job }}-${{ needs.preflight.outputs.SOURCE_REF_SLUG }}
           path: artifacts.tar
@@ -290,7 +290,7 @@ jobs:
         run: tar -cvf artifacts.tar artifacts
 
       - name: upload artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ github.job }}-${{ needs.preflight.outputs.SOURCE_REF_SLUG }}
           path: artifacts.tar
