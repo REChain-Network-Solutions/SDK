@@ -26,7 +26,7 @@ jobs:
     container:
       image: ${{ needs.preflight.outputs.IMAGE }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6.0.1
       - run: forklift cargo test --doc --workspace
         id: required
         env:
@@ -46,7 +46,7 @@ jobs:
     container:
       image: ${{ needs.preflight.outputs.IMAGE }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6.0.1
       - run: forklift cargo doc --all-features --workspace --no-deps
         id: required
         env:
@@ -65,7 +65,7 @@ jobs:
 
           inject_simple_analytics "$docs_dir" "$script_content"
       - run: echo "<meta http-equiv=refresh content=0;url=polkadot_sdk_docs/index.html>" > ./crate-docs/index.html
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with:
           name: ${{ github.sha }}-doc
           path: ./crate-docs/
@@ -85,11 +85,11 @@ jobs:
       image: paritytech/mdbook-utils:e14aae4a-20221123
       options: --user root
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6.0.1
       - run: mdbook build ./polkadot/roadmap/implementers-guide
       - run: mkdir -p artifacts
       - run: mv polkadot/roadmap/implementers-guide/book artifacts/
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with:
           name: ${{ github.sha }}-guide
           path: ./artifacts/
@@ -119,7 +119,7 @@ jobs:
     environment: subsystem-benchmarks
     needs: [build-rustdoc, build-implementers-guide]
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6.0.1
         with:
           ref: gh-pages
       - uses: actions/create-github-app-token@v2

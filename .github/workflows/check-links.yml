@@ -26,14 +26,14 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Restore lychee cache
-        uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v3.3.2 (7. Sep 2023)
+        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v3.3.2 (7. Sep 2023)
         with:
           path: .lycheecache
           key: cache-lychee-${{ github.sha }}
           # This should restore from the most recent one:
           restore-keys: cache-lychee-
 
-      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v4.1.0 (22. Sep 2023)
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v4.1.0 (22. Sep 2023)
 
       - name: Lychee link checker
         uses: lycheeverse/lychee-action@a8c4c7cb88f0c7386610c35eb25108e448569cb0 # for v1.9.1 (10. Jan 2024)

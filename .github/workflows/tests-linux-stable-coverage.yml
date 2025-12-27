@@ -42,7 +42,7 @@ jobs:
         ci_node_total: [5]
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6.0.1
 
       - run: rustup component add llvm-tools-preview
       - run: cargo install cargo-llvm-cov
@@ -82,7 +82,7 @@ jobs:
       - name: generate report
         run: cargo llvm-cov report --release --codecov --output-path coverage-${{ matrix.ci_node_index }}.lcov
       - name: upload report
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: coverage-report-${{ matrix.ci_node_index }}.lcov
           path: coverage-${{ matrix.ci_node_index }}.lcov
@@ -117,7 +117,7 @@ jobs:
     needs: [upload-reports]
     if: github.event_name == 'pull_request'
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6.0.1
       - uses: actions-ecosystem/action-remove-labels@v1
         with:
           labels: GHA-coverage

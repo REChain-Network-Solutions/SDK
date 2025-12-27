@@ -37,7 +37,7 @@ jobs:
       image: ${{ needs.preflight.outputs.IMAGE }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6.0.1
       - name: script
         id: required
         run: |
@@ -61,7 +61,7 @@ jobs:
       image: ${{ needs.preflight.outputs.IMAGE }}
     name: Extract runtimes from matrix
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6.0.1
       - id: runtime
         run: |
           RUNTIMES=$(jq '[.[] | select(.package != null)]' .github/workflows/runtimes-matrix.json)
@@ -87,7 +87,7 @@ jobs:
       RUST_LOG: "frame_omni_bencher=info,polkadot_sdk_frame=info"
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6.0.1
 
       - name: script
         id: required
