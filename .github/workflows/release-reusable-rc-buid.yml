@@ -56,7 +56,7 @@ jobs:
       IMAGE: ${{ steps.set_image.outputs.IMAGE }}
     steps:
       - name: Checkout
-        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v4.2.0
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v4.2.0
 
       - id: set_image
         run: cat .github/env >> $GITHUB_OUTPUT
@@ -86,7 +86,7 @@ jobs:
           which pgpkms
 
       - name: Checkout sources
-        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v4.2.0
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v4.2.0
         with:
           ref: ${{ inputs.release_tag }}
           fetch-depth: 0
@@ -151,7 +151,7 @@ jobs:
       AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
     steps:
       - name: Checkout sources
-        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v4.2.0
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v4.2.0
         with:
           ref: ${{ inputs.release_tag }}
           fetch-depth: 0
@@ -258,7 +258,7 @@ jobs:
 
     steps:
     - name: Checkout sources
-      uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v4.2.0
+      uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v4.2.0
       with:
         ref: ${{ inputs.release_tag }}
         fetch-depth: 0
