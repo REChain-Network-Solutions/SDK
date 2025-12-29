@@ -86,7 +86,7 @@ jobs:
       - run: git checkout master --
 
       - name: Download artifacts
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           path: ./charts
 
