@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: isdraft
     steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v4.1.7
+      - uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98 # v4.1.7
 
       - name: Rust Cache
         uses: Swatinem/rust-cache@f0deed1e0edfc6a9be95417288c0e1099b1eeec3 # v2.7.7

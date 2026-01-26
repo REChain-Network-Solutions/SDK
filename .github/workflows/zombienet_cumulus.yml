@@ -37,7 +37,7 @@ jobs:
       COL_IMAGE: "${{ needs.preflight.outputs.TEMP_IMAGES_BASE }}/test-parachain:${{ needs.preflight.outputs.DOCKER_IMAGES_VERSION }}"
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
 
       - name: script
         run: |
@@ -68,7 +68,7 @@ jobs:
       COL_IMAGE: "${{ needs.preflight.outputs.TEMP_IMAGES_BASE }}/test-parachain:${{ needs.preflight.outputs.DOCKER_IMAGES_VERSION }}"
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
 
       - name: script
         run: |
@@ -99,7 +99,7 @@ jobs:
       COL_IMAGE: "${{ needs.preflight.outputs.TEMP_IMAGES_BASE }}/test-parachain:${{ needs.preflight.outputs.DOCKER_IMAGES_VERSION }}"
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
 
       - name: script
         run: |
@@ -130,7 +130,7 @@ jobs:
       COL_IMAGE: "${{ needs.preflight.outputs.TEMP_IMAGES_BASE }}/test-parachain:${{ needs.preflight.outputs.DOCKER_IMAGES_VERSION }}"
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
 
       - uses: actions/download-artifact@v7
         with:
@@ -173,7 +173,7 @@ jobs:
       COL_IMAGE: "${{ needs.preflight.outputs.TEMP_IMAGES_BASE }}/test-parachain:${{ needs.preflight.outputs.DOCKER_IMAGES_VERSION }}"
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
 
       - name: script
         run: |
@@ -204,7 +204,7 @@ jobs:
       COL_IMAGE: "${{ needs.preflight.outputs.TEMP_IMAGES_BASE }}/test-parachain:${{ needs.preflight.outputs.DOCKER_IMAGES_VERSION }}"
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
 
       - name: script
         run: |
@@ -235,7 +235,7 @@ jobs:
       COL_IMAGE: "${{ needs.preflight.outputs.TEMP_IMAGES_BASE }}/test-parachain:${{ needs.preflight.outputs.DOCKER_IMAGES_VERSION }}"
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
 
       - name: script
         run: |
@@ -266,7 +266,7 @@ jobs:
       COL_IMAGE: "${{ needs.preflight.outputs.TEMP_IMAGES_BASE }}/test-parachain:${{ needs.preflight.outputs.DOCKER_IMAGES_VERSION }}"
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
 
       - name: script
         run: |
@@ -297,7 +297,7 @@ jobs:
       COL_IMAGE: "${{ needs.preflight.outputs.TEMP_IMAGES_BASE }}/test-parachain:${{ needs.preflight.outputs.DOCKER_IMAGES_VERSION }}"
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
 
       - name: script
         run: |
