@@ -27,7 +27,7 @@ jobs:
         contains(github.event.pull_request.labels.*.name, 'A4-needs-backport')
       )
     steps:
-      - uses: actions/checkout@v6.0.1
+      - uses: actions/checkout@v6.0.2
 
       - name: Generate token
         id: generate_token
