@@ -63,7 +63,7 @@ jobs:
           fetch_debian_package_from_s3 polkadot
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v4.3.1
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v4.3.1
         with:
           name: release-artifacts
           path: release-artifacts/polkadot/*.deb
