@@ -151,7 +151,7 @@ jobs:
           forklift cargo run --locked --release -p node-bench -- $BENCH_NODE_IMPORT --json | tee $ARTIFACTS_DIR/bench_transfer_keep_alive.json
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           path: ./artifacts
           name: cargo-check-benches-${{ matrix.branch }}-${{ github.sha }}
@@ -235,7 +235,7 @@ jobs:
 
       - name: Upload artifacts if failed
         if: ${{ steps.tests.outcome != 'success' }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: node-metrics-failed
           path: ./artifacts
@@ -309,7 +309,7 @@ jobs:
   #         done
 
   #     - name: Upload artifacts
-  #       uses: actions/upload-artifact@v6
+  #       uses: actions/upload-artifact@v7
   #       with:
   #         path: substrate/primitives/arithmetic/fuzzer/hfuzz_workspace/
   #         name: hfuzz-${{ github.sha }}
