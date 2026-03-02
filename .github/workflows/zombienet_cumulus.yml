@@ -50,7 +50,7 @@ jobs:
             --test="0001-sync_blocks_from_tip_without_connected_collator.zndsl"
 
       - name: upload logs
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: zombienet-logs-${{ github.job }}-${{ github.sha }}
           path: |
@@ -81,7 +81,7 @@ jobs:
             --test="0002-pov_recovery.zndsl"
 
       - name: upload logs
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: zombienet-logs-${{ github.job }}-${{ github.sha }}
           path: |
@@ -112,7 +112,7 @@ jobs:
             --test="0003-full_node_catching_up.zndsl"
 
       - name: upload logs
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: zombienet-logs-${{ github.job }}-${{ github.sha }}
           path: |
@@ -132,7 +132,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6.0.2
 
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@v8
         with:
           name: build-test-parachain-${{ needs.preflight.outputs.SOURCE_REF_SLUG }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -155,7 +155,7 @@ jobs:
             --test="0004-runtime_upgrade.zndsl"
 
       - name: upload logs
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: zombienet-logs-${{ github.job }}-${{ github.sha }}
           path: |
@@ -186,7 +186,7 @@ jobs:
             --test="0005-migrate_solo_to_para.zndsl"
 
       - name: upload logs
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: zombienet-logs-${{ github.job }}-${{ github.sha }}
           path: |
@@ -217,7 +217,7 @@ jobs:
             --test="0006-rpc_collator_builds_blocks.zndsl"
 
       - name: upload logs
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: zombienet-logs-${{ github.job }}-${{ github.sha }}
           path: |
@@ -248,7 +248,7 @@ jobs:
             --test="0007-full_node_warp_sync.zndsl"
 
       - name: upload logs
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: zombienet-logs-${{ github.job }}-${{ github.sha }}
           path: |
@@ -279,7 +279,7 @@ jobs:
             --test="0008-elastic_authoring.zndsl"
 
       - name: upload logs
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: zombienet-logs-${{ github.job }}-${{ github.sha }}
           path: |
@@ -310,7 +310,7 @@ jobs:
             --test="0009-elastic_pov_recovery.zndsl"
 
       - name: upload logs
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: zombienet-logs-${{ github.job }}-${{ github.sha }}
           path: |

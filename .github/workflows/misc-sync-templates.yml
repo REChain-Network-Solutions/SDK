@@ -84,7 +84,7 @@ jobs:
             cp dev_chain_spec.json artifacts-${{ matrix.template }}/dev_chain_spec.json
 
         - name: Upload template directory
-          uses: actions/upload-artifact@v6
+          uses: actions/upload-artifact@v7
           with:
             name: artifacts-${{ matrix.template }}
             path: artifacts-${{ matrix.template }}/dev_chain_spec.json
@@ -112,7 +112,7 @@ jobs:
           path: polkadot-sdk
           ref: "${{ github.event.inputs.stable_release_branch }}"
       - name: Download template artifacts
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: artifacts-${{ matrix.template }}
           path: templates/${{ matrix.template }}/
