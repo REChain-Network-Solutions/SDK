@@ -47,7 +47,7 @@ jobs:
         uses: actions/checkout@v6.0.2
 
       - name: Build eth-rpc Docker image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: ./substrate/frame/revive/rpc/dockerfiles/eth-rpc/Dockerfile
@@ -73,7 +73,7 @@ jobs:
           password: ${{ secrets.PARITYPR_DOCKERHUB_PASSWORD }}
 
       - name: Build eth-rpc Docker image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: ./substrate/frame/revive/rpc/dockerfiles/eth-rpc/Dockerfile
