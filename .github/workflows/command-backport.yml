@@ -62,7 +62,7 @@ jobs:
 
       - name: Label Backports
         if: ${{ steps.backport.outputs.created_pull_numbers != '' }}
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             const pullNumbers = '${{ steps.backport.outputs.created_pull_numbers }}'.split(' ');
@@ -79,7 +79,7 @@ jobs:
 
       - name: Request Review
         if: ${{ steps.backport.outputs.created_pull_numbers != '' }}
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             const pullNumbers = '${{ steps.backport.outputs.created_pull_numbers }}'.split(' ');
